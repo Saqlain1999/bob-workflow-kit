@@ -1,0 +1,11 @@
+Set up this checked-out Bob Workflow Kit for the current user using the included implementation.
+
+Read README.md, docs/compatibility.md, docs/installer.md, and tools/bob_workflow.py. Confirm the active OS, execution host, available Python version, Bob interface/version, and actual Bob configuration directory. Use narrow discovery; do not print authentication files, environment dumps, or secrets.
+
+Run the installer's preview against the intended Bob home and inspect every proposed destination and conflict. Run the documented offline tests with their explicit temporary targets. If the preview is appropriate and tests pass, run install and doctor using that same target. Perform the supported reversible work now, within native permissions. Do not replace the installer with newly generated code or disable native controls.
+
+Preserve existing rules, skills, settings, global AGENTS.md, hooks, models, authentication, MCP configuration, and unrelated files. If a target collision or a local modification is reported, explain the exact conflict and complete independent useful checks; do not add a force-overwrite workaround.
+
+Report the package version, resolved paths, actual command results, changed files, conflicts, uninstall/recovery instructions, and what still requires a fresh Bob session. File validation is not proof that Bob loaded the content. Do not invoke a nested model, make paid API calls, install packages, or run tests in an existing work project for this installation.
+
+Finish with the exact next step from prompts/verify.txt. Keep small future requests lightweight and do not promise error-free behaviour.

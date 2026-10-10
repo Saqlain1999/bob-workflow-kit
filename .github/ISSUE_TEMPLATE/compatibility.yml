@@ -1,0 +1,36 @@
+name: Bob compatibility result
+description: Record observed loading and task behaviour for a specific client.
+title: "Compatibility: "
+body:
+  - type: input
+    id: kit
+    attributes:
+      label: Kit version or commit
+    validations:
+      required: true
+  - type: input
+    id: bob
+    attributes:
+      label: Bob version and interface
+      description: State IDE or Shell and the exact version.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS, Python version, and execution host
+      description: State local, remote SSH, or container; omit confidential hostnames.
+    validations:
+      required: true
+  - type: textarea
+    id: observations
+    attributes:
+      label: Observed results
+      description: Separate installer integrity, actual client loading, and task/check behaviour. Mark unknowns explicitly.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitised reproduction and evidence
+      description: Include commands and real outcomes. Do not include credentials or private source/logs.

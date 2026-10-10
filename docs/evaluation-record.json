@@ -1,0 +1,57 @@
+{
+  "review_date": "2026-10-09",
+  "timezone": "UTC",
+  "kit_version": "0.1.0-alpha.1",
+  "python": "3.12.14",
+  "os": "Linux",
+  "offline_installer": {
+    "command": "python3 -B -m unittest discover -s tests -v",
+    "exit_code": 0,
+    "tests": 24,
+    "passed": 24
+  },
+  "fixture_baseline": {
+    "tests": 9,
+    "passed": 8,
+    "failed": 1,
+    "exit_code": 1
+  },
+  "independent_assistant_trial": {
+    "runtime": "Separate assistant reading the Bob skill; not IBM Bob",
+    "tests": 9,
+    "passed": 9,
+    "exit_code": 0,
+    "changed_files": [
+      "ledger.py"
+    ],
+    "checkpoint": "Not needed for the small one-session repair"
+  },
+  "not_tested": [
+    "Live IBM Bob IDE loading",
+    "Live IBM Bob Shell loading",
+    "Native macOS",
+    "Native Windows",
+    "Python 3.10 execution",
+    "Large-repository task recovery",
+    "GitHub-hosted CI"
+  ],
+  "source_hashes": {
+    "tools/bob_workflow.py": "1e4c3cc5ec4b7e629c9c9f63c0b20dee2163fd0645c3804f95e76d6489f96067",
+    "tests/test_installer.py": "83464ca4c551ee4024aa814ba67d08773150727c18846a27e1115d2f44d41fee",
+    "payload/rules/bob-workflow-kit.md": "c993bd259884b2c2dff92dae763e93a09590eea1d7dffd472f259ea2bdfbfcc1",
+    "payload/skills/work-large-codebase/SKILL.md": "dbded1fb5b2215b00ff2f4796e0f3e359872f8e38bfeaf9cfbba0d4c1dcfad58",
+    "payload/skills/work-large-codebase/references/change.md": "c0f7e24260cfb83ad6f71e924f6ca129c827e48707f94fd022b8674071080894",
+    "payload/skills/work-large-codebase/references/onboarding.md": "db8ebaba5b20bd2cd67926fe7ae1d8cc78cab4a7e87bdf707772ec7c20aa610d",
+    "payload/skills/work-large-codebase/references/recovery.md": "29edba8db135995c51f57047d60c29f03a93dae0404cd2f8c9f365b8446270b1",
+    "payload/skills/work-large-codebase/templates/checkpoint.md": "f120dd575aa0af5cfdb6cb0b14fed77474357fe938184af9676c8ddb03d3b99b",
+    "payload/skills/work-large-codebase/templates/repository-profile.md": "f1a376de2f2995981d954802e7161da1ac289742c906165b5aa9bebc0ff17d34"
+  },
+  "static_artifact_checks": {
+    "python_3_10_grammar": "passed; not a Python 3.10 runtime test",
+    "local_markdown_links": {
+      "checked": 36,
+      "broken": 0
+    },
+    "json_documents": "all parsed successfully"
+  }
+}

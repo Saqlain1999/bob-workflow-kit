@@ -1,0 +1,23 @@
+name: Reproducible problem
+description: Report a setup or workflow problem with a small reproduction.
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Package version and environment
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Prefer a disposable fixture and include the exact command or prompt.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and observed behaviour
+      description: Include real exit statuses or loading evidence. Keep secrets and private content out.
+    validations:
+      required: true

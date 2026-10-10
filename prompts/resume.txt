@@ -1,0 +1,5 @@
+Use work-large-codebase to resume from [REPLACE WITH THE CHECKPOINT PATH].
+
+Read the skill's recovery reference, current project instructions, and the named task record. Reconcile them with the actual branch/worktree, relevant files, running processes, and saved verification evidence. Invalidate old results when relevant inputs changed or their coverage is unknown.
+
+Continue from the next useful action. Preserve unrelated work and avoid recreating the entire old conversation or reading the whole repository. Do not repeat a failed approach without new evidence. Use native permissions, update the checkpoint at meaningful milestones, and report the actual checks and remaining uncertainty.

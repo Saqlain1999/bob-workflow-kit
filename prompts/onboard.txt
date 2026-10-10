@@ -1,0 +1,9 @@
+Use work-large-codebase to onboard the current repository.
+
+Read the onboarding reference from the installed skill. Inspect the actual repository/worktree, existing instruction hierarchy, current changes, manifests, CI, build scripts, component entry points, and representative tests. Build a concise component map with supporting paths. Do not read every source file by default.
+
+Create or carefully update the repository profile and essential project instructions, preserving maintained AGENTS.md content and unrelated changes. Discover real commands, working directories, required services/fixtures, and baseline failures. Run suitable inexpensive local checks that are already available and report actual outcomes. Do not guess passing checks or install dependencies as an onboarding side effect.
+
+Choose and document a task-specific checkpoint location. Keep project knowledge separate from global rules and other repositories. Preserve native access controls and tracking conventions; provide a precise manual step if a protected configuration file cannot be changed through the supported mechanism.
+
+Finish with the profile path, files changed, discovered commands, real check results, unresolved prerequisites, and a short prompt for the next substantial task.

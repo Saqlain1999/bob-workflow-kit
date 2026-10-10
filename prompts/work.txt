@@ -1,0 +1,9 @@
+Use work-large-codebase for this repository.
+
+Task: [REPLACE WITH THE DESIRED OUTCOME]
+
+Read existing project instructions and inspect the current worktree. Establish acceptance criteria, investigate the relevant interfaces/callers/tests, and maintain task-specific state when the scope warrants it. Make routine reversible progress without repeated conversational confirmation, while respecting native permissions and material scope constraints.
+
+Implement coherent milestones, use focused commands with bounded output, and delegate independent work only when useful and with clear ownership. Run proportionate real checks. Record failed approaches, results, remaining uncertainty, and next actions at meaningful milestones. If repeated attempts do not progress, revisit the diagnosis.
+
+Finish with the implemented outcome, affected files, checks actually run and what they demonstrate, remaining blockers, and the checkpoint path if one was needed. Do not label unverified behaviour as checked.
