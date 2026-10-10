@@ -1,6 +1,6 @@
 # Validation record
 
-Package: **0.1.0-alpha.1**. Recorded **9 October 2026 (UTC)**.
+Package: **0.1.0-alpha.1**. Local preparation recorded **9 October 2026 (UTC)**; hosted CI added **10 October 2026 (UTC)**.
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
@@ -34,17 +34,20 @@ Actual fixture outputs and the observed diff are in [trial-evidence.md](docs/tri
 
 Tests use disposable explicit Bob roots; no live user Bob configuration, model endpoint, or credentials are needed.
 
+## Hosted publication checks
+
+[GitHub Actions run 38008042613](https://github.com/Saqlain1999/bob-workflow-kit/actions/runs/38008042613) completed successfully for published commit `3226221bc7b085666fd64b8f2e7dc2e1b6acb80f` on 10 October 2026 (UTC). All six installer-test jobs passed: `ubuntu-latest`, `windows-latest`, and `macos-latest`, each with Python 3.10 and 3.12. The recorded test step was **Run installer tests in disposable targets**.
+
+This establishes execution of the offline installer suite on those hosted runners. It does not establish Bob client loading, behavior on a particular work laptop, or large-codebase effectiveness. The local preparation evidence above remains separate from this hosted run.
+
 ## Not executed or not established
 
 | Area | Status |
 | --- | --- |
 | IBM Bob IDE loading and behaviour | **Not tested** |
 | IBM Bob Shell loading and behaviour | **Not tested** |
-| Native macOS / Windows execution | **Not tested**; CI jobs are defined |
-| Python 3.10 runtime | **Not executed here**; it is the source compatibility target |
 | Remote SSH / containers / managed laptop policies | **Not qualified** |
 | Large-repository checkpoint/recovery trial | **Not run** |
-| GitHub-hosted CI | **Not run during local preparation**; inspect the published repository's Actions history for subsequent runs |
 | Native Bob plugin or Marketplace installation | **Not implemented or claimed** |
 | External workflow controller | **Planned only** |
 
