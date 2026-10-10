@@ -406,6 +406,7 @@ kit.install(Path(sys.argv[2]), Path(sys.argv[3]))
         self.assertEqual(json.loads(result.stdout)["error"]["code"], "conflicts")
 
     def test_shipped_payload_is_valid(self):
+        self.assertEqual(kit.VERSION, (REPOSITORY / "VERSION").read_text(encoding="utf-8").strip())
         actual = kit.load_payload(REPOSITORY / "payload")
         self.assertIn(kit.RULE, actual)
         self.assertIn(kit.SKILL, actual)

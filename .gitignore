@@ -3,6 +3,7 @@ __pycache__/
 .pytest_cache/
 .venv/
 dist/
+runs/
 .bob/work/
 .bob-workflow-test/
 *.log

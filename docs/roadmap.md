@@ -4,7 +4,7 @@ The first section describes the implemented alpha. Later milestones describe fut
 
 ## First public project: `bob-workflow-kit`
 
-The first alpha includes the guide, a small documented rules/skills payload, offline setup tooling, copyable prompts, task templates, a deliberately failing fixture, and validation/reporting materials. Its next useful evidence is live Bob loading and a representative repository task on each target interface.
+The alpha includes the guide, a small documented rules/skills payload, offline setup tooling, copyable prompts, task templates, a deliberately failing fixture, and validation/reporting materials. The [first-use walkthrough](try-alpha.md) is the public entry point. The companion evaluator adds a constructed stale-evidence recovery exercise; its live Bob behavior remains to be recorded. Next useful evidence is actual client loading and task behavior on each target interface.
 
 Keep user installation simple: one download, one preview, one install, one fresh-session check, then project onboarding. Keep deeper material available without loading it all into every conversation.
 
@@ -24,13 +24,15 @@ Keep user installation simple: one download, one preview, one install, one fresh
 | Repository | Responsibility | Initial state |
 | --- | --- | --- |
 | [bob-workflow-kit](https://github.com/Saqlain1999/bob-workflow-kit) | User guide, core rules/skills, installer, templates | Implemented alpha; user starting point |
-| [bob-workflow-evals](https://github.com/Saqlain1999/bob-workflow-evals) | Reproducible tasks and evaluation materials | Small public fixture and evaluation starter; large-repository trials remain future work |
+| [bob-workflow-evals](https://github.com/Saqlain1999/bob-workflow-evals) | Reproducible tasks and evaluation materials | Tiny Ledger repair plus Parcel Resume policy/freshness exercise; live Bob and large-repository trials remain future work |
 | [bob-workflow-runner](https://github.com/Saqlain1999/bob-workflow-runner) | Controller architecture, task contract, process and verification requirements | Design preview; no executable controller |
 | [awesome-bob-workflows](https://github.com/Saqlain1999/awesome-bob-workflows) | Curated links with provenance, status, and compatibility notes | Original catalogue and contribution guidance |
 
 They are independent community projects, not IBM products or registered package names. Core kit installation does not require installing the companions. Keep user setup and installer issues here; route fixture, controller-design, and catalogue changes to the relevant companion.
 
 ## Controller design direction
+
+First complete the companion runner's [build-versus-adopt review](https://github.com/Saqlain1999/bob-workflow-runner/blob/main/ROADMAP.md). Native Bob, Bob Control and Headless Bob already provide substantial execution/recovery functionality. Adopting an existing tool, contributing a focused change, or adding a narrow adapter are valid outcomes. The remaining requirements below do not imply a new controller is necessary.
 
 Keep instructions and enforcement distinct. A controller should validate a task/profile, invoke a bounded worker, run required checks itself, and transition among prepare, implement, verify, accept, repair, and stop. It must not accept a model's completion statement as a substitute for actual check results.
 

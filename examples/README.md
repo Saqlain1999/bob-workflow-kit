@@ -1,7 +1,7 @@
 # Manual acceptance example
 
 `tiny-ledger/` is a deliberately faulty, self-contained Python project for trying
-the Bob Workflow Kit. It requires only Python 3.8 or later and the standard
+the Bob Workflow Kit. Use Python 3.10 or later for the complete kit walkthrough and the standard
 library. It has no packages to install, network calls, credentials, or services.
 
 **The example's baseline test suite intentionally fails.** The repository's own

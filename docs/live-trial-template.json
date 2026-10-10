@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "record_type": "manual_live_bob_trial_template",
+  "status": "not_run",
+  "observed_at_utc": null,
+  "kit": {"version": null, "commit": null, "archive_sha256": null},
+  "bob": {"interface": null, "version": null, "mode": null, "model_if_observed": null},
+  "environment": {"os": null, "python_version": null, "execution_host_type": null},
+  "configuration": {
+    "fresh_conversation": null,
+    "global_rule_observed_loaded": null,
+    "global_skill_observed_loaded": null,
+    "same_name_project_override": null,
+    "other_workflows_or_rules": null,
+    "native_loading_evidence": null
+  },
+  "installation": {"status": "not_run", "doctor_evidence": null},
+  "task": {
+    "id": null,
+    "fixture_commit": null,
+    "baseline_report": null,
+    "candidate_report": null,
+    "diff": null,
+    "manual_acceptance": "not_assessed"
+  },
+  "workflow_observations": {
+    "current_files_inspected": null,
+    "historical_evidence_revalidated": null,
+    "teammate_changes_preserved": null,
+    "evidence_reference": null
+  },
+  "agent_elapsed_seconds": null,
+  "manual_interventions": null,
+  "tokens_if_reported": null,
+  "cost_if_reported": null,
+  "failed_or_abandoned_attempts": null,
+  "first_confusing_step": null,
+  "limitations_and_redactions": null
+}

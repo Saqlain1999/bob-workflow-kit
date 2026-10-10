@@ -1,46 +1,40 @@
 # Maintaining and releasing this alpha
 
-Public repository: [Saqlain1999/bob-workflow-kit](https://github.com/Saqlain1999/bob-workflow-kit). Package version: **v0.1.0-alpha.1**, with the included MIT licence. A repository publication and a tagged GitHub release are separate operations. No package-registry name or Marketplace listing is claimed.
+Public repository: [Saqlain1999/bob-workflow-kit](https://github.com/Saqlain1999/bob-workflow-kit). Current package: **0.1.0-alpha.2**, with the included MIT license. A GitHub release is separate from repository publication. No package-registry name or Marketplace listing is claimed.
 
-## What a reader should receive
+## Release gate
 
-A source archive or clone containing the complete guide, payload, installer/tests, prompts, fixture, compatibility notes, and validation record. The first page should make the installation path and alpha status clear.
+1. Review the exact diff, project scope, license, and public-facing examples. Preserve the failing Tiny Ledger baseline and all historical evidence labels.
+2. Run `python3 -m unittest discover -s tests -v` from the source to be released. Validate local documentation links and JSON after material documentation changes.
+3. Commit the reviewed source. Inspect all six jobs of **Offline validation** for that exact commit: Linux, macOS and Windows with Python 3.10 and 3.12. A workflow definition or a green result for another commit is insufficient.
+4. Create the version tag at that tested commit. Build a source archive from the commit, not from an uncommitted working directory. Attach its SHA-256 checksum.
+5. Publish a GitHub **prerelease**, with the tag, full commit, CI link, observed check counts, update/removal instructions, and [Try the alpha](try-alpha.md).
+6. Keep unexecuted client/OS combinations untested. Live loading can be gathered during a clearly labelled alpha; stable compatibility claims need evidence and a maintenance commitment.
 
-## Before announcing this alpha
+Tag names use `v` plus the content of `VERSION`. Do not reuse a published tag for changed source. Alpha.2 changes documentation and package version; its installed payload is the same as alpha.1. The installer still refuses an in-place version change, so users inspect/uninstall from their old checkout and then install from the new one.
 
-1. Confirm repository ownership and any additional maintainers; retain the community-project description.
-2. Review the code, licence, documentation, and generated assets intended for publication.
-3. Run the offline tests from the exact source being released.
-4. Publish the existing validation limits clearly. Live Bob/OS combinations that have not run must remain marked untested.
-5. Enable the issue forms and an appropriate private security-reporting channel if available; the included policy does not invent a contact address or response promise.
-6. Inspect CI results for the exact commit being released. A passing local run is not a substitute for the macOS/Windows jobs.
-7. Tag an alpha release, attach the archive and its SHA-256, and link the guide.
+## Reproduce the source archive
 
-Live loading and real-project trials can be gathered during an explicitly labelled alpha. Broader stable compatibility claims require those results first.
-
-## Historical first-publication example
-
-This repository has already been published. The commands below document initial repository creation; updates should use the existing remote and a reviewed commit/push. These commands are not performed by the installer.
+From a checkout containing the exact tested commit, create `dist/` and use the actual commit SHA in place of `TESTED_COMMIT`:
 
 ```sh
-git init -b main
-git add .
-git commit -m "Initial Bob Workflow Kit alpha"
-gh repo create Saqlain1999/bob-workflow-kit --public --source=. --remote=origin --push
+python3 -c "from pathlib import Path; Path('dist').mkdir(exist_ok=True)"
+git archive --format=zip --prefix=bob-workflow-kit-0.1.0-alpha.2/ --output=dist/bob-workflow-kit-0.1.0-alpha.2.zip TESTED_COMMIT
+python3 -c "import hashlib,pathlib; p=pathlib.Path('dist/bob-workflow-kit-0.1.0-alpha.2.zip'); print(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name)" > dist/SHA256SUMS.txt
 ```
 
-Review `git status` and the staged diff before committing. The installer never calls these commands. GitHub CLI instructions are documented at [gh repo create](https://cli.github.com/manual/gh_repo_create).
+The archive includes the complete checked-in guide, payload, installer/tests, prompts, fixture, and validation records. Open the archive and check `VERSION` and expected paths before upload. Record the Git version if byte-for-byte archive reproduction is required; archive tooling may change serialization across versions. SHA-256 verifies the supplied file's bytes, not publisher identity or Bob compatibility.
 
-Suggested GitHub description:
+Release validation links refer to the commit under the tag. Later documentation may record the completed release, but cannot retroactively change the tagged source or its historical validation record.
 
-> Practical IBM Bob workflows for large codebases: reversible setup, focused context, task checkpoints, and verification evidence.
+## Distribution and feedback
 
-Suggested topics: `ibm-bob`, `developer-tools`, `agent-skills`, `developer-experience`, `workflow`, `documentation`.
+Use the kit as the front door. Keep its description concrete, add relevant GitHub topics, and link [Try the alpha](try-alpha.md) from announcements. The [demo and launch guide](demo-and-launch.md) supplies a real-trial storyboard and a draft announcement for human review. It does not establish that a video, outside message, or community post was published.
 
-## Announcement scope
+Credit existing tools through [alternatives and coexistence](alternatives.md). The contribution is a small usable setup and reproducible evidence, not ownership of general context/checkpoint practices. The exact offering called Propel SDLC for IBM Bob remains unresolved until its primary link is identified.
 
-Describe the concrete alpha contents and link to its validation. Invite reproducible compatibility reports and public examples. Credit relevant existing projects through the ecosystem guide. Do not imply IBM endorsement, a verified Propel integration, an official Marketplace listing, or guaranteed outcomes.
+## Maintenance focus
 
-## Future maintenance
+When Bob changes discovery or extension behavior, review primary documentation and then test the affected mechanism. Keep offline tests, native client loading, task correctness, and human-observed recovery separate. Add exact-version reports rather than a blanket compatibility badge.
 
-Update the compatibility review when Bob changes discovery or extension behaviour. Keep releases versioned and examples reproducible. Coordinate links and scope with the companion repositories described in [the roadmap](roadmap.md); keep their evaluation and controller maturity labels accurate.
+Prioritize reproducible installation failures and missed or stale verification over growing the number of skills. Before adding runner or marketplace machinery, complete the [build-versus-adopt decision](https://github.com/Saqlain1999/bob-workflow-runner/blob/main/ROADMAP.md). The companion repositories' implementation status must remain visible.

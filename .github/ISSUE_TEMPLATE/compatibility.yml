@@ -1,5 +1,5 @@
 name: Bob compatibility result
-description: Record observed loading and task behaviour for a specific client.
+description: Share a first trial, including a failure or confusing step.
 title: "Compatibility: "
 body:
   - type: input
@@ -26,9 +26,19 @@ body:
     id: observations
     attributes:
       label: Observed results
-      description: Separate installer integrity, actual client loading, and task/check behaviour. Mark unknowns explicitly.
+      description: Separate installer integrity, native client loading, and task/check behaviour. A short result is welcome; keep unknowns explicit.
+      value: |
+        Install / doctor: PASS / FAIL / NOT RUN
+        Native rule / skill loading: OBSERVED / NOT VERIFIED
+        Exercise and outcome: Tiny Ledger / Parcel Resume / other; PASS / FAIL / NOT RUN
+        Existing project rules or other workflow tools:
     validations:
       required: true
+  - type: textarea
+    id: friction
+    attributes:
+      label: First confusing or failing step
+      description: What happened, what did you expect, and what would have helped?
   - type: textarea
     id: evidence
     attributes:

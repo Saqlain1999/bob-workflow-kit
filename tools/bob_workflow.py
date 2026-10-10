@@ -22,7 +22,7 @@ import tempfile
 from typing import Any
 
 
-VERSION = "0.1.0-alpha.1"
+VERSION = "0.1.0-alpha.2"
 SCHEMA_VERSION = 1
 METADATA = "workflow-kit"
 MANIFEST = f"{METADATA}/manifest.json"

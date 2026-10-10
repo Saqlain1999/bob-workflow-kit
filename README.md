@@ -1,8 +1,8 @@
 # Bob Workflow Kit
 
-**Practical workflows for investigating, changing, verifying, and resuming code with IBM Bob.**
+**Keep a Bob task understandable when the repository is large or the conversation is interrupted.**
 
-Version: **0.1.0-alpha.1**. Community alpha. This toolkit is independent of IBM and is not an IBM product or Marketplace listing.
+Version: **0.1.0-alpha.2**. Community alpha. This toolkit is independent of IBM and is not an IBM product or Marketplace listing.
 
 Bob Workflow Kit combines a public guide, a concise global rule, an on-demand skill, repository/task templates, and an offline installer. It is designed for developers who lose the thread in large repositories, get overwhelmed by command output, or cannot tell what an agent actually verified.
 
@@ -10,13 +10,17 @@ The installer manages a small known payload. The workflow uses Bob's existing to
 
 ## Start here
 
-1. Read the [practical guide](docs/guide.md) if rules, skills, and task memory are new to you.
-2. Preview and install the package below.
-3. Verify loading in a **fresh Bob conversation** using [verify.txt](prompts/verify.txt).
-4. Open your project and use [onboard.txt](prompts/onboard.txt).
-5. Use [work.txt](prompts/work.txt) for substantial changes and [resume.txt](prompts/resume.txt) after an interruption.
+**[Try the alpha: from download to your first verified change](docs/try-alpha.md).** One walkthrough covers installation, a fresh Bob loading check, the included disposable exercise, and a short feedback report. Start there; the companion repositories are optional.
 
-Prefer Bob to operate the installer? Open this extracted repository in Bob Agent mode and paste [install-with-bob.txt](prompts/install-with-bob.txt). It tells Bob to inspect and run this implementation, rather than generate a different installer.
+Already tried it? Use [onboard.txt](prompts/onboard.txt) for a real repository, [work.txt](prompts/work.txt) for a substantial change, and [resume.txt](prompts/resume.txt) after an interruption. The [practical guide](docs/guide.md) explains the method in depth.
+
+### What makes this worth trying?
+
+The kit puts a small, inspectable Bob setup together with exercises and an evidence trail. It encourages focused source reads, bounded command output, checkpoints that reference existing project records, and checks tied to the code that actually ran. It does not make those engineering practices new.
+
+The companion [Parcel Resume exercise](https://github.com/Saqlain1999/bob-workflow-evals/tree/main/tasks/parcel-resume) asks a concrete question: after a recorded passing check, can a fresh session handle a changed policy, preserve a teammate's unrelated edit, and verify the current implementation? Its starting checkpoint is deliberately constructed; live Bob results must be recorded separately.
+
+Native Bob, Spec Kit, and existing Bob runtimes already cover much of this space. Read [alternatives and coexistence](docs/alternatives.md) to choose what you need and reuse the records your project already has. The kit can complement those tools; there is no general superiority claim.
 
 ## Quick installation
 
@@ -56,7 +60,7 @@ These are relative to the selected Bob home. `workflow-kit/` is our convention, 
 
 The same global rules/skills layout is documented for current [Bob IDE rules](https://bob.ibm.com/docs/ide/configuration/rules), [Bob Shell rules](https://bob.ibm.com/docs/shell/configuration/bobshell-custom-rules), [IDE skills](https://bob.ibm.com/docs/ide/features/skills), and [Shell skills](https://bob.ibm.com/docs/shell/features/skills). Actual loading remains a separate acceptance check for each version, interface, and execution host.
 
-## What the first release includes
+## What the alpha includes
 
 | Component | Purpose |
 | --- | --- |
@@ -68,7 +72,7 @@ The same global rules/skills layout is documented for current [Bob IDE rules](ht
 | Tiny Ledger exercise | Demonstrate a real failing check, a focused repair, and a useful handoff in a disposable project |
 | Compatibility and evaluation records | Separate documented mechanisms, local software tests, and live Bob testing |
 
-The kit encourages a working method. It cannot force every agent action or guarantee correct software. A separate controller would be needed to enforce its own stage transitions; that is a [planned extension](docs/roadmap.md), not part of this release.
+The kit encourages a working method. It cannot force every agent action or guarantee correct software. Any external enforcement must come from the system that actually controls execution. The companion runner remains a [design preview](docs/roadmap.md); existing runtimes must be evaluated before building another one.
 
 ## Verify before relying on it
 
@@ -85,6 +89,8 @@ python3 tools/bob_workflow.py uninstall
 ```
 
 Use the same `--bob-home` override if you installed somewhere else. Uninstall uses this kit's ownership records; it preserves conflicting local edits rather than deleting them. Reinstalling unchanged content should be a no-op. Read the command output and [installer design](docs/installer.md) before resolving an interrupted transaction or updating modified files. There is no blind overwrite option.
+
+**Updating from alpha.1:** use your old checkout to run `doctor` and `uninstall` with the same target, then preview/install/doctor from alpha.2. Version changes are deliberately refused by an in-place install. If you edited a managed file, review and preserve that edit before resolving the conflict. This release changes onboarding and evidence materials; the installed rule/skill payload is unchanged.
 
 ## Contribute
 
