@@ -50,7 +50,7 @@ python3 tools/bob_workflow.py preview --bob-home /absolute/path/to/.bob
 
 Use an explicit temporary target to try installation without changing your active Bob configuration. Do not change system home environment variables to redirect the installer. Remote SSH hosts and containers may use a different Bob home.
 
-When Bob Shell runs the setup command for you, an explicit approval prompt for a write under `~/.bob` is an expected client safeguard. Review the exact command and target before approving it. Do not enable broad auto-approval or edit Bob settings to make the installation proceed. If workstation policy denies the write, leave the configuration unchanged and use the manual commands above only when your normal operating-system permissions allow it, or rehearse against an explicit temporary target.
+When Bob Shell runs the setup command for you, an explicit approval prompt for a write under `~/.bob` is an expected client safeguard. Review the exact command and target before approving it. Do not enable broad auto-approval or edit Bob settings to make the installation proceed. If the user or workstation policy denies the write, stop the installation and leave the configuration unchanged; operating-system write permission is not authorization to bypass that denial. Do not retry the denied write through another shell or command. A rehearsal against an explicit, non-active temporary target is useful only when policy permits it; it neither authorizes a blocked installation nor proves Bob loaded the kit.
 
 The installer writes the packaged rule and skill under:
 
