@@ -10,6 +10,7 @@ Start with the exact command output and the active execution host. Preserve unre
 | `recovery_needed` | An installation journal remains | Stop any active installer; inspect doctor output and use the documented uninstall recovery path |
 | A symlink/redirection error | The target or a managed component redirects filesystem operations | Inspect the resolved destination and use an appropriate direct target; do not relax the checks blindly |
 | A hard-link/publication error | The selected filesystem may not support the required operation | Inspect rollback status; use a supported local target or a reviewed manual installation |
+| Bob asks for approval or blocks a write to `~/.bob` | Current Bob Shell protects Bob-home writes even when auto-approve is enabled; managed workstation policy may deny them | Verify the exact included-installer command and previewed target, then approve once only if policy permits. Otherwise stop after read-only checks and leave settings unchanged. Do not retry the denied write manually or through another shell. A rehearsal against an explicit, non-active temporary target is separate and must itself be permitted by policy |
 | `doctor` is healthy but Bob cannot find the skill | Client loading is distinct from file integrity | Restart/start a fresh conversation, inspect Skills settings or the Shell picker, and confirm the same host/home |
 | Bob loads a different `work-large-codebase` | A project skill can override a global skill | Inspect the resolved skill path and reconcile duplicate installations intentionally |
 | Bob still reads too broadly | The request lacks a useful scope, or the workflow was not activated | Give the affected behaviour/interface and ask for entry points, callers, and tests before implementation |
@@ -17,7 +18,7 @@ Start with the exact command output and the active execution host. Preserve unre
 | Bob repeats the same failing command | The cause may be environmental, denied, or misunderstood | Classify the failure and change the next action based on new evidence |
 | Bob says tests passed but evidence is absent | The command may not have completed or may not have run | Request the actual command, working directory, exit status, relevant output and scope |
 
-Current IBM references: [IDE skills](https://bob.ibm.com/docs/ide/features/skills), [Shell skills tutorial](https://bob.ibm.com/docs/shell/tutorials/use-skills), and [rules precedence](https://bob.ibm.com/docs/ide/configuration/rules).
+Current IBM references: [IDE skills](https://bob.ibm.com/docs/ide/features/skills), [Shell skills tutorial](https://bob.ibm.com/docs/shell/tutorials/use-skills), [rules precedence](https://bob.ibm.com/docs/ide/configuration/rules), and the [Shell changelog entry for protected Bob-home writes](https://bob.ibm.com/docs/shell/changelog#201).
 
 ## If your setup came from the earlier prompt-only approach
 
