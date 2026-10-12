@@ -50,6 +50,8 @@ python3 tools/bob_workflow.py preview --bob-home /absolute/path/to/.bob
 
 Use an explicit temporary target to try installation without changing your active Bob configuration. Do not change system home environment variables to redirect the installer. Remote SSH hosts and containers may use a different Bob home.
 
+When Bob Shell runs the setup command for you, an explicit approval prompt for a write under `~/.bob` is an expected client safeguard. Review the exact command and target before approving it. Do not enable broad auto-approval or edit Bob settings to make the installation proceed. If workstation policy denies the write, leave the configuration unchanged and use the manual commands above only when your normal operating-system permissions allow it, or rehearse against an explicit temporary target.
+
 The installer writes the packaged rule and skill under:
 
 - `rules/bob-workflow-kit.md`
