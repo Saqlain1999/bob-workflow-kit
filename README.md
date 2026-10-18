@@ -2,9 +2,9 @@
 
 **Keep a Bob task understandable when the repository is large or the conversation is interrupted.**
 
-Version: **0.1.0-alpha.2**. Community alpha. This toolkit is independent of IBM and is not an IBM product or Marketplace listing.
+Version: **0.1.0-alpha.3**. Community alpha. This toolkit is independent of IBM and is not an IBM product or Marketplace listing.
 
-Bob Workflow Kit combines a public guide, a concise global rule, an on-demand skill, repository/task templates, and an offline installer. It is designed for developers who lose the thread in large repositories, get overwhelmed by command output, or cannot tell what an agent actually verified.
+Bob Workflow Kit combines a public guide, a concise global rule, focused on-demand skills, repository/task templates, and an offline installer. It is designed for developers who lose the thread in large repositories, get overwhelmed by command output, or cannot tell what an agent actually verified.
 
 The installer manages a small known payload. The workflow uses Bob's existing tools. The kit does not need a model API key, MCP server, package manager, or background service to install. Bob itself remains a separate prerequisite.
 
@@ -50,10 +50,11 @@ python3 tools/bob_workflow.py preview --bob-home /absolute/path/to/.bob
 
 Use an explicit temporary target to try installation without changing your active Bob configuration. Do not change system home environment variables to redirect the installer. Remote SSH hosts and containers may use a different Bob home.
 
-The installer writes the packaged rule and skill under:
+The installer writes the packaged rule and skills under:
 
 - `rules/bob-workflow-kit.md`
 - `skills/work-large-codebase/SKILL.md` and its supporting references/templates
+- `skills/write-clear-technical-content/SKILL.md` and its supporting references
 - `workflow-kit/` for this kit's own installation records and recovery data
 
 These are relative to the selected Bob home. `workflow-kit/` is our convention, not an IBM configuration feature. The kit does not edit your existing settings, global `AGENTS.md`, modes, hooks, permissions, model selection, authentication, or MCP configuration.
@@ -66,11 +67,14 @@ The same global rules/skills layout is documented for current [Bob IDE rules](ht
 | --- | --- |
 | Global operating rule | Keep routine work light; use focused investigation, bounded output, and real verification for substantial tasks |
 | `work-large-codebase` skill | Onboard a repository, make a substantial change, or resume from a checkpoint |
+| `write-clear-technical-content` skill | Draft or revise technical instructions and handoffs while checking facts, exact tokens, conditions, and requirement strength |
 | Repository profile | Record actual components, commands, dependencies, constraints, and evidence sources |
 | Task checkpoint | Preserve decisions, changed files, check results, failed approaches, and the next action |
 | Offline installer | Preview changes, install known assets, inspect ownership/integrity, and uninstall carefully |
 | Tiny Ledger exercise | Demonstrate a real failing check, a focused repair, and a useful handoff in a disposable project |
 | Compatibility and evaluation records | Separate documented mechanisms, local software tests, and live Bob testing |
+
+Read [skill packs: selection and evidence](docs/skill-packs.md) for activation boundaries, source provenance, and the gate for adding another specialist skill. The communication skill is inspired by controlled-language practice but does not claim ASD-STE100 certification or semantic-equivalence proof.
 
 The kit encourages a working method. It cannot force every agent action or guarantee correct software. Any external enforcement must come from the system that actually controls execution. The companion runner remains a [design preview](docs/roadmap.md); existing runtimes must be evaluated before building another one.
 
@@ -90,7 +94,7 @@ python3 tools/bob_workflow.py uninstall
 
 Use the same `--bob-home` override if you installed somewhere else. Uninstall uses this kit's ownership records; it preserves conflicting local edits rather than deleting them. Reinstalling unchanged content should be a no-op. Read the command output and [installer design](docs/installer.md) before resolving an interrupted transaction or updating modified files. There is no blind overwrite option.
 
-**Updating from alpha.1:** use your old checkout to run `doctor` and `uninstall` with the same target, then preview/install/doctor from alpha.2. Version changes are deliberately refused by an in-place install. If you edited a managed file, review and preserve that edit before resolving the conflict. This release changes onboarding and evidence materials; the installed rule/skill payload is unchanged.
+**Updating from alpha.1 or alpha.2:** use your old checkout to run `doctor` and `uninstall` with the same target, then preview/install/doctor from alpha.3. Version changes are deliberately refused by an in-place install. If you edited a managed file, review and preserve that edit before resolving the conflict. Alpha.3 adds a second managed skill, so preview the complete file list before installation.
 
 ## Contribute
 

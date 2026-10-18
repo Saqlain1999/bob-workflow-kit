@@ -21,7 +21,7 @@ Current IBM references: [IDE skills](https://bob.ibm.com/docs/ide/features/skill
 
 ## If your setup came from the earlier prompt-only approach
 
-This package installs a known rule and the named `work-large-codebase` skill. A manually generated skill with the same name may already occupy that directory. That is a real collision, not an installer failure to bypass.
+This package installs a known rule and the named `work-large-codebase` and `write-clear-technical-content` skills. A manually generated skill with either name may already occupy that directory. That is a real collision, not an installer failure to bypass.
 
 Compare the existing content and this package. Preserve customisations outside automatically loaded rule/skill directories while you decide how to merge them. Remove an older duplicate only after identifying what it contributes. The kit does not automatically take ownership of manually created files.
 

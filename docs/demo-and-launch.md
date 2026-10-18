@@ -45,7 +45,7 @@ These routes were reviewed on 10 October 2026. This repository does not claim an
 
 ## Draft announcement for review
 
-> I’m working on Bob Workflow Kit, a small community alpha for developers who lose task context while working in larger repositories. It combines a concise global rule, an on-demand skill, an inspectable installer, and exercises that make verification evidence visible.
+> I’m working on Bob Workflow Kit, a small community alpha for developers who lose task context while working in larger repositories. It combines a concise global rule, focused on-demand skills, an inspectable installer, and exercises that make verification evidence visible.
 >
 > Existing tools already solve much of this problem, so the guide includes alternatives and coexistence advice. Our new recovery exercise starts with an old passing check, a changed policy and a teammate’s unrelated edit. It gives us a reproducible way to inspect how a fresh Bob session handles the current state.
 >

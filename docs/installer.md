@@ -9,7 +9,7 @@ All paths below are relative to the selected Bob home, which defaults to the cur
 | Command | Writes? | Purpose |
 | --- | --- | --- |
 | `preview` | No | Validate source payload and inspect destinations, ownership, local edits, and proposed changes |
-| `install` | Yes, after successful preflight | Create the packaged rule, skill files, and this kit's ownership metadata |
+| `install` | Yes, after successful preflight | Create the packaged rule, named skill files, and this kit's ownership metadata |
 | `doctor` | No | Compare installed files with recorded hashes and identify a missing or interrupted installation |
 | `uninstall` | Yes | Remove unchanged owned files, or roll back a journalled partial installation |
 
@@ -21,12 +21,13 @@ All paths below are relative to the selected Bob home, which defaults to the cur
 
 - `rules/bob-workflow-kit.md`
 - `skills/work-large-codebase/SKILL.md`
-- Supporting text assets under that skill's `references/` and `templates/`
+- `skills/write-clear-technical-content/SKILL.md`
+- Supporting text assets under each named skill's `references/` and `templates/`
 - `workflow-kit/manifest.json` and a temporary `workflow-kit/journal.json`
 
 The metadata directory is a kit convention outside the rule/skill discovery directories. No existing shared JSON configuration or `AGENTS.md` is merged or replaced.
 
-Manifest and journal paths are validated against this narrow managed scope. Absolute paths, traversal, unexpected destinations, and unsupported filesystem redirections are rejected. A same-name unowned file is a conflict even if its contents happen to match. Files are bounded UTF-8 text, not an arbitrary package payload.
+Manifest and journal paths are validated against this narrow managed scope and the two enumerated skill names. An extra skill directory inside the source payload is rejected rather than becoming implicitly trusted. Absolute paths, traversal, unexpected destinations, and unsupported filesystem redirections are rejected. A same-name unowned file is a conflict even if its contents happen to match. Files are bounded UTF-8 text, not an arbitrary package payload.
 
 ## Install and reinstall
 

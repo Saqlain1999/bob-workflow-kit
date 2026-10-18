@@ -1,6 +1,6 @@
 # A practical guide to IBM Bob on substantial codebases
 
-Reviewed against public documentation on **9 October 2026 (UTC)**. This guide accompanies Bob Workflow Kit 0.1.0-alpha.2. Start with [Try the alpha](try-alpha.md) for the shortest installation-to-first-task path.
+Reviewed against public documentation on **18 October 2026 (UTC)**. This guide accompanies Bob Workflow Kit 0.1.0-alpha.3. Start with [Try the alpha](try-alpha.md) for the shortest installation-to-first-task path.
 
 ## 1. Choose the outcome you want from the setup
 
@@ -16,7 +16,7 @@ IBM's [large-project guidance](https://bob.ibm.com/docs/ide/core-concepts/large-
 | --- | --- | --- |
 | Global rule | Persistent operating instructions across projects | One concise rule for scoping, investigation, progress, and verification |
 | Repository instructions | Project-specific architecture, constraints, and commands | Preserve existing `AGENTS.md` and maintain a small repository profile |
-| Skill | A reusable workflow activated when relevant | One skill with onboarding, change, and recovery references |
+| Skill | A reusable workflow activated when relevant | Focused large-codebase and technical-communication skills with on-demand references |
 | Task memory | Durable records that a future conversation can inspect | One concise checkpoint per task, tied to current files and evidence |
 | Tools | Actual file operations, commands, and integrations | Use existing Bob tools; the installer itself is ordinary local Python |
 | Subagents | Separate investigations with their own task context | Delegate independent, bounded work when it helps |
@@ -45,7 +45,7 @@ Use the commands in [README](../README.md). Preview first to see the actual targ
 There are three different observations to record:
 
 1. **Files exist and validate.** The installer can establish this for the packaged files.
-2. **Bob loaded the rule and skill.** Confirm in the actual client, including any settings/picker evidence. Manually reading a file does not prove automatic loading.
+2. **Bob loaded the intended rule and skill.** Confirm in the actual client, including any settings/picker evidence. Manually reading a file does not prove automatic loading.
 3. **Bob used the workflow successfully on a task.** Inspect its changes, real checks, and handoff.
 
 Keep those observations separate. A checksum is useful installation evidence; it is not a behavioural guarantee.

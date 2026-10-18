@@ -1,13 +1,13 @@
 # Compatibility and evidence
 
-Mechanism documentation reviewed **9 October 2026 (UTC)**; evidence matrix updated **10 October 2026 (UTC)**. Package: **0.1.0-alpha.2**. The installed payload is unchanged from alpha.1.
+Mechanism documentation reviewed **18 October 2026 (UTC)**; evidence matrix updated **18 October 2026 (UTC)**. Package: **0.1.0-alpha.3**. Alpha.3 adds a second managed skill; its live discovery and behavior remain untested.
 
 ## Mechanisms used by this package
 
 | Mechanism | Documentation evidence | Package status |
 | --- | --- | --- |
 | Global rules under `~/.bob/rules/` | [IDE](https://bob.ibm.com/docs/ide/configuration/rules) and [Shell](https://bob.ibm.com/docs/shell/configuration/bobshell-custom-rules) | Implemented by the installer; live loading must be tested per client |
-| Global skill under `~/.bob/skills/work-large-codebase/` | [IDE skills](https://bob.ibm.com/docs/ide/features/skills) and [Shell skills](https://bob.ibm.com/docs/shell/features/skills) | Implemented; supporting references/templates are included |
+| Global skills under `~/.bob/skills/` | [IDE skills](https://bob.ibm.com/docs/ide/features/skills) and [Shell skills](https://bob.ibm.com/docs/shell/features/skills) | `work-large-codebase` and `write-clear-technical-content` are implemented with supporting files; live discovery remains untested |
 | Simple `name` and `description` front matter | Same skill references | Present; description fallback differences between clients are avoided |
 | Shell skill selection | [Shell skills tutorial](https://bob.ibm.com/docs/shell/tutorials/use-skills) describes `$skill-name`, the `$` picker, and `/skills` | Documented; not an offline installer assertion |
 | Workspace overrides | Rule/skill docs above describe workspace precedence | Users must inspect same-name project copies when diagnosing loading |
@@ -29,7 +29,7 @@ Current Shell documentation describes the same rules system as the IDE. That let
 
 Python 3.10 is the minimum for the kit walkthrough. The historical hosted run tested commit `3226221bc7b085666fd64b8f2e7dc2e1b6acb80f`; it is not a claim about an arbitrary later commit. The [release notes](https://github.com/Saqlain1999/bob-workflow-kit/releases) identify the exact source and hosted checks for each tagged release. A workflow file alone is not a passing CI result.
 
-No live Bob installation was available for this preparation. The small independent-agent exercise described in the validation record checks the written workflow on a fixture, not Bob's loader or runtime.
+No live Bob installation was available for this preparation. The small independent-agent exercise described in the validation record checks the original large-codebase workflow on a fixture, not Bob's loader, runtime, or the new communication skill.
 
 ## Check the actual host
 
