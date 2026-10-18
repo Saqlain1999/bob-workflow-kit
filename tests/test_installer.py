@@ -45,6 +45,8 @@ class InstallerTests(unittest.TestCase):
             kit.SKILL: b"---\nname: work-large-codebase\ndescription: Work in bounded steps with evidence.\n---\nRead the project before editing.\n",
             "skills/work-large-codebase/references/change.md": b"Run the repository's documented checks.\n",
             "skills/work-large-codebase/templates/checkpoint.md": b"# Checkpoint\nRevision and scope:\n",
+            kit.TECHNICAL_COMMUNICATION_SKILL: b"---\nname: write-clear-technical-content\ndescription: Preserve meaning while improving technical text.\n---\nCheck fidelity before returning a rewrite.\n",
+            "skills/write-clear-technical-content/references/fidelity-check.md": b"# Fidelity check\nPreserve exact values.\n",
         }
         for relative, data in self.files.items():
             path = self.payload / relative
@@ -116,6 +118,7 @@ class InstallerTests(unittest.TestCase):
             self.assertEqual((self.root / name).read_bytes(), data)
             self.assertEqual((self.root / name).stat().st_mtime_ns, original_mtimes[name])
         self.assertFalse((self.root / "skills/work-large-codebase").exists())
+        self.assertFalse((self.root / "skills/write-clear-technical-content").exists())
         self.assertTrue((self.root / "rules").is_dir())
         self.assertTrue((self.root / "workflow-kit").is_dir())
 
@@ -180,6 +183,25 @@ class InstallerTests(unittest.TestCase):
                 self.assertFalse(self.root.exists())
         skill.write_bytes(self.files[kit.SKILL])
         (self.payload / "settings.json").write_text("{}", encoding="utf-8")
+        self.assert_error("invalid_path", kit.install, self.root, self.payload)
+        self.assertFalse(self.root.exists())
+
+    def test_every_packaged_skill_name_matches_its_directory(self):
+        skill = self.payload / kit.TECHNICAL_COMMUNICATION_SKILL
+        skill.write_bytes(b"---\nname: work-large-codebase\ndescription: Wrong name.\n---\nBody\n")
+        self.assert_error("invalid_skill", kit.install, self.root, self.payload)
+        self.assertFalse(self.root.exists())
+
+    def test_missing_or_unlisted_skill_is_rejected(self):
+        skill = self.payload / kit.TECHNICAL_COMMUNICATION_SKILL
+        skill.unlink()
+        self.assert_error("missing_payload", kit.install, self.root, self.payload)
+        self.assertFalse(self.root.exists())
+
+        skill.write_bytes(self.files[kit.TECHNICAL_COMMUNICATION_SKILL])
+        extra = self.payload / "skills/unreviewed-pack/SKILL.md"
+        extra.parent.mkdir(parents=True)
+        extra.write_bytes(b"---\nname: unreviewed-pack\ndescription: Not reviewed.\n---\nBody\n")
         self.assert_error("invalid_path", kit.install, self.root, self.payload)
         self.assertFalse(self.root.exists())
 

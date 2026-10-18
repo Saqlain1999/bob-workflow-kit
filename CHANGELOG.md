@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.3 — unreleased
+
+- Add the focused `write-clear-technical-content` Bob skill with on-demand fidelity and writing-pattern references.
+- Preserve numbers, units, commands, identifiers, negation, conditions, sequence, uncertainty, and requirement strength during technical rewrites.
+- Extend the fixed-payload installer and manifest validation to manage both named skills without accepting arbitrary skill directories.
+- Document the evidence gate for future skill packs and the bounded design review of two public MIT-licensed sources.
+
+Offline installer tests prove payload structure and lifecycle behavior only. They do not prove live Bob discovery, activation, semantic equivalence, technical correctness, or ASD-STE100 compliance.
+
 ## 0.1.0-alpha.2 — 2026-10-10
 
 - Add one first-use walkthrough with a copyable Bob handoff, explicit success criteria, and a short feedback route.
