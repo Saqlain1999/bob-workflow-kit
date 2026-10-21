@@ -47,6 +47,9 @@ class InstallerTests(unittest.TestCase):
             "skills/work-large-codebase/templates/checkpoint.md": b"# Checkpoint\nRevision and scope:\n",
             kit.TECHNICAL_COMMUNICATION_SKILL: b"---\nname: write-clear-technical-content\ndescription: Preserve meaning while improving technical text.\n---\nCheck fidelity before returning a rewrite.\n",
             "skills/write-clear-technical-content/references/fidelity-check.md": b"# Fidelity check\nPreserve exact values.\n",
+            kit.PROJECT_PLANNING_SKILL: b"---\nname: plan-project-change\ndescription: Inspect a project and plan a bounded change.\n---\nGather evidence before planning edits.\n",
+            "skills/plan-project-change/references/evidence-and-decisions.md": b"# Evidence\nSeparate observations from assumptions.\n",
+            "skills/plan-project-change/templates/delivery-plan.md": b"# Delivery plan\nAcceptance criteria:\n",
         }
         for relative, data in self.files.items():
             path = self.payload / relative
@@ -119,6 +122,7 @@ class InstallerTests(unittest.TestCase):
             self.assertEqual((self.root / name).stat().st_mtime_ns, original_mtimes[name])
         self.assertFalse((self.root / "skills/work-large-codebase").exists())
         self.assertFalse((self.root / "skills/write-clear-technical-content").exists())
+        self.assertFalse((self.root / "skills/plan-project-change").exists())
         self.assertTrue((self.root / "rules").is_dir())
         self.assertTrue((self.root / "workflow-kit").is_dir())
 
@@ -189,6 +193,12 @@ class InstallerTests(unittest.TestCase):
     def test_every_packaged_skill_name_matches_its_directory(self):
         skill = self.payload / kit.TECHNICAL_COMMUNICATION_SKILL
         skill.write_bytes(b"---\nname: work-large-codebase\ndescription: Wrong name.\n---\nBody\n")
+        self.assert_error("invalid_skill", kit.install, self.root, self.payload)
+        self.assertFalse(self.root.exists())
+
+        skill.write_bytes(self.files[kit.TECHNICAL_COMMUNICATION_SKILL])
+        planning = self.payload / kit.PROJECT_PLANNING_SKILL
+        planning.write_bytes(b"---\nname: write-clear-technical-content\ndescription: Wrong name.\n---\nBody\n")
         self.assert_error("invalid_skill", kit.install, self.root, self.payload)
         self.assertFalse(self.root.exists())
 

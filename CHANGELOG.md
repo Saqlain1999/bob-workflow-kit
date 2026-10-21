@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0-alpha.4 — unreleased
+
+- Add the focused `plan-project-change` skill with an evidence/decision reference and durable delivery-plan template.
+- Extend the fixed-scope installer to manage exactly three reviewed skills; arbitrary skill directories remain rejected.
+- Define planning activation, non-activation, source-edit boundary, acceptance traceability, stop conditions, and interruption-safe resume evidence.
+
 ## 0.1.0-alpha.3 — unreleased
 
 - Add the focused `write-clear-technical-content` Bob skill with on-demand fidelity and writing-pattern references.

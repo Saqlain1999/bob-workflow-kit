@@ -1,12 +1,12 @@
 # Validation record
 
-Current package: **0.1.0-alpha.3**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
+Current package: **0.1.0-alpha.4**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
 ## Alpha.3 candidate validation
 
-Alpha.3 adds the `write-clear-technical-content` skill, two on-demand references, and fixed-scope installer support for both packaged skills. The skill protects exact technical tokens, conditions, ordering, negation, uncertainty, and requirement strength during rewriting. It explicitly does not claim ASD-STE100 compliance or semantic-equivalence proof.
+Alpha.4 adds `plan-project-change`, an on-demand evidence/decision reference, a delivery-plan template, and fixed-scope installer support for three packaged skills. The skill requires repository evidence, acceptance traceability, an architecture decision, and recovery state before implementation. Static validation does not prove plan quality, future implementation, or live Bob activation.
 
 Local checks executed on **18 October 2026 (UTC), Linux, Python 3.12.14**:
 
@@ -40,7 +40,7 @@ The tagged release notes record the exact alpha.2 source commit and its CI resul
 | Check | Environment and method | Observed result |
 | --- | --- | --- |
 | Offline installer suite | Linux; Python 3.12.14; `python3 -B -m unittest discover -s tests -v` | **24 tests passed**, exit 0 |
-| Real packaged payload | Seven Markdown rule/skill/reference/template files; covered by suite and CLI lifecycle tests | Payload validation and installation lifecycle passed in temporary targets |
+| Real packaged payload | Thirteen Markdown rule/skill/reference/template files; covered by suite and CLI lifecycle tests | Payload validation and installation lifecycle passed in temporary targets |
 | Tiny Ledger baseline | Shipped fixture; Python standard-library unittest | **9 tests: 8 pass, 1 deliberate failure**, exit 1 |
 | Written-skill trial | A separate assistant read the skill and repaired a disposable fixture copy | Only `ledger.py` changed; tests and docs preserved |
 | Repaired fixture verification | Local unittest run on the trial copy | **9 tests passed**, exit 0 |
