@@ -1,6 +1,6 @@
 # Maintaining and releasing this alpha
 
-Public repository: [Saqlain1999/bob-workflow-kit](https://github.com/Saqlain1999/bob-workflow-kit). Current package: **0.1.0-alpha.4**, with the included MIT license. A GitHub release is separate from repository publication. No package-registry name or Marketplace listing is claimed.
+Public repository: [Saqlain1999/bob-workflow-kit](https://github.com/Saqlain1999/bob-workflow-kit). Current package: **0.1.0-alpha.5**, with the included MIT license. A GitHub release is separate from repository publication. No package-registry name or Marketplace listing is claimed.
 
 ## Release gate
 
@@ -11,7 +11,7 @@ Public repository: [Saqlain1999/bob-workflow-kit](https://github.com/Saqlain1999
 5. Publish a GitHub **prerelease**, with the tag, full commit, CI link, observed check counts, update/removal instructions, and [Try the alpha](try-alpha.md).
 6. Keep unexecuted client/OS combinations untested. Live loading can be gathered during a clearly labelled alpha; stable compatibility claims need evidence and a maintenance commitment.
 
-Tag names use `v` plus the content of `VERSION`. Do not reuse a published tag for changed source. Alpha.4 adds a managed skill and changes the payload. The installer still refuses an in-place version change, so users inspect/uninstall from their old checkout and then install from the new one.
+Tag names use `v` plus the content of `VERSION`. Do not reuse a published tag for changed source. Alpha.5 adds a managed skill and changes the payload. The installer still refuses an in-place version change, so users inspect/uninstall from their old checkout and then install from the new one.
 
 ## Reproduce the source archive
 
@@ -19,8 +19,8 @@ From a checkout containing the exact tested commit, create `dist/` and use the a
 
 ```sh
 python3 -c "from pathlib import Path; Path('dist').mkdir(exist_ok=True)"
-git archive --format=zip --prefix=bob-workflow-kit-0.1.0-alpha.4/ --output=dist/bob-workflow-kit-0.1.0-alpha.4.zip TESTED_COMMIT
-python3 -c "import hashlib,pathlib; p=pathlib.Path('dist/bob-workflow-kit-0.1.0-alpha.4.zip'); print(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name)" > dist/SHA256SUMS.txt
+git archive --format=zip --prefix=bob-workflow-kit-0.1.0-alpha.5/ --output=dist/bob-workflow-kit-0.1.0-alpha.5.zip TESTED_COMMIT
+python3 -c "import hashlib,pathlib; p=pathlib.Path('dist/bob-workflow-kit-0.1.0-alpha.5.zip'); print(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name)" > dist/SHA256SUMS.txt
 ```
 
 The archive includes the complete checked-in guide, payload, installer/tests, prompts, fixture, and validation records. Open the archive and check `VERSION` and expected paths before upload. Record the Git version if byte-for-byte archive reproduction is required; archive tooling may change serialization across versions. SHA-256 verifies the supplied file's bytes, not publisher identity or Bob compatibility.
