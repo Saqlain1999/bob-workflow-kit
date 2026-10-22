@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0-alpha.5 — unreleased
+
+- Add the focused `implement-and-debug-change` skill with debugging-evidence guidance and a resumable implementation-handoff template.
+- Require a reproducible baseline, minimal criterion-linked edits, regression evidence, current-state validation, preservation checks, and honest failed/unrun-check reporting.
+- Extend the fixed-scope installer to exactly four reviewed skills; arbitrary skill directories remain rejected.
+
 ## 0.1.0-alpha.4 — unreleased
 
 - Add the focused `plan-project-change` skill with an evidence/decision reference and durable delivery-plan template.
