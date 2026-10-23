@@ -53,6 +53,9 @@ class InstallerTests(unittest.TestCase):
             kit.IMPLEMENTATION_SKILL: b"---\nname: implement-and-debug-change\ndescription: Implement a bounded change with regression evidence.\n---\nReproduce before editing and preserve unrelated work.\n",
             "skills/implement-and-debug-change/references/debugging-evidence.md": b"# Debugging evidence\nTest one hypothesis at a time.\n",
             "skills/implement-and-debug-change/templates/implementation-handoff.md": b"# Implementation handoff\nObserved checks:\n",
+            kit.REVIEW_SKILL: b"---\nname: review-and-secure-change\ndescription: Independently review a bounded change for defects and risks.\n---\nRevalidate the current state without editing the product.\n",
+            "skills/review-and-secure-change/references/findings-and-severity.md": b"# Findings\nTie severity to observed impact.\n",
+            "skills/review-and-secure-change/templates/review-handoff.md": b"# Review handoff\nCurrent findings:\n",
         }
         for relative, data in self.files.items():
             path = self.payload / relative
@@ -127,6 +130,7 @@ class InstallerTests(unittest.TestCase):
         self.assertFalse((self.root / "skills/write-clear-technical-content").exists())
         self.assertFalse((self.root / "skills/plan-project-change").exists())
         self.assertFalse((self.root / "skills/implement-and-debug-change").exists())
+        self.assertFalse((self.root / "skills/review-and-secure-change").exists())
         self.assertTrue((self.root / "rules").is_dir())
         self.assertTrue((self.root / "workflow-kit").is_dir())
 
@@ -209,6 +213,12 @@ class InstallerTests(unittest.TestCase):
         planning.write_bytes(self.files[kit.PROJECT_PLANNING_SKILL])
         implementation = self.payload / kit.IMPLEMENTATION_SKILL
         implementation.write_bytes(b"---\nname: plan-project-change\ndescription: Wrong name.\n---\nBody\n")
+        self.assert_error("invalid_skill", kit.install, self.root, self.payload)
+        self.assertFalse(self.root.exists())
+
+        implementation.write_bytes(self.files[kit.IMPLEMENTATION_SKILL])
+        review = self.payload / kit.REVIEW_SKILL
+        review.write_bytes(b"---\nname: implement-and-debug-change\ndescription: Wrong name.\n---\nBody\n")
         self.assert_error("invalid_skill", kit.install, self.root, self.payload)
         self.assertFalse(self.root.exists())
 
