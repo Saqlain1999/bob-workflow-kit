@@ -1,6 +1,6 @@
 # Compatibility and evidence
 
-Mechanism documentation reviewed **22 October 2026 (UTC)**; evidence matrix updated **22 October 2026 (UTC)**. Package: **0.1.0-alpha.5**. Alpha.5 adds a fourth managed skill; its live discovery and behavior remain untested.
+Mechanism documentation reviewed **23 October 2026 (UTC)**; evidence matrix updated **23 October 2026 (UTC)**. Package: **0.1.0-alpha.6**. Alpha.6 adds a fifth managed skill; its live discovery and behavior remain untested.
 
 ## Mechanisms used by this package
 
@@ -29,7 +29,7 @@ Current Shell documentation describes the same rules system as the IDE. That let
 
 Python 3.10 is the minimum for the kit walkthrough. The historical hosted run tested commit `3226221bc7b085666fd64b8f2e7dc2e1b6acb80f`; it is not a claim about an arbitrary later commit. The [release notes](https://github.com/Saqlain1999/bob-workflow-kit/releases) identify the exact source and hosted checks for each tagged release. A workflow file alone is not a passing CI result.
 
-No live Bob installation was available for this preparation. The small independent-agent exercise described in the validation record checks the original large-codebase workflow on a fixture, not Bob's loader, runtime, communication, planning, or implementation/debugging skills.
+No live Bob installation was available for this preparation. The small independent-agent exercise described in the validation record checks the original large-codebase workflow on a fixture, not Bob's loader, runtime, communication, planning, implementation/debugging, or independent-review skills.
 
 ## Check the actual host
 
