@@ -29,7 +29,7 @@ Read the preview **before** running install. It shows the actual target and coll
 
 The default is the current user's `.bob` directory. If Bob uses a different configuration directory, append the same `--bob-home /absolute/path/to/.bob` to preview, install, and doctor. For an installation-only rehearsal use an explicit temporary directory; Bob will not discover that temporary target automatically.
 
-An edited managed file or an unowned collision needs review. Do not delete it simply to get a green result. [Installer troubleshooting](troubleshooting.md) explains supported recovery. To update alpha.1 through alpha.5, inspect and uninstall it using the old checkout and target before installing alpha.6; preserve any local edits first.
+An edited managed file or an unowned collision needs review. Do not delete it simply to get a green result. [Installer troubleshooting](troubleshooting.md) explains supported recovery. To update alpha.1 through alpha.6, inspect and uninstall it using the old checkout and target before installing alpha.7; preserve any local edits first.
 
 ## 3. Check loading in a fresh conversation
 

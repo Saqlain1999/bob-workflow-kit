@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.7 — unreleased
+
+- Add the focused `document-and-prepare-release` skill with a release-evidence reference and release-handoff template.
+- Require exact-candidate reconciliation, truthful user/operator documentation, acceptance/finding disposition, current validation, rollback/removal status, and an explicit release-gate decision.
+- Extend the fixed-scope installer to exactly six reviewed skills; arbitrary skill directories remain rejected.
+
+The skill prepares evidence only. It does not approve, tag, publish, deploy, announce, prove production readiness, or hide an unresolved blocking finding.
+
 ## 0.1.0-alpha.6 — unreleased
 
 - Add the focused `review-and-secure-change` skill with an evidence-class/severity reference and independent review-handoff template.
