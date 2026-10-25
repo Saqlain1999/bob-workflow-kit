@@ -1,6 +1,6 @@
 # Compatibility and evidence
 
-Mechanism documentation reviewed **9 October 2026 (UTC)**; evidence matrix updated **10 October 2026 (UTC)**. Package: **0.1.0-alpha.2**. The installed payload is unchanged from alpha.1.
+Mechanism documentation reviewed **12 October 2026 (UTC)**; evidence matrix updated **10 October 2026 (UTC)**. Package: **0.1.0-alpha.2**. The installed payload is unchanged from alpha.1.
 
 ## Mechanisms used by this package
 
@@ -12,6 +12,7 @@ Mechanism documentation reviewed **9 October 2026 (UTC)**; evidence matrix updat
 | Shell skill selection | [Shell skills tutorial](https://bob.ibm.com/docs/shell/tutorials/use-skills) describes `$skill-name`, the `$` picker, and `/skills` | Documented; not an offline installer assertion |
 | Workspace overrides | Rule/skill docs above describe workspace precedence | Users must inspect same-name project copies when diagnosing loading |
 | Global Shell `~/.bob/AGENTS.md` | [Shell configuration](https://bob.ibm.com/docs/shell/configuration/configuring) | Preserved; the kit does not duplicate its rule there |
+| Bob Shell protection for Bob-home writes | [Shell changelog](https://bob.ibm.com/docs/shell/changelog#201) | Bob-assisted setup must use the client's explicit approval; the kit does not modify approval settings or bypass a denial |
 | Native plugin directories | [October 1 release post](https://bob.ibm.com/blog/september-2026-release/) | Documented by IBM, but not this package's distribution format |
 | Lifecycle hooks / MCP / custom modes | Separate Bob configuration mechanisms | Not installed or changed by this release |
 
