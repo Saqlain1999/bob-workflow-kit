@@ -6,7 +6,7 @@ The public starting point is [Try the alpha](try-alpha.md). Link people there fi
 
 ## Record one real demonstration
 
-Use the public Parcel Resume task from [bob-workflow-evals](https://github.com/Saqlain1999/bob-workflow-evals/tree/main/tasks/parcel-resume). Run on a machine with Bob installed; record the exact kit/evaluator revisions, Bob surface/version and relevant configuration. Follow that task's README and acceptance checklist.
+The [included exercise guide](exercises.md) covers the Parcel Resume task. Run on a machine with Bob installed; record the exact kit/evaluator revisions, Bob surface/version and relevant configuration. Follow that task's README and acceptance checklist.
 
 The helper constructs an interruption scenario. Its historical check is an actual local test run; its checkpoint is **not** a transcript of a prior Bob session. State that at the start of a recording. To claim a real interrupted-agent trial later, separately capture the original Bob session, interruption, intervening edits and resumed session.
 

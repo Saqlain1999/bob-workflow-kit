@@ -1,0 +1,125 @@
+{
+  "status": "snapshot, not merge authority",
+  "pull_requests": [
+    {
+      "repository": "Saqlain1999/bob-workflow-kit",
+      "baseRefName": "main",
+      "headRefName": "maintenance/implementation-debugging-skill-2026-10-22",
+      "headRefOid": "ce65afef8c7d8b85b47d5f6f4e78b09b97265e16",
+      "number": 5,
+      "title": "Add bounded implementation and debugging workflow",
+      "url": "https://github.com/Saqlain1999/bob-workflow-kit/pull/5",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-kit",
+      "baseRefName": "maintenance/implementation-debugging-skill-2026-10-22",
+      "headRefName": "maintenance/independent-review-security-skill-2026-10-23",
+      "headRefOid": "746a808b42fdcdf04f157a825a9ddb98eb05a176",
+      "number": 6,
+      "title": "Add bounded independent review and security workflow",
+      "url": "https://github.com/Saqlain1999/bob-workflow-kit/pull/6",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-kit",
+      "baseRefName": "maintenance/independent-review-security-skill-2026-10-23",
+      "headRefName": "maintenance/document-release-handoff-skill-2026-10-24",
+      "headRefOid": "3d1a272d9c2dd11b299f297d13436e8e0063bb73",
+      "number": 7,
+      "title": "Add evidence-backed documentation and release handoff",
+      "url": "https://github.com/Saqlain1999/bob-workflow-kit/pull/7",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "baseRefName": "main",
+      "headRefName": "maintenance/technical-writing-fidelity-eval-2026-10-20",
+      "headRefOid": "5aca7046d4bd21da6fb2bec13606f3c6fb6ef8f9",
+      "number": 3,
+      "title": "Add a technical writing fidelity evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/3",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "evals/",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "baseRefName": "maintenance/technical-writing-fidelity-eval-2026-10-20",
+      "headRefName": "maintenance/requirements-architecture-eval-2026-10-21",
+      "headRefOid": "7c24ddc8478c93d12778c238ba69d0ca6f7dbf91",
+      "number": 4,
+      "title": "Add project-planning handoff evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/4",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "evals/",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "baseRefName": "maintenance/requirements-architecture-eval-2026-10-21",
+      "headRefName": "maintenance/reminder-implementation-eval-2026-10-22",
+      "headRefOid": "a74bf57dfac2e00e40445e539a0bbeb44b16b8b8",
+      "number": 5,
+      "title": "Add interrupted reminder implementation evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/5",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "evals/",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "baseRefName": "maintenance/reminder-implementation-eval-2026-10-22",
+      "headRefName": "maintenance/reminder-review-security-eval-2026-10-23",
+      "headRefOid": "0ede5d52b9c0daace47dd3dcdd0514772975804c",
+      "number": 6,
+      "title": "Add reminder independent review and security evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/6",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "evals/",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "baseRefName": "maintenance/reminder-review-security-eval-2026-10-23",
+      "headRefName": "maintenance/reminder-release-handoff-eval-2026-10-24",
+      "headRefOid": "aba5b18a517fd9ccc7b62315bebeefb3f6b9d1a0",
+      "number": 7,
+      "title": "Add blocked reminder release-handoff evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/7",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "evals/",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "baseRefName": "maintenance/reminder-release-handoff-eval-2026-10-24",
+      "headRefName": "maintenance/reminder-review-remediation-eval-2026-10-25",
+      "headRefOid": "fe5e8eb8cf08c5f6d3bb44751fdb99dca07bb5c3",
+      "number": 8,
+      "title": "Add reviewed reminder remediation evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/8",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "evals/",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "baseRefName": "maintenance/reminder-review-remediation-eval-2026-10-25",
+      "headRefName": "maintenance/reminder-remediated-review-eval-2026-10-26",
+      "headRefOid": "b283d98742839d79130e24973dcdbaf64eb2324e",
+      "number": 9,
+      "title": "Add independent re-review of remediated reminder state",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/9",
+      "status": "Not imported; preserve original PR and review before porting",
+      "destination_prefix": "evals/",
+      "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
+    }
+  ]
+}

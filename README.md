@@ -2,7 +2,7 @@
 
 **Keep a Bob task understandable when the repository is large or the conversation is interrupted.**
 
-Version: **0.1.0-alpha.4**. Community alpha. This toolkit is independent of IBM and is not an IBM product or Marketplace listing.
+Version: **0.1.0-alpha.4** payload, with an **unpublished consolidation preview** in this branch. Community alpha. This toolkit is independent of IBM and is not an IBM product or Marketplace listing.
 
 Bob Workflow Kit combines a public guide, a concise global rule, focused on-demand skills, repository/task templates, and an offline installer. It is designed for developers who lose the thread in large repositories, get overwhelmed by command output, or cannot tell what an agent actually verified.
 
@@ -10,7 +10,7 @@ The installer manages a small known payload. The workflow uses Bob's existing to
 
 ## Start here
 
-**[Try the alpha: from download to your first verified change](docs/try-alpha.md).** One walkthrough covers installation, a fresh Bob loading check, the included disposable exercise, and a short feedback report. Start there; the companion repositories are optional.
+**[Start here: install, verify Bob loading, and try one change](docs/try-alpha.md).** One walkthrough covers installation, a fresh Bob loading check, the included disposable exercise, and a short feedback report. This repository contains the product, exercises, quality tooling and reference material; no companion checkout or separate runner installation is needed. The consolidation layout is local/unpublished until reviewed and explicitly published.
 
 Already tried it? Use [onboard.txt](prompts/onboard.txt) for a real repository, [work.txt](prompts/work.txt) for a substantial change, and [resume.txt](prompts/resume.txt) after an interruption. The [practical guide](docs/guide.md) explains the method in depth.
 
@@ -18,7 +18,7 @@ Already tried it? Use [onboard.txt](prompts/onboard.txt) for a real repository, 
 
 The kit puts a small, inspectable Bob setup together with exercises and an evidence trail. It encourages focused source reads, bounded command output, checkpoints that reference existing project records, and checks tied to the code that actually ran. It does not make those engineering practices new.
 
-The companion [Parcel Resume exercise](https://github.com/Saqlain1999/bob-workflow-evals/tree/main/tasks/parcel-resume) asks a concrete question: after a recorded passing check, can a fresh session handle a changed policy, preserve a teammate's unrelated edit, and verify the current implementation? Its starting checkpoint is deliberately constructed; live Bob results must be recorded separately.
+The included [Parcel Resume exercise](docs/exercises.md) asks a concrete question: after a recorded passing check, can a fresh session handle a changed policy, preserve a teammate's unrelated edit, and verify the current implementation? Its starting checkpoint is deliberately constructed; live Bob results must be recorded separately.
 
 Native Bob, Spec Kit, and existing Bob runtimes already cover much of this space. Read [alternatives and coexistence](docs/alternatives.md) to choose what you need and reuse the records your project already has. The kit can complement those tools; there is no general superiority claim.
 
@@ -80,7 +80,7 @@ The same global rules/skills layout is documented for current [Bob IDE rules](ht
 
 Read [skill packs: selection and evidence](docs/skill-packs.md) for activation boundaries, source provenance, and the gate for adding another specialist skill. The communication skill is inspired by controlled-language practice but does not claim ASD-STE100 certification or semantic-equivalence proof.
 
-The kit encourages a working method. It cannot force every agent action or guarantee correct software. Any external enforcement must come from the system that actually controls execution. The companion runner remains a [design preview](docs/roadmap.md); existing runtimes must be evaluated before building another one.
+The kit encourages a working method. It cannot force every agent action or guarantee correct software. Any external enforcement must come from the system that actually controls execution. [Runner notes](docs/design/README.md) are deferred design, not a second product or an executable controller. No additional runtime is required by the kit.
 
 ## Verify before relying on it
 
@@ -104,18 +104,20 @@ Use the same `--bob-home` override if you installed somewhere else. Uninstall us
 
 Useful contributions include reproducible installation failures, IDE/Shell compatibility reports, clearer onboarding examples, and realistic recovery exercises. Follow [CONTRIBUTING.md](CONTRIBUTING.md). Do not submit credentials, private source code, or raw confidential logs.
 
-Run the offline suite from this repository root:
+Run all offline component checks from this repository root (Python standard library only; no Bob, API key or network required):
 
 ```sh
-python3 -m unittest discover -s tests -v
+python3 tools/check_all.py
 ```
+
+The command runs installer/consolidation tests, evaluator tests, catalogue validation, source provenance and local Markdown-link checks. It prints the directory containing each component log and a machine-readable summary. A Git clone can also require original source ancestry with `--require-history`; a ZIP can verify imported content but cannot establish Git ancestry. [Optional exercises](docs/exercises.md), [reference resources](docs/resources/README.md) and [migration notes](docs/consolidation/README.md) all live here.
 
 The [existing ecosystem](docs/ecosystem.md) already has workshops, skill collections, installers, and specification workflows worth using. This project focuses on a small configuration that people can understand, verify, and maintain alongside those tools.
 
 ## Project status and licence
 
-This alpha is available at [Saqlain1999/bob-workflow-kit](https://github.com/Saqlain1999/bob-workflow-kit). [VALIDATION.md](VALIDATION.md) records what was actually executed; [the release guide](docs/releasing.md) describes publication and release checks. No performance improvement or live Bob compatibility is claimed without a corresponding result.
+The public project home is [Saqlain1999/bob-workflow-kit](https://github.com/Saqlain1999/bob-workflow-kit); this consolidation branch is not published. [VALIDATION.md](VALIDATION.md) records what was actually executed; [the release guide](docs/releasing.md) describes publication and release checks. No performance improvement or live Bob compatibility is claimed without a corresponding result.
 
-The companion repositories are [bob-workflow-evals](https://github.com/Saqlain1999/bob-workflow-evals), an evaluation starter; [bob-workflow-runner](https://github.com/Saqlain1999/bob-workflow-runner), a controller design preview; and [awesome-bob-workflows](https://github.com/Saqlain1999/awesome-bob-workflows), a curated resource catalogue. Their scopes differ: the runner preview does not contain an executable controller. See the [roadmap](docs/roadmap.md) for how the projects fit together.
+The [consolidation record](docs/consolidation/README.md) preserves the original repository URLs, licences, source commits and outstanding PRs. Existing published repositories remain unchanged. Use this repository's issue tracker for the intended unified product; no separate tracker is required by the proposed user journey. See the [roadmap](docs/roadmap.md) for the remaining acceptance and publication gates.
 
 Original kit content is provided under the [MIT licence](LICENSE). Linked third-party projects keep their own licences and support policies.

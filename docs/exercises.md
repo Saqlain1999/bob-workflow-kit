@@ -1,0 +1,37 @@
+# Exercises: one checkout, separate evidence
+
+No companion download, extra installation, API key or live model is needed for the offline checks. Live Bob observation is a different acceptance step.
+
+## Start small
+
+Follow the [first-use guide](try-alpha.md) and the [Tiny Ledger exercise](../examples/README.md) in a disposable copy. Its original test failure is intentional; do not repair the packaged fixture.
+
+## Try interruption recovery
+
+The [Parcel Resume task](../evals/tasks/parcel-resume/README.md) and its helper are included under `evals/`. From the kit root, change to that directory before following the task's commands:
+
+```sh
+cd evals
+python3 scripts/evaluate.py prepare --task parcel-resume --output runs/parcel-001
+python3 scripts/evaluate.py baseline --task parcel-resume --workspace runs/parcel-001 --result runs/parcel-001-baseline.json
+```
+
+Use a new run name for every attempt. Baseline exit 0 means the **expected application failures were reproduced**, not that the application works. Open the prepared disposable workspace in Bob only when ready to perform a separately observed live trial. After a repair, from the same `evals/` directory:
+
+```sh
+python3 scripts/evaluate.py candidate --task parcel-resume --workspace runs/parcel-001 --result runs/parcel-001-candidate.json
+```
+
+Keep result files outside the candidate workspace. The [task acceptance checklist](../evals/tasks/parcel-resume/ACCEPTANCE.md) separates public-test results from process observations. Return to the kit root with `cd ..` before using the root installer or quality commands.
+
+## Check the repository, not a live model
+
+From the kit root:
+
+```sh
+python3 tools/check_all.py
+```
+
+This executes the installer/consolidation and evaluator helper suites, catalogue validation, imported-source checks and local Markdown-link validation. It does not execute a live Bob task or treat the deliberately failing application fixtures as ordinary passing suites. Logs and `summary.json` go to a newly created temporary directory whose path is printed. Use `--log-dir NEW_DIRECTORY` to choose a new evidence directory; existing directories are refused.
+
+The imported evaluator has documented cooperative-fixture limits, not an adversarial sandbox. Only use trusted public exercise code. Historical evidence in the imported tree remains attributed to its original repository and source revision.

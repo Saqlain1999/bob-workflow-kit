@@ -84,7 +84,7 @@ For a recorded demonstration or a detailed result, copy [live-trial-template.jso
 
 ## Next: test recovery, then your own repository
 
-The companion [Parcel Resume task](https://github.com/Saqlain1999/bob-workflow-evals/tree/main/tasks/parcel-resume) adds a specific recovery challenge. Its helper really runs a historical passing check, constructs a labelled handoff, then changes a relevant policy and an unrelated teammate note. A fresh Bob session must work from current files. The candidate check tests the current policy and preservation of protected files; a person still needs to observe the recovery behavior.
+The included [Parcel Resume task](exercises.md) adds a specific recovery challenge. Its helper really runs a historical passing check, constructs a labelled handoff, then changes a relevant policy and an unrelated teammate note. A fresh Bob session must work from current files. The candidate check tests the current policy and preservation of protected files; a person still needs to observe the recovery behavior.
 
 When the small exercises are understood, use [onboard.txt](../prompts/onboard.txt) on your own repository. Start with one bounded change, reuse its existing specifications and task records, and verify with that project's actual commands. Read [alternatives and coexistence](alternatives.md) before adding another workflow framework.
 

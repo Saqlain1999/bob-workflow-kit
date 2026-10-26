@@ -37,4 +37,4 @@ Credit existing tools through [alternatives and coexistence](alternatives.md). T
 
 When Bob changes discovery or extension behavior, review primary documentation and then test the affected mechanism. Keep offline tests, native client loading, task correctness, and human-observed recovery separate. Add exact-version reports rather than a blanket compatibility badge.
 
-Prioritize reproducible installation failures and missed or stale verification over growing the number of skills. Before adding runner or marketplace machinery, complete the [build-versus-adopt decision](https://github.com/Saqlain1999/bob-workflow-runner/blob/main/ROADMAP.md). The companion repositories' implementation status must remain visible.
+Prioritize reproducible installation failures and missed or stale verification over growing the number of skills. Before adding runner or marketplace machinery, complete the [build-versus-adopt decision](design/runner/ROADMAP.md). The imported evaluation and design material remains explicitly scoped; the canonical kit is the only intended product entrypoint.
