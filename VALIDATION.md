@@ -1,8 +1,14 @@
 # Validation record
 
-Current package: **0.1.0-alpha.3**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
+Current package: **0.1.0-alpha.4**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
+
+## Alpha.4 integration validation — 26 October 2026 (UTC)
+
+Alpha.4 adds `plan-project-change`, its evidence/decision reference and delivery-plan template, and fixed-scope support for three packaged skills. During review, the historical alpha.1 payload count and alpha.3 candidate attribution were restored rather than relabelled as evidence for this new payload.
+
+Fresh validation on the current edited integration candidate (based on `2f9eed20d023374eca146f394b01d17472adff2f`, reconciled with main after PR #2), Linux/Python 3.13.5: the ResourceWarning-fatal installer suite passed 26/26 and the actual packaged preview/install/doctor/uninstall lifecycle accepted thirteen managed files in an explicit disposable Bob home. These are new offline results, not a historical Python 3.12.14 run or live Bob qualification. Hosted checks must pass on the resulting exact head before merge.
 
 ## Alpha.3 candidate validation
 

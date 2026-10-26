@@ -1,6 +1,6 @@
 # A practical guide to IBM Bob on substantial codebases
 
-Reviewed against public documentation on **18 October 2026 (UTC)**. This guide accompanies Bob Workflow Kit 0.1.0-alpha.3. Start with [Try the alpha](try-alpha.md) for the shortest installation-to-first-task path.
+Reviewed against public documentation on **21 October 2026 (UTC)**. This guide accompanies Bob Workflow Kit 0.1.0-alpha.4. Start with [Try the alpha](try-alpha.md) for the shortest installation-to-first-task path.
 
 ## 1. Choose the outcome you want from the setup
 

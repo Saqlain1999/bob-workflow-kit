@@ -8,8 +8,9 @@ The kit packages focused Bob skills, not a universal prompt collection. IBM's cu
 | --- | --- | --- |
 | `work-large-codebase` | Repository onboarding, substantial changes, and recovery from an interrupted task | A controller, code index, or guarantee that Bob read every relevant file |
 | `write-clear-technical-content` | Drafting or revising technical procedures, errors, runbooks, handoffs, API text, and agent messages | Certified ASD-STE100 output, a semantic-equivalence proof, or a technical-correctness check |
+| `plan-project-change` | An ambiguous or multi-file feature, refactor, migration, or integration that still needs requirements and design decisions | A source-code implementation, proof that the design works, or a reason to delay an already-bounded direct edit |
 
-Both skills are installed under the standard global `~/.bob/skills/` location. Bob uses each description to decide whether the skill is relevant, and current clients request approval before activation unless the user changes that setting. A project skill with the same name takes precedence over the global copy.
+All three skills are installed under the standard global `~/.bob/skills/` location. Bob uses each description to decide whether the skill is relevant, and current clients request approval before activation unless the user changes that setting. A project skill with the same name takes precedence over the global copy.
 
 ## Why the communication skill is bounded
 
@@ -23,6 +24,10 @@ The design review used two public, MIT-licensed sources as evidence, without cop
 - [`msitarzewski/agency-agents` at `652b2692f8d8ec2b1f1a38e559073e287dfdc469`](https://github.com/msitarzewski/agency-agents/tree/652b2692f8d8ec2b1f1a38e559073e287dfdc469) demonstrates explicit roles, deliverables, handoffs, and evidence gates across a large agent catalogue. The kit adopts that separation of inputs, process, output, and evidence—not the collection's personas, commands, or tool assumptions.
 
 The resulting skill text and examples are original to this repository. The upstream links are review provenance, not bundled dependencies or compatibility claims. Neither upstream project was installed or executed for this review.
+
+## Why the planning skill is bounded
+
+`plan-project-change` stops before product-source edits. It turns current repository evidence into observable acceptance criteria, an explicit design choice, criterion-to-file/check traceability, and a checkpoint that another session can revalidate. It adapts the useful input/process/output and handoff discipline seen in the pinned Agency Agents review without importing personas or prompt text. A good plan remains a proposal: it does not prove that implementation, tests, security, performance, or live Bob activation will succeed.
 
 ## Gate for another skill
 
@@ -40,4 +45,4 @@ Static tests can establish that a skill is well-formed and safely installed. A r
 
 ## Next candidates
 
-The next useful packs are likely evidence-first code review and incident handoff. They should not be added merely to make the catalogue larger. First build public fixtures that expose a failure the new skill should prevent, compare the same task with and without the candidate, and retain results that do not support the idea.
+The next useful packs may cover bounded implementation/debugging or independent evidence-first review. They should not be added merely to make the catalogue larger. First build public fixtures that expose a failure the new skill should prevent, compare the same task with and without the candidate, and retain results that do not support the idea.
