@@ -1,0 +1,102 @@
+{
+  "schema": "proposed-task-contract-v0.1",
+  "example_only": true,
+  "task": {
+    "id": "REPLACE_WITH_UNIQUE_TASK_ID",
+    "objective": "REPLACE_WITH_ONE_BOUNDED_CODE_CHANGE",
+    "acceptance_conditions": [
+      "REPLACE_WITH_OBSERVABLE_BEHAVIOR_AND_EXPECTED_RESULT"
+    ],
+    "excluded_actions": [
+      "commit",
+      "push",
+      "publish",
+      "deploy",
+      "edit_global_configuration",
+      "credential_setup"
+    ]
+  },
+  "workspace": {
+    "canonical_path": "REPLACE_WITH_DEDICATED_ABSOLUTE_WORKSPACE_PATH",
+    "base_revision": "REPLACE_WITH_FULL_CLEAN_BASE_COMMIT_ID",
+    "require_clean_baseline": true,
+    "isolation_profile": "REPLACE_WITH_QUALIFIED_ISOLATION_PROFILE_ID",
+    "input_inventory_policy": "REPLACE_WITH_NONSECRET_INPUT_INVENTORY_POLICY_ID"
+  },
+  "scope": {
+    "allowed_write_paths": [
+      "REPLACE_WITH_PROJECT_RELATIVE_SOURCE_PATH",
+      "REPLACE_WITH_PROJECT_RELATIVE_TEST_PATH"
+    ],
+    "forbidden_write_paths": [
+      ".git/**",
+      ".bob/**",
+      ".env",
+      "REPLACE_WITH_PROJECT_SPECIFIC_SECRET_AND_EXCLUDED_PATHS"
+    ],
+    "forbidden_read_paths": [
+      ".env",
+      "REPLACE_WITH_PROJECT_SPECIFIC_SECRET_PATHS"
+    ],
+    "allow_workspace_process_network": false,
+    "allow_scope_expansion": false
+  },
+  "validation": {
+    "profile_sha256": "REPLACE_WITH_REVIEWED_PROJECT_PROFILE_SHA256",
+    "required_checks": [
+      {
+        "id": "REPLACE_WITH_REQUIRED_CHECK_ID",
+        "argv": [
+          "REPLACE_WITH_APPROVED_EXECUTABLE",
+          "REPLACE_WITH_APPROVED_ARGUMENT"
+        ],
+        "cwd": "REPLACE_WITH_CANONICAL_CHECK_WORKING_DIRECTORY",
+        "timeout_seconds": 120,
+        "writable_output_paths": [
+          "REPLACE_WITH_SEPARATE_VERIFICATION_OUTPUT_DIRECTORY"
+        ]
+      }
+    ]
+  },
+  "budgets": {
+    "job_timeout_seconds": 900,
+    "bob_invocation_timeout_seconds": 240,
+    "termination_grace_seconds": 5,
+    "max_bob_invocations_total": 3,
+    "max_repair_attempts_total": 1,
+    "max_validation_processes_total": 6,
+    "max_output_bytes_per_process": 262144,
+    "max_retained_output_bytes_total": 1048576,
+    "total_bobcoins": "REPLACE_WITH_APPROVED_POSITIVE_BOBCOIN_ALLOCATION",
+    "unknown_cost_policy": "retain_full_reservation_and_block",
+    "accounting_qualification": "REPLACE_WITH_COST_ACCOUNTING_EVIDENCE_REFERENCE"
+  },
+  "authorization": {
+    "scope_approval_ref": "REPLACE_WITH_APPLICABLE_EXTERNAL_AUTHORIZATION_REFERENCE",
+    "effective_capabilities_sha256": "REPLACE_WITH_APPROVED_CAPABILITY_PROFILE_SHA256",
+    "additional_scope_or_capabilities": "block_until_applicable_authorization",
+    "automatic_trust_or_license_acceptance": false
+  },
+  "adapter": {
+    "kind": "proposed_bob_shell_adapter",
+    "qualified_version": "REPLACE_WITH_LOCALLY_QUALIFIED_BOB_VERSION",
+    "qualification_evidence_ref": "REPLACE_WITH_ADAPTER_EVALUATION_RECORD",
+    "provider_network_policy": "REPLACE_WITH_APPROVED_BOB_SERVICE_CONNECTION_POLICY",
+    "output_format": "json",
+    "max_turns_per_invocation": 8,
+    "max_bobcoins_per_invocation": "REPLACE_WITH_POSITIVE_RESERVABLE_BOBCOIN_CAP",
+    "planning_profile": "REPLACE_WITH_QUALIFIED_RESTRICTED_PLANNING_PROFILE",
+    "editing_profile": "REPLACE_WITH_QUALIFIED_AUTHORIZED_EDITING_PROFILE",
+    "disable_mcp": true,
+    "disable_subagents": true
+  },
+  "evidence": {
+    "state_manifest": "required",
+    "candidate_diff": "required",
+    "snapshot_consistency": "must_be_qualified",
+    "current_state_recheck": "required_before_review_ready",
+    "raw_output_capture": "disabled_by_default",
+    "credential_values_in_records": "forbidden",
+    "controller_state_path": "REPLACE_WITH_PROTECTED_PATH_OUTSIDE_AGENT_WORKSPACE"
+  }
+}
