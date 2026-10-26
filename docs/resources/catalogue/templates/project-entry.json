@@ -1,0 +1,25 @@
+{
+  "id": "replace-project-slug",
+  "name": "Replace with the upstream project name",
+  "category": "skills",
+  "repository": "https://github.com/OWNER/REPOSITORY",
+  "summary": "Replace with a factual one-sentence description.",
+  "publisher_type": "community",
+  "license": "NOASSERTION",
+  "license_evidence": "https://github.com/OWNER/REPOSITORY",
+  "availability": "public-source",
+  "installation": "not-assessed",
+  "bob_relation": "bob-extension",
+  "review_status": "documentation-reviewed",
+  "reviewed_on": "YYYY-MM-DD",
+  "runtime_evidence": [],
+  "notes": [
+    "Replace with a concrete compatibility or availability limitation."
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/OWNER/REPOSITORY",
+      "supports": "Replace with the specific claim supported by this source."
+    }
+  ]
+}
