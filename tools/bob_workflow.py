@@ -22,13 +22,18 @@ import tempfile
 from typing import Any
 
 
-VERSION = "0.1.0-alpha.2"
+VERSION = "0.1.0-alpha.3"
 SCHEMA_VERSION = 1
 METADATA = "workflow-kit"
 MANIFEST = f"{METADATA}/manifest.json"
 JOURNAL = f"{METADATA}/journal.json"
 RULE = "rules/bob-workflow-kit.md"
 SKILL = "skills/work-large-codebase/SKILL.md"
+TECHNICAL_COMMUNICATION_SKILL = "skills/write-clear-technical-content/SKILL.md"
+SKILLS = {
+    "work-large-codebase": SKILL,
+    "write-clear-technical-content": TECHNICAL_COMMUNICATION_SKILL,
+}
 MAX_FILE_BYTES = 2 * 1024 * 1024
 MAX_METADATA_BYTES = 1024 * 1024
 
@@ -88,10 +93,10 @@ def _relative(value: str) -> PurePosixPath:
 
 def _payload_path(value: str) -> PurePosixPath:
     path = _relative(value)
-    allowed = value in (RULE, SKILL)
-    allowed |= (len(path.parts) >= 4 and path.parts[:3] in (
-        ("skills", "work-large-codebase", "references"),
-        ("skills", "work-large-codebase", "templates")))
+    allowed = value == RULE
+    if len(path.parts) >= 3 and path.parts[0] == "skills" and path.parts[1] in SKILLS:
+        allowed |= len(path.parts) == 3 and path.parts[2] == "SKILL.md"
+        allowed |= len(path.parts) >= 4 and path.parts[2] in ("references", "templates")
     if not allowed:
         raise KitError("invalid_path", "Path is outside this kit's managed payload.", paths=[value])
     return path
@@ -130,7 +135,7 @@ def _read(path: Path, limit: int = MAX_FILE_BYTES) -> bytes:
     return data
 
 
-def _validate_skill(data: bytes) -> None:
+def _validate_skill(data: bytes, expected_name: str) -> None:
     """Validate the intentionally minimal front matter shipped by this kit."""
     lines = data.decode("utf-8").splitlines()
     if not lines or lines[0] != "---" or "---" not in lines[1:]:
@@ -149,7 +154,7 @@ def _validate_skill(data: bytes) -> None:
         if not value or value in ("|", ">", "|-", ">-"):
             raise KitError("invalid_skill", "Front matter values must be nonempty one-line scalars.")
         fields[key] = value
-    if fields.get("name") != "work-large-codebase" or not fields.get("description"):
+    if fields.get("name") != expected_name or not fields.get("description"):
         raise KitError("invalid_skill", "The skill name must match its directory and include a description.")
     if not "\n".join(lines[end + 1:]).strip():
         raise KitError("invalid_skill", "SKILL.md needs instructions after the front matter.")
@@ -182,9 +187,11 @@ def load_payload(payload_root: Path) -> dict[str, bytes]:
         if not data.decode("utf-8").strip():
             raise KitError("invalid_payload", "Payload files must contain UTF-8 text.", paths=[relative])
         files[relative] = data
-    if RULE not in files or SKILL not in files:
-        raise KitError("missing_payload", "The payload must include the global rule and SKILL.md.")
-    _validate_skill(files[SKILL])
+    required = {RULE, *SKILLS.values()}
+    if not required <= set(files):
+        raise KitError("missing_payload", "The payload must include the global rule and every packaged SKILL.md.")
+    for name, value in SKILLS.items():
+        _validate_skill(files[value], name)
     return files
 
 
@@ -205,8 +212,8 @@ def _validate_record(record: Any) -> dict[str, Any]:
             not isinstance(record["files"], dict) or not record["files"] or
             not isinstance(record["created_dirs"], list)):
         raise KitError("invalid_manifest", "Invalid installation manifest or journal schema.")
-    if not {RULE, SKILL} <= set(record["files"]):
-        raise KitError("invalid_manifest", "Metadata must identify the rule and SKILL.md.")
+    if not {RULE, *SKILLS.values()} <= set(record["files"]):
+        raise KitError("invalid_manifest", "Metadata must identify the rule and every packaged SKILL.md.")
     for value, expected_hash in record["files"].items():
         _payload_path(value)
         if not isinstance(expected_hash, str) or not re.fullmatch(r"[0-9a-f]{64}", expected_hash):
