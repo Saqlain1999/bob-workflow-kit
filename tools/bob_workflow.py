@@ -22,7 +22,7 @@ import tempfile
 from typing import Any
 
 
-VERSION = "0.1.0-alpha.4"
+VERSION = "0.1.0-alpha.5"
 SCHEMA_VERSION = 1
 METADATA = "workflow-kit"
 MANIFEST = f"{METADATA}/manifest.json"
@@ -31,10 +31,12 @@ RULE = "rules/bob-workflow-kit.md"
 SKILL = "skills/work-large-codebase/SKILL.md"
 TECHNICAL_COMMUNICATION_SKILL = "skills/write-clear-technical-content/SKILL.md"
 PROJECT_PLANNING_SKILL = "skills/plan-project-change/SKILL.md"
+IMPLEMENTATION_SKILL = "skills/implement-and-debug-change/SKILL.md"
 SKILLS = {
     "work-large-codebase": SKILL,
     "write-clear-technical-content": TECHNICAL_COMMUNICATION_SKILL,
     "plan-project-change": PROJECT_PLANNING_SKILL,
+    "implement-and-debug-change": IMPLEMENTATION_SKILL,
 }
 MAX_FILE_BYTES = 2 * 1024 * 1024
 MAX_METADATA_BYTES = 1024 * 1024

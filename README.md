@@ -2,7 +2,7 @@
 
 **Keep a Bob task understandable when the repository is large or the conversation is interrupted.**
 
-Version: **0.1.0-alpha.4**. Community alpha. This toolkit is independent of IBM and is not an IBM product or Marketplace listing.
+Version: **0.1.0-alpha.5**. Community alpha. This toolkit is independent of IBM and is not an IBM product or Marketplace listing.
 
 Bob Workflow Kit combines a public guide, a concise global rule, focused on-demand skills, repository/task templates, and an offline installer. It is designed for developers who lose the thread in large repositories, get overwhelmed by command output, or cannot tell what an agent actually verified.
 
@@ -58,6 +58,7 @@ The installer writes the packaged rule and skills under:
 - `skills/work-large-codebase/SKILL.md` and its supporting references/templates
 - `skills/write-clear-technical-content/SKILL.md` and its supporting references
 - `skills/plan-project-change/SKILL.md` and its evidence/decision reference and delivery-plan template
+- `skills/implement-and-debug-change/SKILL.md` and its debugging-evidence reference and implementation-handoff template
 - `workflow-kit/` for this kit's own installation records and recovery data
 
 These are relative to the selected Bob home. `workflow-kit/` is our convention, not an IBM configuration feature. The kit does not edit your existing settings, global `AGENTS.md`, modes, hooks, permissions, model selection, authentication, or MCP configuration.
@@ -72,6 +73,7 @@ The same global rules/skills layout is documented for current [Bob IDE rules](ht
 | `work-large-codebase` skill | Onboard a repository, make a substantial change, or resume from a checkpoint |
 | `write-clear-technical-content` skill | Draft or revise technical instructions and handoffs while checking facts, exact tokens, conditions, and requirement strength |
 | `plan-project-change` skill | Inspect an existing project, define observable acceptance criteria, choose a design, and hand off staged work with recovery evidence |
+| `implement-and-debug-change` skill | Implement accepted criteria or repair a reproducible defect with minimal edits, regression evidence, preservation checks, and a resumable handoff |
 | Repository profile | Record actual components, commands, dependencies, constraints, and evidence sources |
 | Task checkpoint | Preserve decisions, changed files, check results, failed approaches, and the next action |
 | Offline installer | Preview changes, install known assets, inspect ownership/integrity, and uninstall carefully |
@@ -98,7 +100,7 @@ python3 tools/bob_workflow.py uninstall
 
 Use the same `--bob-home` override if you installed somewhere else. Uninstall uses this kit's ownership records; it preserves conflicting local edits rather than deleting them. Reinstalling unchanged content should be a no-op. Read the command output and [installer design](docs/installer.md) before resolving an interrupted transaction or updating modified files. There is no blind overwrite option.
 
-**Updating from alpha.1, alpha.2, or alpha.3:** use your old checkout to run `doctor` and `uninstall` with the same target, then preview/install/doctor from alpha.4. Version changes are deliberately refused by an in-place install. If you edited a managed file, review and preserve that edit before resolving the conflict. Alpha.4 adds a third managed skill, so preview the complete file list before installation.
+**Updating from alpha.1 through alpha.4:** use your old checkout to run `doctor` and `uninstall` with the same target, then preview/install/doctor from alpha.5. Version changes are deliberately refused by an in-place install. If you edited a managed file, review and preserve that edit before resolving the conflict. Alpha.5 adds a fourth managed skill, so preview the complete file list before installation.
 
 ## Contribute
 
