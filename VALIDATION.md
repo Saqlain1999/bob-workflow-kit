@@ -19,6 +19,27 @@ Local checks executed on **22 October 2026 (UTC), Linux, Python 3.12.14**:
 
 The hosted matrix for the final candidate commit must pass before release. The local checks establish installer behavior and static content properties only. No live Bob client loaded or activated the new skill, and no model trial established that the instructions produce correct implementations in practice.
 
+## Alpha.4 integration validation — 26 October 2026 (UTC)
+
+Alpha.4 adds `plan-project-change`, its evidence/decision reference and delivery-plan template, and fixed-scope support for three packaged skills. During review, the historical alpha.1 payload count and alpha.3 candidate attribution were restored rather than relabelled as evidence for this new payload.
+
+Fresh validation on the current edited integration candidate (based on `2f9eed20d023374eca146f394b01d17472adff2f`, reconciled with main after PR #2), Linux/Python 3.13.5: the ResourceWarning-fatal installer suite passed 26/26 and the actual packaged preview/install/doctor/uninstall lifecycle accepted thirteen managed files in an explicit disposable Bob home. These are new offline results, not a historical Python 3.12.14 run or live Bob qualification. Hosted checks must pass on the resulting exact head before merge.
+
+## Alpha.3 candidate validation
+
+Alpha.3 adds the `write-clear-technical-content` skill, two on-demand references, and fixed-scope installer support for both packaged skills. The skill protects exact technical tokens, conditions, ordering, negation, uncertainty, and requirement strength during rewriting. It explicitly does not claim ASD-STE100 compliance or semantic-equivalence proof.
+
+Local checks executed on **18 October 2026 (UTC), Linux, Python 3.12.14**:
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` from kit root | **26 tests passed**, exit 0, including missing/unlisted skill rejection, directory-name validation, and the existing lifecycle/recovery suite |
+| `python3 -B -m unittest discover -s tests -v` from `examples/tiny-ledger` | **9 tests, 8 passes, 1 deliberate failure**, exit 1; original regression preserved |
+| Python files parsed with Python 3.10 grammar; JSON parsed; relative Markdown targets checked | **5 Python files**, **2 JSON files**, and **60 local Markdown links** checked; no syntax/JSON errors or missing local targets |
+| Packaged-payload preview against an explicit temporary Bob home | **10 managed text files** accepted; target reported `ready`; no live Bob configuration used |
+
+The hosted matrix for the final candidate commit must pass before release. The local checks establish installer behavior and static content properties only. No live Bob client loaded or activated the new skill, and no model trial established that the instructions preserve meaning in practice.
+
 ## Alpha.2 validation
 
 This update adds first-use, comparison, reporting and release materials. The seven installed payload files and installer ownership behavior are unchanged from alpha.1. The installer reports the new package version, with a consistency check against `VERSION` in the existing suite. The version change still requires the supported uninstall-then-install update path.
@@ -40,7 +61,7 @@ The tagged release notes record the exact alpha.2 source commit and its CI resul
 | Check | Environment and method | Observed result |
 | --- | --- | --- |
 | Offline installer suite | Linux; Python 3.12.14; `python3 -B -m unittest discover -s tests -v` | **24 tests passed**, exit 0 |
-| Real packaged payload | Thirteen Markdown rule/skill/reference/template files; covered by suite and CLI lifecycle tests | Payload validation and installation lifecycle passed in temporary targets |
+| Real packaged payload | Seven Markdown rule/skill/reference/template files; covered by suite and CLI lifecycle tests | Payload validation and installation lifecycle passed in temporary targets |
 | Tiny Ledger baseline | Shipped fixture; Python standard-library unittest | **9 tests: 8 pass, 1 deliberate failure**, exit 1 |
 | Written-skill trial | A separate assistant read the skill and repaired a disposable fixture copy | Only `ledger.py` changed; tests and docs preserved |
 | Repaired fixture verification | Local unittest run on the trial copy | **9 tests passed**, exit 0 |

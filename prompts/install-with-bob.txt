@@ -4,6 +4,8 @@ Read README.md, docs/compatibility.md, docs/installer.md, and tools/bob_workflow
 
 Run the installer's preview against the intended Bob home and inspect every proposed destination and conflict. Run the documented offline tests with their explicit temporary targets. If the preview is appropriate and tests pass, run install and doctor using that same target. Perform the supported reversible work now, within native permissions. Do not replace the installer with newly generated code or disable native controls.
 
+Treat an explicit approval prompt for a write under the Bob home as an expected client safeguard. Before requesting approval, show the exact included-installer command and the previewed target. If the user or workstation policy does not authorize it, stop after the read-only checks, report the blocked installation, and leave Bob settings unchanged. Do not enable broad auto-approval, rewrite approval settings, split or disguise the command, or redirect the active configuration to evade the control. An explicit temporary target may be used only as a clearly labelled installation rehearsal.
+
 Preserve existing rules, skills, settings, global AGENTS.md, hooks, models, authentication, MCP configuration, and unrelated files. If a target collision or a local modification is reported, explain the exact conflict and complete independent useful checks; do not add a force-overwrite workaround.
 
 Report the package version, resolved paths, actual command results, changed files, conflicts, uninstall/recovery instructions, and what still requires a fresh Bob session. File validation is not proof that Bob loaded the content. Do not invoke a nested model, make paid API calls, install packages, or run tests in an existing work project for this installation.
