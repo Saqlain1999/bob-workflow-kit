@@ -27,6 +27,8 @@ python3 tools/bob_workflow.py doctor
 
 Read the preview **before** running install. It shows the actual target and collisions. The offline test suite uses disposable targets and should pass. `doctor` should report the managed files' installation and integrity state.
 
+If Bob Shell is carrying out these commands, expect it to require explicit approval before a command writes under `~/.bob`. That prompt protects Bob's configuration even when auto-approve is enabled. Check that the command is the included installer and that the previewed target is correct; then approve the one operation only if your policy permits it. Do not weaken approval settings, move the write into another command, or change authentication to get around a denial. If approval is unavailable, stop after the read-only preview/tests and report the blocked install. You can still rehearse the full lifecycle against an explicit temporary target that is not your active Bob home.
+
 The default is the current user's `.bob` directory. If Bob uses a different configuration directory, append the same `--bob-home /absolute/path/to/.bob` to preview, install, and doctor. For an installation-only rehearsal use an explicit temporary directory; Bob will not discover that temporary target automatically.
 
 An edited managed file or an unowned collision needs review. Do not delete it simply to get a green result. [Installer troubleshooting](troubleshooting.md) explains supported recovery. To update alpha.1 or alpha.2, inspect and uninstall it using the old checkout and target before installing alpha.3; preserve any local edits first.
