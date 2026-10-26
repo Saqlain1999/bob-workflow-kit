@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "record_type": "manual_participant_run",
+  "run_id": null,
+  "task_id": "tiny-ledger-atomicity-v1",
+  "task_repository_revision": null,
+  "status": "not_run",
+  "condition": {
+    "description": null,
+    "workflow_kit_enabled": null,
+    "workflow_kit_revision": null,
+    "other_rules_or_skills": [],
+    "client": null,
+    "client_version": null,
+    "mode": null,
+    "visible_model_identifier": null,
+    "model_routing_notes": null,
+    "permissions_notes": null
+  },
+  "environment": {
+    "operating_system": null,
+    "python_version": null,
+    "relevant_environment_notes": null
+  },
+  "procedure": {
+    "fresh_workspace": null,
+    "fresh_conversation": null,
+    "exact_prompt_file": "tasks/tiny-ledger-atomicity/AGENT_PROMPT.md",
+    "prompt_changes": null,
+    "attempt_number": null,
+    "prior_exposure_to_task": null,
+    "started_at_utc": null,
+    "ended_at_utc": null,
+    "interventions": [],
+    "abandoned": null
+  },
+  "measurements": {
+    "agent_wall_time_seconds": null,
+    "reported_tool_calls": null,
+    "reported_input_tokens": null,
+    "reported_output_tokens": null,
+    "reported_cost": null,
+    "cost_unit": null,
+    "measurement_sources": [],
+    "unavailable_metrics_notes": null
+  },
+  "evidence": {
+    "baseline_helper_report": null,
+    "candidate_helper_report": null,
+    "candidate_source_fingerprint": null,
+    "diff_file": null,
+    "additional_checks": [],
+    "participant_summary_file": null,
+    "redactions": []
+  },
+  "recovery": {
+    "checkpoint_origin": null,
+    "historical_helper_report": null,
+    "preparation_report": null,
+    "historical_state_fingerprint": null,
+    "prepared_state_fingerprint": null,
+    "candidate_state_fingerprint": null,
+    "observed_stale_evidence_recheck": "not_assessed",
+    "observed_checkpoint_usefulness": "not_assessed",
+    "observations": []
+  },
+  "review": {
+    "public_tests": "not_run",
+    "protected_inputs": "not_assessed",
+    "state_freshness": "not_assessed",
+    "manual_acceptance": "not_assessed",
+    "checklist_observations": [],
+    "workflow_adherence": "not_assessed",
+    "outcome": "not_run",
+    "limitations": []
+  }
+}
