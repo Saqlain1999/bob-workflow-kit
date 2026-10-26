@@ -4,9 +4,15 @@ Current package: **0.1.0-alpha.4**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Alpha.4 integration validation — 26 October 2026 (UTC)
+
+Alpha.4 adds `plan-project-change`, its evidence/decision reference and delivery-plan template, and fixed-scope support for three packaged skills. During review, the historical alpha.1 payload count and alpha.3 candidate attribution were restored rather than relabelled as evidence for this new payload.
+
+Fresh validation on the current edited integration candidate (based on `2f9eed20d023374eca146f394b01d17472adff2f`, reconciled with main after PR #2), Linux/Python 3.13.5: the ResourceWarning-fatal installer suite passed 26/26 and the actual packaged preview/install/doctor/uninstall lifecycle accepted thirteen managed files in an explicit disposable Bob home. These are new offline results, not a historical Python 3.12.14 run or live Bob qualification. Hosted checks must pass on the resulting exact head before merge.
+
 ## Alpha.3 candidate validation
 
-Alpha.4 adds `plan-project-change`, an on-demand evidence/decision reference, a delivery-plan template, and fixed-scope installer support for three packaged skills. The skill requires repository evidence, acceptance traceability, an architecture decision, and recovery state before implementation. Static validation does not prove plan quality, future implementation, or live Bob activation.
+Alpha.3 adds the `write-clear-technical-content` skill, two on-demand references, and fixed-scope installer support for both packaged skills. The skill protects exact technical tokens, conditions, ordering, negation, uncertainty, and requirement strength during rewriting. It explicitly does not claim ASD-STE100 compliance or semantic-equivalence proof.
 
 Local checks executed on **18 October 2026 (UTC), Linux, Python 3.12.14**:
 
@@ -40,7 +46,7 @@ The tagged release notes record the exact alpha.2 source commit and its CI resul
 | Check | Environment and method | Observed result |
 | --- | --- | --- |
 | Offline installer suite | Linux; Python 3.12.14; `python3 -B -m unittest discover -s tests -v` | **24 tests passed**, exit 0 |
-| Real packaged payload | Thirteen Markdown rule/skill/reference/template files; covered by suite and CLI lifecycle tests | Payload validation and installation lifecycle passed in temporary targets |
+| Real packaged payload | Seven Markdown rule/skill/reference/template files; covered by suite and CLI lifecycle tests | Payload validation and installation lifecycle passed in temporary targets |
 | Tiny Ledger baseline | Shipped fixture; Python standard-library unittest | **9 tests: 8 pass, 1 deliberate failure**, exit 1 |
 | Written-skill trial | A separate assistant read the skill and repaired a disposable fixture copy | Only `ledger.py` changed; tests and docs preserved |
 | Repaired fixture verification | Local unittest run on the trial copy | **9 tests passed**, exit 0 |
