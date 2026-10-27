@@ -1,8 +1,23 @@
 # Validation record
 
-Current package: **0.1.0-alpha.4**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
+Current package: **0.1.0-alpha.5**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
+
+## Alpha.5 candidate validation
+
+Alpha.5 adds `implement-and-debug-change`, an on-demand debugging-evidence reference, an implementation-handoff template, and fixed-scope installer support for four packaged skills. The skill requires a current input contract, a reproducible baseline, a criterion-linked minimal change, current-state checks, preservation evidence, and a resumable handoff. Static and installer validation do not prove implementation quality, independent review, production readiness, or live Bob activation.
+
+Local checks executed on **22 October 2026 (UTC), Linux, Python 3.12.14**:
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` from kit root | **26 tests passed**, exit 0, including missing/unlisted skill rejection, directory-name validation, and the existing lifecycle/recovery suite |
+| `python3 -B -m unittest discover -s tests -v` from `examples/tiny-ledger` | **9 tests, 8 passes, 1 deliberate failure**, exit 1; original regression preserved |
+| Python files parsed with Python 3.10 grammar; JSON parsed; relative Markdown targets checked | **5 Python files**, **2 JSON files**, and **60 local Markdown links** checked across 39 Markdown files; no syntax/JSON errors or missing local targets |
+| Preview/install/doctor/uninstall against an explicit temporary Bob home | **16 managed text files** accepted; install reported `installed`, doctor reported `healthy`, and uninstall removed all managed files; no live Bob configuration used |
+
+The hosted matrix for the final candidate commit must pass before release. The local checks establish installer behavior and static content properties only. No live Bob client loaded or activated the new skill, and no model trial established that the instructions produce correct implementations in practice.
 
 ## Alpha.4 integration validation — 26 October 2026 (UTC)
 

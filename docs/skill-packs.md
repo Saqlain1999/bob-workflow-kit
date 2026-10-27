@@ -9,8 +9,9 @@ The kit packages focused Bob skills, not a universal prompt collection. IBM's cu
 | `work-large-codebase` | Repository onboarding, substantial changes, and recovery from an interrupted task | A controller, code index, or guarantee that Bob read every relevant file |
 | `write-clear-technical-content` | Drafting or revising technical procedures, errors, runbooks, handoffs, API text, and agent messages | Certified ASD-STE100 output, a semantic-equivalence proof, or a technical-correctness check |
 | `plan-project-change` | An ambiguous or multi-file feature, refactor, migration, or integration that still needs requirements and design decisions | A source-code implementation, proof that the design works, or a reason to delay an already-bounded direct edit |
+| `implement-and-debug-change` | An accepted bounded change, reproducible defect, or interrupted implementation with defined expected behavior | Requirements discovery, architecture selection, independent final review, deployment, or production-readiness approval |
 
-All three skills are installed under the standard global `~/.bob/skills/` location. Bob uses each description to decide whether the skill is relevant, and current clients request approval before activation unless the user changes that setting. A project skill with the same name takes precedence over the global copy.
+All four skills are installed under the standard global `~/.bob/skills/` location. Bob uses each description to decide whether the skill is relevant, and current clients request approval before activation unless the user changes that setting. A project skill with the same name takes precedence over the global copy.
 
 ## Why the communication skill is bounded
 
@@ -29,6 +30,12 @@ The resulting skill text and examples are original to this repository. The upstr
 
 `plan-project-change` stops before product-source edits. It turns current repository evidence into observable acceptance criteria, an explicit design choice, criterion-to-file/check traceability, and a checkpoint that another session can revalidate. It adapts the useful input/process/output and handoff discipline seen in the pinned Agency Agents review without importing personas or prompt text. A good plan remains a proposal: it does not prove that implementation, tests, security, performance, or live Bob activation will succeed.
 
+## Why the implementation skill is bounded
+
+`implement-and-debug-change` starts only after expected behavior is bounded. It requires a current reproducible baseline, minimal criterion-linked edits, regression evidence, preservation review, and a resumable handoff. It complements Bob's native Agent mode rather than replacing modes, permissions, rollback, or task history.
+
+The 22 October 2026 review of [`msitarzewski/agency-agents` at `4e3ac3ca6604c75113f52c695dbddcc7af928b46`](https://github.com/msitarzewski/agency-agents/tree/4e3ac3ca6604c75113f52c695dbddcc7af928b46) found useful minimal-diff and evidence-reporting patterns. This kit adapts restraint, line-of-evidence, and explicit untested-scope ideas into original stack-neutral instructions. It rejects hard-coded Laravel/FluxUI/visual-QA assumptions, unmeasured numeric success targets, persona identity text, and bulk agent import. The upstream remains an MIT-licensed review source, not a dependency; it was not installed or executed.
+
 ## Gate for another skill
 
 Add a skill only when all of the following are true:
@@ -45,4 +52,4 @@ Static tests can establish that a skill is well-formed and safely installed. A r
 
 ## Next candidates
 
-The next useful packs may cover bounded implementation/debugging or independent evidence-first review. They should not be added merely to make the catalogue larger. First build public fixtures that expose a failure the new skill should prevent, compare the same task with and without the candidate, and retain results that do not support the idea.
+The next useful pack may cover independent evidence-first review and security. It should not be added merely to make the catalogue larger. First build a public fixture that exposes a failure the new skill should prevent, compare the same task with and without the candidate, and retain results that do not support the idea.

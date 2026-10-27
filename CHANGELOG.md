@@ -5,7 +5,13 @@
 - Bring current published evaluator, resource catalogue and runner-design histories into one kit repository without squashing their original commits.
 - Keep evaluation tasks under `evals/`, resources under `docs/resources/`, and deferred controller notes under `docs/design/`; only the existing rules/skills payload is installed into Bob.
 - Provide one entrypoint and one offline quality-check command. Preserve original licences, historical validation records and source/PR maps.
-- Do not import open PRs, publish a release, archive old repositories or claim new live Bob compatibility as part of this preparation.
+- Import reviewed kit candidates locally with preserved ancestry; no external PR merge/closure, publication, release, repository archival or live Bob compatibility is claimed.
+
+## 0.1.0-alpha.5 — unreleased
+
+- Add the focused `implement-and-debug-change` skill with debugging-evidence guidance and a resumable implementation-handoff template.
+- Require a reproducible baseline, minimal criterion-linked edits, regression evidence, current-state validation, preservation checks, and honest failed/unrun-check reporting.
+- Extend the fixed-scope installer to exactly four reviewed skills; arbitrary skill directories remain rejected.
 
 ## 0.1.0-alpha.4 — unreleased
 
