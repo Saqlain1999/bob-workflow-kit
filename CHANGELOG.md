@@ -7,6 +7,14 @@
 - Provide one entrypoint and one offline quality-check command. Preserve original licences, historical validation records and source/PR maps.
 - Import reviewed kit candidates locally with preserved ancestry; no external PR merge/closure, publication, release, repository archival or live Bob compatibility is claimed.
 
+## 0.1.0-alpha.6 — unreleased
+
+- Add the focused `review-and-secure-change` skill with an evidence-class/severity reference and independent review-handoff template.
+- Require current-state revalidation, a read-only first pass, applicable correctness/security checks, reproducible findings, explicit decision limits, and an ordered remediation handoff.
+- Extend the fixed-scope installer to exactly five reviewed skills; arbitrary skill directories remain rejected.
+
+This is a bounded review workflow, not certification, deployment approval, proof that no vulnerabilities remain, or evidence of live Bob activation.
+
 ## 0.1.0-alpha.5 — unreleased
 
 - Add the focused `implement-and-debug-change` skill with debugging-evidence guidance and a resumable implementation-handoff template.
