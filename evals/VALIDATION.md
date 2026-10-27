@@ -1,5 +1,164 @@
 # Local software validation
 
+## Reminder Remediated Re-review — 26 October 2026 (UTC)
+
+Observed on Linux with Python 3.12.14. This branch is stacked on the bounded
+diagnostics and the complete reminder journey through remediation. The results
+below are offline software checks, not a participant result or evidence that
+Bob discovered or followed an independent-review skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **103 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared re-review baseline | Twelve trusted checks; both repaired behaviors passed and exactly six named review-record failures reproduced; helper status `expected_baseline_failure` |
+| Known-good re-review control | Twelve checks passed; protected exact candidate and historical records unchanged; only `REMEDIATION_REVIEW.md` changed; helper status `public_tests_passed` |
+| Re-review negative controls | Superficial approval, missing REV-002 disposition, false 11/12 evidence, source edit, historical review/release edits, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **43 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **46 local Markdown links** checked across **80 Markdown files**; complete 23-file diff and `git diff --check` passed |
+
+The control records both historical findings as resolved with current source and
+behavior evidence, keeps process-safe concurrency unknown, and hands the exact
+candidate to a separate release-preparation stage. `ready for release
+preparation` is not release approval and establishes no production readiness,
+general security proof, compatibility, performance, deployment, or live Bob
+behavior. No model, Bob client, credential, network service, upstream content,
+release artifact, tag, deployment, publication, or paid API was used.
+
+## Reminder Review Remediation — 25 October 2026 (UTC)
+
+Observed on Linux 6.18.55 x86_64 with Python 3.12.14. This branch is stacked on
+the bounded diagnostics, technical-writing, planning, implementation,
+independent-review, and blocked-release branches. The results below are offline
+software checks, not a participant result or evidence that Bob discovered or
+followed an implementation skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **91 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared remediation baseline | Twelve trusted checks; both seeded defects reproduced and exactly nine named behavior/handoff failures; helper status `expected_baseline_failure` |
+| Known-good remediation control | Twelve checks passed; protected request/plan/review/release/documentation/team/store inputs unchanged; only `notifier/service.py` and `IMPLEMENTATION_HANDOFF.md` changed; helper status `public_tests_passed` |
+| Remediation negative controls | Owner-only fix, conflict-only fix, missing fresh-review gate, review/release record edits, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **38 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **44 local Markdown links** checked across **68 Markdown files**; `git diff --check` passed |
+
+The control corrects the two public fixture defects and hands the exact state to
+a fresh independent review. It deliberately preserves the prior `changes
+required` review and `release blocked` record as historical evidence; a helper
+pass does not clear those gates or establish general implementation quality,
+security, process-safe concurrency, compatibility, production readiness,
+release approval, or live Bob activation. No model, Bob client, credential,
+network service, upstream content, release artifact, tag, deployment,
+publication, or paid API was used.
+
+## Reminder Documentation and Release Handoff — 24 October 2026 (UTC)
+
+This branch is stacked on the bounded diagnostics, technical-writing, planning, implementation, and independent-review branches. The results below are offline software checks, not a participant result or evidence that Bob discovered or followed the release-handoff skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **80 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared release baseline | Twelve trusted checks; both seeded defects reproduced and exactly ten named documentation/release-contract failures; helper status `expected_baseline_failure` |
+| Known-good blocked control | Twelve checks passed; all request/plan/implementation/review/team/source inputs unchanged; only `RELEASE_HANDOFF.md` and `USER_GUIDE.md` changed; helper status `public_tests_passed` |
+| Release negative controls | False ready decision, missing High finding, helper-as-correctness claim, source edit, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **33 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **40 local Markdown links** checked across **57 Markdown files**; `git diff --check` passed |
+
+The fixture preserves two unresolved review findings, so a correct known-good output remains `release blocked`; passing the helper cannot establish corrected behavior, release readiness, deployment approval, compatibility, performance, or live Bob activation. No model, Bob client, credential, network service, upstream content, release artifact, tag, deployment, publication, or paid API was used.
+
+## Reminder Independent Review and Security — 23 October 2026 (UTC)
+
+Observed on Linux, Python 3.12.14. This branch is stacked on the bounded
+diagnostics, technical-writing, planning, and implementation branches. The
+results below are offline software checks, not a participant result or evidence
+that Bob discovered or followed the independent-review skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **70 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared review baseline | Ten trusted checks; the two seeded defects reproduced and exactly eight named report-contract failures; helper status `expected_baseline_failure` |
+| Independent known-good review control | Ten checks passed; all request/plan/handoff/team/source inputs unchanged; only `REVIEW_HANDOFF.md` changed; helper status `public_tests_passed` |
+| Review negative controls | Superficial approval, missing second finding, false current-pass evidence, source edit, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **28 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **36 local Markdown links** checked across **46 Markdown files**; `git diff --check` passed |
+
+The fixture checks two public, deliberately seeded issues: an inverted owner
+filter that returns another owner's reminder, and conflict text that exposes
+stored record content. It checks a precise review/remediation artifact without
+allowing product edits. Manual review still owns reasoning quality, severity
+judgment, scope proportionality, and whether a real participant independently
+found the issues. Passing does not prove general defect discovery, security,
+compliance, production readiness, release approval, large-project behavior, or
+live Bob activation. No model, Bob client, credential, network service, scanner,
+upstream content, or paid API was used.
+
+## Reminder Implementation and Debugging — 22 October 2026 (UTC)
+
+Observed on Linux (`Linux-6.18.55-x86_64-with-glibc2.39`), Python 3.12.14.
+This branch is stacked on the bounded-diagnostics, technical-writing, and
+project-planning branches. The results below are offline software checks, not a
+Bob participant result or evidence that Bob discovered or followed the
+implementation/debugging skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | 60 helper tests passed; exit 0; no skips or resource warnings |
+| Prepared interrupted baseline | Ten trusted checks; exactly four named retry/conflict/handoff failures; helper status `expected_baseline_failure` |
+| Independent known-good control | Ten checks passed; protected request/plan/checkpoint/team note unchanged; only `notifier/service.py` and `IMPLEMENTATION_HANDOFF.md` changed; helper status `public_tests_passed` |
+| Implementation negative controls | Missing handoff, weakened conflict behavior, protected plan edit, candidate-test edit, and unrelated file were rejected |
+| Static checks | Edited Python files compiled; 3 repository JSON files parsed; 32 local Markdown links across 37 Markdown files and `git diff --check` passed |
+
+The fixture covers selected behavior, compatibility, preservation, bounded
+scope, and recovery-evidence properties for one small append-only reminder
+project. Manual review still owns diagnosis quality, minimality, evidence
+truthfulness, and whether the handoff supports safe independent review and
+resumption. Passing does not prove process-safe concurrency, security,
+performance, deployment, production readiness, large-project behavior, or live
+Bob activation. The checkpoint is a constructed fixture artifact, not an
+observed agent interruption. No model, Bob client, credential, network service,
+or paid API was used.
+
+## Project Planning Handoff — 21 October 2026 (UTC)
+
+Observed on Linux (`Linux-6.18.55-x86_64-with-glibc2.39`), Python 3.12.14.
+This branch is stacked on the bounded-diagnostics and technical-writing branches.
+The results below are offline software checks, not a Bob participant result or
+evidence that Bob discovered or followed the planning skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | 52 helper tests passed; exit 0; no skips or resource warnings |
+| Planning prepared baseline | Ten trusted checks; exactly seven named evidence/acceptance/decision/traceability/risk/recovery failures; helper status `expected_baseline_failure` |
+| Independent known-good plan control | Ten checks passed; protected request/source unchanged; only `DELIVERY_PLAN.md` changed; helper status `public_tests_passed` |
+| Planning negative controls | Missing acceptance trace, missing stale-evidence guidance, protected source edit, and unrelated added file were rejected |
+| Static checks | Edited Python files compiled; repository JSON parsed; local Markdown links and `git diff --check` passed |
+
+The fixture covers selected properties of one small append-only reminder
+project. Manual review still owns evidence quality, design proportionality,
+completeness, and whether the handoff could guide safe implementation. Passing
+does not prove architecture quality, future implementation, security,
+scalability, large-project behavior, or live Bob activation. No model, Bob
+client, credential, network service, or paid API was used.
+
+## Technical Writing Fidelity — 20 October 2026 (UTC)
+
+Observed on Linux (`Linux-6.18.55-x86_64-with-glibc2.39`), Python 3.12.14.
+This feature branch is intentionally stacked on the bounded-diagnostics branch,
+so the counts below cover both changes. They are offline software checks, not a
+Bob participant result or evidence that Bob discovered or followed a skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | 45 helper tests passed; exit 0; no skips or resource warnings |
+| Technical-writing prepared baseline | Eight trusted checks; exactly the two named structure failures; helper status `expected_baseline_failure` |
+| Independent known-good rewrite control | Eight checks passed; protected contract unchanged; only `RUNBOOK.md` changed; helper status `public_tests_passed` |
+| Fidelity negative controls | Weakened retry permission/condition, removed negation, reordered commands, changed contract, and unrelated added file were all rejected |
+| Python/JSON/static checks | Five edited Python files compiled; every repository JSON file parsed; `git diff --check` passed |
+| Local Markdown links | 24 relative links checked; no missing target |
+
+The fixture's deterministic contract covers selected exact tokens, commands,
+modal keywords, negation, retry conditions, execution order, protected input,
+and candidate file scope. The manual checklist still owns scanability,
+contradictions and unsupported additions. Passing the helper does not prove
+general semantic equivalence, technical correctness, ASD-STE100 compliance, or
+the quality or cause of a live participant's behavior. No model, Bob client,
+credential, network service, or paid API was used.
+
 ## Inherited diagnostic-pipe follow-up — 26 October 2026 (UTC)
 
 Blocking review finding EVAL-001 reproduced that the earlier branch could wait
