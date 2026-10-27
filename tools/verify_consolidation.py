@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # Reviewed import identities are code-level trust anchors, not manifest claims.
 # Updating an origin is an explicit reviewed source change, never a map refresh.
 KIT_BASE_ANCHOR = 'c09f0c9b22521d3b48db1a645ba54d93484be77f'
+REVIEWED_FORK_DIGEST = '1b14807f7f34a638c8a3428d506eb407d1d35c291201bed22d6a29f9d43f0f1e'
 SOURCE_ANCHORS = {
     'Saqlain1999/bob-workflow-evals':
         ('5e2075ab510d947675c3e2e824ff384de899dc1a', 'evals'),
@@ -189,6 +190,49 @@ def verify_history(root, manifest, required):
                     'all original source heads are ancestors; complete inventories and blob SHA256s verified')
 
 
+def verify_reviewed_fork(root):
+    """Verify an explicit active-code fork without rewriting original provenance."""
+    report = {}
+    try:
+        raw = (root / 'docs/consolidation/reviewed-evals-fork.json').read_bytes()
+        if hashlib.sha256(raw).hexdigest() != REVIEWED_FORK_DIGEST:
+            return ['Reviewed fork map differs from its trusted code-level digest'], report
+        fork = json.loads(raw)
+        prefix = fork['prefix']
+        if prefix != 'evals' or not identifier(fork['reviewed_commit'], 40) or not fork['files']:
+            return ['Invalid reviewed fork identity/inventory'], report
+        report.update(prefix=prefix, reviewed_commit=fork['reviewed_commit'],
+                      reviewed_files=len(fork['files']))
+        try:
+            available = Path(git(root, 'rev-parse', '--show-toplevel').decode().strip()).resolve() == root.resolve()
+        except (OSError, subprocess.CalledProcessError, UnicodeError):
+            available = False
+        errors = []
+        if available:
+            git(root, 'merge-base', '--is-ancestor', fork['reviewed_commit'], 'HEAD')
+            expected = {entry['destination']: (entry['mode'], entry['git_blob'])
+                        for entry in fork['files']}
+            for revision in (fork['reviewed_commit'], 'HEAD'):
+                inventory = {}
+                for record in git(root, 'ls-tree', '-r', '-z', revision, '--', prefix).split(b'\0'):
+                    if not record:
+                        continue
+                    metadata, name = record.split(b'\t', 1)
+                    mode, kind, blob = metadata.decode().split()
+                    if kind != 'blob':
+                        raise ValueError('unsupported reviewed fork entry')
+                    inventory[name.decode()] = (mode, blob)
+                if inventory != expected:
+                    errors.append('Reviewed fork complete Git inventory mismatch: ' + revision)
+            report['history'] = 'recorded fork ancestry and complete active Git tree checked'
+        else:
+            report['history'] = 'unverified: bundled fork map consistency only, no Git history proof'
+        errors.extend(verify_files(root, {'sources': [{'files': fork['files']}]}))
+        return errors, report
+    except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError) as exc:
+        return ['Cannot verify reviewed fork: ' + type(exc).__name__], report
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--links', action='store_true')
@@ -210,9 +254,18 @@ def main():
             return 1
         errors, history = verify_history(ROOT, manifest, args.require_history)
         # Never trust destination hashes until the full manifest/history gate passes.
+        fork_report = {}
         if not errors:
-            errors.extend(verify_files(ROOT, manifest))
+            fork_errors, fork_report = verify_reviewed_fork(ROOT)
+            errors.extend(fork_errors)
+            # Original evals blobs stay bound to their source above; active evals
+            # bytes are now checked against an explicit recorded fork, not relabelled.
+            originals = {'sources': [source for source in manifest['sources']
+                                     if source['prefix'] != 'evals']}
+            errors.extend(verify_files(ROOT, originals))
         report = {'history': history, 'errors': errors}
+        if fork_report:
+            report['reviewed_fork'] = fork_report
         if not validate_manifest(manifest):
             report.update(source_repositories=len(manifest['sources']) + 1,
                           imported_files=sum(len(source['files']) for source in manifest['sources']))

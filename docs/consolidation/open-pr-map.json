@@ -9,7 +9,7 @@
       "number": 5,
       "title": "Add bounded implementation and debugging workflow",
       "url": "https://github.com/Saqlain1999/bob-workflow-kit/pull/5",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     },
@@ -21,7 +21,7 @@
       "number": 6,
       "title": "Add bounded independent review and security workflow",
       "url": "https://github.com/Saqlain1999/bob-workflow-kit/pull/6",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     },
@@ -33,7 +33,7 @@
       "number": 7,
       "title": "Add evidence-backed documentation and release handoff",
       "url": "https://github.com/Saqlain1999/bob-workflow-kit/pull/7",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     },
@@ -45,7 +45,7 @@
       "number": 3,
       "title": "Add a technical writing fidelity evaluation",
       "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/3",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "evals/",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     },
@@ -57,7 +57,7 @@
       "number": 4,
       "title": "Add project-planning handoff evaluation",
       "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/4",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "evals/",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     },
@@ -69,7 +69,7 @@
       "number": 5,
       "title": "Add interrupted reminder implementation evaluation",
       "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/5",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "evals/",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     },
@@ -81,7 +81,7 @@
       "number": 6,
       "title": "Add reminder independent review and security evaluation",
       "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/6",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "evals/",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     },
@@ -93,7 +93,7 @@
       "number": 7,
       "title": "Add blocked reminder release-handoff evaluation",
       "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/7",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "evals/",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     },
@@ -105,7 +105,7 @@
       "number": 8,
       "title": "Add reviewed reminder remediation evaluation",
       "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/8",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "evals/",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     },
@@ -117,7 +117,7 @@
       "number": 9,
       "title": "Add independent re-review of remediated reminder state",
       "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/9",
-      "status": "Not imported; preserve original PR and review before porting",
+      "status": "Ported locally with original ancestry; external PR remains open",
       "destination_prefix": "evals/",
       "gate": "Reconcile prerequisite stack, then re-review and test at the consolidated head"
     }

@@ -20,7 +20,7 @@ SPEC.loader.exec_module(VERIFIER)
 
 class ProvenanceTests(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(dir=os.environ['TMPDIR'])
+        self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
         self.git('init', '-q')

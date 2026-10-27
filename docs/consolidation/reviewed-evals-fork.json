@@ -1,0 +1,789 @@
+{
+  "schema_version": 1,
+  "purpose": "explicit local reviewed feature fork; original source-map remains unchanged",
+  "prefix": "evals",
+  "reviewed_commit": "61b55be389cac60c718f1c0e28e0e0becee90678",
+  "original_source_commit": "5e2075ab510d947675c3e2e824ff384de899dc1a",
+  "files": [
+    {
+      "destination": "evals/.github/workflows/ci.yml",
+      "git_blob": "f2e03ebd955232f91d1ca2b69c05c5876536a48c",
+      "mode": "100644",
+      "sha256": "bb37e7ed5d2962a3b555ffc3a399cac5dc1d34cdca0619b40697840dfdc1fdb2"
+    },
+    {
+      "destination": "evals/.gitignore",
+      "git_blob": "7d37fbe88f8ff2b583864c8f3ed63545fff98820",
+      "mode": "100644",
+      "sha256": "edb542f96e6b2520a924bb06292d35b84e7d80e20ce5f17eacec7eaf04814de8"
+    },
+    {
+      "destination": "evals/CONTRIBUTING.md",
+      "git_blob": "c1f4b86e048b8381084b6d3c2bee5326dd1b0f23",
+      "mode": "100644",
+      "sha256": "410f53604ef2bb3b9fa0743cf5ba213d35ccbeb0c2bc25283be4b0ff32dd5c83"
+    },
+    {
+      "destination": "evals/LICENSE",
+      "git_blob": "54470e5d63cac340403f1e2361f4c958ecf95e12",
+      "mode": "100644",
+      "sha256": "b1029c9d5d1d1be71ea4e8de6447dedfea13a0786c471947a97480ab849d4678"
+    },
+    {
+      "destination": "evals/PORT_VALIDATION.md",
+      "git_blob": "d0fca80a5ec6a1f9802b7b67122b70b63536e48b",
+      "mode": "100644",
+      "sha256": "ec10ed768cb9ec9bd0782fe2c5ba29ca29d8e228050521f1fd1cdc0b96e3cd0b"
+    },
+    {
+      "destination": "evals/README.md",
+      "git_blob": "8abe02191b110e99cfbaceda69dc0097b4806a99",
+      "mode": "100644",
+      "sha256": "1bf482b9ed71136d333dc2e3f7f3967bd48beabf645705d499617ebeffeacba0"
+    },
+    {
+      "destination": "evals/VALIDATION.md",
+      "git_blob": "f4cd0a131ea9a481561105def411a6e1982ccd8b",
+      "mode": "100644",
+      "sha256": "9b8217f243a93cfe34b543f2cde4e00d053ddb7d188c8bfbe2845a23be320881"
+    },
+    {
+      "destination": "evals/docs/protocol.md",
+      "git_blob": "d611b062a6e2e5459e32c6aeaf5b86da3bd9e9a4",
+      "mode": "100644",
+      "sha256": "790f3c74000e35e385fcdc551de3003bc9092a329cca88dabc184447e4e2514e"
+    },
+    {
+      "destination": "evals/fixtures/README.md",
+      "git_blob": "d87f7a91922479656157d7493ef7afeefdcd8375",
+      "mode": "100644",
+      "sha256": "299d814dfbf62d3e2b8e3ba15ba390cd74413d30728bc6bc3ffd48d2a1650544"
+    },
+    {
+      "destination": "evals/fixtures/parcel-resume/README.md",
+      "git_blob": "ffd14b779db300a535bf729a3b8ba113fb364691",
+      "mode": "100644",
+      "sha256": "fa0083091d93d2fb008e01719cef188f005874059625c762f067bea14a8f0a37"
+    },
+    {
+      "destination": "evals/fixtures/parcel-resume/TEAM_NOTES.md",
+      "git_blob": "1a4a1056f9c38263cc6a9f2b4ec5e8c8c2cbb360",
+      "mode": "100644",
+      "sha256": "ea7f6f617c7e257cfa12d8837560ea91912e12d13d05fa839d4e5db806ae6a80"
+    },
+    {
+      "destination": "evals/fixtures/parcel-resume/parcel/__init__.py",
+      "git_blob": "350deaab505b448dd8a9ad075fd9db0c155dc308",
+      "mode": "100644",
+      "sha256": "8557666bf252bdc1ef9c5cb2aeeb7666106393b28776098964712ac6224942b6"
+    },
+    {
+      "destination": "evals/fixtures/parcel-resume/parcel/export.py",
+      "git_blob": "65ee24a7d73eab94ebaf996f224caf201a738dfa",
+      "mode": "100644",
+      "sha256": "3189408aeab34190f8aba9ea9e4fdc1cd1f02d3f64436659d88a676a114ddcfb"
+    },
+    {
+      "destination": "evals/fixtures/parcel-resume/parcel/policy.py",
+      "git_blob": "ba63a25b7ee4075dfac54658e3c4286c6b486867",
+      "mode": "100644",
+      "sha256": "db2f5bc0e15b119055e42081e6f1d8d4c53b753f07979e5862101ceb1c9f9f88"
+    },
+    {
+      "destination": "evals/fixtures/parcel-resume/parcel/pricing.py",
+      "git_blob": "0714e16448dadf613fa9c7fbde140290d3d0ad38",
+      "mode": "100644",
+      "sha256": "4ee2251ab6bea502ac041686d43792a8abd811f01d2f2d9d6b35e7cac5f64581"
+    },
+    {
+      "destination": "evals/fixtures/parcel-resume/policy.json",
+      "git_blob": "9c003154e0779c85dbdcb828a6780f0e146a6126",
+      "mode": "100644",
+      "sha256": "90f08a55c99a52ef1727a71781e27c342a06f40f33250259f5b986dc350b3123"
+    },
+    {
+      "destination": "evals/fixtures/parcel-resume/tests/test_export.py",
+      "git_blob": "de17d1dce14e821d17b5c50ca32331d6dd1b646a",
+      "mode": "100644",
+      "sha256": "9c9354e918df30247aba3ee388b0bdcd4a5ea136344e746b886554955cee0cd8"
+    },
+    {
+      "destination": "evals/fixtures/parcel-resume/tests/test_pricing.py",
+      "git_blob": "bef7e3168a6da0be361cd9108933f5d5dae14351",
+      "mode": "100644",
+      "sha256": "395af6f92b0a860c98a1a13e31ef52a7180aa88c66f7afe4763f298457e608be"
+    },
+    {
+      "destination": "evals/fixtures/project-planning-handoff/DELIVERY_PLAN.md",
+      "git_blob": "7457d21fa2c846c3baa8d04c3a787399c23192b5",
+      "mode": "100644",
+      "sha256": "e2dd844953d2fcbc28d86e1e3f88212126a6dce6b86c6f6e3ba626ac25b00337"
+    },
+    {
+      "destination": "evals/fixtures/project-planning-handoff/README.md",
+      "git_blob": "3ce22e19bb6175442edc24df4f120c3625e00276",
+      "mode": "100644",
+      "sha256": "4ab659ab07fd68dde9a716e2a7f4131e7842c18c917521237113878c053d1533"
+    },
+    {
+      "destination": "evals/fixtures/project-planning-handoff/REQUEST.md",
+      "git_blob": "45de658831343f3ac1914ce481f274892e2ce292",
+      "mode": "100644",
+      "sha256": "a37592e979e8c0c305e1c1697454f9b43ed29fd5578354133c042341280fdb85"
+    },
+    {
+      "destination": "evals/fixtures/project-planning-handoff/notifier/__init__.py",
+      "git_blob": "bd84ff1cd6097397bbb6f9b333031ff6a811bf3b",
+      "mode": "100644",
+      "sha256": "bbf3dc34c85f7650c493a68ac9c8277cce5af1bb852c99d24da143e2710b0825"
+    },
+    {
+      "destination": "evals/fixtures/project-planning-handoff/notifier/service.py",
+      "git_blob": "5ac966c68f3af36738d7e1f40eeca75fb62520d5",
+      "mode": "100644",
+      "sha256": "6965f9fdcc739cc0630d75d82d253aa889fd0506df9a44a7c29c8519d406cca0"
+    },
+    {
+      "destination": "evals/fixtures/project-planning-handoff/notifier/store.py",
+      "git_blob": "8a3bbff8503c35bc9e95f0cc6357279ef5e2f3ee",
+      "mode": "100644",
+      "sha256": "8a1102966f7578143e0c5c5ce79b2c841a9b320216d75a1fafa75d165639c4a8"
+    },
+    {
+      "destination": "evals/fixtures/project-planning-handoff/project-tests.md",
+      "git_blob": "52996e1212e74dfe3ddff5a39f78f8328ac1d6fd",
+      "mode": "100644",
+      "sha256": "2bf8403a4f21da4d1968fefaa652c7bc41ff13f56ba0f61a400c734ecc9d0302"
+    },
+    {
+      "destination": "evals/fixtures/project-planning-handoff/tests/test_delivery_plan.py",
+      "git_blob": "7bb6db0ffc5be91b1dedaf8309ff05b0b26ada40",
+      "mode": "100644",
+      "sha256": "1ea5f7c3c29871ddebe89e83fb61604c147ac3092caab9ba899029a8f6a51c88"
+    },
+    {
+      "destination": "evals/fixtures/reminder-implementation-debugging/DELIVERY_PLAN.md",
+      "git_blob": "18aa56844598df42ced955e90021cf18b9dc6b3b",
+      "mode": "100644",
+      "sha256": "2ee3ad8d845e58f1c723e85283fee84d8650a380d59e2dae97c4fdb894000aac"
+    },
+    {
+      "destination": "evals/fixtures/reminder-implementation-debugging/IMPLEMENTATION_CHECKPOINT.md",
+      "git_blob": "56ae72a9ce996ffbbd2e830caf3cb9287479bb07",
+      "mode": "100644",
+      "sha256": "3072a64aa7fbfd83b536324590fd8cdd3d885457314bb575ee23ad0e00c9e8e0"
+    },
+    {
+      "destination": "evals/fixtures/reminder-implementation-debugging/README.md",
+      "git_blob": "4abb4c47a202f5e262d64296b04f7725fc327579",
+      "mode": "100644",
+      "sha256": "c22daff5709f4223c696ab226fed71f4a5e323defd1ffee040efa93bd97ea745"
+    },
+    {
+      "destination": "evals/fixtures/reminder-implementation-debugging/REQUEST.md",
+      "git_blob": "544da721504c798c1d64f7426e1c41a4c23f4b7f",
+      "mode": "100644",
+      "sha256": "def9c78cf5790a31dcabd79a37cbccb714b3c2cd9099c060daa7073d84e79a3e"
+    },
+    {
+      "destination": "evals/fixtures/reminder-implementation-debugging/TEAM_NOTES.md",
+      "git_blob": "9249b806efb52f67119bcb0f6e6c8af9264fe718",
+      "mode": "100644",
+      "sha256": "a9b970cbbba2b2e85de78cd59b7258f8005fd4f0d29e8c38d5b17670a1e1c2bb"
+    },
+    {
+      "destination": "evals/fixtures/reminder-implementation-debugging/notifier/__init__.py",
+      "git_blob": "2124c20c577d4ff8ac0a0417514fc1ff9360b583",
+      "mode": "100644",
+      "sha256": "25b310ace7fe521080a3a3c2be072c0cddade6fd7de88a8d7acad6e3a3a17f9a"
+    },
+    {
+      "destination": "evals/fixtures/reminder-implementation-debugging/notifier/service.py",
+      "git_blob": "6cee0ee8be7410bf56e7cb27078979ecef2ac3b9",
+      "mode": "100644",
+      "sha256": "acb7da53ec291ebef316291e793af1e5ceacb3da9cb6b9c0d3fd71d9d7fe56a2"
+    },
+    {
+      "destination": "evals/fixtures/reminder-implementation-debugging/notifier/store.py",
+      "git_blob": "8a3bbff8503c35bc9e95f0cc6357279ef5e2f3ee",
+      "mode": "100644",
+      "sha256": "8a1102966f7578143e0c5c5ce79b2c841a9b320216d75a1fafa75d165639c4a8"
+    },
+    {
+      "destination": "evals/fixtures/reminder-implementation-debugging/tests/test_idempotency.py",
+      "git_blob": "d73dd6237d29a1c3259672f1da6f1c133190f7ab",
+      "mode": "100644",
+      "sha256": "c4c60e922838b964a64b16adc0738a4d7835f273a99c4d42e316ddd2cfea692c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/DELIVERY_PLAN.md",
+      "git_blob": "9f86314dd049567899240bdec9bb5bdb419929cd",
+      "mode": "100644",
+      "sha256": "1dcb0dde9652d20a88027818f82b5faa22c0acda5a49a255e85159909bf746e7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/IMPLEMENTATION_HANDOFF.md",
+      "git_blob": "7a8c0882b8ce75cacb728d335c549a6b143ff5da",
+      "mode": "100644",
+      "sha256": "4e0f31260da769c6954774c1bab553f55ba84fae0befd61bde2185a7a30946cd"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/README.md",
+      "git_blob": "d59e6058837d10e794af72337414cddecc11a6e8",
+      "mode": "100644",
+      "sha256": "102457f34b9dbf3714e5e479089dcc7f9efabfd55c8d6163d49271294550f127"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/REQUEST.md",
+      "git_blob": "510e24138e39f2762b74a7a1a5c2c70fde6080e3",
+      "mode": "100644",
+      "sha256": "174c387fe54ba511256e20d2d89de93e1712b22d529ab4a38fb156e2503e2b47"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/REVIEW_HANDOFF.md",
+      "git_blob": "564fc405f1b7722114d9fca698f4d876727c1f6d",
+      "mode": "100644",
+      "sha256": "cdd6c41737248358ec11a1ae260e86518e7b43ef52c3705da16fb0d8486df1ef"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/TEAM_NOTES.md",
+      "git_blob": "dc7562d3b3094fc5b1bed3d36b52cd9195408099",
+      "mode": "100644",
+      "sha256": "18fac87b8bbb96a94debf34003e6e89b9440439e0e536e14d7ef85a59746a8ca"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/notifier/__init__.py",
+      "git_blob": "c191e115549aabb18c6d041af2e6a0075ef4ead3",
+      "mode": "100644",
+      "sha256": "4970bb088882bc3f124b2d6d31b0715f6482b1a2776af31a44fae0097a2f75c7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/notifier/service.py",
+      "git_blob": "95afefb01f11616ee5cb30e666d20a39da15cac8",
+      "mode": "100644",
+      "sha256": "c14e438ab4fe8890ac1676acb9514ee03d2be6358facf2a2c1daa206946d8861"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/notifier/store.py",
+      "git_blob": "292d4a28b541df4948e0bcc6cfd3d9bbd0647713",
+      "mode": "100644",
+      "sha256": "240ba16239cca08cfee12d6062efb41f2bd458577d74ab62a514280a535fc73c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-independent-review/tests/test_review_report.py",
+      "git_blob": "ba00161141927d0104f720723be9d60d20e66de2",
+      "mode": "100644",
+      "sha256": "d68bc3f476b69e3a3c734531240867033e3ae97f51d579e4ebf6e9b5bb8c8eb8"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/DELIVERY_PLAN.md",
+      "git_blob": "9f86314dd049567899240bdec9bb5bdb419929cd",
+      "mode": "100644",
+      "sha256": "1dcb0dde9652d20a88027818f82b5faa22c0acda5a49a255e85159909bf746e7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/IMPLEMENTATION_HANDOFF.md",
+      "git_blob": "7a8c0882b8ce75cacb728d335c549a6b143ff5da",
+      "mode": "100644",
+      "sha256": "4e0f31260da769c6954774c1bab553f55ba84fae0befd61bde2185a7a30946cd"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/README.md",
+      "git_blob": "cf210290af4a8d923a314107e60378db9d8ee6d1",
+      "mode": "100644",
+      "sha256": "7bc0793526fea06491bc5b140e981558d9d8fbb26a1d8a5d6812d8e5c6bce89b"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/RELEASE_HANDOFF.md",
+      "git_blob": "99c284d73f5a2c6ae55d95491e72004f8d044595",
+      "mode": "100644",
+      "sha256": "32f6a13e835968cabf8e79cfef914e63b43f8f1e00c2d0b0a39981b98b5f87ee"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/REQUEST.md",
+      "git_blob": "510e24138e39f2762b74a7a1a5c2c70fde6080e3",
+      "mode": "100644",
+      "sha256": "174c387fe54ba511256e20d2d89de93e1712b22d529ab4a38fb156e2503e2b47"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/REVIEW_HANDOFF.md",
+      "git_blob": "a02b2139c2a8e4e70aeb44b59601d018793cf239",
+      "mode": "100644",
+      "sha256": "04cb5136f97a54291e379d4858b95946aad5c461ef4cb69fe7d635cb073ea2af"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/TEAM_NOTES.md",
+      "git_blob": "dc7562d3b3094fc5b1bed3d36b52cd9195408099",
+      "mode": "100644",
+      "sha256": "18fac87b8bbb96a94debf34003e6e89b9440439e0e536e14d7ef85a59746a8ca"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/USER_GUIDE.md",
+      "git_blob": "43f7494e5af4ee1d0e6d52df20cb167167b8cedf",
+      "mode": "100644",
+      "sha256": "521c865b4120c4cb8d9bbf0e9bfdc77de5d8d0e2ad501dcc490a165e8a9c0ce9"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/notifier/__init__.py",
+      "git_blob": "c191e115549aabb18c6d041af2e6a0075ef4ead3",
+      "mode": "100644",
+      "sha256": "4970bb088882bc3f124b2d6d31b0715f6482b1a2776af31a44fae0097a2f75c7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/notifier/service.py",
+      "git_blob": "95afefb01f11616ee5cb30e666d20a39da15cac8",
+      "mode": "100644",
+      "sha256": "c14e438ab4fe8890ac1676acb9514ee03d2be6358facf2a2c1daa206946d8861"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/notifier/store.py",
+      "git_blob": "292d4a28b541df4948e0bcc6cfd3d9bbd0647713",
+      "mode": "100644",
+      "sha256": "240ba16239cca08cfee12d6062efb41f2bd458577d74ab62a514280a535fc73c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-release-handoff/tests/test_release_handoff.py",
+      "git_blob": "c51aadae720bb2f09561acc47782ce7b8959613b",
+      "mode": "100644",
+      "sha256": "db610a86794249c3a133dadad40827562f76e2cd3789c413b03b2f229172b42e"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/DELIVERY_PLAN.md",
+      "git_blob": "9f86314dd049567899240bdec9bb5bdb419929cd",
+      "mode": "100644",
+      "sha256": "1dcb0dde9652d20a88027818f82b5faa22c0acda5a49a255e85159909bf746e7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/IMPLEMENTATION_HANDOFF.md",
+      "git_blob": "0fb92ae519c3086465292dc21c68592543362054",
+      "mode": "100644",
+      "sha256": "b644f2db5bc1a69455704fcb225fe65a348c6ac175a1a9019faa2b1eb72df393"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/README.md",
+      "git_blob": "981e63505838382be1977af1290ff980ca840a7c",
+      "mode": "100644",
+      "sha256": "030ec6b8ccac9b0a67725e5c46b5a1b56823fa56fc80e524ee36550eb77d980c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/RELEASE_HANDOFF.md",
+      "git_blob": "aa97925f5af54c69eb60afce6b51a99db8ab8984",
+      "mode": "100644",
+      "sha256": "3f6153b8fe9dee7e34216bcf51d6e0bb46337ef73d134b1220dbc9a0fab5d56c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/REMEDIATION_REVIEW.md",
+      "git_blob": "af6780876ab72e12cc0ecfb02582cca2f62ade9c",
+      "mode": "100644",
+      "sha256": "1763ec425da8506b62356b050f3181004baeda289ad54fe289ec37d9ae337f53"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/REQUEST.md",
+      "git_blob": "1e9596f03cbbd99c95f1bd392f872557aede952b",
+      "mode": "100644",
+      "sha256": "a81b069ae471d8bec76927b0fbfae8d035986bdecf1c33689a08d314cdc5e5c4"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/REVIEW_HANDOFF.md",
+      "git_blob": "a02b2139c2a8e4e70aeb44b59601d018793cf239",
+      "mode": "100644",
+      "sha256": "04cb5136f97a54291e379d4858b95946aad5c461ef4cb69fe7d635cb073ea2af"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/TEAM_NOTES.md",
+      "git_blob": "efcaba4dd5fa54037e30e5c050f8ff6dee92054a",
+      "mode": "100644",
+      "sha256": "16417082ab6f0ca15879cce97cae3e7b17737597275891f3971a26c4ba292685"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/USER_GUIDE.md",
+      "git_blob": "c474e8021614aa7bac1bbf30522f29cf62bdc166",
+      "mode": "100644",
+      "sha256": "66ebf5f06a09170b0b6d95a910a9e637edf4df0ea62b74739cd139831af319ce"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/notifier/__init__.py",
+      "git_blob": "c191e115549aabb18c6d041af2e6a0075ef4ead3",
+      "mode": "100644",
+      "sha256": "4970bb088882bc3f124b2d6d31b0715f6482b1a2776af31a44fae0097a2f75c7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/notifier/service.py",
+      "git_blob": "7b29faba2cb1dd2ccd195fc67971298572210ff6",
+      "mode": "100644",
+      "sha256": "49835144187897f3ad9b34d388b1816e3a55169ad1b8ee3339a0b066a0ca2a18"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/notifier/store.py",
+      "git_blob": "292d4a28b541df4948e0bcc6cfd3d9bbd0647713",
+      "mode": "100644",
+      "sha256": "240ba16239cca08cfee12d6062efb41f2bd458577d74ab62a514280a535fc73c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-review/tests/test_remediated_review.py",
+      "git_blob": "7ac7bbb61087457bcd2b92a05eb81d92a06c34ae",
+      "mode": "100644",
+      "sha256": "2dc32d28ad3fbfc9482ab0f20a9d7f5e70e6c7ccbeef16e37b26cfb60a8b7a82"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/DELIVERY_PLAN.md",
+      "git_blob": "9f86314dd049567899240bdec9bb5bdb419929cd",
+      "mode": "100644",
+      "sha256": "1dcb0dde9652d20a88027818f82b5faa22c0acda5a49a255e85159909bf746e7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/IMPLEMENTATION_HANDOFF.md",
+      "git_blob": "ccde35d95d0bea591a3cbbc5d38eecea15ad8957",
+      "mode": "100644",
+      "sha256": "9223f4c6bf643115c82ebf48feb2fcd99b19ff7d61f4fa592719e2a9fbc4dd45"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/README.md",
+      "git_blob": "9f84f16e28bd3b7dc64136d5cb48d18d3ad637c4",
+      "mode": "100644",
+      "sha256": "6a857415bf5f9f64daae1f125125f3b22f644e01934acfe9269dba93e91b4fa7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/RELEASE_HANDOFF.md",
+      "git_blob": "aa97925f5af54c69eb60afce6b51a99db8ab8984",
+      "mode": "100644",
+      "sha256": "3f6153b8fe9dee7e34216bcf51d6e0bb46337ef73d134b1220dbc9a0fab5d56c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/REQUEST.md",
+      "git_blob": "1e9596f03cbbd99c95f1bd392f872557aede952b",
+      "mode": "100644",
+      "sha256": "a81b069ae471d8bec76927b0fbfae8d035986bdecf1c33689a08d314cdc5e5c4"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/REVIEW_HANDOFF.md",
+      "git_blob": "a02b2139c2a8e4e70aeb44b59601d018793cf239",
+      "mode": "100644",
+      "sha256": "04cb5136f97a54291e379d4858b95946aad5c461ef4cb69fe7d635cb073ea2af"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/TEAM_NOTES.md",
+      "git_blob": "efcaba4dd5fa54037e30e5c050f8ff6dee92054a",
+      "mode": "100644",
+      "sha256": "16417082ab6f0ca15879cce97cae3e7b17737597275891f3971a26c4ba292685"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/USER_GUIDE.md",
+      "git_blob": "c474e8021614aa7bac1bbf30522f29cf62bdc166",
+      "mode": "100644",
+      "sha256": "66ebf5f06a09170b0b6d95a910a9e637edf4df0ea62b74739cd139831af319ce"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/notifier/__init__.py",
+      "git_blob": "c191e115549aabb18c6d041af2e6a0075ef4ead3",
+      "mode": "100644",
+      "sha256": "4970bb088882bc3f124b2d6d31b0715f6482b1a2776af31a44fae0097a2f75c7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/notifier/service.py",
+      "git_blob": "95afefb01f11616ee5cb30e666d20a39da15cac8",
+      "mode": "100644",
+      "sha256": "c14e438ab4fe8890ac1676acb9514ee03d2be6358facf2a2c1daa206946d8861"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/notifier/store.py",
+      "git_blob": "292d4a28b541df4948e0bcc6cfd3d9bbd0647713",
+      "mode": "100644",
+      "sha256": "240ba16239cca08cfee12d6062efb41f2bd458577d74ab62a514280a535fc73c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-review-remediation/tests/test_remediation.py",
+      "git_blob": "0ab989f53e5245bbfd19147392704d760bf2c4e3",
+      "mode": "100644",
+      "sha256": "ad8ff1c7843be14a313bca1dd6be9109592e2b3e9caf4bc719874cc3944e9325"
+    },
+    {
+      "destination": "evals/fixtures/technical-writing-fidelity/README.md",
+      "git_blob": "d8008c341d4e39376a9041117ea8aae83c9ab3ad",
+      "mode": "100644",
+      "sha256": "cf4bfc9fd4042b686a2b3a8e0574a9f00e0af028f8f3c81285a27d2d2176e678"
+    },
+    {
+      "destination": "evals/fixtures/technical-writing-fidelity/RUNBOOK.md",
+      "git_blob": "1c415e80cfa439de3141e6155ab3b68d8a157e87",
+      "mode": "100644",
+      "sha256": "65f64fb5166df0fad7e6b46bb01c795982efa119a44c5042a6175e11b7310560"
+    },
+    {
+      "destination": "evals/fixtures/technical-writing-fidelity/contract.json",
+      "git_blob": "c4d44aa14a68e32bfaa4467c1a6425239bfa12c8",
+      "mode": "100644",
+      "sha256": "bbfa7d39fff32e5e6569704c86d7e07bf03879097a483edc27944ac12a79d943"
+    },
+    {
+      "destination": "evals/fixtures/technical-writing-fidelity/tests/test_runbook.py",
+      "git_blob": "dd7e6bf005b41809f1f63fcd196e2b25b63f666f",
+      "mode": "100644",
+      "sha256": "03430aef48c97fec33698b6c4d85d12bcee8aa3ff58d90b9270cbf1f95005dd1"
+    },
+    {
+      "destination": "evals/fixtures/tiny-ledger/PROMPT.md",
+      "git_blob": "de371a77fcefe3746c5b8a4ec8e3833497074be4",
+      "mode": "100644",
+      "sha256": "e116f0f5627e4dec5dab842f930b4fc3fef36a4391017507da60d3d19ddc6904"
+    },
+    {
+      "destination": "evals/fixtures/tiny-ledger/README.md",
+      "git_blob": "78aa523089a100b8b2247a5563330d46c00a2d47",
+      "mode": "100644",
+      "sha256": "6955fad96069e6644d2472b19ca8ba88273ebf7a720aa9808ba31101a84086b2"
+    },
+    {
+      "destination": "evals/fixtures/tiny-ledger/ledger.py",
+      "git_blob": "230ab25d0de5c1b0dd5b8a3a3ee170c07f9680ce",
+      "mode": "100644",
+      "sha256": "6cfd6265ee55c8c4969d3bb2664a97f8408b0f6b79ec40362785e88e84fd7aa1"
+    },
+    {
+      "destination": "evals/fixtures/tiny-ledger/tests/test_ledger.py",
+      "git_blob": "a0f38dbbac6ce48fedaa576b9b16daa6760f6407",
+      "mode": "100644",
+      "sha256": "d1c7b578654c724b4587a79c9dce835d150243306c4288b8eab344cd563ffa4f"
+    },
+    {
+      "destination": "evals/results/README.md",
+      "git_blob": "eae092a8f569bc44b6a00bb9b1db2c6be91fe474",
+      "mode": "100644",
+      "sha256": "1180eb6ce25b3ce9b7ee19f157ada1234967f65680dc19cd556e8b5bfb1d84f5"
+    },
+    {
+      "destination": "evals/results/result-template.json",
+      "git_blob": "4926983d08ec4fb1f625bef6b815b3a5bd80edea",
+      "mode": "100644",
+      "sha256": "568157332731d6fa95c9744a1dcc9fbdd64fa29f0576874db42ee2c7abd0a69a"
+    },
+    {
+      "destination": "evals/scripts/evaluate.py",
+      "git_blob": "f728ed6d69d9106fe291fac9559546088d8c0e6c",
+      "mode": "100644",
+      "sha256": "05d71e8687de6a82cdbda00bbb05f2a0c1b1ab4f0168bd6a59a52b4292837a85"
+    },
+    {
+      "destination": "evals/tasks/parcel-resume/ACCEPTANCE.md",
+      "git_blob": "428997d54c298a8537506cfaa3458e478636b4f2",
+      "mode": "100644",
+      "sha256": "468453e699713aef7ddf9851dfb93099e80ac5ff8970c8a7187efe9f863733ee"
+    },
+    {
+      "destination": "evals/tasks/parcel-resume/AGENT_PROMPT.md",
+      "git_blob": "d19bf9eba050b3c60e9a79aef2936d098174a624",
+      "mode": "100644",
+      "sha256": "b80d8f799bfd64381b5f49d70dd3cac202b2e207578a86b7a8d973260d9b7af9"
+    },
+    {
+      "destination": "evals/tasks/parcel-resume/CHECKPOINT_TEMPLATE.md",
+      "git_blob": "e9a6afcce12aaba1b9687c60c2e61189c6fde9c4",
+      "mode": "100644",
+      "sha256": "f371520d5acac2f19af9b3d5406f67c6823b241ce5c2b0acb23e2eac90676570"
+    },
+    {
+      "destination": "evals/tasks/parcel-resume/README.md",
+      "git_blob": "8858ea043f03c9cdcf5e4d93e1fb9a72db2fbbda",
+      "mode": "100644",
+      "sha256": "938c6a8ab8fb0417ec72b8f6fddfc4cfff2d5ad264a1fec6068960f422743fba"
+    },
+    {
+      "destination": "evals/tasks/project-planning-handoff/ACCEPTANCE.md",
+      "git_blob": "d95b005b5e6785a06c9d75b56a1317335e01e761",
+      "mode": "100644",
+      "sha256": "a7a52115df107ba2abd640e508b218e3b7be1698b1746a5d08cf2e3f2a5eb4b7"
+    },
+    {
+      "destination": "evals/tasks/project-planning-handoff/AGENT_PROMPT.md",
+      "git_blob": "d984c2a6c8a20700742260ca0bd1c2061cc87b63",
+      "mode": "100644",
+      "sha256": "6328539cd0cf6d2a0702ff46f7a4ac4cd28d1fd65a83f58099177933e2db5dcf"
+    },
+    {
+      "destination": "evals/tasks/project-planning-handoff/README.md",
+      "git_blob": "584839b1edbc4ce12da02ee5bf3f1a5c771d8f27",
+      "mode": "100644",
+      "sha256": "cf94309bf2b182ee34cf10396571ff1398af7a7256c9f2673d2d4c699b972a6d"
+    },
+    {
+      "destination": "evals/tasks/reminder-implementation-debugging/ACCEPTANCE.md",
+      "git_blob": "92994ebbe55cb8feb3ff9b08c0be61650fa97763",
+      "mode": "100644",
+      "sha256": "57a89bf5cc6c4dd8767a95b237a1689f3d725152d6ebf3d0b846f42ba6882a33"
+    },
+    {
+      "destination": "evals/tasks/reminder-implementation-debugging/AGENT_PROMPT.md",
+      "git_blob": "1ecf51779dca846c10d4bae3abedc0a7806a432e",
+      "mode": "100644",
+      "sha256": "4b4f35efd3544f1721b2c5617ed6d1cac86ce8a6c7c7da3c1e94fc99569186c6"
+    },
+    {
+      "destination": "evals/tasks/reminder-implementation-debugging/README.md",
+      "git_blob": "0fab8ccdca2293f9cd6cc7c4921c8852f836ee8e",
+      "mode": "100644",
+      "sha256": "82724a700f4d4457d5438ebf135c5d97640663767597b92d18a252f755a0822c"
+    },
+    {
+      "destination": "evals/tasks/reminder-independent-review/ACCEPTANCE.md",
+      "git_blob": "71ad1b0a446754fc905a1bb129d6e64931464838",
+      "mode": "100644",
+      "sha256": "bab44be9b0a6ef1276e8fa70e2ab57af4e9accafd747bf6f976c9278e345227e"
+    },
+    {
+      "destination": "evals/tasks/reminder-independent-review/AGENT_PROMPT.md",
+      "git_blob": "b8e30beb53551c832c038d936cb7c9d75ad85dcf",
+      "mode": "100644",
+      "sha256": "87866aeb3b342c1b60bbd43c7f3301cd22f357e26c1a04302249d020f3794261"
+    },
+    {
+      "destination": "evals/tasks/reminder-independent-review/README.md",
+      "git_blob": "9436111f2c11e1b87465a59bfbeab9757f45cbda",
+      "mode": "100644",
+      "sha256": "4a4e806d951f7bdfc6e12b820d1b1a4593133f8b7d68f7f3c1d021afd44532b3"
+    },
+    {
+      "destination": "evals/tasks/reminder-release-handoff/ACCEPTANCE.md",
+      "git_blob": "0164a49a22ccdc809f004df7d49267fd6f2323bf",
+      "mode": "100644",
+      "sha256": "2c7dcd1d27c532387b700c05a645c6b2e1c464adbd8cfc663cdf4506c9d368da"
+    },
+    {
+      "destination": "evals/tasks/reminder-release-handoff/AGENT_PROMPT.md",
+      "git_blob": "8a11b3aff3ae588f6a2a05f7a8dc891ccfc9280d",
+      "mode": "100644",
+      "sha256": "35e6cda7c91b21d8d126224b595dc2367a84e0129bf8265c784ce40ba3a06e8c"
+    },
+    {
+      "destination": "evals/tasks/reminder-release-handoff/README.md",
+      "git_blob": "84785c0bcdc5e929658e5f03454f8bab093336bd",
+      "mode": "100644",
+      "sha256": "c3aa51b4b8ebec12f1733fae9f7f04922799c3761524cb138076f4b573ffbe35"
+    },
+    {
+      "destination": "evals/tasks/reminder-remediated-review/ACCEPTANCE.md",
+      "git_blob": "74b116b1e0f4944a79caca9f4cadca0c33e913b4",
+      "mode": "100644",
+      "sha256": "161568a33b8c99a536cdc6bc41e88ffddfc1fcbae7eba0a7b64775d8b47305c1"
+    },
+    {
+      "destination": "evals/tasks/reminder-remediated-review/AGENT_PROMPT.md",
+      "git_blob": "50c08914128ca0a2f46ab751043f678c1636e5df",
+      "mode": "100644",
+      "sha256": "765e7d4d12d5cdbef450655034edf00998b561179424b1b4d055257e53b95534"
+    },
+    {
+      "destination": "evals/tasks/reminder-remediated-review/README.md",
+      "git_blob": "dedb1fd5d3b05d5d6c579e1808a769ba8aff6515",
+      "mode": "100644",
+      "sha256": "2ad92dd21dc7865361469b13dd1ada43a8f19fc5bccdd91b831333b64b2d6ad4"
+    },
+    {
+      "destination": "evals/tasks/reminder-review-remediation/ACCEPTANCE.md",
+      "git_blob": "dc6cbb6074a9701d9cf54fc52264f1d420583d7f",
+      "mode": "100644",
+      "sha256": "67563f6415ad797d6d8d915a5fc442ecd6d7e967aad1648aeffcd82c7a403271"
+    },
+    {
+      "destination": "evals/tasks/reminder-review-remediation/AGENT_PROMPT.md",
+      "git_blob": "5d95ce29f075edb798c90fda784173bdf8ff1d1d",
+      "mode": "100644",
+      "sha256": "5de2eb80335ed5b5d8c8a98e27d433e34ca05d462412495e25caaf91c74dca89"
+    },
+    {
+      "destination": "evals/tasks/reminder-review-remediation/README.md",
+      "git_blob": "869af1aedab73fd3ab69f264fd4144f3dd96cd8e",
+      "mode": "100644",
+      "sha256": "4e74601f2e1be84aee5d42143aedbf9fb245732a0fbec5f59a90c3c5bbe6ccb0"
+    },
+    {
+      "destination": "evals/tasks/technical-writing-fidelity/ACCEPTANCE.md",
+      "git_blob": "77764b64ec5f872954af52ad32c158bfb98b7186",
+      "mode": "100644",
+      "sha256": "5b8e7947586d6f73063aca7b602789390def9ec33a04ae4263031e99bfa48dcd"
+    },
+    {
+      "destination": "evals/tasks/technical-writing-fidelity/AGENT_PROMPT.md",
+      "git_blob": "d36f5be8e3525c15ab7d9871bcd5235ed6d98a53",
+      "mode": "100644",
+      "sha256": "2f42db452a26769edd107169cf501a076088afb13fca544e581286b741425092"
+    },
+    {
+      "destination": "evals/tasks/technical-writing-fidelity/README.md",
+      "git_blob": "d7077cfc9158e65b52adcf281098537a521f003c",
+      "mode": "100644",
+      "sha256": "dcb37a839a0c41c07662eeda73515e623b24f57d2844104a8e0be4fedddbbec5"
+    },
+    {
+      "destination": "evals/tasks/tiny-ledger-atomicity/ACCEPTANCE.md",
+      "git_blob": "ea18b5e63839298848c94a83a0885dd9c971dffb",
+      "mode": "100644",
+      "sha256": "d9e533a6ec97b4aef527aa9cfca1c5e5416efd39b6e743a36673f893df6e6b85"
+    },
+    {
+      "destination": "evals/tasks/tiny-ledger-atomicity/AGENT_PROMPT.md",
+      "git_blob": "dab3ff45bb446facf35d14188ad5199073e60969",
+      "mode": "100644",
+      "sha256": "4e99bec3767c00a41665922957273964ba8ffb004e7175a4730a7fc10a8d5658"
+    },
+    {
+      "destination": "evals/tasks/tiny-ledger-atomicity/README.md",
+      "git_blob": "8defff512ee5326a6f4b30365a5e51ec8718cb8b",
+      "mode": "100644",
+      "sha256": "9940f3db3629955b2f221e41f7fb758a8d0cb5187c945d27896c7afd1b3990bc"
+    },
+    {
+      "destination": "evals/tests/test_evaluate.py",
+      "git_blob": "b1b932edd6185be949b82a5a2926f0bb8ef556a0",
+      "mode": "100644",
+      "sha256": "19d5688537408298b0d95c84513405eaa138c3af0a723cd9608e81a777b54260"
+    },
+    {
+      "destination": "evals/tests/test_parcel_resume.py",
+      "git_blob": "ee85cce5cd324812058e155a750439b4b34c76f6",
+      "mode": "100644",
+      "sha256": "56d64242599d2992ddbe71c43bf9a12c2f7fd5774e75a7c82c38e4099d1e99ab"
+    },
+    {
+      "destination": "evals/tests/test_project_planning_handoff.py",
+      "git_blob": "437947ec78f61d9288a8ecb31a5e6b788f268ec8",
+      "mode": "100644",
+      "sha256": "18fa133fbed3280b1ed14b2901c636583c69ff6e02f3fabad4dceeddf3c2e5a5"
+    },
+    {
+      "destination": "evals/tests/test_reminder_implementation_debugging.py",
+      "git_blob": "6f224f765b210bf2ab109090d434fb9e00795c9b",
+      "mode": "100644",
+      "sha256": "068f104d9043da06b7cca22bd58c35955cb51ece13c7552f2ca2edb55b03a79d"
+    },
+    {
+      "destination": "evals/tests/test_reminder_independent_review.py",
+      "git_blob": "4085935e3ad23224fa013cb8a7500e56c4679361",
+      "mode": "100644",
+      "sha256": "4006d830e632c89c6fc895ac9886d24a28b1fcaf73653ae391c074d8eae56e17"
+    },
+    {
+      "destination": "evals/tests/test_reminder_release_handoff.py",
+      "git_blob": "9007a57e2d51824ac8c6c2708b11b07024581e2b",
+      "mode": "100644",
+      "sha256": "654869bcbc67378e30e16f0e6b81eabcfb0c0bd20ad2c5ab6d0fd800259e9379"
+    },
+    {
+      "destination": "evals/tests/test_reminder_remediated_review.py",
+      "git_blob": "6455597df7135fb8561a328167282a31873d0689",
+      "mode": "100644",
+      "sha256": "1603d118a3ccbc1fbd4ea346d228336bf0363d967fa48ed8804081fdef44a0e5"
+    },
+    {
+      "destination": "evals/tests/test_reminder_review_remediation.py",
+      "git_blob": "eda95a5b7b048c823bc1e5bebf01b82f06bf1de4",
+      "mode": "100644",
+      "sha256": "1cc0dc7a6cd2ec38acc11dc97e4a5fc5168ea583009f05900b52d10cb4cdee3c"
+    },
+    {
+      "destination": "evals/tests/test_technical_writing_fidelity.py",
+      "git_blob": "6df8544f9425faa671ad110914eec37e43d44953",
+      "mode": "100644",
+      "sha256": "223d7a24e498c895358cd8eee832484e13a32ac49eb715ad15124f2bb1c5123e"
+    }
+  ]
+}
