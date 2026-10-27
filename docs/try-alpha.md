@@ -6,7 +6,7 @@ This is a community alpha. Offline installation checks are recorded in [VALIDATI
 
 ## 1. Get a fixed copy
 
-Download the source ZIP from [Releases](https://github.com/Saqlain1999/bob-workflow-kit/releases) and extract it. Prefer a named alpha release when reporting a result. Its notes identify the exact commit and archive checksum. A clone also works; record `git rev-parse HEAD`.
+This walkthrough currently targets an **unpublished consolidation preview**. Existing alpha downloads do not promise the integrated layout. Use the reviewed preview checkout or its exact source archive during preparation, and record its commit and checksum. After an approved release, download its source ZIP from [Releases](https://github.com/Saqlain1999/bob-workflow-kit/releases); the release notes must identify that exact integrated commit and checksum. A clone also works; record `git rev-parse HEAD`.
 
 Prerequisites are an existing Bob IDE or Shell installation and **Python 3.10 or later** on the host where you will run the installer. The commands below use `python3`; on Windows with the Python launcher use `py -3` instead. Check your interpreter with `python3 --version` or `py -3 --version`.
 
@@ -20,7 +20,7 @@ To operate the installer yourself, run from the kit root:
 
 ```sh
 python3 tools/bob_workflow.py preview
-python3 -m unittest discover -s tests -v
+python3 tools/check_all.py
 python3 tools/bob_workflow.py install
 python3 tools/bob_workflow.py doctor
 ```
@@ -63,7 +63,7 @@ In the exercise directory, run the same test command independently after Bob fin
 python3 -m unittest discover -s tests -v
 ```
 
-Expected after a correct repair: **nine tests pass, exit code 0**. Review the changed source and confirm the original public tests are still intact. If tests were edited, compare them with the original copy and treat the result as needing review. The companion evaluator can run the original tests independently, but is optional for this first walkthrough.
+Expected after a correct repair: **nine tests pass, exit code 0**. Review the changed source and confirm the original public tests are still intact. If tests were edited, compare them with the original copy and treat the result as needing review. The included evaluator under `evals/` can run the original tests independently; see the [exercise guide](exercises.md). It is optional for this first walkthrough and needs no separate checkout.
 
 Check these outcomes separately:
 

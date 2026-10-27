@@ -30,7 +30,7 @@ python3 tools/check_all.py --require-history
 
 Requires a full Git checkout for ancestry. A ZIP has no Git ancestry; omit `--require-history` for content-only provenance and offline tests. The command separately reports source-byte and history facts; neither establishes live Bob loading or useful task behavior.
 
-The byte-preservation check intentionally freezes the imported baseline during this preparation. Later ported fixes must record an explicit reviewed delta and fresh verification; do not overwrite original source attribution to make an altered snapshot look unchanged.
+The root `.gitattributes` policy preserves exact committed bytes even when Git is configured with `core.autocrlf=true`. A disposable real-Git checkout regression covers that policy; it is not evidence of native Windows execution. The byte-preservation check intentionally freezes the imported baseline during this preparation. Later ported fixes must record an explicit reviewed delta and fresh verification; do not overwrite original source attribution to make an altered snapshot look unchanged.
 
 ## Remaining gates
 
