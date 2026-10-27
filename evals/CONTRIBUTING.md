@@ -1,6 +1,6 @@
 # Contributing
 
-This repository contains two small, public coding tasks. Contributions should
+This repository contains nine small, public coding/documentation/planning/review tasks. Contributions should
 improve repeatability or add well-defined tasks, not imply benchmark coverage
 that has not been measured.
 
@@ -17,7 +17,8 @@ python -m unittest discover -s tests -v
 Keep helper tests separate from fixture tests, which deliberately contain a
 baseline failure or acquire known failures during preparation. Do not repair
 the original fixtures as incidental cleanup. Tiny Ledger is the default task;
-Parcel Resume uses the fixed `--task parcel-resume` selector.
+Parcel Resume, Technical Writing Fidelity, and Project Planning Handoff use
+their documented fixed task selectors.
 
 Worker stdout, stderr, unittest diagnostics, and the structured worker report
 have documented byte limits. A limit regression must remain an explicit exit-2
@@ -32,6 +33,18 @@ historical check, both expected current failures reproduce, protected policy
 and note bytes survive, and new/changed runtime files affect the state check.
 Keep constructed handoffs, helper checks and live participant observations
 distinct. This helper is not an extensible task platform or process sandbox.
+
+For Technical Writing Fidelity, keep `contract.json` protected, reproduce only
+the two named baseline structure failures, exercise modality, negation,
+condition and order negative controls, and keep qualitative semantic review
+manual. Do not convert a finite public contract into a semantic-equivalence or
+controlled-language certification claim.
+
+For Project Planning Handoff, keep the request and source evidence protected,
+reproduce the seven named baseline failures, and allow only
+`DELIVERY_PLAN.md` to change. Keep design quality and implementation
+correctness as manual or future-work questions; a structured plan is not an
+implemented feature.
 
 Explain the problem, the proposed change, and the observed checks. Avoid
 unnecessary package dependencies, model SDKs, credentials, and network calls.

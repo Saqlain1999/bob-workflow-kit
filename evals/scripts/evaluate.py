@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare two small fixtures and collect offline public-test/state evidence."""
+"""Prepare eight small fixtures and collect offline public-test/state evidence."""
 
 import argparse
 import hashlib
@@ -41,6 +41,149 @@ TASKS = {
             "test_export.ExportTests.test_below_policy_threshold_is_charged",
             "test_pricing.PricingTests.test_below_policy_threshold_is_charged",
         ],
+    },
+    "technical-writing-fidelity": {
+        "id": "technical-writing-fidelity-v1",
+        "fixture": ROOT / "fixtures" / "technical-writing-fidelity",
+        "entry": "RUNBOOK.md",
+        "test_count": 8,
+        "failures": [
+            "test_runbook.RunbookFidelityTests.test_procedure_has_four_ordered_steps",
+            "test_runbook.RunbookFidelityTests.test_required_sections_are_present",
+        ],
+        "protected_files": ["contract.json"],
+        "allowed_candidate_changes": ["RUNBOOK.md"],
+    },
+    "project-planning-handoff": {
+        "id": "project-planning-handoff-v1",
+        "fixture": ROOT / "fixtures" / "project-planning-handoff",
+        "entry": "DELIVERY_PLAN.md",
+        "test_count": 10,
+        "failures": [
+            "test_delivery_plan.DeliveryPlanTests.test_architecture_compares_two_options_and_selects_one",
+            "test_delivery_plan.DeliveryPlanTests.test_checkpoint_supports_stale_detection_resume_and_abort",
+            "test_delivery_plan.DeliveryPlanTests.test_four_acceptance_criteria_cover_behavior_and_compatibility",
+            "test_delivery_plan.DeliveryPlanTests.test_repository_evidence_names_current_files_and_observations",
+            "test_delivery_plan.DeliveryPlanTests.test_risks_cover_conflict_data_compatibility_and_preservation",
+            "test_delivery_plan.DeliveryPlanTests.test_slices_trace_every_criterion_to_files_and_validation",
+            "test_delivery_plan.DeliveryPlanTests.test_unknowns_and_stop_conditions_remain_explicit",
+        ],
+        "protected_files": [
+            "REQUEST.md", "notifier/service.py", "notifier/store.py", "project-tests.md",
+        ],
+        "allowed_candidate_changes": ["DELIVERY_PLAN.md"],
+    },
+    "reminder-implementation-debugging": {
+        "id": "reminder-implementation-debugging-v1",
+        "fixture": ROOT / "fixtures" / "reminder-implementation-debugging",
+        "entry": "notifier/service.py",
+        "test_count": 10,
+        "failures": [
+            "test_idempotency.ReminderImplementationTests.test_conflicting_reuse_raises_without_append",
+            "test_idempotency.ReminderImplementationTests.test_handoff_records_current_evidence_and_limits",
+            "test_idempotency.ReminderImplementationTests.test_retry_returns_original_without_duplicate",
+            "test_idempotency.ReminderImplementationTests.test_retry_survives_new_service_instance",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "IMPLEMENTATION_CHECKPOINT.md",
+            "TEAM_NOTES.md",
+        ],
+        "allowed_candidate_changes": [
+            "IMPLEMENTATION_HANDOFF.md", "notifier/__init__.py",
+            "notifier/service.py", "notifier/store.py",
+        ],
+    },
+    "reminder-independent-review": {
+        "id": "reminder-independent-review-v1",
+        "fixture": ROOT / "fixtures" / "reminder-independent-review",
+        "entry": "REVIEW_HANDOFF.md",
+        "test_count": 10,
+        "failures": [
+            "test_review_report.ReminderReviewTests.test_acceptance_preservation_and_recovery_map",
+            "test_review_report.ReminderReviewTests.test_current_state_and_stale_author_evidence",
+            "test_review_report.ReminderReviewTests.test_decision_severity_and_limits",
+            "test_review_report.ReminderReviewTests.test_independent_validation_records_both_reproductions",
+            "test_review_report.ReminderReviewTests.test_rev_001_records_cross_owner_disclosure",
+            "test_review_report.ReminderReviewTests.test_rev_002_records_conflict_data_exposure",
+            "test_review_report.ReminderReviewTests.test_review_handoff_has_required_sections_in_order",
+            "test_review_report.ReminderReviewTests.test_remediation_handoff_is_bounded_and_ordered",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "IMPLEMENTATION_HANDOFF.md",
+            "TEAM_NOTES.md", "notifier/__init__.py", "notifier/service.py",
+            "notifier/store.py",
+        ],
+        "allowed_candidate_changes": ["REVIEW_HANDOFF.md"],
+    },
+    "reminder-release-handoff": {
+        "id": "reminder-release-handoff-v1",
+        "fixture": ROOT / "fixtures" / "reminder-release-handoff",
+        "entry": "RELEASE_HANDOFF.md",
+        "test_count": 12,
+        "failures": [
+            "test_release_handoff.ReminderReleaseHandoffTests.test_acceptance_and_finding_disposition",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_candidate_state_and_stale_evidence",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_current_validation_is_bounded",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_documentation_records_unreleased_behavior",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_exact_blocked_decision_and_no_publication",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_known_issues_preserve_security_boundaries",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_recovery_returns_to_implementation_and_review",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_release_handoff_has_required_sections_in_order",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_release_status_and_claim_limits",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_user_guide_has_required_sections_in_order",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "IMPLEMENTATION_HANDOFF.md",
+            "REVIEW_HANDOFF.md", "TEAM_NOTES.md", "notifier/__init__.py",
+            "notifier/service.py", "notifier/store.py",
+        ],
+        "allowed_candidate_changes": ["RELEASE_HANDOFF.md", "USER_GUIDE.md"],
+    },
+    "reminder-review-remediation": {
+        "id": "reminder-review-remediation-v1",
+        "fixture": ROOT / "fixtures" / "reminder-review-remediation",
+        "entry": "notifier/service.py",
+        "test_count": 12,
+        "failures": [
+            "test_remediation.ReminderReviewRemediationTests.test_compatibility_and_public_contract_are_preserved",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_has_required_sections_in_order",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_maps_both_findings_to_current_remediation",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_preserves_prior_gates_and_requires_new_review",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_records_exact_current_validation",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_records_scope_and_unrun_limits",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_supports_stale_detection_and_safe_recovery",
+            "test_remediation.ReminderReviewRemediationTests.test_rev_001_owner_isolation_is_remediated",
+            "test_remediation.ReminderReviewRemediationTests.test_rev_002_conflict_message_is_generic",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "REVIEW_HANDOFF.md",
+            "RELEASE_HANDOFF.md", "USER_GUIDE.md", "TEAM_NOTES.md",
+            "notifier/__init__.py", "notifier/store.py",
+        ],
+        "allowed_candidate_changes": [
+            "IMPLEMENTATION_HANDOFF.md", "notifier/service.py",
+        ],
+    },
+    "reminder-remediated-review": {
+        "id": "reminder-remediated-review-v1",
+        "fixture": ROOT / "fixtures" / "reminder-remediated-review",
+        "entry": "notifier/service.py",
+        "test_count": 12,
+        "failures": [
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_decision_preserves_limits",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_disposes_rev_001_with_current_evidence",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_disposes_rev_002_with_current_evidence",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_has_required_sections_in_order",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_records_exact_current_validation",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_supports_stale_detection_and_safe_recovery",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "IMPLEMENTATION_HANDOFF.md",
+            "REVIEW_HANDOFF.md", "RELEASE_HANDOFF.md", "USER_GUIDE.md",
+            "TEAM_NOTES.md", "notifier/__init__.py", "notifier/service.py",
+            "notifier/store.py",
+        ],
+        "allowed_candidate_changes": ["REMEDIATION_REVIEW.md"],
     },
 }
 HANDOFF_FILES = {
@@ -258,9 +401,12 @@ def _state_hash(files: Dict[str, str]) -> str:
 
 
 def _protected_files(task_name: str, historical: bool = False) -> Dict[str, bytes]:
-    if task_name != "parcel-resume":
-        return {}
     fixture = _task(task_name)["fixture"]
+    if task_name != "parcel-resume":
+        return {
+            name: (fixture / name).read_bytes()
+            for name in _task(task_name).get("protected_files", [])
+        }
     policy = (fixture / "policy.json").read_bytes()
     notes = (fixture / "TEAM_NOTES.md").read_bytes()
     if not historical:
@@ -302,7 +448,7 @@ def prepare(output: Path, task_name: str = "tiny-ledger", timeout: float = 30.0)
         "public_tests_sha256": _test_hash(fixture / "tests"),
         "model_calls_made_by_helper": 0,
     }
-    if task_name == "tiny-ledger":
+    if task_name != "parcel-resume":
         return report
     try:
         historical, exit_code = check(output, "historical", timeout, task_name)
@@ -425,6 +571,11 @@ def check(workspace: Path, phase: str, timeout: float, task_name: str = "tiny-le
             for name, content in protected.items()
         },
         "protected_inputs_match_prepared": None if not protected or phase == "historical" else False,
+        "candidate_scope": {
+            "allowed_changes": task.get("allowed_candidate_changes"),
+            "observed_changes": None,
+            "matches": None,
+        },
         "trusted_tests_stable_during_check": None,
         "test_duration_seconds": None,
         "tests": None,
@@ -533,6 +684,21 @@ def check(workspace: Path, phase: str, timeout: float, task_name: str = "tiny-le
         report["error"] = "Verification inputs changed; the test outcome is not evidence for a stable current state"
         return report, 2
 
+    candidate_scope_valid = True
+    allowed_candidate_changes = task.get("allowed_candidate_changes")
+    if phase == "candidate" and allowed_candidate_changes is not None:
+        original = _expected_state(task_name)
+        observed_changes = sorted(
+            name
+            for name in set(original) | set(before)
+            if original.get(name) != before.get(name)
+        )
+        candidate_scope_valid = set(observed_changes).issubset(allowed_candidate_changes)
+        report["candidate_scope"].update({
+            "observed_changes": observed_changes,
+            "matches": candidate_scope_valid,
+        })
+
     complete_suite = (
         tests["tests_run"] == task["test_count"]
         and not tests["errors"]
@@ -554,8 +720,22 @@ def check(workspace: Path, phase: str, timeout: float, task_name: str = "tiny-le
         )
         report["status"] = "expected_baseline_failure" if valid else "unexpected_baseline"
     else:
-        valid = complete_suite and not tests["failures"] and tests["successful"] and protected_valid
-        report["status"] = "public_tests_passed" if valid else ("protected_inputs_changed" if not protected_valid else "public_tests_failed")
+        valid = (
+            complete_suite
+            and not tests["failures"]
+            and tests["successful"]
+            and protected_valid
+            and candidate_scope_valid
+        )
+        report["status"] = (
+            "public_tests_passed"
+            if valid
+            else "protected_inputs_changed"
+            if not protected_valid
+            else "candidate_scope_changed"
+            if not candidate_scope_valid
+            else "public_tests_failed"
+        )
     return report, 0 if valid else 1
 
 
@@ -566,7 +746,7 @@ def _validate_output(path: Optional[Path], workspace: Optional[Path] = None) -> 
     if _inside(resolved, (ROOT / "fixtures").resolve()):
         raise ValueError("Result output must be outside the original fixture")
     if workspace is not None and _inside(resolved, workspace.resolve()):
-        raise ValueError("Parcel result output must be outside the candidate workspace so recording it does not change the verified state")
+        raise ValueError("Result output must be outside the candidate workspace so recording it does not change the verified state")
     if resolved.exists():
         raise ValueError("Result file already exists; choose a new filename")
     return resolved
@@ -599,7 +779,15 @@ def main(argv: Optional[List[str]] = None) -> int:
             result_path = None
             exit_code = 0
         else:
-            result_path = _validate_output(args.result, args.workspace if args.task == "parcel-resume" else None)
+            state_bound_tasks = {
+                "parcel-resume", "technical-writing-fidelity", "project-planning-handoff",
+                "reminder-implementation-debugging", "reminder-independent-review",
+                "reminder-release-handoff", "reminder-review-remediation",
+                "reminder-remediated-review",
+            }
+            result_path = _validate_output(
+                args.result, args.workspace if args.task in state_bound_tasks else None
+            )
             report, exit_code = check(args.workspace, args.command, args.timeout, args.task)
         encoded = json.dumps(report, indent=2) + "\n"
         if result_path is not None:

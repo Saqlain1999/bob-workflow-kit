@@ -29,5 +29,45 @@ Use its helper rather than manually copying it:
 python3 scripts/evaluate.py prepare --task parcel-resume --output runs/parcel-001
 ```
 
-Preserve both original fixtures. Their tests are public evidence for these small
-tasks, not large-repository coverage or observed Bob performance.
+`technical-writing-fidelity/` is an original documentation fixture for
+[technical-writing-fidelity-v1](../tasks/technical-writing-fidelity/README.md).
+Its dense runbook already contains the bounded technical contract; two public
+structure checks fail until it is safely reorganized. `contract.json` remains a
+protected input.
+
+```sh
+python3 scripts/evaluate.py prepare --task technical-writing-fidelity --output runs/writing-001
+```
+
+`project-planning-handoff/` is an original requirements/architecture fixture
+for [project-planning-handoff-v1](../tasks/project-planning-handoff/README.md).
+It contains a small existing reminder project and an intentionally incomplete
+`DELIVERY_PLAN.md`. The participant may change only that plan.
+
+```sh
+python3 scripts/evaluate.py prepare --task project-planning-handoff --output runs/planning-001
+```
+
+`reminder-implementation-debugging/` continues the reminder journey from an
+interrupted partial implementation. `reminder-independent-review/` continues
+from a later author handoff and deliberately seeds a cross-owner disclosure and
+stored-data exception leak. The review participant may change only
+`REVIEW_HANDOFF.md`. `reminder-release-handoff/` continues from that review
+without repairing the defects. Its participant may change only `USER_GUIDE.md`
+and `RELEASE_HANDOFF.md`, and the correct release decision remains blocked.
+`reminder-review-remediation/` then returns both findings to implementation;
+only the service and current implementation handoff may change, while the
+review and blocked release records remain protected for a new reviewer.
+`reminder-remediated-review/` starts from the repaired control and permits only
+a new review artifact; the exact candidate and historical records stay
+protected.
+
+```sh
+python3 scripts/evaluate.py prepare --task reminder-independent-review --output runs/review-001
+python3 scripts/evaluate.py prepare --task reminder-release-handoff --output runs/release-001
+python3 scripts/evaluate.py prepare --task reminder-review-remediation --output runs/remediation-001
+python3 scripts/evaluate.py prepare --task reminder-remediated-review --output runs/rereview-001
+```
+
+Preserve all nine original fixtures. Their tests are public evidence for these
+small tasks, not large-repository coverage or observed Bob performance.
