@@ -48,5 +48,15 @@ It contains a small existing reminder project and an intentionally incomplete
 python3 scripts/evaluate.py prepare --task project-planning-handoff --output runs/planning-001
 ```
 
-Preserve all four original fixtures. Their tests are public evidence for these
+`reminder-implementation-debugging/` continues the reminder journey from an
+interrupted partial implementation. `reminder-independent-review/` continues
+from a later author handoff and deliberately seeds a cross-owner disclosure and
+stored-data exception leak. The review participant may change only
+`REVIEW_HANDOFF.md`.
+
+```sh
+python3 scripts/evaluate.py prepare --task reminder-independent-review --output runs/review-001
+```
+
+Preserve all six original fixtures. Their tests are public evidence for these
 small tasks, not large-repository coverage or observed Bob performance.

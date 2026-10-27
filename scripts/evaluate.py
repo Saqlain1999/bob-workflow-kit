@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare five small fixtures and collect offline public-test/state evidence."""
+"""Prepare six small fixtures and collect offline public-test/state evidence."""
 
 import argparse
 import hashlib
@@ -92,6 +92,28 @@ TASKS = {
             "IMPLEMENTATION_HANDOFF.md", "notifier/__init__.py",
             "notifier/service.py", "notifier/store.py",
         ],
+    },
+    "reminder-independent-review": {
+        "id": "reminder-independent-review-v1",
+        "fixture": ROOT / "fixtures" / "reminder-independent-review",
+        "entry": "REVIEW_HANDOFF.md",
+        "test_count": 10,
+        "failures": [
+            "test_review_report.ReminderReviewTests.test_acceptance_preservation_and_recovery_map",
+            "test_review_report.ReminderReviewTests.test_current_state_and_stale_author_evidence",
+            "test_review_report.ReminderReviewTests.test_decision_severity_and_limits",
+            "test_review_report.ReminderReviewTests.test_independent_validation_records_both_reproductions",
+            "test_review_report.ReminderReviewTests.test_rev_001_records_cross_owner_disclosure",
+            "test_review_report.ReminderReviewTests.test_rev_002_records_conflict_data_exposure",
+            "test_review_report.ReminderReviewTests.test_review_handoff_has_required_sections_in_order",
+            "test_review_report.ReminderReviewTests.test_remediation_handoff_is_bounded_and_ordered",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "IMPLEMENTATION_HANDOFF.md",
+            "TEAM_NOTES.md", "notifier/__init__.py", "notifier/service.py",
+            "notifier/store.py",
+        ],
+        "allowed_candidate_changes": ["REVIEW_HANDOFF.md"],
     },
 }
 HANDOFF_FILES = {
@@ -689,6 +711,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         else:
             state_bound_tasks = {
                 "parcel-resume", "technical-writing-fidelity", "project-planning-handoff",
+                "reminder-implementation-debugging", "reminder-independent-review",
             }
             result_path = _validate_output(
                 args.result, args.workspace if args.task in state_bound_tasks else None

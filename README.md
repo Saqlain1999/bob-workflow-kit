@@ -2,11 +2,12 @@
 
 A small, reproducible evaluation starter for IBM Bob project workflows.
 
-Five tasks offer first trials: repair a deliberately faulty Python ledger,
+Six tasks offer first trials: repair a deliberately faulty Python ledger,
 resume a parcel-pricing change from a constructed checkpoint, or restructure a
 dense migration runbook while preserving a bounded technical contract, or turn
 a reminder-service request and current source into a traceable, resumable delivery plan,
-or resume and complete that reminder change from an interrupted implementation. Each has
+or resume and complete that reminder change from an interrupted implementation,
+or independently review that implementation for seeded correctness/security defects. Each has
 a fixture, public tests, a participant prompt, a manual acceptance checklist,
 and an offline helper that runs trusted tests against a disposable workspace.
 
@@ -30,6 +31,8 @@ results. This is an independent community project, not an IBM product.
 | `tasks/project-planning-handoff/` | Evidence-backed requirements/architecture prompt and manual review boundary |
 | `fixtures/reminder-implementation-debugging/` | Interrupted reminder implementation, protected handoffs, and ten trusted checks |
 | `tasks/reminder-implementation-debugging/` | Bounded implementation/debugging prompt and manual recovery review |
+| `fixtures/reminder-independent-review/` | Implemented reminder change with two deliberate review defects and ten trusted checks |
+| `tasks/reminder-independent-review/` | Read-only independent review/security prompt and manual findings review |
 | `scripts/evaluate.py` | Prepare a fresh workspace and collect local test evidence |
 | `tests/` | Checks for the evaluation helper itself, separate from fixture tests |
 | `docs/protocol.md` | How to run and report a manual evaluation |
@@ -208,6 +211,27 @@ trusted checks, unchanged request/plan/checkpoint/team note, bounded file scope,
 and a current `IMPLEMENTATION_HANDOFF.md`. It does not prove process-safe
 concurrency, security, production readiness, independent review, or live Bob
 behavior.
+
+## Try the independent review and security exercise
+
+[Reminder Independent Review and Security](tasks/reminder-independent-review/README.md)
+continues the same journey after an author implementation handoff. Current
+source deliberately returns another owner's reminder and includes stored record
+content in a conflict exception. The participant changes only
+`REVIEW_HANDOFF.md`; product fixes belong to the next implementation stage.
+
+```sh
+python3 scripts/evaluate.py prepare --task reminder-independent-review --output runs/review-001
+python3 scripts/evaluate.py baseline --task reminder-independent-review --workspace runs/review-001 --result runs/review-001-baseline.json
+python3 scripts/evaluate.py candidate --task reminder-independent-review --workspace runs/review-001 --result runs/review-001-candidate.json
+```
+
+Use the [review prompt](tasks/reminder-independent-review/AGENT_PROMPT.md)
+between baseline and candidate collection. Candidate success requires ten
+trusted checks, unchanged product/input files, only `REVIEW_HANDOFF.md` changed,
+both findings reproduced, and a `changes required` remediation handoff. It does
+not prove general review accuracy, compliance, absence of vulnerabilities,
+release readiness, production security, or live Bob behavior.
 
 ## What the helper reports
 

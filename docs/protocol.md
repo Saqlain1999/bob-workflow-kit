@@ -54,6 +54,13 @@ handling remain unfinished. The four baseline failures are deliberate. Change
 only the notifier package and `IMPLEMENTATION_HANDOFF.md`; candidate test edits
 are out of scope even though the helper always runs its trusted original suite.
 
+For `reminder-independent-review-v1`, use
+`prepare --task reminder-independent-review`. The accepted request, plan,
+implementation handoff, team note, source, and store are protected. Only
+`REVIEW_HANDOFF.md` may change. The fixture contains two deliberate current
+defects after stale author evidence; the review must reproduce and report them
+without repairing source or weakening trusted tests.
+
 ## 3. Observe the participant
 
 Let the participant work within the stated scope and native permissions.
@@ -85,6 +92,10 @@ Reminder Implementation and Debugging protects the accepted inputs and team
 note; its manual review covers whether current evidence was actually gathered,
 the checkpoint was reconciled, the diff remained minimal, and the handoff can
 support independent review and safe resumption.
+Reminder Independent Review additionally protects all product source and prior
+handoffs; its manual review covers independent evidence, severity rationale,
+precise finding quality, a bounded `changes required` decision, and a safe
+remediation handoff without compliance or release claims.
 
 Preserve raw helper reports locally. Each report records file fingerprints and
 test output. Keep the command, result, and relevant revision together so an
@@ -125,7 +136,7 @@ interventions, reported resource use if available, and scope of validation.
 Do not convert test-execution time into agent duration or use a missing cost
 measurement as zero cost.
 
-This repository contains five tiny public fixtures. A successful example is
+This repository contains six tiny public fixtures. A successful example is
 not a large-project benchmark. A controlled comparison would need enough tasks
 and repeated runs, a declared protocol, comparable conditions, and analysis of
 uncertainty before supporting general conclusions. No such study is included.

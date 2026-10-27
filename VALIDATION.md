@@ -1,5 +1,30 @@
 # Local software validation
 
+## Reminder Independent Review and Security — 23 October 2026 (UTC)
+
+Observed on Linux, Python 3.12.14. This branch is stacked on the bounded
+diagnostics, technical-writing, planning, and implementation branches. The
+results below are offline software checks, not a participant result or evidence
+that Bob discovered or followed the independent-review skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **70 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared review baseline | Ten trusted checks; the two seeded defects reproduced and exactly eight named report-contract failures; helper status `expected_baseline_failure` |
+| Independent known-good review control | Ten checks passed; all request/plan/handoff/team/source inputs unchanged; only `REVIEW_HANDOFF.md` changed; helper status `public_tests_passed` |
+| Review negative controls | Superficial approval, missing second finding, false current-pass evidence, source edit, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **28 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **36 local Markdown links** checked across **46 Markdown files**; `git diff --check` passed |
+
+The fixture checks two public, deliberately seeded issues: an inverted owner
+filter that returns another owner's reminder, and conflict text that exposes
+stored record content. It checks a precise review/remediation artifact without
+allowing product edits. Manual review still owns reasoning quality, severity
+judgment, scope proportionality, and whether a real participant independently
+found the issues. Passing does not prove general defect discovery, security,
+compliance, production readiness, release approval, large-project behavior, or
+live Bob activation. No model, Bob client, credential, network service, scanner,
+upstream content, or paid API was used.
+
 ## Reminder Implementation and Debugging — 22 October 2026 (UTC)
 
 Observed on Linux (`Linux-6.18.55-x86_64-with-glibc2.39`), Python 3.12.14.
