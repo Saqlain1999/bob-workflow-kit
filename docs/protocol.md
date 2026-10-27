@@ -46,6 +46,14 @@ and project-test note as protected evidence; change only `DELIVERY_PLAN.md`.
 The seven baseline failures show that the starting plan lacks the selected
 evidence, acceptance, decision, traceability, risk, and recovery properties.
 
+For `reminder-implementation-debugging-v1`, use
+`prepare --task reminder-implementation-debugging`. The accepted request, plan,
+constructed checkpoint, and teammate note are protected. The source is a
+partial implementation: key storage exists, while retry matching and conflict
+handling remain unfinished. The four baseline failures are deliberate. Change
+only the notifier package and `IMPLEMENTATION_HANDOFF.md`; candidate test edits
+are out of scope even though the helper always runs its trusted original suite.
+
 ## 3. Observe the participant
 
 Let the participant work within the stated scope and native permissions.
@@ -73,6 +81,10 @@ manual review covers scanability, contradictions, and unsupported additions.
 Project Planning Handoff additionally protects the request and current source;
 its manual review covers evidence quality, proportional design, and whether the
 handoff would actually support safe implementation and resumption.
+Reminder Implementation and Debugging protects the accepted inputs and team
+note; its manual review covers whether current evidence was actually gathered,
+the checkpoint was reconciled, the diff remained minimal, and the handoff can
+support independent review and safe resumption.
 
 Preserve raw helper reports locally. Each report records file fingerprints and
 test output. Keep the command, result, and relevant revision together so an
@@ -113,7 +125,7 @@ interventions, reported resource use if available, and scope of validation.
 Do not convert test-execution time into agent duration or use a missing cost
 measurement as zero cost.
 
-This repository contains four tiny public fixtures. A successful example is
+This repository contains five tiny public fixtures. A successful example is
 not a large-project benchmark. A controlled comparison would need enough tasks
 and repeated runs, a declared protocol, comparable conditions, and analysis of
 uncertainty before supporting general conclusions. No such study is included.

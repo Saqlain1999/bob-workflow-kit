@@ -2,10 +2,11 @@
 
 A small, reproducible evaluation starter for IBM Bob project workflows.
 
-Four tasks offer first trials: repair a deliberately faulty Python ledger,
+Five tasks offer first trials: repair a deliberately faulty Python ledger,
 resume a parcel-pricing change from a constructed checkpoint, or restructure a
 dense migration runbook while preserving a bounded technical contract, or turn
-a reminder-service request and current source into a traceable, resumable delivery plan. Each has
+a reminder-service request and current source into a traceable, resumable delivery plan,
+or resume and complete that reminder change from an interrupted implementation. Each has
 a fixture, public tests, a participant prompt, a manual acceptance checklist,
 and an offline helper that runs trusted tests against a disposable workspace.
 
@@ -27,12 +28,14 @@ results. This is an independent community project, not an IBM product.
 | `tasks/technical-writing-fidelity/` | Fidelity-preserving rewrite prompt and manual review boundary |
 | `fixtures/project-planning-handoff/` | Small existing reminder project and intentionally incomplete delivery plan |
 | `tasks/project-planning-handoff/` | Evidence-backed requirements/architecture prompt and manual review boundary |
+| `fixtures/reminder-implementation-debugging/` | Interrupted reminder implementation, protected handoffs, and ten trusted checks |
+| `tasks/reminder-implementation-debugging/` | Bounded implementation/debugging prompt and manual recovery review |
 | `scripts/evaluate.py` | Prepare a fresh workspace and collect local test evidence |
 | `tests/` | Checks for the evaluation helper itself, separate from fixture tests |
 | `docs/protocol.md` | How to run and report a manual evaluation |
 | `results/result-template.json` | Structured record for an actual participant run |
 
-The code fixtures use integer cents; every check uses Python's standard library.
+The financial fixtures use integer cents; every executable check uses Python's standard library.
 No packages, services, API keys, or network access are needed.
 The helper makes no model calls. Running Bob is a separate, manual step using
 the installation and account you already have.
@@ -184,6 +187,27 @@ Use the [planning prompt](tasks/project-planning-handoff/AGENT_PROMPT.md) betwee
 the baseline and candidate commands. A pass does not establish design quality,
 future implementation correctness, security, scalability, or live Bob
 activation.
+
+## Try the implementation and debugging exercise
+
+[Reminder Implementation and Debugging](tasks/reminder-implementation-debugging/README.md)
+continues the same accepted reminder journey. The prepared fixture already
+accepts and stores idempotency keys but does not yet recognize retries or
+conflicts. Its constructed checkpoint is explicitly not Bob output and its
+historical smoke is stale.
+
+```sh
+python3 scripts/evaluate.py prepare --task reminder-implementation-debugging --output runs/implementation-001
+python3 scripts/evaluate.py baseline --task reminder-implementation-debugging --workspace runs/implementation-001 --result runs/implementation-001-baseline.json
+python3 scripts/evaluate.py candidate --task reminder-implementation-debugging --workspace runs/implementation-001 --result runs/implementation-001-candidate.json
+```
+
+Use the [implementation prompt](tasks/reminder-implementation-debugging/AGENT_PROMPT.md)
+between the baseline and candidate commands. Candidate success requires ten
+trusted checks, unchanged request/plan/checkpoint/team note, bounded file scope,
+and a current `IMPLEMENTATION_HANDOFF.md`. It does not prove process-safe
+concurrency, security, production readiness, independent review, or live Bob
+behavior.
 
 ## What the helper reports
 

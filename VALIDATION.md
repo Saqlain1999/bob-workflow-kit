@@ -1,5 +1,31 @@
 # Local software validation
 
+## Reminder Implementation and Debugging — 22 October 2026 (UTC)
+
+Observed on Linux (`Linux-6.18.55-x86_64-with-glibc2.39`), Python 3.12.14.
+This branch is stacked on the bounded-diagnostics, technical-writing, and
+project-planning branches. The results below are offline software checks, not a
+Bob participant result or evidence that Bob discovered or followed the
+implementation/debugging skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | 60 helper tests passed; exit 0; no skips or resource warnings |
+| Prepared interrupted baseline | Ten trusted checks; exactly four named retry/conflict/handoff failures; helper status `expected_baseline_failure` |
+| Independent known-good control | Ten checks passed; protected request/plan/checkpoint/team note unchanged; only `notifier/service.py` and `IMPLEMENTATION_HANDOFF.md` changed; helper status `public_tests_passed` |
+| Implementation negative controls | Missing handoff, weakened conflict behavior, protected plan edit, candidate-test edit, and unrelated file were rejected |
+| Static checks | Edited Python files compiled; 3 repository JSON files parsed; 32 local Markdown links across 37 Markdown files and `git diff --check` passed |
+
+The fixture covers selected behavior, compatibility, preservation, bounded
+scope, and recovery-evidence properties for one small append-only reminder
+project. Manual review still owns diagnosis quality, minimality, evidence
+truthfulness, and whether the handoff supports safe independent review and
+resumption. Passing does not prove process-safe concurrency, security,
+performance, deployment, production readiness, large-project behavior, or live
+Bob activation. The checkpoint is a constructed fixture artifact, not an
+observed agent interruption. No model, Bob client, credential, network service,
+or paid API was used.
+
 ## Project Planning Handoff — 21 October 2026 (UTC)
 
 Observed on Linux (`Linux-6.18.55-x86_64-with-glibc2.39`), Python 3.12.14.

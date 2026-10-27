@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare four small fixtures and collect offline public-test/state evidence."""
+"""Prepare five small fixtures and collect offline public-test/state evidence."""
 
 import argparse
 import hashlib
@@ -72,6 +72,26 @@ TASKS = {
             "REQUEST.md", "notifier/service.py", "notifier/store.py", "project-tests.md",
         ],
         "allowed_candidate_changes": ["DELIVERY_PLAN.md"],
+    },
+    "reminder-implementation-debugging": {
+        "id": "reminder-implementation-debugging-v1",
+        "fixture": ROOT / "fixtures" / "reminder-implementation-debugging",
+        "entry": "notifier/service.py",
+        "test_count": 10,
+        "failures": [
+            "test_idempotency.ReminderImplementationTests.test_conflicting_reuse_raises_without_append",
+            "test_idempotency.ReminderImplementationTests.test_handoff_records_current_evidence_and_limits",
+            "test_idempotency.ReminderImplementationTests.test_retry_returns_original_without_duplicate",
+            "test_idempotency.ReminderImplementationTests.test_retry_survives_new_service_instance",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "IMPLEMENTATION_CHECKPOINT.md",
+            "TEAM_NOTES.md",
+        ],
+        "allowed_candidate_changes": [
+            "IMPLEMENTATION_HANDOFF.md", "notifier/__init__.py",
+            "notifier/service.py", "notifier/store.py",
+        ],
     },
 }
 HANDOFF_FILES = {
