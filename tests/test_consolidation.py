@@ -47,7 +47,9 @@ class ConsolidationTests(unittest.TestCase):
         self.assertEqual([check['name'] for check in checks],
                          ['installer', 'evaluator', 'catalogue', 'provenance', 'links'])
         self.assertEqual(checks[1]['cwd'], ROOT / 'evals')
-        self.assertIn('unittest', checks[1]['command'])
+        self.assertEqual(checks[1]['command'][-1], 'evaluator')
+        self.assertEqual(Path(checks[1]['command'][-2]), ROOT / 'tools/run_component_tests.py')
+        self.assertEqual(checks[0]['command'][-1], 'installer')
         self.assertEqual(checks[2]['cwd'], ROOT / 'docs/resources/catalogue')
         self.assertTrue(all(check['command'][0] == sys.executable for check in checks))
 

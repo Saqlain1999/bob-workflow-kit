@@ -22,14 +22,14 @@ def test_environment(source):
 
 
 def checks(root, require_history=False):
-    tests = [sys.executable, '-B', '-W', 'error::ResourceWarning', '-m', 'unittest',
-             'discover', '-s', 'tests', '-v']
+    tests = [sys.executable, '-B', '-W', 'error::ResourceWarning',
+             str(root / 'tools/run_component_tests.py')]
     provenance = [sys.executable, '-B', str(root / 'tools/verify_consolidation.py')]
     if require_history:
         provenance.append('--require-history')
     return [
-        {'name': 'installer', 'cwd': root, 'command': tests},
-        {'name': 'evaluator', 'cwd': root / 'evals', 'command': tests},
+        {'name': 'installer', 'cwd': root, 'command': tests + ['installer']},
+        {'name': 'evaluator', 'cwd': root / 'evals', 'command': tests + ['evaluator']},
         {'name': 'catalogue', 'cwd': root / 'docs/resources/catalogue',
          'command': [sys.executable, '-B', 'tools/validate_catalog.py']},
         {'name': 'provenance', 'cwd': root, 'command': provenance},
@@ -55,16 +55,35 @@ def main():
         log_dir = Path(tempfile.mkdtemp(prefix='bob-kit-checks-'))
     results = []
     for check in suite:
+        command = list(check['command'])
+        evidence_path = None
+        if check['name'] in ('installer', 'evaluator'):
+            evidence_path = log_dir / (check['name'] + '-tests.json')
+            command.extend(['--report', str(evidence_path)])
         with (log_dir / (check['name'] + '.log')).open('w', encoding='utf-8') as log:
             try:
-                result = subprocess.run(check['command'], cwd=check['cwd'],
+                result = subprocess.run(command, cwd=check['cwd'],
                                         env=test_environment(os.environ), stdout=log,
                                         stderr=subprocess.STDOUT, timeout=180)
                 code = result.returncode
             except (OSError, subprocess.TimeoutExpired) as exc:
                 log.write(str(exc) + '\n')
                 code = 1
-        results.append({'name': check['name'], 'exit_code': code})
+        row = {'name': check['name'], 'exit_code': code}
+        if evidence_path is not None:
+            try:
+                evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
+                if not isinstance(evidence, dict):
+                    raise ValueError('test evidence must be an object')
+                row['tests'] = evidence
+                if not evidence.get('all_successful') and code == 0:
+                    code = 1
+            except (OSError, ValueError) as exc:
+                row['evidence_error'] = str(exc)
+                if code == 0:
+                    code = 1
+            row['exit_code'] = code
+        results.append(row)
         print(check['name'] + ': ' + ('PASS' if code == 0 else 'FAIL'), flush=True)
     report = {'checks': results, 'log_dir': str(log_dir),
               'all_successful': all(row['exit_code'] == 0 for row in results)}

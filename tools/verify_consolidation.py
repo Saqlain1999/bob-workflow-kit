@@ -7,50 +7,168 @@ import json
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
+from typing import TypeGuard
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def safe_path(name) -> TypeGuard[str]:
+    """Require a canonical relative POSIX path, not a normalized unsafe alias."""
+    return (isinstance(name, str) and bool(name) and '\\' not in name
+            and ':' not in name and not any(ord(char) < 32 for char in name)
+            and not PurePosixPath(name).is_absolute()
+            and all(part not in ('', '.', '..') and part.casefold() != '.git'
+                    for part in name.split('/')))
+
+
 def verify_files(root, manifest):
+    """Small byte-check helper; full provenance validation is verify_history's job."""
     errors = []
     root = root.resolve()
     for source in manifest['sources']:
         for entry in source['files']:
             name = entry['destination']
-            relative = PurePosixPath(name)
-            if relative.is_absolute() or '..' in relative.parts or '\\' in name:
-                errors.append('Unsafe destination: ' + name)
+            if not safe_path(name):
+                errors.append('Unsafe destination: ' + str(name))
                 continue
-            path = root.joinpath(*relative.parts).resolve()
-            if root not in path.parents:
-                errors.append('Destination escapes checkout: ' + name)
-            elif not path.is_file():
-                errors.append('Missing imported file: ' + name)
-            elif hashlib.sha256(path.read_bytes()).hexdigest() != entry['sha256']:
-                errors.append('Imported file changed: ' + name)
+            try:
+                path = root.joinpath(*PurePosixPath(name).parts).resolve()
+                if root not in path.parents:
+                    errors.append('Destination escapes checkout: ' + name)
+                elif not path.is_file():
+                    errors.append('Missing imported file: ' + name)
+                elif hashlib.sha256(path.read_bytes()).hexdigest() != entry['sha256']:
+                    errors.append('Imported file changed: ' + name)
+            except (OSError, RuntimeError) as exc:
+                errors.append('Cannot read imported file ' + name + ': ' + str(exc))
     return errors
 
 
-def verify_history(root, manifest, required):
-    try:
-        top = subprocess.run(['git', 'rev-parse', '--show-toplevel'], cwd=root,
-                             capture_output=True, text=True, check=True).stdout.strip()
-        if Path(top).resolve() != root.resolve():
-            raise ValueError('checkout is not a Git root')
-    except (OSError, subprocess.CalledProcessError, ValueError):
-        return (['Original Git history required but unavailable'] if required else [],
-                'not checked: no Git checkout (content verification only)')
-    commits = [manifest['kit_base']] + [source['source_commit'] for source in manifest['sources']]
+def identifier(value, length):
+    return isinstance(value, str) and re.fullmatch('[0-9a-f]{' + str(length) + '}', value) is not None
+
+
+def validate_manifest(manifest):
+    """Validate shape and mapping before any Git or destination-file operations."""
+    if not isinstance(manifest, dict):
+        return ['Manifest must be an object']
     errors = []
-    for commit in commits:
-        if not re.fullmatch('[0-9a-f]{40}', commit):
-            errors.append('Invalid source commit identifier')
+    if type(manifest.get('schema_version')) is not int or manifest['schema_version'] != 1:
+        errors.append('Unsupported manifest schema_version')
+    if not identifier(manifest.get('kit_base'), 40):
+        errors.append('Invalid kit base commit identifier')
+    sources = manifest.get('sources')
+    if not isinstance(sources, list) or not sources:
+        return errors + ['Manifest sources must be a nonempty list']
+    destinations = set()
+    prefixes = set()
+    for index, source in enumerate(sources):
+        label = 'Source ' + str(index)
+        if not isinstance(source, dict):
+            errors.append(label + ' must be an object')
             continue
-        result = subprocess.run(['git', 'merge-base', '--is-ancestor', commit, 'HEAD'],
-                                cwd=root, capture_output=True)
-        if result.returncode:
-            errors.append('Missing original source ancestry: ' + commit)
-    return errors, 'failed' if errors else 'all original source heads are ancestors'
+        if not isinstance(source.get('repository'), str) or not source['repository'].strip():
+            errors.append(label + ' repository must be a nonempty string')
+        if not identifier(source.get('source_commit'), 40):
+            errors.append(label + ' has invalid source commit identifier')
+        prefix = source.get('prefix')
+        if not safe_path(prefix):
+            errors.append(label + ' has unsafe prefix')
+        elif prefix in prefixes:
+            errors.append('Duplicate source prefix: ' + prefix)
+        else:
+            prefixes.add(prefix)
+        files = source.get('files')
+        if not isinstance(files, list) or not files:
+            errors.append(label + ' files must be a nonempty list')
+            continue
+        source_paths = set()
+        for entry in files:
+            if not isinstance(entry, dict):
+                errors.append(label + ' file entry must be an object')
+                continue
+            source_path = entry.get('source_path')
+            destination = entry.get('destination')
+            if not safe_path(source_path):
+                errors.append(label + ' has unsafe source path')
+            elif source_path in source_paths:
+                errors.append(label + ' duplicate source path: ' + source_path)
+            else:
+                source_paths.add(source_path)
+            if not safe_path(destination):
+                errors.append(label + ' has unsafe destination')
+            elif destination in destinations:
+                errors.append('Duplicate destination: ' + destination)
+            else:
+                destinations.add(destination)
+            if (safe_path(prefix) and safe_path(source_path)
+                    and destination != prefix + '/' + source_path):
+                errors.append(label + ' destination does not match prefix/source_path')
+            if not identifier(entry.get('sha256'), 64):
+                errors.append(label + ' has invalid SHA256')
+            if not identifier(entry.get('git_blob'), 40):
+                errors.append(label + ' has invalid Git blob identifier')
+            # This import format preserves regular files, not symlinks or submodules.
+            if entry.get('source_mode') not in ('100644', '100755'):
+                errors.append(label + ' has unsupported source mode')
+    return errors
+
+
+def git(root, *args):
+    # Replacement refs must not redefine the original commit/blob contents.
+    return subprocess.run(['git', '--no-replace-objects', *args], cwd=root,
+                          capture_output=True, check=True).stdout
+
+
+def verify_history(root, manifest, required):
+    """Bind the complete manifest to original Git trees/blobs, then check ancestry."""
+    errors = validate_manifest(manifest)
+    if errors:
+        return errors, 'failed: invalid manifest'
+    try:
+        top = git(root, 'rev-parse', '--show-toplevel').decode().strip()
+        available = Path(top).resolve() == root.resolve()
+    except (OSError, subprocess.CalledProcessError, UnicodeError):
+        available = False
+    if not available:
+        return (['Original Git history required but unavailable'] if required else [],
+                'not checked: bundled manifest only; original Git inventories and blobs unverified')
+    commits = [manifest['kit_base']] + [source['source_commit'] for source in manifest['sources']]
+    for commit in commits:
+        try:
+            git(root, 'merge-base', '--is-ancestor', commit, 'HEAD')
+        except (OSError, subprocess.CalledProcessError) as exc:
+            errors.append('Missing original source ancestry: ' + commit + ' (' + str(exc) + ')')
+    for source in manifest['sources']:
+        label = source['repository']
+        try:
+            records = git(root, 'ls-tree', '-r', '-z', '--full-tree', source['source_commit'])
+            inventory = {}
+            for record in records.split(b'\0'):
+                if not record:
+                    continue
+                metadata, name = record.split(b'\t', 1)
+                mode, kind, blob = metadata.decode('ascii').split()
+                name = name.decode('utf-8')
+                if kind != 'blob' or mode not in ('100644', '100755'):
+                    raise ValueError('unsupported Git tree entry: ' + name)
+                if name in inventory:
+                    raise ValueError('duplicate Git tree entry: ' + name)
+                inventory[name] = (mode, blob)
+            expected = {entry['source_path']: (entry['source_mode'], entry['git_blob'])
+                        for entry in source['files']}
+            if inventory != expected:
+                errors.append('Original Git inventory mismatch: ' + label)
+                continue
+            for entry in source['files']:
+                data = git(root, 'cat-file', 'blob', entry['git_blob'])
+                if hashlib.sha256(data).hexdigest() != entry['sha256']:
+                    errors.append('SHA256 does not match original Git blob: '
+                                  + label + ':' + entry['source_path'])
+        except (OSError, subprocess.CalledProcessError, ValueError, UnicodeError) as exc:
+            errors.append('Cannot verify original Git inventory/blobs: ' + label + ' (' + str(exc) + ')')
+    return errors, ('failed' if errors else
+                    'all original source heads are ancestors; complete inventories and blob SHA256s verified')
 
 
 def main():
@@ -67,13 +185,19 @@ def main():
         errors, files, links = module.validate_markdown(ROOT)
         report = {'markdown_files': files, 'local_links': links, 'errors': errors}
     else:
-        manifest = json.loads((ROOT / 'docs/consolidation/source-map.json').read_text(encoding='utf-8'))
-        errors = verify_files(ROOT, manifest)
-        history_errors, history = verify_history(ROOT, manifest, args.require_history)
-        errors.extend(history_errors)
-        report = {'source_repositories': len(manifest['sources']) + 1,
-                  'imported_files': sum(len(source['files']) for source in manifest['sources']),
-                  'history': history, 'errors': errors}
+        try:
+            manifest = json.loads((ROOT / 'docs/consolidation/source-map.json').read_text(encoding='utf-8'))
+        except (OSError, ValueError) as exc:
+            print(json.dumps({'history': 'failed', 'errors': ['Cannot read manifest: ' + str(exc)]}, indent=2))
+            return 1
+        errors, history = verify_history(ROOT, manifest, args.require_history)
+        # Never trust destination hashes until the full manifest/history gate passes.
+        if not errors:
+            errors.extend(verify_files(ROOT, manifest))
+        report = {'history': history, 'errors': errors}
+        if not validate_manifest(manifest):
+            report.update(source_repositories=len(manifest['sources']) + 1,
+                          imported_files=sum(len(source['files']) for source in manifest['sources']))
     print(json.dumps(report, indent=2))
     return 1 if errors else 0
 
