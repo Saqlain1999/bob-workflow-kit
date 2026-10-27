@@ -1,5 +1,19 @@
 # Local software validation
 
+## Reminder Documentation and Release Handoff — 24 October 2026 (UTC)
+
+This branch is stacked on the bounded diagnostics, technical-writing, planning, implementation, and independent-review branches. The results below are offline software checks, not a participant result or evidence that Bob discovered or followed the release-handoff skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **80 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared release baseline | Twelve trusted checks; both seeded defects reproduced and exactly ten named documentation/release-contract failures; helper status `expected_baseline_failure` |
+| Known-good blocked control | Twelve checks passed; all request/plan/implementation/review/team/source inputs unchanged; only `RELEASE_HANDOFF.md` and `USER_GUIDE.md` changed; helper status `public_tests_passed` |
+| Release negative controls | False ready decision, missing High finding, helper-as-correctness claim, source edit, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **33 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **40 local Markdown links** checked across **57 Markdown files**; `git diff --check` passed |
+
+The fixture preserves two unresolved review findings, so a correct known-good output remains `release blocked`; passing the helper cannot establish corrected behavior, release readiness, deployment approval, compatibility, performance, or live Bob activation. No model, Bob client, credential, network service, upstream content, release artifact, tag, deployment, publication, or paid API was used.
+
 ## Reminder Independent Review and Security — 23 October 2026 (UTC)
 
 Observed on Linux, Python 3.12.14. This branch is stacked on the bounded

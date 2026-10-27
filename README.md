@@ -2,12 +2,13 @@
 
 A small, reproducible evaluation starter for IBM Bob project workflows.
 
-Six tasks offer first trials: repair a deliberately faulty Python ledger,
+Seven tasks offer first trials: repair a deliberately faulty Python ledger,
 resume a parcel-pricing change from a constructed checkpoint, or restructure a
 dense migration runbook while preserving a bounded technical contract, or turn
 a reminder-service request and current source into a traceable, resumable delivery plan,
 or resume and complete that reminder change from an interrupted implementation,
-or independently review that implementation for seeded correctness/security defects. Each has
+or independently review that implementation for seeded correctness/security defects,
+or prepare truthful documentation and a blocked release handoff for those unresolved findings. Each has
 a fixture, public tests, a participant prompt, a manual acceptance checklist,
 and an offline helper that runs trusted tests against a disposable workspace.
 
@@ -33,6 +34,8 @@ results. This is an independent community project, not an IBM product.
 | `tasks/reminder-implementation-debugging/` | Bounded implementation/debugging prompt and manual recovery review |
 | `fixtures/reminder-independent-review/` | Implemented reminder change with two deliberate review defects and ten trusted checks |
 | `tasks/reminder-independent-review/` | Read-only independent review/security prompt and manual findings review |
+| `fixtures/reminder-release-handoff/` | Reviewed reminder candidate with unresolved blockers, unsafe initial docs, and twelve trusted checks |
+| `tasks/reminder-release-handoff/` | Documentation/release prompt and manual blocked-decision review |
 | `scripts/evaluate.py` | Prepare a fresh workspace and collect local test evidence |
 | `tests/` | Checks for the evaluation helper itself, separate from fixture tests |
 | `docs/protocol.md` | How to run and report a manual evaluation |
@@ -232,6 +235,26 @@ trusted checks, unchanged product/input files, only `REVIEW_HANDOFF.md` changed,
 both findings reproduced, and a `changes required` remediation handoff. It does
 not prove general review accuracy, compliance, absence of vulnerabilities,
 release readiness, production security, or live Bob behavior.
+
+## Try the documentation and release-handoff exercise
+
+[Reminder Documentation and Release Handoff](tasks/reminder-release-handoff/README.md)
+continues the same journey with REV-001 and REV-002 still unresolved. The
+participant may change only `USER_GUIDE.md` and `RELEASE_HANDOFF.md`; the
+correct outcome is a truthful blocked decision, not a release.
+
+```sh
+python3 scripts/evaluate.py prepare --task reminder-release-handoff --output runs/release-001
+python3 scripts/evaluate.py baseline --task reminder-release-handoff --workspace runs/release-001 --result runs/release-001-baseline.json
+python3 scripts/evaluate.py candidate --task reminder-release-handoff --workspace runs/release-001 --result runs/release-001-candidate.json
+```
+
+Use the [release prompt](tasks/reminder-release-handoff/AGENT_PROMPT.md) between
+baseline and candidate collection. Candidate success requires twelve trusted
+checks, unchanged product/input files, only the two agreed documentation files
+changed, an explicit `release blocked` decision, and no false artifact, tag,
+deployment, publication, production-readiness, or live-Bob claim. A helper pass
+does not establish general release judgment or corrected product behavior.
 
 ## What the helper reports
 

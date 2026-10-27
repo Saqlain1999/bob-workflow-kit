@@ -61,6 +61,9 @@ implementation handoff, team note, source, and store are protected. Only
 defects after stale author evidence; the review must reproduce and report them
 without repairing source or weakening trusted tests.
 
+For `reminder-release-handoff-v1`, use
+`prepare --task reminder-release-handoff`. The request, plan, implementation and review handoffs, team note, source, and store are protected. Only `USER_GUIDE.md` and `RELEASE_HANDOFF.md` may change. The two review findings remain unresolved; the documentation must preserve a `release blocked` decision and must not create or imply a tag, artifact, deployment, publication, or corrected product result.
+
 ## 3. Observe the participant
 
 Let the participant work within the stated scope and native permissions.

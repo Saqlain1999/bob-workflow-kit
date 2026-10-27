@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare six small fixtures and collect offline public-test/state evidence."""
+"""Prepare seven small fixtures and collect offline public-test/state evidence."""
 
 import argparse
 import hashlib
@@ -114,6 +114,30 @@ TASKS = {
             "notifier/store.py",
         ],
         "allowed_candidate_changes": ["REVIEW_HANDOFF.md"],
+    },
+    "reminder-release-handoff": {
+        "id": "reminder-release-handoff-v1",
+        "fixture": ROOT / "fixtures" / "reminder-release-handoff",
+        "entry": "RELEASE_HANDOFF.md",
+        "test_count": 12,
+        "failures": [
+            "test_release_handoff.ReminderReleaseHandoffTests.test_acceptance_and_finding_disposition",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_candidate_state_and_stale_evidence",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_current_validation_is_bounded",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_documentation_records_unreleased_behavior",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_exact_blocked_decision_and_no_publication",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_known_issues_preserve_security_boundaries",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_recovery_returns_to_implementation_and_review",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_release_handoff_has_required_sections_in_order",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_release_status_and_claim_limits",
+            "test_release_handoff.ReminderReleaseHandoffTests.test_user_guide_has_required_sections_in_order",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "IMPLEMENTATION_HANDOFF.md",
+            "REVIEW_HANDOFF.md", "TEAM_NOTES.md", "notifier/__init__.py",
+            "notifier/service.py", "notifier/store.py",
+        ],
+        "allowed_candidate_changes": ["RELEASE_HANDOFF.md", "USER_GUIDE.md"],
     },
 }
 HANDOFF_FILES = {
@@ -712,6 +736,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             state_bound_tasks = {
                 "parcel-resume", "technical-writing-fidelity", "project-planning-handoff",
                 "reminder-implementation-debugging", "reminder-independent-review",
+                "reminder-release-handoff",
             }
             result_path = _validate_output(
                 args.result, args.workspace if args.task in state_bound_tasks else None

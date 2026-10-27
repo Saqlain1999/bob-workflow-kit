@@ -52,11 +52,14 @@ python3 scripts/evaluate.py prepare --task project-planning-handoff --output run
 interrupted partial implementation. `reminder-independent-review/` continues
 from a later author handoff and deliberately seeds a cross-owner disclosure and
 stored-data exception leak. The review participant may change only
-`REVIEW_HANDOFF.md`.
+`REVIEW_HANDOFF.md`. `reminder-release-handoff/` continues from that review
+without repairing the defects. Its participant may change only `USER_GUIDE.md`
+and `RELEASE_HANDOFF.md`, and the correct release decision remains blocked.
 
 ```sh
 python3 scripts/evaluate.py prepare --task reminder-independent-review --output runs/review-001
+python3 scripts/evaluate.py prepare --task reminder-release-handoff --output runs/release-001
 ```
 
-Preserve all six original fixtures. Their tests are public evidence for these
+Preserve all seven original fixtures. Their tests are public evidence for these
 small tasks, not large-repository coverage or observed Bob performance.
