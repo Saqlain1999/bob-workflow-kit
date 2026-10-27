@@ -1,6 +1,6 @@
 # One-product consolidation preview
 
-Status: local preparation, not publication or a release. The canonical product is **Bob Workflow Kit**: one checkout, one installation, one first-use guide and one intended issue tracker. This branch does not change Bob's proprietary client or the installed alpha.4 payload.
+Status: local preparation, not publication or a release. The canonical product is **Bob Workflow Kit**: one checkout, one installation, one first-use guide and one intended issue tracker. This branch does not change Bob's proprietary client. Local kit ports extend the packaged payload to alpha.7 with six fixed-scope skills; they do not update any active Bob installation.
 
 ## Layout
 
@@ -18,7 +18,7 @@ The [source map](source-map.json) records exact source commits, prefixes, origin
 - https://github.com/Saqlain1999/awesome-bob-workflows
 - https://github.com/Saqlain1999/bob-workflow-runner
 
-Only each repository's current `main` was imported. Existing open PR branches are **not silently included or merged**. Their exact heads, original bases and proposed destination prefixes are listed in the [open-PR map](open-pr-map.json). This includes the newly discovered evaluator #9, which was not part of the original saved eight-PR evaluation inventory; it needs its own review. Older successful CI remains head-specific evidence, not approval of a new consolidated head.
+The initial import used only each repository's current `main`. Reviewed kit #5 (`ce65afef8c7d8b85b47d5f6f4e78b09b97265e16`), #6 (`746a808b42fdcdf04f157a825a9ddb98eb05a176`) and #7 (`3d1a272d9c2dd11b299f297d13436e8e0063bb73`) are now integrated locally in dependency order by ancestry-preserving merges. This does not merge or close any external PR. The [open-PR map](open-pr-map.json) remains the original inventory of heads, bases and proposed prefixes, not a claim that every listed change is absent from this local branch. Other sources remain at their imported baseline in this kit-port worktree. Evaluator #9 was not part of the original saved eight-PR evaluation inventory and needs its own review. Older successful CI remains head-specific evidence, not approval of a new consolidated head.
 
 The imported Markdown, nested CI files and contribution instructions are source snapshots, not competing entrypoints. Only root `.github/workflows/` workflows are active in the proposed canonical repository. Original relative links within each subtree remain valid. Root documentation uses the integrated layout.
 

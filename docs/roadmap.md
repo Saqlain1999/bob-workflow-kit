@@ -15,7 +15,7 @@ Keep user installation simple: preview, install, fresh-session loading check, on
 
 ## Evidence-led priorities
 
-1. Finish independent consolidation review and resolve the outstanding PR stack without losing accepted work or historical attribution. Publication and main merge require separate approval.
+1. Finish independent review of the combined tree and reconcile the locally ported kit #5–#7 with the remaining stack without losing accepted work or historical attribution. Publication and main merge require separate approval.
 2. Record actual client loading and a bounded useful task on each named Bob interface/version. Offline green tests do not prove loading or workflow quality.
 3. Test realistic interruption recovery: reconcile current source and policy, preserve unrelated edits, execute relevant checks and produce a usable handoff.
 4. Improve only what observed failures justify. Add a stack recipe or specialist skill when a repeatable need and acceptance test exist.

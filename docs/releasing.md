@@ -5,7 +5,7 @@ Public repository: [Saqlain1999/bob-workflow-kit](https://github.com/Saqlain1999
 ## Release gate
 
 1. Review the exact diff, project scope, license, and public-facing examples. Preserve the failing Tiny Ledger baseline and all historical evidence labels.
-2. Run `python3 -m unittest discover -s tests -v` from the source to be released. Validate local documentation links and JSON after material documentation changes.
+2. Run `python3 tools/check_all.py --require-history` from the full source checkout to be released, covering root/installer tests, included components, provenance and local documentation links. A source archive can use `python3 tools/check_all.py` for content-only checks; it cannot establish Git ancestry.
 3. Commit the reviewed source. Inspect all six jobs of **Offline validation** for that exact commit: Linux, macOS and Windows with Python 3.10 and 3.12. A workflow definition or a green result for another commit is insufficient.
 4. Create the version tag at that tested commit. Build a source archive from the commit, not from an uncommitted working directory. Attach its SHA-256 checksum.
 5. Publish a GitHub **prerelease**, with the tag, full commit, CI link, observed check counts, update/removal instructions, and [Try the alpha](try-alpha.md).

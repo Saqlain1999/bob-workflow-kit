@@ -7,7 +7,7 @@ Mechanism documentation reviewed **24 October 2026 (UTC)**; evidence matrix upda
 | Mechanism | Documentation evidence | Package status |
 | --- | --- | --- |
 | Global rules under `~/.bob/rules/` | [IDE](https://bob.ibm.com/docs/ide/configuration/rules) and [Shell](https://bob.ibm.com/docs/shell/configuration/bobshell-custom-rules) | Implemented by the installer; live loading must be tested per client |
-| Global skills under `~/.bob/skills/` | [IDE skills](https://bob.ibm.com/docs/ide/features/skills) and [Shell skills](https://bob.ibm.com/docs/shell/features/skills) | Four focused skills are implemented with supporting files; live discovery remains untested |
+| Global skills under `~/.bob/skills/` | [IDE skills](https://bob.ibm.com/docs/ide/features/skills) and [Shell skills](https://bob.ibm.com/docs/shell/features/skills) | Six focused skills are implemented with supporting files; live discovery remains untested |
 | Simple `name` and `description` front matter | Same skill references | Present; description fallback differences between clients are avoided |
 | Shell skill selection | [Shell skills tutorial](https://bob.ibm.com/docs/shell/tutorials/use-skills) describes `$skill-name`, the `$` picker, and `/skills` | Documented; not an offline installer assertion |
 | Workspace overrides | Rule/skill docs above describe workspace precedence | Users must inspect same-name project copies when diagnosing loading |

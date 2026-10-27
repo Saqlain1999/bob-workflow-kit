@@ -4,6 +4,19 @@ Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Local one-product kit-port validation
+
+Reviewed kit candidates #5, #6 and #7 were merged locally in dependency order without squashing. The sections below headed Alpha.5, Alpha.6 and Alpha.7 retain their original candidate-specific evidence; their dates, environments and counts do not describe this consolidated checkout. Historical alpha.4 and earlier evidence remains unchanged, including the seven-file alpha.1 payload.
+
+Fresh local checks on the kit-port payload based on merge `100c4f3` (Linux, Python 3.13.5):
+
+- ResourceWarning-fatal root suite: **57 tests passed**; installer-only suite: **26 tests passed**.
+- `python3 tools/check_all.py --require-history`: root **57 tests**, included evaluator **37 tests**, catalogue, provenance and local Markdown links all passed.
+- Actual packaged preview/install/doctor/uninstall: **22 managed files**, **six skills**, explicit disposable Bob home; doctor healthy, all managed files removed, unrelated sentinel preserved.
+- Tiny Ledger: **9 tests, 8 passes, 1 intentional failure**, exit 1; shipped fixture unchanged.
+
+These results are offline only. Logs and exact final-head metadata are in the separate local `kit-port-result.json` handoff and `kit-port-evidence/` directory, not a hosted CI or live Bob result. No active Bob configuration, model, credentials or network was used. Combined-tree independent review, other feature ports, hosted CI, client loading and explicit publication/merge/release approval remain separate gates.
+
 ## Alpha.7 candidate validation
 
 Alpha.7 adds `document-and-prepare-release`, an on-demand release-evidence reference, a release-handoff template, and fixed-scope installer support for six packaged skills. The skill reconciles exact-state implementation and independent-review evidence, updates only agreed documentation, and requires `release blocked` while a confirmed blocking finding or essential evidence gap remains. It cannot tag, publish, deploy, approve a release, prove production readiness, or turn offline packaging checks into live Bob or product-behavior evidence.
