@@ -49,6 +49,14 @@ class ProvenanceTests(unittest.TestCase):
         self.manifest = {'schema_version': 1, 'kit_base': commit,
                          'sources': [{'repository': 'fixture/source', 'source_commit': commit,
                                       'prefix': 'imported', 'files': files}]}
+        # Fixture trust anchors are captured before any test mutates the manifest.
+        anchor = mock.patch.object(VERIFIER, 'SOURCE_ANCHORS',
+                                   {'fixture/source': (commit, 'imported')}, create=True)
+        anchor.start()
+        self.addCleanup(anchor.stop)
+        base = mock.patch.object(VERIFIER, 'KIT_BASE_ANCHOR', commit, create=True)
+        base.start()
+        self.addCleanup(base.stop)
 
     def git(self, *args):
         return subprocess.run(['git', *args], cwd=self.root, capture_output=True,
@@ -56,6 +64,39 @@ class ProvenanceTests(unittest.TestCase):
 
     def errors(self, manifest=None, required=True):
         return VERIFIER.verify_history(self.root, manifest or self.manifest, required)[0]
+
+    def test_omitting_a_whole_source_is_not_valid_provenance(self):
+        second = copy.deepcopy(self.manifest['sources'][0])
+        second.update(repository='fixture/second', prefix='second-import')
+        for entry in second['files']:
+            entry['destination'] = 'second-import/' + entry['source_path']
+        complete = copy.deepcopy(self.manifest)
+        complete['sources'].append(second)
+        anchors = dict(VERIFIER.SOURCE_ANCHORS)
+        anchors['fixture/second'] = (second['source_commit'], second['prefix'])
+        with mock.patch.object(VERIFIER, 'SOURCE_ANCHORS', anchors):
+            self.assertEqual(self.errors(complete), [])
+            self.assertTrue(self.errors(self.manifest))
+
+    def test_substituting_a_complete_ancestor_source_is_rejected(self):
+        substituted = copy.deepcopy(self.manifest)
+        source = substituted['sources'][0]
+        source.update(repository='fixture/not-an-original-import', prefix='regenerated')
+        for entry in source['files']:
+            entry['destination'] = 'regenerated/' + entry['source_path']
+            path = self.root / entry['destination']
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes((self.root / entry['source_path']).read_bytes())
+        self.assertEqual(VERIFIER.verify_files(self.root, substituted), [])
+        self.assertTrue(self.errors(substituted))
+
+    def test_source_prefix_relocation_cannot_redefine_import_identity(self):
+        altered = copy.deepcopy(self.manifest)
+        source = altered['sources'][0]
+        source['prefix'] = 'elsewhere'
+        for entry in source['files']:
+            entry['destination'] = 'elsewhere/' + entry['source_path']
+        self.assertTrue(self.errors(altered))
 
     def test_complete_original_inventory_passes(self):
         self.assertEqual(self.errors(), [])

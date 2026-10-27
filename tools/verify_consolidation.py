@@ -11,6 +11,18 @@ from typing import TypeGuard
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Reviewed import identities are code-level trust anchors, not manifest claims.
+# Updating an origin is an explicit reviewed source change, never a map refresh.
+KIT_BASE_ANCHOR = 'c09f0c9b22521d3b48db1a645ba54d93484be77f'
+SOURCE_ANCHORS = {
+    'Saqlain1999/bob-workflow-evals':
+        ('5e2075ab510d947675c3e2e824ff384de899dc1a', 'evals'),
+    'Saqlain1999/awesome-bob-workflows':
+        ('e64911f216f700106dae66f4193ec2f400d7e2bd', 'docs/resources/catalogue'),
+    'Saqlain1999/bob-workflow-runner':
+        ('e03c17c436c8891415c533fad3b132f08c783184', 'docs/design/runner'),
+}
+
 
 def safe_path(name) -> TypeGuard[str]:
     """Require a canonical relative POSIX path, not a normalized unsafe alias."""
@@ -125,6 +137,12 @@ def verify_history(root, manifest, required):
     errors = validate_manifest(manifest)
     if errors:
         return errors, 'failed: invalid manifest'
+    declared = {source['repository']: (source['source_commit'], source['prefix'])
+                for source in manifest['sources']}
+    if (manifest['kit_base'] != KIT_BASE_ANCHOR
+            or len(declared) != len(manifest['sources'])
+            or declared != SOURCE_ANCHORS):
+        return ['Manifest source roster/identities differ from reviewed import anchors'], 'failed: import identity mismatch'
     try:
         top = git(root, 'rev-parse', '--show-toplevel').decode().strip()
         available = Path(top).resolve() == root.resolve()
