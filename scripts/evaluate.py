@@ -164,6 +164,27 @@ TASKS = {
             "IMPLEMENTATION_HANDOFF.md", "notifier/service.py",
         ],
     },
+    "reminder-remediated-review": {
+        "id": "reminder-remediated-review-v1",
+        "fixture": ROOT / "fixtures" / "reminder-remediated-review",
+        "entry": "notifier/service.py",
+        "test_count": 12,
+        "failures": [
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_decision_preserves_limits",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_disposes_rev_001_with_current_evidence",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_disposes_rev_002_with_current_evidence",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_has_required_sections_in_order",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_records_exact_current_validation",
+            "test_remediated_review.ReminderRemediatedReviewTests.test_review_supports_stale_detection_and_safe_recovery",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "IMPLEMENTATION_HANDOFF.md",
+            "REVIEW_HANDOFF.md", "RELEASE_HANDOFF.md", "USER_GUIDE.md",
+            "TEAM_NOTES.md", "notifier/__init__.py", "notifier/service.py",
+            "notifier/store.py",
+        ],
+        "allowed_candidate_changes": ["REMEDIATION_REVIEW.md"],
+    },
 }
 HANDOFF_FILES = {
     "CHECKPOINT.md", "handoff/historical-check.json", "handoff/preparation.json",
@@ -762,6 +783,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "parcel-resume", "technical-writing-fidelity", "project-planning-handoff",
                 "reminder-implementation-debugging", "reminder-independent-review",
                 "reminder-release-handoff", "reminder-review-remediation",
+                "reminder-remediated-review",
             }
             result_path = _validate_output(
                 args.result, args.workspace if args.task in state_bound_tasks else None

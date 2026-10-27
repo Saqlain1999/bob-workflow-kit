@@ -1,6 +1,6 @@
 # Contributing
 
-This repository contains four small, public coding/documentation/planning tasks. Contributions should
+This repository contains nine small, public coding/documentation/planning/review tasks. Contributions should
 improve repeatability or add well-defined tasks, not imply benchmark coverage
 that has not been measured.
 

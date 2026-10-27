@@ -73,6 +73,14 @@ recorded findings, preserve the historical gate evidence, and require a fresh
 independent review of the exact repaired candidate before release preparation
 can resume.
 
+For `reminder-remediated-review-v1`, use
+`prepare --task reminder-remediated-review`. The exact repaired source, trusted
+tests, accepted inputs, current implementation handoff, and historical blocked
+review/release records are protected. Only `REMEDIATION_REVIEW.md` may change.
+The reviewer must independently reconcile the current candidate, dispose both
+historical findings with current evidence, retain untested scope, and use
+`ready for release preparation` only as a handoff to a separate release stage.
+
 ## 3. Observe the participant
 
 Let the participant work within the stated scope and native permissions.
@@ -112,6 +120,10 @@ Reminder Review Remediation protects the prior independent review and blocked
 release records; its manual review covers bounded two-finding source changes,
 current trusted evidence, preservation of the evidence chain, stale-evidence
 handling, and an explicit handoff to a fresh reviewer without release claims.
+Reminder Remediated Re-review protects the complete repaired candidate and all
+earlier gate records; its manual review covers independence, evidence-backed
+finding disposition, exact-state reconciliation, remaining unknowns, and a
+bounded handoff to release preparation without release approval.
 
 Preserve raw helper reports locally. Each report records file fingerprints and
 test output. Keep the command, result, and relevant revision together so an

@@ -1,5 +1,28 @@
 # Local software validation
 
+## Reminder Remediated Re-review — 26 October 2026 (UTC)
+
+Observed on Linux with Python 3.12.14. This branch is stacked on the bounded
+diagnostics and the complete reminder journey through remediation. The results
+below are offline software checks, not a participant result or evidence that
+Bob discovered or followed an independent-review skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **103 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared re-review baseline | Twelve trusted checks; both repaired behaviors passed and exactly six named review-record failures reproduced; helper status `expected_baseline_failure` |
+| Known-good re-review control | Twelve checks passed; protected exact candidate and historical records unchanged; only `REMEDIATION_REVIEW.md` changed; helper status `public_tests_passed` |
+| Re-review negative controls | Superficial approval, missing REV-002 disposition, false 11/12 evidence, source edit, historical review/release edits, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **43 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **46 local Markdown links** checked across **80 Markdown files**; complete 23-file diff and `git diff --check` passed |
+
+The control records both historical findings as resolved with current source and
+behavior evidence, keeps process-safe concurrency unknown, and hands the exact
+candidate to a separate release-preparation stage. `ready for release
+preparation` is not release approval and establishes no production readiness,
+general security proof, compatibility, performance, deployment, or live Bob
+behavior. No model, Bob client, credential, network service, upstream content,
+release artifact, tag, deployment, publication, or paid API was used.
+
 ## Reminder Review Remediation — 25 October 2026 (UTC)
 
 Observed on Linux 6.18.55 x86_64 with Python 3.12.14. This branch is stacked on

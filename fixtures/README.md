@@ -58,12 +58,16 @@ and `RELEASE_HANDOFF.md`, and the correct release decision remains blocked.
 `reminder-review-remediation/` then returns both findings to implementation;
 only the service and current implementation handoff may change, while the
 review and blocked release records remain protected for a new reviewer.
+`reminder-remediated-review/` starts from the repaired control and permits only
+a new review artifact; the exact candidate and historical records stay
+protected.
 
 ```sh
 python3 scripts/evaluate.py prepare --task reminder-independent-review --output runs/review-001
 python3 scripts/evaluate.py prepare --task reminder-release-handoff --output runs/release-001
 python3 scripts/evaluate.py prepare --task reminder-review-remediation --output runs/remediation-001
+python3 scripts/evaluate.py prepare --task reminder-remediated-review --output runs/rereview-001
 ```
 
-Preserve all eight original fixtures. Their tests are public evidence for these
+Preserve all nine original fixtures. Their tests are public evidence for these
 small tasks, not large-repository coverage or observed Bob performance.

@@ -2,14 +2,15 @@
 
 A small, reproducible evaluation starter for IBM Bob project workflows.
 
-Eight tasks offer first trials: repair a deliberately faulty Python ledger,
+Nine tasks offer first trials: repair a deliberately faulty Python ledger,
 resume a parcel-pricing change from a constructed checkpoint, or restructure a
 dense migration runbook while preserving a bounded technical contract, or turn
 a reminder-service request and current source into a traceable, resumable delivery plan,
 or resume and complete that reminder change from an interrupted implementation,
 or independently review that implementation for seeded correctness/security defects,
 or prepare truthful documentation and a blocked release handoff for those unresolved findings,
-or return those findings to implementation for bounded remediation before a new review. Each has
+or return those findings to implementation for bounded remediation, or
+independently re-review the exact repaired state before release preparation. Each has
 a fixture, public tests, a participant prompt, a manual acceptance checklist,
 and an offline helper that runs trusted tests against a disposable workspace.
 
@@ -39,6 +40,8 @@ results. This is an independent community project, not an IBM product.
 | `tasks/reminder-release-handoff/` | Documentation/release prompt and manual blocked-decision review |
 | `fixtures/reminder-review-remediation/` | Blocked reminder candidate, preserved gate records, and twelve remediation checks |
 | `tasks/reminder-review-remediation/` | Two-finding remediation prompt and manual evidence-chain review |
+| `fixtures/reminder-remediated-review/` | Repaired reminder candidate, historical blocked records, and twelve re-review checks |
+| `tasks/reminder-remediated-review/` | Read-only remediation re-review prompt and manual disposition review |
 | `scripts/evaluate.py` | Prepare a fresh workspace and collect local test evidence |
 | `tests/` | Checks for the evaluation helper itself, separate from fixture tests |
 | `docs/protocol.md` | How to run and report a manual evaluation |
@@ -280,6 +283,27 @@ exactly two allowed file changes, and a current handoff to fresh independent
 review. It does not clear the historical review, change the blocked release
 decision, or prove security, production readiness, process-safe concurrency,
 general implementation quality, or live Bob behavior.
+
+## Try the remediated re-review exercise
+
+[Reminder Remediated Re-review](tasks/reminder-remediated-review/README.md)
+starts from the exact known-good remediation control. Product source, trusted
+tests, implementation evidence, and the earlier blocked review/release records
+are protected; the participant may change only `REMEDIATION_REVIEW.md`.
+
+```sh
+python3 scripts/evaluate.py prepare --task reminder-remediated-review --output runs/rereview-001
+python3 scripts/evaluate.py baseline --task reminder-remediated-review --workspace runs/rereview-001 --result runs/rereview-001-baseline.json
+python3 scripts/evaluate.py candidate --task reminder-remediated-review --workspace runs/rereview-001 --result runs/rereview-001-candidate.json
+```
+
+Use the [re-review prompt](tasks/reminder-remediated-review/AGENT_PROMPT.md)
+between baseline and candidate collection. Candidate success requires twelve
+trusted checks, current evidence for both resolved findings, preservation of
+the exact repaired candidate and historical records, and the bounded decision
+`ready for release preparation`. It does not authorize or establish a release,
+production readiness, a general security proof, process-safe concurrency, or
+live Bob behavior.
 
 ## What the helper reports
 
