@@ -1,5 +1,30 @@
 # Local software validation
 
+## Reminder Review Remediation — 25 October 2026 (UTC)
+
+Observed on Linux 6.18.55 x86_64 with Python 3.12.14. This branch is stacked on
+the bounded diagnostics, technical-writing, planning, implementation,
+independent-review, and blocked-release branches. The results below are offline
+software checks, not a participant result or evidence that Bob discovered or
+followed an implementation skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **91 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared remediation baseline | Twelve trusted checks; both seeded defects reproduced and exactly nine named behavior/handoff failures; helper status `expected_baseline_failure` |
+| Known-good remediation control | Twelve checks passed; protected request/plan/review/release/documentation/team/store inputs unchanged; only `notifier/service.py` and `IMPLEMENTATION_HANDOFF.md` changed; helper status `public_tests_passed` |
+| Remediation negative controls | Owner-only fix, conflict-only fix, missing fresh-review gate, review/release record edits, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **38 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **44 local Markdown links** checked across **68 Markdown files**; `git diff --check` passed |
+
+The control corrects the two public fixture defects and hands the exact state to
+a fresh independent review. It deliberately preserves the prior `changes
+required` review and `release blocked` record as historical evidence; a helper
+pass does not clear those gates or establish general implementation quality,
+security, process-safe concurrency, compatibility, production readiness,
+release approval, or live Bob activation. No model, Bob client, credential,
+network service, upstream content, release artifact, tag, deployment,
+publication, or paid API was used.
+
 ## Reminder Documentation and Release Handoff — 24 October 2026 (UTC)
 
 This branch is stacked on the bounded diagnostics, technical-writing, planning, implementation, and independent-review branches. The results below are offline software checks, not a participant result or evidence that Bob discovered or followed the release-handoff skill.

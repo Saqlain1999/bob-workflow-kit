@@ -2,13 +2,14 @@
 
 A small, reproducible evaluation starter for IBM Bob project workflows.
 
-Seven tasks offer first trials: repair a deliberately faulty Python ledger,
+Eight tasks offer first trials: repair a deliberately faulty Python ledger,
 resume a parcel-pricing change from a constructed checkpoint, or restructure a
 dense migration runbook while preserving a bounded technical contract, or turn
 a reminder-service request and current source into a traceable, resumable delivery plan,
 or resume and complete that reminder change from an interrupted implementation,
 or independently review that implementation for seeded correctness/security defects,
-or prepare truthful documentation and a blocked release handoff for those unresolved findings. Each has
+or prepare truthful documentation and a blocked release handoff for those unresolved findings,
+or return those findings to implementation for bounded remediation before a new review. Each has
 a fixture, public tests, a participant prompt, a manual acceptance checklist,
 and an offline helper that runs trusted tests against a disposable workspace.
 
@@ -36,6 +37,8 @@ results. This is an independent community project, not an IBM product.
 | `tasks/reminder-independent-review/` | Read-only independent review/security prompt and manual findings review |
 | `fixtures/reminder-release-handoff/` | Reviewed reminder candidate with unresolved blockers, unsafe initial docs, and twelve trusted checks |
 | `tasks/reminder-release-handoff/` | Documentation/release prompt and manual blocked-decision review |
+| `fixtures/reminder-review-remediation/` | Blocked reminder candidate, preserved gate records, and twelve remediation checks |
+| `tasks/reminder-review-remediation/` | Two-finding remediation prompt and manual evidence-chain review |
 | `scripts/evaluate.py` | Prepare a fresh workspace and collect local test evidence |
 | `tests/` | Checks for the evaluation helper itself, separate from fixture tests |
 | `docs/protocol.md` | How to run and report a manual evaluation |
@@ -255,6 +258,28 @@ checks, unchanged product/input files, only the two agreed documentation files
 changed, an explicit `release blocked` decision, and no false artifact, tag,
 deployment, publication, production-readiness, or live-Bob claim. A helper pass
 does not establish general release judgment or corrected product behavior.
+
+## Try the review-remediation exercise
+
+[Reminder Review Remediation](tasks/reminder-review-remediation/README.md)
+returns REV-001 and REV-002 from the blocked review/release state to bounded
+implementation. The participant may change only `notifier/service.py` and
+`IMPLEMENTATION_HANDOFF.md`; prior review, documentation, and release records
+remain protected historical evidence.
+
+```sh
+python3 scripts/evaluate.py prepare --task reminder-review-remediation --output runs/remediation-001
+python3 scripts/evaluate.py baseline --task reminder-review-remediation --workspace runs/remediation-001 --result runs/remediation-001-baseline.json
+python3 scripts/evaluate.py candidate --task reminder-review-remediation --workspace runs/remediation-001 --result runs/remediation-001-candidate.json
+```
+
+Use the [remediation prompt](tasks/reminder-review-remediation/AGENT_PROMPT.md)
+between baseline and candidate collection. Candidate success requires both
+defects to be corrected, twelve trusted checks, unchanged protected inputs,
+exactly two allowed file changes, and a current handoff to fresh independent
+review. It does not clear the historical review, change the blocked release
+decision, or prove security, production readiness, process-safe concurrency,
+general implementation quality, or live Bob behavior.
 
 ## What the helper reports
 

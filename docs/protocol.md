@@ -64,6 +64,15 @@ without repairing source or weakening trusted tests.
 For `reminder-release-handoff-v1`, use
 `prepare --task reminder-release-handoff`. The request, plan, implementation and review handoffs, team note, source, and store are protected. Only `USER_GUIDE.md` and `RELEASE_HANDOFF.md` may change. The two review findings remain unresolved; the documentation must preserve a `release blocked` decision and must not create or imply a tag, artifact, deployment, publication, or corrected product result.
 
+For `reminder-review-remediation-v1`, use
+`prepare --task reminder-review-remediation`. The request, plan, independent
+review, blocked release handoff, user guide, team note, store, and public
+contract are protected. Only `notifier/service.py` and
+`IMPLEMENTATION_HANDOFF.md` may change. The participant must remediate both
+recorded findings, preserve the historical gate evidence, and require a fresh
+independent review of the exact repaired candidate before release preparation
+can resume.
+
 ## 3. Observe the participant
 
 Let the participant work within the stated scope and native permissions.
@@ -99,6 +108,10 @@ Reminder Independent Review additionally protects all product source and prior
 handoffs; its manual review covers independent evidence, severity rationale,
 precise finding quality, a bounded `changes required` decision, and a safe
 remediation handoff without compliance or release claims.
+Reminder Review Remediation protects the prior independent review and blocked
+release records; its manual review covers bounded two-finding source changes,
+current trusted evidence, preservation of the evidence chain, stale-evidence
+handling, and an explicit handoff to a fresh reviewer without release claims.
 
 Preserve raw helper reports locally. Each report records file fingerprints and
 test output. Keep the command, result, and relevant revision together so an

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare seven small fixtures and collect offline public-test/state evidence."""
+"""Prepare eight small fixtures and collect offline public-test/state evidence."""
 
 import argparse
 import hashlib
@@ -138,6 +138,31 @@ TASKS = {
             "notifier/service.py", "notifier/store.py",
         ],
         "allowed_candidate_changes": ["RELEASE_HANDOFF.md", "USER_GUIDE.md"],
+    },
+    "reminder-review-remediation": {
+        "id": "reminder-review-remediation-v1",
+        "fixture": ROOT / "fixtures" / "reminder-review-remediation",
+        "entry": "notifier/service.py",
+        "test_count": 12,
+        "failures": [
+            "test_remediation.ReminderReviewRemediationTests.test_compatibility_and_public_contract_are_preserved",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_has_required_sections_in_order",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_maps_both_findings_to_current_remediation",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_preserves_prior_gates_and_requires_new_review",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_records_exact_current_validation",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_records_scope_and_unrun_limits",
+            "test_remediation.ReminderReviewRemediationTests.test_handoff_supports_stale_detection_and_safe_recovery",
+            "test_remediation.ReminderReviewRemediationTests.test_rev_001_owner_isolation_is_remediated",
+            "test_remediation.ReminderReviewRemediationTests.test_rev_002_conflict_message_is_generic",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "REVIEW_HANDOFF.md",
+            "RELEASE_HANDOFF.md", "USER_GUIDE.md", "TEAM_NOTES.md",
+            "notifier/__init__.py", "notifier/store.py",
+        ],
+        "allowed_candidate_changes": [
+            "IMPLEMENTATION_HANDOFF.md", "notifier/service.py",
+        ],
     },
 }
 HANDOFF_FILES = {
@@ -736,7 +761,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             state_bound_tasks = {
                 "parcel-resume", "technical-writing-fidelity", "project-planning-handoff",
                 "reminder-implementation-debugging", "reminder-independent-review",
-                "reminder-release-handoff",
+                "reminder-release-handoff", "reminder-review-remediation",
             }
             result_path = _validate_output(
                 args.result, args.workspace if args.task in state_bound_tasks else None
