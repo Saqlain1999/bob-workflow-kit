@@ -40,6 +40,12 @@ protected evaluation input and change only `RUNBOOK.md`. The baseline's two
 structure failures are deliberate; the remaining passing checks establish only
 that the source contains the selected tokens and clauses.
 
+For `project-planning-handoff-v1`, use
+`prepare --task project-planning-handoff`. Treat the request, current source,
+and project-test note as protected evidence; change only `DELIVERY_PLAN.md`.
+The seven baseline failures show that the starting plan lacks the selected
+evidence, acceptance, decision, traceability, risk, and recovery properties.
+
 ## 3. Observe the participant
 
 Let the participant work within the stated scope and native permissions.
@@ -64,6 +70,9 @@ cannot establish all qualitative criteria. Parcel additionally requires exact
 prepared policy/note bytes and unchanged recorded state during the test run.
 Technical Writing Fidelity additionally requires an unchanged contract; its
 manual review covers scanability, contradictions, and unsupported additions.
+Project Planning Handoff additionally protects the request and current source;
+its manual review covers evidence quality, proportional design, and whether the
+handoff would actually support safe implementation and resumption.
 
 Preserve raw helper reports locally. Each report records file fingerprints and
 test output. Keep the command, result, and relevant revision together so an
@@ -104,7 +113,7 @@ interventions, reported resource use if available, and scope of validation.
 Do not convert test-execution time into agent duration or use a missing cost
 measurement as zero cost.
 
-This repository contains three tiny public fixtures. A successful example is
+This repository contains four tiny public fixtures. A successful example is
 not a large-project benchmark. A controlled comparison would need enough tasks
 and repeated runs, a declared protocol, comparable conditions, and analysis of
 uncertainty before supporting general conclusions. No such study is included.

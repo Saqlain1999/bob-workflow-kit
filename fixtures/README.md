@@ -39,5 +39,14 @@ protected input.
 python3 scripts/evaluate.py prepare --task technical-writing-fidelity --output runs/writing-001
 ```
 
-Preserve all three original fixtures. Their tests are public evidence for these
+`project-planning-handoff/` is an original requirements/architecture fixture
+for [project-planning-handoff-v1](../tasks/project-planning-handoff/README.md).
+It contains a small existing reminder project and an intentionally incomplete
+`DELIVERY_PLAN.md`. The participant may change only that plan.
+
+```sh
+python3 scripts/evaluate.py prepare --task project-planning-handoff --output runs/planning-001
+```
+
+Preserve all four original fixtures. Their tests are public evidence for these
 small tasks, not large-repository coverage or observed Bob performance.

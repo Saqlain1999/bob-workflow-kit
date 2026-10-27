@@ -2,9 +2,10 @@
 
 A small, reproducible evaluation starter for IBM Bob project workflows.
 
-Three tasks offer first trials: repair a deliberately faulty Python ledger,
+Four tasks offer first trials: repair a deliberately faulty Python ledger,
 resume a parcel-pricing change from a constructed checkpoint, or restructure a
-dense migration runbook while preserving a bounded technical contract. Each has
+dense migration runbook while preserving a bounded technical contract, or turn
+a reminder-service request and current source into a traceable, resumable delivery plan. Each has
 a fixture, public tests, a participant prompt, a manual acceptance checklist,
 and an offline helper that runs trusted tests against a disposable workspace.
 
@@ -24,6 +25,8 @@ results. This is an independent community project, not an IBM product.
 | `tasks/parcel-resume/` | Constructed interruption, current-state and preservation exercise |
 | `fixtures/technical-writing-fidelity/` | Dense runbook, protected contract, and eight public checks |
 | `tasks/technical-writing-fidelity/` | Fidelity-preserving rewrite prompt and manual review boundary |
+| `fixtures/project-planning-handoff/` | Small existing reminder project and intentionally incomplete delivery plan |
+| `tasks/project-planning-handoff/` | Evidence-backed requirements/architecture prompt and manual review boundary |
 | `scripts/evaluate.py` | Prepare a fresh workspace and collect local test evidence |
 | `tests/` | Checks for the evaluation helper itself, separate from fixture tests |
 | `docs/protocol.md` | How to run and report a manual evaluation |
@@ -163,6 +166,24 @@ The helper requires eight passing public checks and an unchanged protected
 contract. The [manual checklist](tasks/technical-writing-fidelity/ACCEPTANCE.md)
 still decides scanability and unsupported additions. A pass does not establish
 general semantic equivalence, ASD-STE100 compliance, or live Bob activation.
+
+## Try the project-planning handoff exercise
+
+[Project Planning Handoff](tasks/project-planning-handoff/README.md) asks a
+participant to inspect a small reminder service and replace only an incomplete
+`DELIVERY_PLAN.md`. The public checks cover selected evidence, acceptance,
+architecture-choice, traceability, risk, and recovery properties.
+
+```sh
+python3 scripts/evaluate.py prepare --task project-planning-handoff --output runs/planning-001
+python3 scripts/evaluate.py baseline --task project-planning-handoff --workspace runs/planning-001 --result runs/planning-001-baseline.json
+python3 scripts/evaluate.py candidate --task project-planning-handoff --workspace runs/planning-001 --result runs/planning-001-candidate.json
+```
+
+Use the [planning prompt](tasks/project-planning-handoff/AGENT_PROMPT.md) between
+the baseline and candidate commands. A pass does not establish design quality,
+future implementation correctness, security, scalability, or live Bob
+activation.
 
 ## What the helper reports
 

@@ -1,5 +1,27 @@
 # Local software validation
 
+## Project Planning Handoff — 21 October 2026 (UTC)
+
+Observed on Linux (`Linux-6.18.55-x86_64-with-glibc2.39`), Python 3.12.14.
+This branch is stacked on the bounded-diagnostics and technical-writing branches.
+The results below are offline software checks, not a Bob participant result or
+evidence that Bob discovered or followed the planning skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | 52 helper tests passed; exit 0; no skips or resource warnings |
+| Planning prepared baseline | Ten trusted checks; exactly seven named evidence/acceptance/decision/traceability/risk/recovery failures; helper status `expected_baseline_failure` |
+| Independent known-good plan control | Ten checks passed; protected request/source unchanged; only `DELIVERY_PLAN.md` changed; helper status `public_tests_passed` |
+| Planning negative controls | Missing acceptance trace, missing stale-evidence guidance, protected source edit, and unrelated added file were rejected |
+| Static checks | Edited Python files compiled; repository JSON parsed; local Markdown links and `git diff --check` passed |
+
+The fixture covers selected properties of one small append-only reminder
+project. Manual review still owns evidence quality, design proportionality,
+completeness, and whether the handoff could guide safe implementation. Passing
+does not prove architecture quality, future implementation, security,
+scalability, large-project behavior, or live Bob activation. No model, Bob
+client, credential, network service, or paid API was used.
+
 ## Technical Writing Fidelity — 20 October 2026 (UTC)
 
 Observed on Linux (`Linux-6.18.55-x86_64-with-glibc2.39`), Python 3.12.14.

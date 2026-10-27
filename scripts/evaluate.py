@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare three small fixtures and collect offline public-test/state evidence."""
+"""Prepare four small fixtures and collect offline public-test/state evidence."""
 
 import argparse
 import hashlib
@@ -53,6 +53,25 @@ TASKS = {
         ],
         "protected_files": ["contract.json"],
         "allowed_candidate_changes": ["RUNBOOK.md"],
+    },
+    "project-planning-handoff": {
+        "id": "project-planning-handoff-v1",
+        "fixture": ROOT / "fixtures" / "project-planning-handoff",
+        "entry": "DELIVERY_PLAN.md",
+        "test_count": 10,
+        "failures": [
+            "test_delivery_plan.DeliveryPlanTests.test_architecture_compares_two_options_and_selects_one",
+            "test_delivery_plan.DeliveryPlanTests.test_checkpoint_supports_stale_detection_resume_and_abort",
+            "test_delivery_plan.DeliveryPlanTests.test_four_acceptance_criteria_cover_behavior_and_compatibility",
+            "test_delivery_plan.DeliveryPlanTests.test_repository_evidence_names_current_files_and_observations",
+            "test_delivery_plan.DeliveryPlanTests.test_risks_cover_conflict_data_compatibility_and_preservation",
+            "test_delivery_plan.DeliveryPlanTests.test_slices_trace_every_criterion_to_files_and_validation",
+            "test_delivery_plan.DeliveryPlanTests.test_unknowns_and_stop_conditions_remain_explicit",
+        ],
+        "protected_files": [
+            "REQUEST.md", "notifier/service.py", "notifier/store.py", "project-tests.md",
+        ],
+        "allowed_candidate_changes": ["DELIVERY_PLAN.md"],
     },
 }
 HANDOFF_FILES = {
@@ -648,7 +667,9 @@ def main(argv: Optional[List[str]] = None) -> int:
             result_path = None
             exit_code = 0
         else:
-            state_bound_tasks = {"parcel-resume", "technical-writing-fidelity"}
+            state_bound_tasks = {
+                "parcel-resume", "technical-writing-fidelity", "project-planning-handoff",
+            }
             result_path = _validate_output(
                 args.result, args.workspace if args.task in state_bound_tasks else None
             )
