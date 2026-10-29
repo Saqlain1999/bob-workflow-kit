@@ -2,6 +2,8 @@ Help me complete the first-use walkthrough in this checked-out Bob Workflow Kit.
 
 Read docs/try-alpha.md and the repository instructions. First carry out prompts/install-with-bob.txt using the included offline installer, the actual execution host and a confirmed Bob configuration directory. Inspect the preview, run the offline tests in their disposable targets, and perform the supported install/doctor steps within native permissions. Preserve conflicts and local changes. Do not generate a replacement installer, change model/authentication/MCP settings, bypass permissions, or make nested model calls.
 
+If Bob protects a write to its configuration directory, present the exact command and target for the normal explicit approval. Treat a denial as a blocked install, not as permission to weaken settings or find another path around the control. Complete and report the independent read-only checks even when the write cannot proceed.
+
 Record what was actually observed: kit version, Bob version/interface if visible, host, target, install status and integrity. Keep unavailable facts unknown. An installed Markdown file is not evidence of native Bob discovery.
 
 End this setup phase with a concrete handoff: tell me to start a new Bob conversation and paste prompts/verify.txt. Then point me to steps 4–6 in docs/try-alpha.md to create a new disposable Tiny Ledger workspace, run its known failing baseline, ask Bob for the repair, independently rerun checks, and report the result. Do not claim you started a fresh conversation or completed a live trial unless that actually happened.
