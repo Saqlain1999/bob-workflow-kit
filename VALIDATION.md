@@ -1,8 +1,23 @@
 # Validation record
 
-Current package: **0.1.0-alpha.5**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
+Current package: **0.1.0-alpha.6**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
+
+## Alpha.6 candidate validation
+
+Alpha.6 adds `review-and-secure-change`, an on-demand findings/severity reference, a review-handoff template, and fixed-scope installer support for five packaged skills. The skill requires current-state reconciliation, a read-only first pass, independently reproduced evidence, applicable trust-boundary review, precise findings, and a bounded next-gate decision. Static and installer validation do not prove review quality, security, absence of defects, compliance, production readiness, reviewer independence, or live Bob activation.
+
+Local checks executed on **23 October 2026 (UTC), Linux, Python 3.12.14**:
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` from kit root | **26 tests passed**, exit 0, including fixed-pack validation and the existing lifecycle/recovery suite |
+| `python3 -B -m unittest discover -s tests -v` from `examples/tiny-ledger` | **9 tests, 8 passes, 1 deliberate failure**, exit 1; original regression preserved |
+| Python files parsed with Python 3.10 grammar; JSON parsed; relative Markdown targets checked | **5 Python files**, **2 JSON files**, and **60 local Markdown links** checked across **42 Markdown files** with no syntax/JSON errors or missing local targets |
+| Preview/install/doctor/uninstall against an explicit temporary Bob home | **19 managed text files** accepted; install reported `installed`, doctor reported `healthy`, and uninstall removed all managed files; no live Bob configuration used |
+
+The hosted matrix for the final candidate commit must pass before release. The paired reminder review/security evaluation lives in the companion evaluation repository and remains separate evidence. No live Bob client loaded or activated the skill, and no model participant established that these instructions find defects reliably.
 
 ## Alpha.5 candidate validation
 
