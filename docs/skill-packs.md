@@ -11,8 +11,9 @@ The kit packages focused Bob skills, not a universal prompt collection. IBM's cu
 | `plan-project-change` | An ambiguous or multi-file feature, refactor, migration, or integration that still needs requirements and design decisions | A source-code implementation, proof that the design works, or a reason to delay an already-bounded direct edit |
 | `implement-and-debug-change` | An accepted bounded change, reproducible defect, or interrupted implementation with defined expected behavior | Requirements discovery, architecture selection, independent final review, deployment, or production-readiness approval |
 | `review-and-secure-change` | Independent pre-merge review of an implemented bounded change for correctness, test adequacy, preservation, and applicable trust-boundary/security risks | Silent implementation, broad compliance audit, deployment approval, or proof that no vulnerabilities remain |
+| `document-and-prepare-release` | Truthful user/operator documentation and an exact-state release handoff after implementation and independent review | Defect remediation, release approval, tagging, publishing, deployment, or a way to hide blockers |
 
-All five skills are installed under the standard global `~/.bob/skills/` location. Bob uses each description to decide whether the skill is relevant, and current clients request approval before activation unless the user changes that setting. A project skill with the same name takes precedence over the global copy.
+All six skills are installed under the standard global `~/.bob/skills/` location. Bob uses each description to decide whether the skill is relevant, and current clients request approval before activation unless the user changes that setting. A project skill with the same name takes precedence over the global copy.
 
 ## Why the communication skill is bounded
 
@@ -43,6 +44,12 @@ The 22 October 2026 review of [`msitarzewski/agency-agents` at `4e3ac3ca6604c751
 
 The 23 October 2026 source review used the pinned Agency Agents revision above for code-review and security-review structure and [OWASP ASVS 5.0.0](https://github.com/OWASP/ASVS/tree/v5.0.0) as an optional stable reference for applicable application-security boundaries. The kit adapts precise findings, severity rationale, current-state checks, and remediation handoffs. It rejects persona claims, arbitrary remediation deadlines, mandatory scanners, “always provide a fix” rules, broad framework assumptions, and compliance claims. Neither upstream was installed or executed; ASVS is not a universal checklist for every repository.
 
+## Why documentation and release handoff is a separate stage
+
+`document-and-prepare-release` consumes the accepted contract, current implementation evidence, and independent review disposition. It keeps product source and tests read-only, updates only agreed documentation, and produces a release handoff whose decision stays blocked while confirmed blocking findings or essential evidence gaps remain. It cannot tag, publish, deploy, announce, or turn a green helper into product correctness.
+
+The 24 October 2026 design review reused the exact MIT-licensed Agency Agents revision [`4e3ac3ca6604c75113f52c695dbddcc7af928b46`](https://github.com/msitarzewski/agency-agents/tree/4e3ac3ca6604c75113f52c695dbddcc7af928b46) only as evidence for audience-aware documentation and explicit delivery handoffs. The kit adapts those general ideas into original, stack-neutral release evidence and decision rules. It rejects persona imports, automatic deployment, arbitrary documentation metrics, assumed release tooling, and claims that documentation completion means release readiness. No upstream content was installed or executed.
+
 ## Gate for another skill
 
 Add a skill only when all of the following are true:
@@ -59,4 +66,4 @@ Static tests can establish that a skill is well-formed and safely installed. A r
 
 ## Next candidates
 
-The next useful pack may cover independent evidence-first review and security. It should not be added merely to make the catalogue larger. First build a public fixture that exposes a failure the new skill should prevent, compare the same task with and without the candidate, and retain results that do not support the idea.
+The next work should exercise the connected journey rather than add another skill. After the paired release-handoff fixture demonstrates a truthful blocked outcome, remediate its seeded findings, rerun independent review, and re-enter the release stage to test a genuinely ready outcome. Retain failed attempts and do not claim broad project/platform coverage from one reminder fixture.
