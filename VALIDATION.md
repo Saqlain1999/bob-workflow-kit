@@ -1,16 +1,15 @@
 # Local software validation
 
-## Reminder Review Remediation — 25 October 2026 (UTC)
+## Reminder Review Remediation — 2 November 2026 (UTC)
 
-Observed on Linux 6.18.55 x86_64 with Python 3.12.14. This branch is stacked on
-the bounded diagnostics, technical-writing, planning, implementation,
-independent-review, and blocked-release branches. The results below are offline
-software checks, not a participant result or evidence that Bob discovered or
-followed an implementation skill.
+Observed after reconciling the remediation branch with the current blocked
+release-handoff head on Linux 6.18.55 x86_64 with Python 3.12.14. The results
+below are offline software checks, not a participant result or evidence that
+Bob discovered or followed an implementation skill.
 
 | Check | Observed result |
 | --- | --- |
-| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **91 helper tests passed**, exit 0; no skips or resource warnings |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **92 helper tests passed**, exit 0; no skips or resource warnings |
 | Prepared remediation baseline | Twelve trusted checks; both seeded defects reproduced and exactly nine named behavior/handoff failures; helper status `expected_baseline_failure` |
 | Known-good remediation control | Twelve checks passed; protected request/plan/review/release/documentation/team/store inputs unchanged; only `notifier/service.py` and `IMPLEMENTATION_HANDOFF.md` changed; helper status `public_tests_passed` |
 | Remediation negative controls | Owner-only fix, conflict-only fix, missing fresh-review gate, review/release record edits, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
@@ -25,13 +24,16 @@ release approval, or live Bob activation. No model, Bob client, credential,
 network service, upstream content, release artifact, tag, deployment,
 publication, or paid API was used.
 
-## Reminder Documentation and Release Handoff — 24 October 2026 (UTC)
+## Reminder Documentation and Release Handoff — 1 November 2026 (UTC)
 
-This branch is stacked on the bounded diagnostics, technical-writing, planning, implementation, and independent-review branches. The results below are offline software checks, not a participant result or evidence that Bob discovered or followed the release-handoff skill.
+Observed after reconciling the release-handoff branch with the current
+independent-review head on Linux 6.18.55 / Python 3.12.14. The results below are
+offline software checks, not a participant result or evidence that Bob
+discovered or followed the release-handoff skill.
 
 | Check | Observed result |
 | --- | --- |
-| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **80 helper tests passed**, exit 0; no skips or resource warnings |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **81 helper tests passed**, exit 0; no skips or resource warnings |
 | Prepared release baseline | Twelve trusted checks; both seeded defects reproduced and exactly ten named documentation/release-contract failures; helper status `expected_baseline_failure` |
 | Known-good blocked control | Twelve checks passed; all request/plan/implementation/review/team/source inputs unchanged; only `RELEASE_HANDOFF.md` and `USER_GUIDE.md` changed; helper status `public_tests_passed` |
 | Release negative controls | False ready decision, missing High finding, helper-as-correctness claim, source edit, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
@@ -135,6 +137,32 @@ contradictions and unsupported additions. Passing the helper does not prove
 general semantic equivalence, technical correctness, ASD-STE100 compliance, or
 the quality or cause of a live participant's behavior. No model, Bob client,
 credential, network service, or paid API was used.
+
+## Inherited diagnostic-pipe follow-up — 26 October 2026 (UTC)
+
+Blocking review finding EVAL-001 reproduced that the earlier branch could wait
+on `BufferedReader.close()` after a direct worker exited while a descendant kept
+an inherited diagnostic write end open. The 25 October fix switched the worker
+diagnostic pipes to unbuffered raw streams, allowing cleanup to return the
+existing incomplete-capture exit-2 result after the reader grace period. The
+cross-platform follow-up also avoids closing a pipe whose daemon reader is still
+blocked; that pipe is retained until the short-lived helper exits or the
+uncontained descendant closes its inherited writer. It does not add descendant
+containment.
+
+Observed on Linux with Python 3.12.14:
+
+| Check | Observed result |
+| --- | --- |
+| Independently supervised inherited-pipe probe | Returned incomplete stdout/stderr capture within the six-second watchdog; the 20-second descendant was explicitly killed by PID on POSIX and with `taskkill /T /F` on Windows |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **37/37 passed**, exit 0; no skips or resource warnings |
+| Python and documentation checks | **11 Python files** parsed with Python 3.10 grammar; **2 JSON files** parsed; **18 local Markdown links** checked across **17 Markdown files**; `git diff --check` passed |
+
+The revised watchdog removes the earlier Windows skip and is exercised by the
+same six-job hosted matrix when that exact head runs. A passing test establishes
+bounded helper return for this constructed case, not safe execution of hostile
+code, general descendant cleanup, continuous resource containment, or live Bob
+behavior.
 
 ## Bounded worker diagnostics — 13 October 2026 (UTC)
 
