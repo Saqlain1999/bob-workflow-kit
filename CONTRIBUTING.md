@@ -1,8 +1,9 @@
 # Contributing
 
-This repository contains nine small, public coding/documentation/planning/review tasks. Contributions should
-improve repeatability or add well-defined tasks, not imply benchmark coverage
-that has not been measured.
+This repository contains nine small, public coding, documentation, planning,
+review, and release-handoff tasks. Contributions should improve repeatability
+or add well-defined tasks, not imply benchmark coverage that has not been
+measured.
 
 ## Improve the helper or documentation
 
@@ -17,13 +18,18 @@ python -m unittest discover -s tests -v
 Keep helper tests separate from fixture tests, which deliberately contain a
 baseline failure or acquire known failures during preparation. Do not repair
 the original fixtures as incidental cleanup. Tiny Ledger is the default task;
-Parcel Resume, Technical Writing Fidelity, and Project Planning Handoff use
-their documented fixed task selectors.
+Parcel Resume, Technical Writing Fidelity, Project Planning Handoff, Reminder
+Implementation and Debugging, Reminder Independent Review, and Reminder
+Release Handoff, Reminder Review Remediation, and Reminder Remediated Re-review
+use their documented fixed task selectors.
 
 Worker stdout, stderr, unittest diagnostics, and the structured worker report
 have documented byte limits. A limit regression must remain an explicit exit-2
 non-pass, preserve bounded evidence, drain both process pipes, and cover the
-exact-limit boundary. Do not replace these limits with silent truncation.
+exact-limit boundary. A descendant that inherits a diagnostic write end must not
+make the helper block while closing its buffered reader; exercise that condition
+under an independent watchdog and clean up the probe explicitly. Do not replace
+these limits with silent truncation.
 
 For changes to Parcel Resume, verify that preparation executes its real
 historical check, both expected current failures reproduce, protected policy
@@ -42,6 +48,35 @@ reproduce the seven named baseline failures, and allow only
 `DELIVERY_PLAN.md` to change. Keep design quality and implementation
 correctness as manual or future-work questions; a structured plan is not an
 implemented feature.
+
+For Reminder Implementation and Debugging, preserve the accepted request,
+plan, checkpoint, and team note; reproduce the four named baseline failures;
+and allow only the notifier package plus `IMPLEMENTATION_HANDOFF.md` to
+change. Do not weaken trusted tests to obtain a pass.
+
+For Reminder Independent Review, keep product source, tests, and prior handoffs
+read-only; reproduce both seeded defects; and allow only
+`REVIEW_HANDOFF.md` to change. A structured finding is not security,
+compliance, production-readiness, or live Bob evidence.
+
+For Reminder Release Handoff, preserve both unresolved findings and all product
+inputs, allow only `USER_GUIDE.md` and `RELEASE_HANDOFF.md` to change, and
+require the decision to remain `release blocked` while either finding is open.
+Documentation completion does not authorize a tag, publication, deployment, or
+announcement.
+
+For Reminder Review Remediation, preserve the independent review, blocked
+release handoff, user guide, accepted request and plan, team note, store, public
+contract, and trusted tests. Allow only `notifier/service.py` and
+`IMPLEMENTATION_HANDOFF.md` to change. Both findings must be repaired together,
+and the handoff must require a fresh independent review; passing remediation
+checks does not clear the historical release block.
+
+For Reminder Remediated Re-review, preserve the exact repaired source, trusted
+tests, accepted inputs, implementation handoff, and historical review and
+release records. Allow only `REMEDIATION_REVIEW.md` to change. The new review
+must dispose both findings with current code and behavioral evidence; `ready for
+release preparation` is a handoff to a separate stage, not release approval.
 
 Explain the problem, the proposed change, and the observed checks. Avoid
 unnecessary package dependencies, model SDKs, credentials, and network calls.

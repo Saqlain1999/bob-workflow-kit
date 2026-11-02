@@ -332,8 +332,10 @@ Each check has a 30-second timeout by default; override with a positive
 `--timeout` value when needed. The helper executes local candidate Python code
 as part of the test run. It is a cooperative local fixture helper, not a sandbox
 or service for untrusted submissions. On a timeout or diagnostic-limit failure,
-the helper terminates and reaps its direct worker. It does not provide a general
-memory quota or contain descendant processes. Before/after hashes describe the
+the helper terminates and reaps its direct worker. If a descendant keeps a
+worker diagnostic pipe open, the helper returns an incomplete-capture error
+rather than waiting for that descendant. It does not provide a general memory
+quota or contain descendant processes. Before/after hashes describe the
 recorded scope, not continuous monitoring of every possible input; see the
 [protocol](docs/protocol.md).
 

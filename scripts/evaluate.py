@@ -246,7 +246,9 @@ def _run_bounded_process(
     """Run a process while draining both diagnostic pipes into fixed budgets."""
     process = subprocess.Popen(
         command, cwd=cwd, env=environment,
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        # Raw pipes avoid BufferedReader's lock: closing a buffered pipe can
+        # wait forever for a reader whose inherited writer is still open.
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=0,
     )
     captures = {"stdout": bytearray(), "stderr": bytearray()}
     totals = {"stdout": 0, "stderr": 0}
@@ -297,10 +299,13 @@ def _run_bounded_process(
         thread.join(PROCESS_STOP_GRACE_SECONDS)
         if thread.is_alive():
             capture_incomplete.append(channel)
-            pipe.close()
-            thread.join(PROCESS_STOP_GRACE_SECONDS)
         else:
             pipe.close()
+
+    # Even unbuffered pipe closure can wait for a reader blocked on Windows.
+    # A live daemon reader therefore retains its pipe until the short-lived
+    # helper exits or the uncontained descendant closes the inherited writer.
+    # Return bounded snapshots now and make incomplete capture a hard non-pass.
 
     return {
         "returncode": process.returncode,

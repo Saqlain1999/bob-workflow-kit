@@ -4,10 +4,12 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import signal
 import shutil
 import subprocess
 import sys
 import tempfile
+import textwrap
 import unittest
 
 
@@ -228,6 +230,65 @@ class OutputLimitTests(unittest.TestCase):
         result = self.run_code("while True: pass", timeout=0.1)
         self.assertTrue(result["timed_out"])
         self.assertIsNotNone(result["returncode"])
+
+    def test_inherited_pipe_writer_returns_incomplete_without_hanging(self) -> None:
+        descendant_pid = self.directory / "descendant.pid"
+        worker_code = (
+            "import pathlib, subprocess, sys; "
+            "child=subprocess.Popen([sys.executable, '-B', '-c', "
+            "'import time; time.sleep(20)']); "
+            f"pathlib.Path({str(descendant_pid)!r}).write_text(str(child.pid), encoding='utf-8')"
+        )
+        probe = self.directory / "probe.py"
+        probe.write_text(textwrap.dedent(f"""
+            import importlib.util
+            import json
+            import os
+            import sys
+
+            spec = importlib.util.spec_from_file_location("evaluate_probe", {str(SCRIPT)!r})
+            helper = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(helper)
+            result = helper._run_bounded_process(
+                [sys.executable, "-B", "-c", {worker_code!r}],
+                {str(self.directory)!r}, dict(os.environ), 0.2, 64,
+            )
+            print(json.dumps(result))
+        """), encoding="utf-8")
+
+        process = subprocess.Popen(
+            [sys.executable, "-B", str(probe)],
+            cwd=self.directory, text=True,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        )
+        timed_out = False
+        try:
+            stdout, stderr = process.communicate(timeout=6)
+        except subprocess.TimeoutExpired:
+            timed_out = True
+            process.kill()
+            stdout, stderr = process.communicate(timeout=2)
+        finally:
+            if descendant_pid.is_file():
+                pid = int(descendant_pid.read_text(encoding="utf-8"))
+                if os.name == "nt":
+                    subprocess.run(
+                        ["taskkill", "/PID", str(pid), "/T", "/F"],
+                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                        timeout=5, check=False,
+                    )
+                else:
+                    try:
+                        os.kill(pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+
+        self.assertFalse(timed_out, stderr)
+        self.assertEqual(process.returncode, 0, stderr)
+        result = json.loads(stdout)
+        self.assertEqual(result["returncode"], 0)
+        self.assertEqual(result["capture_incomplete_channels"], ["stdout", "stderr"])
+        self.assertFalse(result["timed_out"])
 
     def test_unittest_diagnostics_are_bounded_with_multibyte_text(self) -> None:
         stream = HELPER._BoundedTextBuffer(64)
