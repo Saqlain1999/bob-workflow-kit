@@ -1,5 +1,29 @@
 # Local software validation
 
+## Reminder Remediated Release Handoff — 3 November 2026 (UTC)
+
+Observed on Linux with Python 3.12.14 after deriving the release-readiness
+fixture from the exact repaired state and current independent re-review. The
+results below are offline software checks, not a participant result, a live Bob
+observation, or release approval.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **116 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared release-readiness baseline | Twelve trusted checks; both repaired behavior boundaries passed and exactly ten named documentation/release-record failures reproduced; helper status `expected_baseline_failure` |
+| Known-good release-readiness control | Twelve checks passed; exact source, tests, current re-review, and historical gate records unchanged; only `USER_GUIDE.md` and `RELEASE_READINESS_HANDOFF.md` changed; helper status `public_tests_passed` |
+| Release-readiness negative controls | Release approval, missing current review, false 11/12 evidence, source edit, current-review edit, historical release edit, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **48 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **48 local Markdown links** checked across **93 Markdown files**; complete 24-file diff and `git diff --check` passed |
+
+The known-good control uses the exact decision `ready for release review` only
+after the current re-review disposes REV-001 and REV-002. That decision hands a
+finite candidate to human review; it does not authorize or perform a release,
+tag, artifact, deployment, publication, or announcement. These checks establish
+no general release judgment, production readiness, security proof,
+process-safe concurrency, broad compatibility, performance, or live Bob
+behavior. No model, Bob client, credential, network service, upstream content,
+release artifact, tag, deployment, publication, or paid API was used.
+
 ## Reminder Remediated Re-review — 2 November 2026 (UTC)
 
 Observed after reconciling the re-review branch with the current remediation
