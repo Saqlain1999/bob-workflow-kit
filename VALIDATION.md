@@ -1,5 +1,27 @@
 # Local software validation
 
+## Backend-neutral project-memory fixture — 4 November 2026 (UTC)
+
+The new `bob-project-memory-v1` fixture uses only constructed public data and
+Python's standard library. Its two projects and explicit shared-lessons scope
+exercise observable memory boundaries without installing or calling a real
+backend.
+
+Observed on Linux with Python 3.12.14:
+
+| Check | Observed result |
+| --- | --- |
+| Prepared baseline | 12 trusted checks; exactly 10 named expected failures; helper status `expected_baseline_failure` |
+| Disposable known-good control | 12/12 passed; protected inputs unchanged; only `memory_adapter.py` and `MEMORY_HANDOFF.md` changed |
+| Negative controls | Missing handoff, protected-contract edit, test edit, unrelated file, and in-workspace result output were rejected |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **43/43 passed**, exit 0; no skips or resource warnings |
+
+This is offline contract evidence, not a participant run. It does not establish
+live Bob discovery or workflow-following, a third-party MCP/backend integration,
+production durability, concurrent-process safety, privacy compliance, or
+backup deletion. No model, Bob credential, network service, hook, transcript,
+private project, or paid API was used.
+
 ## Inherited diagnostic-pipe follow-up — 26 October 2026 (UTC)
 
 Blocking review finding EVAL-001 reproduced that the earlier branch could wait

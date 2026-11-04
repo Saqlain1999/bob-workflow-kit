@@ -1,6 +1,6 @@
 # Contributing
 
-This repository contains two small, public coding tasks. Contributions should
+This repository contains three small, public coding tasks. Contributions should
 improve repeatability or add well-defined tasks, not imply benchmark coverage
 that has not been measured.
 
@@ -17,7 +17,8 @@ python -m unittest discover -s tests -v
 Keep helper tests separate from fixture tests, which deliberately contain a
 baseline failure or acquire known failures during preparation. Do not repair
 the original fixtures as incidental cleanup. Tiny Ledger is the default task;
-Parcel Resume uses the fixed `--task parcel-resume` selector.
+Parcel Resume uses `--task parcel-resume`, and Bob Project Memory uses
+`--task project-memory`.
 
 Worker stdout, stderr, unittest diagnostics, and the structured worker report
 have documented byte limits. A limit regression must remain an explicit exit-2
@@ -32,6 +33,13 @@ historical check, both expected current failures reproduce, protected policy
 and note bytes survive, and new/changed runtime files affect the state check.
 Keep constructed handoffs, helper checks and live participant observations
 distinct. This helper is not an extensible task platform or process sandbox.
+
+For Project Memory, preserve `contract.json`, both project evidence files, and
+the trusted tests. Candidate scope is exactly `memory_adapter.py` and
+`MEMORY_HANDOFF.md`. Keep hostile stored text inert, cross-project promotion
+explicit and sanitized, stale/conflicting evidence non-current, and outage
+fallback honest. The local control is not a production backend or live Bob
+qualification.
 
 Explain the problem, the proposed change, and the observed checks. Avoid
 unnecessary package dependencies, model SDKs, credentials, and network calls.

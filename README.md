@@ -2,13 +2,13 @@
 
 A small, reproducible evaluation starter for IBM Bob coding workflows.
 
-Two tasks offer a first trial: repair a deliberately faulty Python ledger, or
-resume a parcel-pricing change from a constructed checkpoint after the policy
-and a teammate's notes have changed. Each has a fixture, public tests, a
+Three tasks offer a first trial: repair a deliberately faulty Python ledger,
+resume a parcel-pricing change from a constructed checkpoint, or complete a
+backend-neutral project-memory contract. Each has a fixture, public tests, a
 participant prompt, a manual acceptance checklist, and an offline helper that
 runs trusted tests against a disposable candidate workspace.
 
-**Status: evaluation starter. No live Bob evaluation or large-repository
+**Status: evaluation starter. No live Bob evaluation, third-party memory-backend qualification, or large-repository
 benchmark has been performed for this repository.** These are small correctness
 and recovery exercises. Passing them does not establish reliable performance on
 large projects, prove that a workflow caused an improvement, or guarantee future
@@ -22,6 +22,8 @@ results. This is an independent community project, not an IBM product.
 | `tasks/tiny-ledger-atomicity/` | Task definition, agent prompt, and acceptance checklist |
 | `fixtures/parcel-resume/` | Multi-file pricing fixture and ten public tests |
 | `tasks/parcel-resume/` | Constructed interruption, current-state and preservation exercise |
+| `fixtures/bob-project-memory/` | Two-project memory contract with twelve trusted checks |
+| `tasks/bob-project-memory/` | Isolation, freshness, conflict, deletion, outage, and handoff exercise |
 | `scripts/evaluate.py` | Prepare a fresh workspace and collect local test evidence |
 | `tests/` | Checks for the evaluation helper itself, separate from fixture tests |
 | `docs/protocol.md` | How to run and report a manual evaluation |
@@ -137,6 +139,33 @@ state during verification. New runtime files enter the state fingerprints.
 participant used the checkpoint well or actually noticed stale evidence. No
 live Bob observation is inferred from a software test or a passing candidate.
 
+## Try the backend-neutral project-memory contract
+
+[Bob Project Memory](tasks/bob-project-memory/README.md) is an original,
+standard-library contract over two fictional projects and an explicit
+shared-lessons scope. It exercises recall, isolation, sanitized promotion,
+supersession, evidence freshness, revision conflicts, interrupted-write
+recovery, untrusted stored content, deletion, outage handling, and an honest
+handoff. It does not install or qualify a real memory backend.
+
+```sh
+python3 scripts/evaluate.py prepare --task project-memory --output runs/memory-001
+python3 scripts/evaluate.py baseline --task project-memory --workspace runs/memory-001 --result runs/memory-001-baseline.json
+```
+
+Use the [memory task prompt](tasks/bob-project-memory/AGENT_PROMPT.md) in the
+prepared workspace. A correct candidate may change only `memory_adapter.py`
+and `MEMORY_HANDOFF.md`; the helper runs the original twelve trusted checks and
+protects the contract and project evidence:
+
+```sh
+python3 scripts/evaluate.py candidate --task project-memory --workspace runs/memory-001 --result runs/memory-001-candidate.json
+```
+
+A pass is local contract evidence only. It is not evidence of native Bob
+discovery, workflow-following, an MCP integration, durable multi-process
+storage, backup erasure, or Engram/Basic Memory/Honcho behavior.
+
 ## What the helper reports
 
 `--result` writes a JSON report and refuses to overwrite an existing report.
@@ -156,7 +185,7 @@ diagnostic excerpt rather than crashing the helper.
 
 | Exit code | Meaning |
 | --- | --- |
-| `0` | Requested check succeeded: known faulty baseline confirmed, or candidate checks passed (including Parcel preservation and current-state checks) |
+| `0` | Requested check succeeded: known faulty baseline confirmed, or candidate checks passed (including task-specific preservation and scope checks) |
 | `1` | Tests ran, but the requested baseline or candidate condition was not satisfied |
 | `2` | Invalid arguments, file/output error, timeout, diagnostic/report limit, changed inputs during verification, or helper execution problem |
 

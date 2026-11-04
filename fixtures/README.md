@@ -29,5 +29,12 @@ Use its helper rather than manually copying it:
 python3 scripts/evaluate.py prepare --task parcel-resume --output runs/parcel-001
 ```
 
-Preserve both original fixtures. Their tests are public evidence for these small
+Preserve all three original fixtures. Their tests are public evidence for these small
 tasks, not large-repository coverage or observed Bob performance.
+
+`bob-project-memory/` is an original backend-neutral fixture for
+[bob-project-memory-v1](../tasks/bob-project-memory/README.md). It contains two
+fictional project evidence files, an explicit shared-lessons scope, a
+deliberately incomplete local adapter, and twelve trusted checks. Prepare it
+with `--task project-memory`. No third-party backend, hook, credential, model,
+or network service is used; a passing candidate does not qualify one.

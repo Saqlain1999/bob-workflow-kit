@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare two small fixtures and collect offline public-test/state evidence."""
+"""Prepare small fixtures and collect offline public-test/state evidence."""
 
 import argparse
 import hashlib
@@ -41,6 +41,25 @@ TASKS = {
             "test_export.ExportTests.test_below_policy_threshold_is_charged",
             "test_pricing.PricingTests.test_below_policy_threshold_is_charged",
         ],
+    },
+    "project-memory": {
+        "id": "bob-project-memory-v1",
+        "fixture": ROOT / "fixtures" / "bob-project-memory",
+        "entry": "memory_adapter.py",
+        "test_count": 12,
+        "failures": [
+            "test_memory_adapter.ProjectMemoryContractTests.test_backend_outage_degrades_to_repository_evidence",
+            "test_memory_adapter.ProjectMemoryContractTests.test_changed_source_marks_recall_stale",
+            "test_memory_adapter.ProjectMemoryContractTests.test_delete_removes_direct_history_and_indexed_retrieval",
+            "test_memory_adapter.ProjectMemoryContractTests.test_handoff_records_required_decisions_without_claiming_live_bob",
+            "test_memory_adapter.ProjectMemoryContractTests.test_hostile_content_remains_untrusted_data",
+            "test_memory_adapter.ProjectMemoryContractTests.test_identifiers_cannot_escape_declared_scopes",
+            "test_memory_adapter.ProjectMemoryContractTests.test_project_scopes_do_not_leak_or_collide",
+            "test_memory_adapter.ProjectMemoryContractTests.test_revision_conflict_refuses_lost_update",
+            "test_memory_adapter.ProjectMemoryContractTests.test_shared_promotion_uses_only_explicit_sanitized_summary",
+            "test_memory_adapter.ProjectMemoryContractTests.test_supersession_retains_ordered_history",
+        ],
+        "allowed_changes": {"memory_adapter.py", "MEMORY_HANDOFF.md"},
     },
 }
 HANDOFF_FILES = {
@@ -258,6 +277,14 @@ def _state_hash(files: Dict[str, str]) -> str:
 
 
 def _protected_files(task_name: str, historical: bool = False) -> Dict[str, bytes]:
+    if task_name == "project-memory":
+        fixture = _task(task_name)["fixture"]
+        names = (
+            "contract.json",
+            "projects/project-alpha/EVIDENCE.md",
+            "projects/project-beta/EVIDENCE.md",
+        )
+        return {name: (fixture / name).read_bytes() for name in names}
     if task_name != "parcel-resume":
         return {}
     fixture = _task(task_name)["fixture"]
@@ -302,7 +329,7 @@ def prepare(output: Path, task_name: str = "tiny-ledger", timeout: float = 30.0)
         "public_tests_sha256": _test_hash(fixture / "tests"),
         "model_calls_made_by_helper": 0,
     }
-    if task_name == "tiny-ledger":
+    if task_name != "parcel-resume":
         return report
     try:
         historical, exit_code = check(output, "historical", timeout, task_name)
@@ -432,6 +459,17 @@ def check(workspace: Path, phase: str, timeout: float, task_name: str = "tiny-le
         "observed_bob_behavior": "not_assessed",
         "model_calls_made_by_helper": 0,
     }
+    allowed_changes = set(task.get("allowed_changes", set()))
+    scope_changes = sorted(
+        name for name in set(expected) | set(before)
+        if expected.get(name) != before.get(name)
+    )
+    scope_valid = not allowed_changes or set(scope_changes) <= allowed_changes
+    report["candidate_scope"] = {
+        "allowed_changes": sorted(allowed_changes),
+        "observed_changes": scope_changes,
+        "only_allowed_changes": scope_valid,
+    }
     started = time.perf_counter()
     with tempfile.TemporaryDirectory(prefix="bob-eval-") as temporary:
         worker_report = Path(temporary) / "tests.json"
@@ -554,8 +592,16 @@ def check(workspace: Path, phase: str, timeout: float, task_name: str = "tiny-le
         )
         report["status"] = "expected_baseline_failure" if valid else "unexpected_baseline"
     else:
-        valid = complete_suite and not tests["failures"] and tests["successful"] and protected_valid
-        report["status"] = "public_tests_passed" if valid else ("protected_inputs_changed" if not protected_valid else "public_tests_failed")
+        valid = (
+            complete_suite and not tests["failures"] and tests["successful"]
+            and protected_valid and scope_valid
+        )
+        report["status"] = (
+            "public_tests_passed" if valid
+            else "protected_inputs_changed" if not protected_valid
+            else "candidate_scope_changed" if not scope_valid
+            else "public_tests_failed"
+        )
     return report, 0 if valid else 1
 
 
@@ -566,7 +612,7 @@ def _validate_output(path: Optional[Path], workspace: Optional[Path] = None) -> 
     if _inside(resolved, (ROOT / "fixtures").resolve()):
         raise ValueError("Result output must be outside the original fixture")
     if workspace is not None and _inside(resolved, workspace.resolve()):
-        raise ValueError("Parcel result output must be outside the candidate workspace so recording it does not change the verified state")
+        raise ValueError("Result output must be outside the candidate workspace so recording it does not change the verified state")
     if resolved.exists():
         raise ValueError("Result file already exists; choose a new filename")
     return resolved
@@ -599,7 +645,10 @@ def main(argv: Optional[List[str]] = None) -> int:
             result_path = None
             exit_code = 0
         else:
-            result_path = _validate_output(args.result, args.workspace if args.task == "parcel-resume" else None)
+            result_path = _validate_output(
+                args.result,
+                args.workspace if args.task in {"parcel-resume", "project-memory"} else None,
+            )
             report, exit_code = check(args.workspace, args.command, args.timeout, args.task)
         encoded = json.dumps(report, indent=2) + "\n"
         if result_path is not None:
