@@ -163,3 +163,68 @@ Native Windows/macOS execution, live Bob behavior, and large-repository
 evaluations are not established by this record.
 
 Use the [evaluation protocol](docs/protocol.md) to collect an actual participant run. Keep helper test results, participant behavior, and manual acceptance separate.
+
+
+## Local memory-gate corrections — separate follow-up evidence
+
+This section corrects the automatic gate and its disposable positive control on
+top of exact source `4dff443f9ee51d0d9862aa29ff605f7d802d6ad6`.
+All preceding historical prose and counts are preserved, not re-attributed to
+this revision. The intentionally faulty packaged `memory_adapter.py`, protected
+contract, and both evidence documents remain byte-identical to that source.
+
+Observed locally on Linux, `/usr/bin/python3` **3.13.5**:
+
+| Check | Actual result |
+| --- | --- |
+| Full source helper suite, `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **54/54 passed**, exit 0, 13.925 s; no skips or emitted resource warnings |
+| Direct prepared memory baseline | **17 trusted tests, exactly 14 named failures**, no errors/skips; helper exit 0 / `expected_baseline_failure` means intended defects reproduced |
+| Direct repaired disposable control | **17/17 passed**, exit 0 / `public_tests_passed`; only adapter and handoff changed, protected bytes preserved, before/after state stable |
+| Existing negative controls | Missing handoff, protected contract edit, weakened candidate tests, unrelated file and in-candidate result path still rejected |
+| New process-local-only negative control | Rejected specifically by distinct writer/reader-process recall; memory-only state cannot manufacture persistence |
+| Python/JSON compatibility checks | All 16 tracked Python files parse with Python 3.10 grammar; all 4 tracked JSON files parse; execution was on 3.13.5 only |
+| Original adapter/contract/project evidence | Exact byte comparison against the supplied base passed |
+| Whitespace | `git diff --check` passed |
+
+Failing-first sequence was exercised, not inferred: the new identifier-domain
+test failed against the old repaired control (unknown scopes and colons were
+accepted), then passed after rejection was added. The process-local-only
+regression first failed because the old gate had no fresh-process failure; it
+passed only after distinct writer and reader subprocesses were added. Actual
+partial-save and replace-failure tests failed against the old control's retained
+temporary output, then passed with cleanup. The raw baseline additionally failed
+on corrupted committed bytes during partial direct write, and on absence of the
+replace boundary. The independent-instance stale-write test failed with
+`RevisionConflict not raised`, then passed after disk refresh before the revision
+check. The internal Engram brief-mapping regression failed on `brief(project=...)`,
+then passed with wording matching the existing empty-argument, DB-pinned preview.
+
+The five added trusted tests cover identifier domain, distinct processes,
+partial save, failed replace and sequential stale instances. All original twelve
+checks remain; the legacy orphan-temp test is explicitly identified as a narrower
+load check. Baseline failures grew from ten to fourteen based on real execution;
+the baseline already passed distinct-process recall and still passes both old
+fresh-object and orphan-temp checks. Full exact failure IDs are enforced in
+`scripts/evaluate.py`.
+
+Execution used only `PATH=/usr/bin:/bin`, a scratch-only `HOME`, the existing
+profile scratch `TMPDIR`, `LANG=C.UTF-8`, `PYTHONDONTWRITEBYTECODE=1`, and
+`PYTHONNOUSERSITE=1`. Fresh-process children use the same nonsecret allowlist with
+their disposable state root as HOME. No installed providers or credentials were
+inherited. Prowl discovery was attempted but unavailable (exit 127); bounded
+source inspection and local Git objects were used instead. No network isolation
+claim is made: inspected stdlib-only tests, not an OS sandbox, establish the
+bounded execution path. Logs and direct-control JSON are retained outside this
+worktree in the local consolidation evidence directory.
+
+See `tasks/bob-project-memory/ACCEPTANCE.md` for the exact boundary: local
+Path-based injected failures are not power-loss durability; sequential refresh is
+not atomic multiprocess CAS; source tokens are not verified evidence hashes;
+promotion provenance and whole-surface outage semantics remain manual. Fixture
+green is **not live backend qualification**. Engram remains optional inert
+research plus a disabled preview. External source/asset verification is **NOT RUN**;
+actual upstream API compatibility, Engram/MCP/Bob execution, model behavior,
+concurrency, backup erasure and production readiness are **NOT RUN / NOT QUALIFIED**.
+No downloads, installs, services, model/provider calls, private memory, publication
+or main/integration merge occurred. Native Python 3.10 and hosted matrix execution
+were not performed; the grammar check does not substitute for them.

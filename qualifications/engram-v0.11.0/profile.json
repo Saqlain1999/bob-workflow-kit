@@ -6,6 +6,7 @@
   "evidence_level": "source_reviewed_preview_only",
   "source": {
     "repository": "https://github.com/techtheist/engram",
+    "external_verification": "NOT RUN",
     "tag": "v0.11.0",
     "commit": "ed4fe24d97f16f1c362d0c4d6b74bfe4d2caf0c3",
     "commit_date_utc": "2026-10-31T23:33:58Z",
@@ -65,7 +66,7 @@
   "contract_mapping": [
     {
       "behavior": "fresh-session recall",
-      "candidate_mechanism": "explicit brief(project=...) and search",
+      "candidate_mechanism": "internal preview: brief with {} on the DB-pinned project, plus search; actual upstream API unverified",
       "status": "runtime_evidence_required"
     },
     {

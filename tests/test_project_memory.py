@@ -63,6 +63,38 @@ class ProjectMemoryFixtureTests(unittest.TestCase):
         for old, new in replacements.items():
             self.assertEqual(source.count(old), 1, old)
             source = source.replace(old, new)
+        source = source.replace('or "/" in value', 'or ":" in value or "/" in value')
+        source = source.replace(
+            '        cls._validate_identifier(project)',
+            '        if project not in {"project-alpha", "project-beta", "shared-lessons"}:\n'
+            '            raise ValueError("unknown project scope")\n'
+            '        cls._validate_identifier(project)',
+        )
+        source = source.replace(
+            '        prefix = project + ":"',
+            '        self._storage_key(project, "validation")\n        prefix = project + ":"',
+        )
+        source = source.replace(
+            '        previous = self._data["records"].get(storage_key)',
+            '        self._data = self._load()  # Sequential independent-instance freshness only.\n'
+            '        previous = self._data["records"].get(storage_key)',
+        )
+        save_start = source.index('    def _save(')
+        save_end = source.index('    @staticmethod', save_start)
+        source = source[:save_start] + '''    def _save(self) -> None:
+        try:
+            self.temporary_path.write_text(
+                json.dumps(self._data, indent=2, sort_keys=True) + "\\n",
+                encoding="utf-8",
+            )
+            self.temporary_path.replace(self.state_path)
+        except OSError:
+            self._data = self._load()
+            raise
+        finally:
+            self.temporary_path.unlink(missing_ok=True)
+
+''' + source[save_end:]
         path.write_text(source, encoding="utf-8")
         (self.workspace / "MEMORY_HANDOFF.md").write_text(
             """# Memory handoff
@@ -70,10 +102,11 @@ class ProjectMemoryFixtureTests(unittest.TestCase):
 Status: contract checks passed
 Allowed changes: memory_adapter.py and MEMORY_HANDOFF.md
 Project isolation: project-qualified keys; shared promotion is explicit and sanitized.
-Source freshness: mismatched hashes return stale evidence.
-Revision conflicts: stale expected revisions are refused.
+Source freshness: caller-supplied token mismatch marks stale; evidence hashing is manual.
+Revision conflicts: sequential stale independent instances refused; concurrent CAS is not qualified.
 Deletion: direct, history, and index entries are removed; external backups are outside this fixture.
-Backend outage: unavailable with repository evidence fallback, never a memory pass.
+Backend outage: Boolean recall simulation points to evidence; no real fallback read or all-operation outage claim.
+Promotion provenance: summary/trust checks only; source project/key/revision provenance remains manual.
 Live Bob evidence: not assessed
 Production evidence: not assessed
 """,
@@ -86,8 +119,8 @@ Production evidence: not assessed
         report = json.loads(result.stdout)
         self.assertEqual(report["task_id"], "bob-project-memory-v1")
         self.assertEqual(report["status"], "expected_baseline_failure")
-        self.assertEqual(report["tests"]["tests_run"], 12)
-        self.assertEqual(len(report["tests"]["failures"]), 10)
+        self.assertEqual(report["tests"]["tests_run"], 17)
+        self.assertEqual(len(report["tests"]["failures"]), 14)
         self.assertEqual(report["tests"]["errors"], [])
         self.assertTrue(report["protected_inputs_match_prepared"])
 
@@ -96,7 +129,7 @@ Production evidence: not assessed
         result, report = self.candidate()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(report["status"], "public_tests_passed")
-        self.assertEqual(report["tests"]["tests_run"], 12)
+        self.assertEqual(report["tests"]["tests_run"], 17)
         self.assertTrue(report["tests"]["successful"])
         self.assertEqual(
             report["candidate_scope"]["observed_changes"],
@@ -137,6 +170,27 @@ Production evidence: not assessed
         self.assertTrue(report["tests"]["successful"])
         self.assertEqual(report["status"], "candidate_scope_changed")
         self.assertFalse(report["candidate_scope"]["only_allowed_changes"])
+
+    def test_process_local_only_control_fails_distinct_process_recall(self) -> None:
+        self.repair()
+        path = self.workspace / "memory_adapter.py"
+        source = path.read_text(encoding="utf-8")
+        start = source.index('    def _load(')
+        end = source.index('    @staticmethod', start)
+        source = source[:start] + '''    def _load(self):
+        return _PROCESS_DATA.setdefault(str(self.root), {"records": {}, "history": {}, "index": []})
+
+    def _save(self):
+        pass
+
+''' + source[end:]
+        path.write_text('_PROCESS_DATA = {}\n' + source, encoding="utf-8")
+        result, report = self.candidate()
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn(
+            "test_memory_adapter.ProjectMemoryContractTests.test_distinct_writer_reader_processes_recall_committed_value",
+            report["tests"]["failures"],
+        )
 
     def test_result_output_inside_candidate_is_rejected(self) -> None:
         result = self.invoke(

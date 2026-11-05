@@ -12,3 +12,10 @@ helper; do not repair this original fixture in place.
 Protected inputs are `contract.json`, both files under `projects/`, and the
 trusted tests. A participant may change only `memory_adapter.py` and
 `MEMORY_HANDOFF.md`.
+
+The corrected local gate adds declared-scope/delimiter checks, distinct writer
+and reader processes, injected actual-save failures, and sequential stale-instance
+refusal. The packaged adapter's defects remain intentional. See the
+[acceptance boundaries](../../tasks/bob-project-memory/ACCEPTANCE.md) for manual
+provenance, token-only freshness, outage coverage, and concurrency limitations.
+Fixture green never qualifies a live backend.

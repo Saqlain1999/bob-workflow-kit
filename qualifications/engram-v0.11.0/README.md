@@ -4,6 +4,17 @@ This record maps the backend-neutral project-memory contract to a pinned Engram
 Alpha release without installing or executing Engram. It exists so a later
 disposable runtime trial has exact inputs, stop conditions, and evidence gaps.
 
+## Evidence status after local correction
+
+This is optional inert research and a disabled text preview, not a default
+memory backend or permission to execute a trial. The following pin, dates,
+license, source statements and asset digest are inherited recorded assertions.
+Independent upstream/source/asset verification is **NOT RUN** in this correction;
+no asset was downloaded. Static self-consistency tests do not authenticate them.
+The internal preview contract uses `brief` with `{}` on the DB-pinned project;
+this wording alignment does not verify or guess the actual upstream API.
+Runtime/MCP/Bob qualification remains **NOT RUN**, with conflict/deletion blocked.
+
 ## Reviewed source
 
 - Repository: <https://github.com/techtheist/engram>

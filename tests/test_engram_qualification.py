@@ -39,6 +39,13 @@ class EngramQualificationTests(unittest.TestCase):
         self.assertEqual(source["release_published_utc"], "2026-11-01T00:05:43Z")
         self.assertEqual(source["asset"]["sha256"], EXPECTED_SHA256)
 
+    def test_mapping_matches_internal_brief_contract_without_external_claim(self) -> None:
+        mapping = self.profile["contract_mapping"][0]["candidate_mechanism"]
+        self.assertNotIn("brief(project=", mapping)
+        self.assertIn("brief with {}", mapping)
+        self.assertEqual(self.profile["bob_trial_contract"]["first_tool_call"], {"tool": "brief", "arguments": {}})
+        self.assertEqual(self.profile["source"]["external_verification"], "NOT RUN")
+
     def test_every_backend_neutral_behavior_has_one_honest_mapping(self) -> None:
         contract = json.loads(
             (ROOT / "fixtures" / "bob-project-memory" / "contract.json").read_text(encoding="utf-8")
