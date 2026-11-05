@@ -41,6 +41,13 @@ explicit and sanitized, stale/conflicting evidence non-current, and outage
 fallback honest. The local control is not a production backend or live Bob
 qualification.
 
+For backend qualification records, pin an exact source commit, release event,
+licence, and reviewed asset digest when one exists. Map every Project Memory
+behavior to evidence, adapter work, or a named block. Preview helpers must be
+non-mutating and must not install or execute a backend, edit global Bob settings,
+grant automatic approval, capture transcripts, or turn missing runtime evidence
+into a compatibility claim.
+
 Explain the problem, the proposed change, and the observed checks. Avoid
 unnecessary package dependencies, model SDKs, credentials, and network calls.
 

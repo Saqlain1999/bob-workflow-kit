@@ -1,5 +1,30 @@
 # Local software validation
 
+## Engram Alpha v0.11.0 source qualification gate — 5 November 2026 (UTC)
+
+The qualification record pins upstream source, release, licence, and Linux asset
+digest, maps all ten backend-neutral memory behaviors to a candidate mechanism
+or explicit gap, and renders a disabled project-only Bob MCP preview. Engram and
+Bob were not installed or executed.
+
+Observed on Linux with Python 3.12.14:
+
+| Check | Observed result |
+| --- | --- |
+| Pinned source controls | Tag `v0.11.0`, commit `ed4fe24d97f16f1c362d0c4d6b74bfe4d2caf0c3`, MIT licence, 1 November release event, and published asset SHA-256 matched the reviewed profile |
+| Contract mapping | All ten `bob-project-memory-v1` behaviors mapped once; none marked qualified; revision conflict and deletion remained blocked |
+| Preview controls | Project-only `.bob/mcp.json`; absolute command/project paths; project-local database; explicit briefing; disabled by default; no automatic approvals |
+| Preservation controls | No file was written, no process was started, and relative project/binary paths were rejected |
+| Runtime-side-effect record | Detached local core, graph/log files, loopback metadata, project registration, downloads, stop and removal all remain explicit runtime observations |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **52/52 passed**, exit 0; no skips or resource warnings |
+
+This is static source-review and preview-harness evidence. It is not Engram
+runtime behavior, asset verification on a downloaded file, MCP initialization,
+live Bob discovery or tool use, contract acceptance, backup erasure, privacy
+compliance, or production readiness. A later disposable trial must verify the
+asset digest independently and retain repository evidence as the outage
+fallback.
+
 ## Backend-neutral project-memory fixture — 4 November 2026 (UTC)
 
 The new `bob-project-memory-v1` fixture uses only constructed public data and

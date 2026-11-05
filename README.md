@@ -24,6 +24,7 @@ results. This is an independent community project, not an IBM product.
 | `tasks/parcel-resume/` | Constructed interruption, current-state and preservation exercise |
 | `fixtures/bob-project-memory/` | Two-project memory contract with twelve trusted checks |
 | `tasks/bob-project-memory/` | Isolation, freshness, conflict, deletion, outage, and handoff exercise |
+| `qualifications/` | Pinned backend-specific evidence gates; no installation or runtime claim |
 | `scripts/evaluate.py` | Prepare a fresh workspace and collect local test evidence |
 | `tests/` | Checks for the evaluation helper itself, separate from fixture tests |
 | `docs/protocol.md` | How to run and report a manual evaluation |
@@ -165,6 +166,13 @@ python3 scripts/evaluate.py candidate --task project-memory --workspace runs/mem
 A pass is local contract evidence only. It is not evidence of native Bob
 discovery, workflow-following, an MCP integration, durable multi-process
 storage, backup erasure, or Engram/Basic Memory/Honcho behavior.
+
+The first backend-specific record is the
+[Engram Alpha v0.11.0 qualification gate](qualifications/engram-v0.11.0/README.md).
+It pins reviewed source and release evidence, maps every contract behavior to a
+candidate mechanism or gap, and provides a non-mutating disabled project-config
+preview. It does not install or execute Engram and leaves runtime adoption
+blocked pending the named cases.
 
 ## What the helper reports
 
