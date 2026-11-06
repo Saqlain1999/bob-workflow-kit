@@ -14,3 +14,4 @@ a binary, or call a model.
 | Record | Decision | Evidence boundary |
 | --- | --- | --- |
 | [`engram-v0.11.0`](engram-v0.11.0/README.md) | Adapt only after runtime qualification | Source-reviewed profile and non-mutating Bob project-config preview; no Engram or Bob execution |
+| [`basic-memory-v1.0.0`](basic-memory-v1.0.0/README.md) | Qualify only after runtime evidence | Source-reviewed profile and non-mutating, isolated Bob project-config preview; no Basic Memory or Bob execution |

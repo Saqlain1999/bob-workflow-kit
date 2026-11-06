@@ -1,5 +1,28 @@
 # Local software validation
 
+## Basic Memory v1.0.0 source qualification gate — 6 November 2026 (UTC)
+
+The Basic Memory gate pins the exact v1.0.0 source commit and published wheel
+digest, maps all ten backend-neutral memory behaviors to a candidate mechanism
+or explicit adapter/runtime gap, and renders an isolated, disabled project-only
+Bob MCP preview. Basic Memory, the wheel, `uvx`, Bob, and every MCP tool remained
+unexecuted.
+
+| Check | Observed result |
+| --- | --- |
+| ResourceWarning-fatal combined suite | 62/62 passed on Linux with Python 3.12.14 |
+| Basic Memory focused suite | 10/10 passed |
+| Python 3.10 grammar | 18 files parsed |
+| JSON syntax | 5 files parsed |
+| Local Markdown links | 28 links across 27 files; no missing targets |
+| Preview preservation | Absolute-path controls passed; no file created and no process started |
+| Inherited-pipe watchdog regression | Reproduced a false diagnostic limit under suite-wide fatal ResourceWarning; isolated that deliberate descendant probe and passed focused/full reruns |
+| Hosted matrix | Pending exact-head execution |
+
+This is static source-review and preview-harness evidence. It is not Basic
+Memory installation, dependency resolution, Bob compatibility, MCP behavior,
+memory-contract acceptance, AGPL compliance review, or production readiness.
+
 ## Engram Alpha v0.11.0 source qualification gate — 5 November 2026 (UTC)
 
 The qualification record pins upstream source, release, licence, and Linux asset
