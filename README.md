@@ -46,7 +46,6 @@ results. This is an independent community project, not an IBM product.
 | `tasks/reminder-remediated-review/` | Read-only remediation re-review prompt and manual disposition review |
 | `fixtures/reminder-remediated-release-handoff/` | Repaired and re-reviewed reminder candidate, preserved gate history, and twelve release-readiness checks |
 | `tasks/reminder-remediated-release-handoff/` | Current documentation/release prompt and manual ready-for-review boundary |
-
 | `fixtures/bob-project-memory/` | Two-project memory contract with seventeen trusted checks |
 | `tasks/bob-project-memory/` | Isolation, freshness, conflict, deletion, outage, and handoff exercise |
 | `qualifications/` | Pinned backend-specific evidence gates; no installation or runtime claim |
@@ -342,7 +341,8 @@ standard-library contract over two fictional projects and an explicit
 shared-lessons scope. It exercises recall, isolation, sanitized promotion,
 supersession, evidence freshness, revision conflicts, interrupted-write
 recovery, untrusted stored content, deletion, outage handling, and an honest
-handoff. It does not install or qualify a real memory backend.
+handoff. It is an optional conditional local exercise, not a default memory
+capture path. It does not install or qualify a real memory backend.
 
 ```sh
 python3 scripts/evaluate.py prepare --task project-memory --output runs/memory-001

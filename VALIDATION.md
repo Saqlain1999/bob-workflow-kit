@@ -309,4 +309,7 @@ The exact pre-refresh validation body is retained in
 The corrected memory source validation body is retained in
 [HISTORICAL-VALIDATION-memory-source.md](docs/HISTORICAL-VALIDATION-memory-source.md).
 Their historical counts are observations at their own source heads, not this
-combined tree. New combined-tree execution is recorded separately.
+combined tree. The exact separately attributed monorepo-fork body is retained in
+[HISTORICAL-VALIDATION-pre-refresh-fork.md](docs/HISTORICAL-VALIDATION-pre-refresh-fork.md).
+New combined-tree execution is recorded separately in
+[COMBINED-SOURCE-VALIDATION.md](docs/COMBINED-SOURCE-VALIDATION.md).
