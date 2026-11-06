@@ -301,3 +301,12 @@ Native Windows/macOS execution, live Bob behavior, and large-repository
 evaluations are not established by this record.
 
 Use the [evaluation protocol](docs/protocol.md) to collect an actual participant run. Keep helper test results, participant behavior, and manual acceptance separate.
+
+## Historical observations and local integration
+
+The exact pre-refresh validation body is retained in
+[HISTORICAL-VALIDATION-pre-refresh.md](docs/HISTORICAL-VALIDATION-pre-refresh.md).
+The corrected memory source validation body is retained in
+[HISTORICAL-VALIDATION-memory-source.md](docs/HISTORICAL-VALIDATION-memory-source.md).
+Their historical counts are observations at their own source heads, not this
+combined tree. New combined-tree execution is recorded separately.

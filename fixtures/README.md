@@ -73,5 +73,15 @@ python3 scripts/evaluate.py prepare --task reminder-remediated-review --output r
 python3 scripts/evaluate.py prepare --task reminder-remediated-release-handoff --output runs/release-ready-001
 ```
 
-Preserve all ten original fixtures. Their tests are public evidence for these
+Preserve all eleven original fixtures. Their tests are public evidence for these
 small tasks, not large-repository coverage or observed Bob performance.
+
+Preserve all three original fixtures. Their tests are public evidence for these small
+tasks, not large-repository coverage or observed Bob performance.
+
+`bob-project-memory/` is an original backend-neutral fixture for
+[bob-project-memory-v1](../tasks/bob-project-memory/README.md). It contains two
+fictional project evidence files, an explicit shared-lessons scope, a
+deliberately incomplete local adapter, and seventeen trusted checks. Prepare it
+with `--task project-memory`. No third-party backend, hook, credential, model,
+or network service is used; a passing candidate does not qualify one.

@@ -1,6 +1,6 @@
 # Contributing
 
-This repository contains ten small, public coding, documentation, planning,
+This repository contains eleven small, public coding, documentation, planning,
 review, and release-handoff tasks. Contributions should improve repeatability
 or add well-defined tasks, not imply benchmark coverage that has not been
 measured.
@@ -23,6 +23,9 @@ Implementation and Debugging, Reminder Independent Review, and Reminder
 Release Handoff, Reminder Review Remediation, Reminder Remediated Re-review,
 and Reminder Remediated Release Handoff use their documented fixed task
 selectors.
+
+Parcel Resume uses `--task parcel-resume`, and Bob Project Memory uses
+`--task project-memory`.
 
 Worker stdout, stderr, unittest diagnostics, and the structured worker report
 have documented byte limits. A limit regression must remain an explicit exit-2
@@ -85,6 +88,20 @@ and historical review/release records. Allow only `USER_GUIDE.md` and
 `RELEASE_READINESS_HANDOFF.md` to change. The exact `ready for release review`
 decision hands a finite candidate to human review; it is not release approval
 and authorizes no tag, artifact, deployment, publication, or announcement.
+
+For Project Memory, preserve `contract.json`, both project evidence files, and
+the trusted tests. Candidate scope is exactly `memory_adapter.py` and
+`MEMORY_HANDOFF.md`. Keep hostile stored text inert, cross-project promotion
+explicit and sanitized, stale/conflicting evidence non-current, and outage
+fallback honest. The local control is not a production backend or live Bob
+qualification.
+
+For backend qualification records, pin an exact source commit, release event,
+licence, and reviewed asset digest when one exists. Map every Project Memory
+behavior to evidence, adapter work, or a named block. Preview helpers must be
+non-mutating and must not install or execute a backend, edit global Bob settings,
+grant automatic approval, capture transcripts, or turn missing runtime evidence
+into a compatibility claim.
 
 Explain the problem, the proposed change, and the observed checks. Avoid
 unnecessary package dependencies, model SDKs, credentials, and network calls.
