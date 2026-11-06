@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare eight small fixtures and collect offline public-test/state evidence."""
+"""Prepare ten small fixtures and collect offline public-test/state evidence."""
 
 import argparse
 import hashlib
@@ -184,6 +184,33 @@ TASKS = {
             "notifier/store.py",
         ],
         "allowed_candidate_changes": ["REMEDIATION_REVIEW.md"],
+    },
+    "reminder-remediated-release-handoff": {
+        "id": "reminder-remediated-release-handoff-v1",
+        "fixture": ROOT / "fixtures" / "reminder-remediated-release-handoff",
+        "entry": "RELEASE_READINESS_HANDOFF.md",
+        "test_count": 12,
+        "failures": [
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_acceptance_and_findings_are_disposed",
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_claim_limits_remain_explicit",
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_current_review_supersedes_but_preserves_historical_gates",
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_documentation_operations_and_rollback_are_truthful",
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_exact_current_validation_is_bounded",
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_exact_ready_for_review_decision_and_no_publication",
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_handoff_has_required_sections_in_order",
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_stale_detection_stop_and_recovery_are_explicit",
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_user_guide_has_required_sections_in_order",
+            "test_remediated_release_handoff.ReminderRemediatedReleaseHandoffTests.test_user_guide_records_current_unreleased_behavior",
+        ],
+        "protected_files": [
+            "REQUEST.md", "DELIVERY_PLAN.md", "IMPLEMENTATION_HANDOFF.md",
+            "REVIEW_HANDOFF.md", "RELEASE_HANDOFF.md", "REMEDIATION_REVIEW.md",
+            "TEAM_NOTES.md", "notifier/__init__.py", "notifier/service.py",
+            "notifier/store.py",
+        ],
+        "allowed_candidate_changes": [
+            "RELEASE_READINESS_HANDOFF.md", "USER_GUIDE.md",
+        ],
     },
 }
 HANDOFF_FILES = {
@@ -784,6 +811,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 "reminder-implementation-debugging", "reminder-independent-review",
                 "reminder-release-handoff", "reminder-review-remediation",
                 "reminder-remediated-review",
+                "reminder-remediated-release-handoff",
             }
             result_path = _validate_output(
                 args.result, args.workspace if args.task in state_bound_tasks else None

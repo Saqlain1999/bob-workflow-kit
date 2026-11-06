@@ -81,6 +81,15 @@ The reviewer must independently reconcile the current candidate, dispose both
 historical findings with current evidence, retain untested scope, and use
 `ready for release preparation` only as a handoff to a separate release stage.
 
+For `reminder-remediated-release-handoff-v1`, use
+`prepare --task reminder-remediated-release-handoff`. The exact remediated
+source, trusted tests, accepted inputs, implementation evidence, current
+`REMEDIATION_REVIEW.md`, and historical review/release records are protected.
+Only `USER_GUIDE.md` and `RELEASE_READINESS_HANDOFF.md` may change. The
+participant must reconcile current and historical evidence, record a bounded
+`ready for release review` decision, and must not treat that decision as
+release, tag, artifact, deployment, publication, or announcement authority.
+
 ## 3. Observe the participant
 
 Let the participant work within the stated scope and native permissions.
@@ -164,7 +173,7 @@ interventions, reported resource use if available, and scope of validation.
 Do not convert test-execution time into agent duration or use a missing cost
 measurement as zero cost.
 
-This repository contains six tiny public fixtures. A successful example is
+This repository contains ten tiny public fixtures. A successful example is
 not a large-project benchmark. A controlled comparison would need enough tasks
 and repeated runs, a declared protocol, comparable conditions, and analysis of
 uncertainty before supporting general conclusions. No such study is included.

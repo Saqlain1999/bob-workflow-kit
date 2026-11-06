@@ -1,6 +1,6 @@
 # Contributing
 
-This repository contains nine small, public coding, documentation, planning,
+This repository contains ten small, public coding, documentation, planning,
 review, and release-handoff tasks. Contributions should improve repeatability
 or add well-defined tasks, not imply benchmark coverage that has not been
 measured.
@@ -20,8 +20,9 @@ baseline failure or acquire known failures during preparation. Do not repair
 the original fixtures as incidental cleanup. Tiny Ledger is the default task;
 Parcel Resume, Technical Writing Fidelity, Project Planning Handoff, Reminder
 Implementation and Debugging, Reminder Independent Review, and Reminder
-Release Handoff, Reminder Review Remediation, and Reminder Remediated Re-review
-use their documented fixed task selectors.
+Release Handoff, Reminder Review Remediation, Reminder Remediated Re-review,
+and Reminder Remediated Release Handoff use their documented fixed task
+selectors.
 
 Worker stdout, stderr, unittest diagnostics, and the structured worker report
 have documented byte limits. A limit regression must remain an explicit exit-2
@@ -77,6 +78,13 @@ tests, accepted inputs, implementation handoff, and historical review and
 release records. Allow only `REMEDIATION_REVIEW.md` to change. The new review
 must dispose both findings with current code and behavioral evidence; `ready for
 release preparation` is a handoff to a separate stage, not release approval.
+
+For Reminder Remediated Release Handoff, preserve the exact repaired source,
+trusted tests, accepted inputs, implementation evidence, current re-review,
+and historical review/release records. Allow only `USER_GUIDE.md` and
+`RELEASE_READINESS_HANDOFF.md` to change. The exact `ready for release review`
+decision hands a finite candidate to human review; it is not release approval
+and authorizes no tag, artifact, deployment, publication, or announcement.
 
 Explain the problem, the proposed change, and the observed checks. Avoid
 unnecessary package dependencies, model SDKs, credentials, and network calls.

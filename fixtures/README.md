@@ -60,14 +60,18 @@ only the service and current implementation handoff may change, while the
 review and blocked release records remain protected for a new reviewer.
 `reminder-remediated-review/` starts from the repaired control and permits only
 a new review artifact; the exact candidate and historical records stay
-protected.
+protected. `reminder-remediated-release-handoff/` starts from that exact
+candidate with the fresh review filled in. Only the current user guide and a
+new release-readiness handoff may change; all source, test, current-review, and
+historical gate evidence remains protected.
 
 ```sh
 python3 scripts/evaluate.py prepare --task reminder-independent-review --output runs/review-001
 python3 scripts/evaluate.py prepare --task reminder-release-handoff --output runs/release-001
 python3 scripts/evaluate.py prepare --task reminder-review-remediation --output runs/remediation-001
 python3 scripts/evaluate.py prepare --task reminder-remediated-review --output runs/rereview-001
+python3 scripts/evaluate.py prepare --task reminder-remediated-release-handoff --output runs/release-ready-001
 ```
 
-Preserve all nine original fixtures. Their tests are public evidence for these
+Preserve all ten original fixtures. Their tests are public evidence for these
 small tasks, not large-repository coverage or observed Bob performance.
