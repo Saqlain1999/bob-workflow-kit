@@ -18,7 +18,7 @@ unexecuted.
 | Preview preservation | Absolute-path controls passed; no file created and no process started |
 | Inherited-pipe watchdog regression | Reproduced a false diagnostic limit under suite-wide fatal ResourceWarning; isolated that deliberate descendant probe and passed focused/full reruns |
 | First hosted matrix | Run 42188595883 exposed mixed separators in the Windows config-directory preview; that head is superseded and its results are not carried forward |
-| Hosted matrix | Pending on the corrected exact head |
+| Corrected hosted matrix | [Run 42188906953](https://github.com/Saqlain1999/bob-workflow-evals/actions/runs/42188906953) passed all six Ubuntu/macOS/Windows × Python 3.10/3.12 jobs and every helper-test step at head `94bb2f23c8989d9ce095b44496a6519b749c1a96` |
 
 This is static source-review and preview-harness evidence. It is not Basic
 Memory installation, dependency resolution, Bob compatibility, MCP behavior,
