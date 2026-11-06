@@ -17,7 +17,8 @@ unexecuted.
 | Local Markdown links | 28 links across 27 files; no missing targets |
 | Preview preservation | Absolute-path controls passed; no file created and no process started |
 | Inherited-pipe watchdog regression | Reproduced a false diagnostic limit under suite-wide fatal ResourceWarning; isolated that deliberate descendant probe and passed focused/full reruns |
-| Hosted matrix | Pending exact-head execution |
+| First hosted matrix | Run 42188595883 exposed mixed separators in the Windows config-directory preview; that head is superseded and its results are not carried forward |
+| Hosted matrix | Pending on the corrected exact head |
 
 This is static source-review and preview-harness evidence. It is not Basic
 Memory installation, dependency resolution, Bob compatibility, MCP behavior,

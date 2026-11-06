@@ -25,8 +25,14 @@ def build_preview(project: Path, uvx: Path, wheel: Path) -> dict[str, object]:
     state = project / ".basic-memory-state"
     project_name = "project-alpha"
     server_name = profile["bob_trial_contract"]["server_name"]
+    def project_value(value: str) -> str:
+        prefix = "<project>/"
+        if value.startswith(prefix):
+            return str(project / value.removeprefix(prefix))
+        return value.replace("<project>", str(project))
+
     environment = {
-        key: value.replace("<project>", str(project))
+        key: project_value(value)
         for key, value in profile["bob_trial_contract"]["environment"].items()
     }
     basic_memory_config = {
