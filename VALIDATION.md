@@ -1,5 +1,14 @@
 # Local software validation
 
+## New source snapshots (PR #13/#14)
+
+The new backend gates remain source/protocol-only. Exact incoming validation
+records are preserved as raw text, with their original counts and attribution:
+[PR #13 snapshot](docs/HISTORICAL-VALIDATION-pr13-6d487eb.txt).
+The [accepted pre-port snapshot](docs/HISTORICAL-VALIDATION-accepted-7a432e0.txt)
+is also retained byte-for-byte. Current combined checks belong in the separate
+[combined-source record](docs/COMBINED-SOURCE-VALIDATION.md), not those historical tables.
+
 ## Reminder Remediated Release Handoff — 3 November 2026 (UTC)
 
 Observed on Linux with Python 3.12.14 after deriving the release-readiness
