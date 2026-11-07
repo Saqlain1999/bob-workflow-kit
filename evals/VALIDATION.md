@@ -1,15 +1,39 @@
 # Local software validation
 
-## Reminder Remediated Re-review — 26 October 2026 (UTC)
+## Reminder Remediated Release Handoff — 3 November 2026 (UTC)
 
-Observed on Linux with Python 3.12.14. This branch is stacked on the bounded
-diagnostics and the complete reminder journey through remediation. The results
-below are offline software checks, not a participant result or evidence that
-Bob discovered or followed an independent-review skill.
+Observed on Linux with Python 3.12.14 after deriving the release-readiness
+fixture from the exact repaired state and current independent re-review. The
+results below are offline software checks, not a participant result, a live Bob
+observation, or release approval.
 
 | Check | Observed result |
 | --- | --- |
-| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **103 helper tests passed**, exit 0; no skips or resource warnings |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **116 helper tests passed**, exit 0; no skips or resource warnings |
+| Prepared release-readiness baseline | Twelve trusted checks; both repaired behavior boundaries passed and exactly ten named documentation/release-record failures reproduced; helper status `expected_baseline_failure` |
+| Known-good release-readiness control | Twelve checks passed; exact source, tests, current re-review, and historical gate records unchanged; only `USER_GUIDE.md` and `RELEASE_READINESS_HANDOFF.md` changed; helper status `public_tests_passed` |
+| Release-readiness negative controls | Release approval, missing current review, false 11/12 evidence, source edit, current-review edit, historical release edit, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
+| Static checks | **48 Python files** parsed with Python 3.10 grammar; **3 JSON files** parsed; **48 local Markdown links** checked across **93 Markdown files**; complete 24-file diff and `git diff --check` passed |
+
+The known-good control uses the exact decision `ready for release review` only
+after the current re-review disposes REV-001 and REV-002. That decision hands a
+finite candidate to human review; it does not authorize or perform a release,
+tag, artifact, deployment, publication, or announcement. These checks establish
+no general release judgment, production readiness, security proof,
+process-safe concurrency, broad compatibility, performance, or live Bob
+behavior. No model, Bob client, credential, network service, upstream content,
+release artifact, tag, deployment, publication, or paid API was used.
+
+## Reminder Remediated Re-review — 2 November 2026 (UTC)
+
+Observed after reconciling the re-review branch with the current remediation
+head on Linux with Python 3.12.14. The results below are offline software
+checks, not a participant result or evidence that Bob discovered or followed
+an independent-review skill.
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **104 helper tests passed**, exit 0; no skips or resource warnings |
 | Prepared re-review baseline | Twelve trusted checks; both repaired behaviors passed and exactly six named review-record failures reproduced; helper status `expected_baseline_failure` |
 | Known-good re-review control | Twelve checks passed; protected exact candidate and historical records unchanged; only `REMEDIATION_REVIEW.md` changed; helper status `public_tests_passed` |
 | Re-review negative controls | Superficial approval, missing REV-002 disposition, false 11/12 evidence, source edit, historical review/release edits, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
@@ -23,17 +47,16 @@ general security proof, compatibility, performance, deployment, or live Bob
 behavior. No model, Bob client, credential, network service, upstream content,
 release artifact, tag, deployment, publication, or paid API was used.
 
-## Reminder Review Remediation — 25 October 2026 (UTC)
+## Reminder Review Remediation — 2 November 2026 (UTC)
 
-Observed on Linux 6.18.55 x86_64 with Python 3.12.14. This branch is stacked on
-the bounded diagnostics, technical-writing, planning, implementation,
-independent-review, and blocked-release branches. The results below are offline
-software checks, not a participant result or evidence that Bob discovered or
-followed an implementation skill.
+Observed after reconciling the remediation branch with the current blocked
+release-handoff head on Linux 6.18.55 x86_64 with Python 3.12.14. The results
+below are offline software checks, not a participant result or evidence that
+Bob discovered or followed an implementation skill.
 
 | Check | Observed result |
 | --- | --- |
-| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **91 helper tests passed**, exit 0; no skips or resource warnings |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **92 helper tests passed**, exit 0; no skips or resource warnings |
 | Prepared remediation baseline | Twelve trusted checks; both seeded defects reproduced and exactly nine named behavior/handoff failures; helper status `expected_baseline_failure` |
 | Known-good remediation control | Twelve checks passed; protected request/plan/review/release/documentation/team/store inputs unchanged; only `notifier/service.py` and `IMPLEMENTATION_HANDOFF.md` changed; helper status `public_tests_passed` |
 | Remediation negative controls | Owner-only fix, conflict-only fix, missing fresh-review gate, review/release record edits, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
@@ -48,13 +71,16 @@ release approval, or live Bob activation. No model, Bob client, credential,
 network service, upstream content, release artifact, tag, deployment,
 publication, or paid API was used.
 
-## Reminder Documentation and Release Handoff — 24 October 2026 (UTC)
+## Reminder Documentation and Release Handoff — 1 November 2026 (UTC)
 
-This branch is stacked on the bounded diagnostics, technical-writing, planning, implementation, and independent-review branches. The results below are offline software checks, not a participant result or evidence that Bob discovered or followed the release-handoff skill.
+Observed after reconciling the release-handoff branch with the current
+independent-review head on Linux 6.18.55 / Python 3.12.14. The results below are
+offline software checks, not a participant result or evidence that Bob
+discovered or followed the release-handoff skill.
 
 | Check | Observed result |
 | --- | --- |
-| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **80 helper tests passed**, exit 0; no skips or resource warnings |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` | **81 helper tests passed**, exit 0; no skips or resource warnings |
 | Prepared release baseline | Twelve trusted checks; both seeded defects reproduced and exactly ten named documentation/release-contract failures; helper status `expected_baseline_failure` |
 | Known-good blocked control | Twelve checks passed; all request/plan/implementation/review/team/source inputs unchanged; only `RELEASE_HANDOFF.md` and `USER_GUIDE.md` changed; helper status `public_tests_passed` |
 | Release negative controls | False ready decision, missing High finding, helper-as-correctness claim, source edit, candidate-test edit, unrelated file, and result output inside the workspace were rejected |
@@ -275,3 +301,15 @@ Native Windows/macOS execution, live Bob behavior, and large-repository
 evaluations are not established by this record.
 
 Use the [evaluation protocol](docs/protocol.md) to collect an actual participant run. Keep helper test results, participant behavior, and manual acceptance separate.
+
+## Historical observations and local integration
+
+The exact pre-refresh validation body is retained in
+[HISTORICAL-VALIDATION-pre-refresh.md](docs/HISTORICAL-VALIDATION-pre-refresh.md).
+The corrected memory source validation body is retained in
+[HISTORICAL-VALIDATION-memory-source.md](docs/HISTORICAL-VALIDATION-memory-source.md).
+Their historical counts are observations at their own source heads, not this
+combined tree. The exact separately attributed monorepo-fork body is retained in
+[HISTORICAL-VALIDATION-pre-refresh-fork.md](docs/HISTORICAL-VALIDATION-pre-refresh-fork.md).
+New combined-tree execution is recorded separately in
+[COMBINED-SOURCE-VALIDATION.md](docs/COMBINED-SOURCE-VALIDATION.md).
