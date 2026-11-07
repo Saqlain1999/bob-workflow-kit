@@ -249,9 +249,17 @@ class OutputLimitTests(unittest.TestCase):
             spec = importlib.util.spec_from_file_location("evaluate_probe", {str(SCRIPT)!r})
             helper = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(helper)
+            environment = dict(os.environ)
+            # This probe deliberately leaves a descendant alive. Do not let a
+            # suite-wide ResourceWarning policy turn that expected condition
+            # into diagnostic-limit output from the short-lived direct worker.
+            environment.pop("PYTHONWARNINGS", None)
             result = helper._run_bounded_process(
                 [sys.executable, "-B", "-c", {worker_code!r}],
-                {str(self.directory)!r}, dict(os.environ), 0.2, 64,
+                # Process startup can exceed 200 ms on a loaded CI host. Keep
+                # this probe below the outer six-second watchdog without
+                # mistaking startup latency for the inherited-pipe condition.
+                {str(self.directory)!r}, environment, 1.0, 64,
             )
             print(json.dumps(result))
         """), encoding="utf-8")

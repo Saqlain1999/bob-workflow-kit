@@ -101,7 +101,18 @@ licence, and reviewed asset digest when one exists. Map every Project Memory
 behavior to evidence, adapter work, or a named block. Preview helpers must be
 non-mutating and must not install or execute a backend, edit global Bob settings,
 grant automatic approval, capture transcripts, or turn missing runtime evidence
-into a compatibility claim.
+into a compatibility claim. Package-based records must also expose interpreter
+and dependency requirements, avoid unversioned resolution, isolate backend
+state, and keep licence obligations distinct from technical compatibility.
+
+Runtime trial records must use the shared memory protocol, bind to one allowed
+profile and exact digest, retain constructed public data and manual approvals,
+and record process, file, network, model-download, MCP initialization-instruction
+and cleanup observations.
+Never turn a structurally valid `not_run`, `incomplete`, or `blocked` record into
+a qualification claim. A runtime record does not establish production
+readiness, and a live Bob claim additionally needs an observed client version
+and explicit workspace trust.
 
 Explain the problem, the proposed change, and the observed checks. Avoid
 unnecessary package dependencies, model SDKs, credentials, and network calls.

@@ -23,3 +23,10 @@ directory. Before contributing a record, remove credentials, confidential code,
 private paths, and unrelated conversation content. Explain redactions and
 include enough evidence to assess the specific claim. Review the participant's
 code and test changes before recording manual acceptance.
+
+Memory backend runtime evidence uses the separate
+[`memory-runtime-trial-template.json`](memory-runtime-trial-template.json) and
+the [runtime protocol](../qualifications/memory-runtime-trial-v1/README.md).
+That template is not participant evidence and defaults to an unauthorized,
+unexecuted result. Validate a completed copy outside the candidate workspace;
+the validator confirms claim consistency but does not run or qualify a backend.

@@ -362,12 +362,29 @@ A pass is local contract evidence only. It is not evidence of native Bob
 discovery, workflow-following, an MCP integration, durable multi-process
 storage, backup erasure, or Engram/Basic Memory/Honcho behavior.
 
-The first backend-specific record is the
+The first two backend-specific records include the
 [Engram Alpha v0.11.0 qualification gate](qualifications/engram-v0.11.0/README.md).
 It pins reviewed source and release evidence, maps every contract behavior to a
 candidate mechanism or gap, and provides a non-mutating disabled project-config
 preview. It does not install or execute Engram and leaves runtime adoption
 blocked pending the named cases.
+
+The [Basic Memory v1.0.0 gate](qualifications/basic-memory-v1.0.0/README.md)
+applies the same contract to an exact AGPL-3.0-or-later release and published
+wheel digest. Its preview isolates configuration under the disposable project,
+pins the wheel by absolute path, disables cloud routing, telemetry export,
+updates, project deletion and tool auto-approval, and still performs no write,
+download, installation or execution. It records checksum conflict support as a
+runtime candidate, not a qualified result.
+
+The backend-neutral
+[runtime trial protocol](qualifications/memory-runtime-trial-v1/README.md)
+defines one evidence shape for an eventual authorized Engram or Basic Memory
+trial. Its read-only validator checks the exact source/digest binding, all ten
+behaviours, safety boundaries, side effects (including MCP initialization
+instructions), cleanup, and claim level. The
+included template remains `not_run`; neither the protocol nor its tests execute
+third-party software or grant permission to do so.
 
 ## What the helper reports
 
