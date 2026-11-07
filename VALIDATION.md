@@ -4,7 +4,8 @@
 
 The new backend gates remain source/protocol-only. Exact incoming validation
 records are preserved as raw text, with their original counts and attribution:
-[PR #13 snapshot](docs/HISTORICAL-VALIDATION-pr13-6d487eb.txt).
+[PR #13 snapshot](docs/HISTORICAL-VALIDATION-pr13-6d487eb.txt) and
+[PR #14 snapshot](docs/HISTORICAL-VALIDATION-pr14-12cec90.txt).
 The [accepted pre-port snapshot](docs/HISTORICAL-VALIDATION-accepted-7a432e0.txt)
 is also retained byte-for-byte. Current combined checks belong in the separate
 [combined-source record](docs/COMBINED-SOURCE-VALIDATION.md), not those historical tables.

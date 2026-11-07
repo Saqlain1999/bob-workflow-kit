@@ -377,6 +377,15 @@ updates, project deletion and tool auto-approval, and still performs no write,
 download, installation or execution. It records checksum conflict support as a
 runtime candidate, not a qualified result.
 
+The backend-neutral
+[runtime trial protocol](qualifications/memory-runtime-trial-v1/README.md)
+defines one evidence shape for an eventual authorized Engram or Basic Memory
+trial. Its read-only validator checks the exact source/digest binding, all ten
+behaviours, safety boundaries, side effects (including MCP initialization
+instructions), cleanup, and claim level. The
+included template remains `not_run`; neither the protocol nor its tests execute
+third-party software or grant permission to do so.
+
 ## What the helper reports
 
 `--result` writes a JSON report and refuses to overwrite an existing report.
