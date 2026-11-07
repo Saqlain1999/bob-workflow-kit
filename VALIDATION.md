@@ -4,7 +4,8 @@
 
 The protocol binds a later authorized Engram or Basic Memory trial to its exact
 reviewed profile and digest, the ten `bob-project-memory-v1` behaviours,
-side-effect observations, cleanup, and a fail-closed claim decision. The
+side-effect and MCP initialization-instruction observations, cleanup, and a
+fail-closed claim decision. The
 included record remains unauthorized and `not_run`; the validator reads JSON
 only and starts no backend or Bob process.
 

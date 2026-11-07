@@ -18,7 +18,7 @@
     "transcript_capture_enabled": false,
     "automatic_tool_approval": false
   },
-  "qualification_rule": "Qualified requires explicit execution authorization, exact asset-digest verification, every backend-neutral behavior passing with non-empty evidence, observed process/file/network/model-download effects, and successful cleanup. It never establishes production readiness.",
+  "qualification_rule": "Qualified requires explicit execution authorization, exact asset-digest verification, every backend-neutral behavior passing with non-empty evidence, observed process/file/network/model-download effects, recorded MCP initialization instructions, and successful cleanup. It never establishes production readiness.",
   "live_bob_rule": "A live Bob claim additionally requires the ibm_bob client, a recorded client version, explicit workspace trust, and a qualified backend trial.",
   "evidence_boundary": "This protocol validates a record. It does not authorize, install, download, configure, start, stop, or remove a backend or Bob client."
 }

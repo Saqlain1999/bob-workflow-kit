@@ -22,8 +22,10 @@ model, or contact a service.
    outside the candidate workspace and fill it from observed evidence.
 
 Record process, file, network and model-download effects even when the observed
-answer is “none”; include how each observation was made. Exercise the same ten
-behaviours for each backend. Keep repository evidence as the outage fallback.
+answer is “none”; include how each observation was made. Record MCP server
+instructions returned during initialization separately because current Bob IDE
+can forward them into the system prompt. Exercise the same ten behaviours for
+each backend. Keep repository evidence as the outage fallback.
 Stop on a digest mismatch, global-setting requirement, cross-project disclosure,
 instruction-like stored content changing control flow, a stale write being
 accepted, dishonest outage success, or incomplete deletion.

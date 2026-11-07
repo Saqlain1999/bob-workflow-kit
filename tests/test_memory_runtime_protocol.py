@@ -49,6 +49,7 @@ class MemoryRuntimeProtocolTests(unittest.TestCase):
             "files": ["observed project-local files"],
             "network": ["observed no network after startup"],
             "model_downloads": ["observed no model download"],
+            "mcp_initialization_instructions": ["observed no initialization instructions"],
         }
         for item in record["behaviors"]:
             item["status"] = "pass"
@@ -148,7 +149,7 @@ class MemoryRuntimeProtocolTests(unittest.TestCase):
                 self.assertTrue("every contract behavior" in result.stderr or "requires evidence" in result.stderr)
 
     def test_qualified_requires_side_effects_and_complete_cleanup(self) -> None:
-        for field in ("network", "model_downloads"):
+        for field in ("network", "model_downloads", "mcp_initialization_instructions"):
             with self.subTest(field=field):
                 record = self.executed()
                 record["side_effects"][field] = []

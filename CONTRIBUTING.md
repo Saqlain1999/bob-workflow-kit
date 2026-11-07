@@ -52,7 +52,8 @@ state, and keep licence obligations distinct from technical compatibility.
 
 Runtime trial records must use the shared memory protocol, bind to one allowed
 profile and exact digest, retain constructed public data and manual approvals,
-and record process, file, network, model-download and cleanup observations.
+and record process, file, network, model-download, MCP initialization-instruction
+and cleanup observations.
 Never turn a structurally valid `not_run`, `incomplete`, or `blocked` record into
 a qualification claim. A runtime record does not establish production
 readiness, and a live Bob claim additionally needs an observed client version

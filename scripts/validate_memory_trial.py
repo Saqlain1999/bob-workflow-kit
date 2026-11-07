@@ -90,7 +90,10 @@ def validate_record(record: dict[str, Any], root: Path = ROOT) -> str:
             raise RecordError(f"required safeguard {key} must be {str(expected).lower()}")
 
     side_effects = require_object(record, "side_effects")
-    side_effect_keys = ("processes", "files", "network", "model_downloads")
+    side_effect_keys = (
+        "processes", "files", "network", "model_downloads",
+        "mcp_initialization_instructions",
+    )
     for key in side_effect_keys:
         value = side_effects.get(key)
         if not isinstance(value, list) or not all(nonempty_text(item) for item in value):
@@ -162,7 +165,10 @@ def validate_record(record: dict[str, Any], root: Path = ROOT) -> str:
         if any(status != "pass" for status in statuses):
             raise RecordError("qualified requires every contract behavior to pass")
         if any(not side_effects[key] for key in side_effect_keys):
-            raise RecordError("qualified requires process, file, network, and model-download observations")
+            raise RecordError(
+                "qualified requires process, file, network, model-download, "
+                "and MCP-instruction observations"
+            )
         if not all(cleanup[key] for key in cleanup_flags):
             raise RecordError("qualified requires complete observed cleanup")
         if not claims["backend_runtime_qualified"]:

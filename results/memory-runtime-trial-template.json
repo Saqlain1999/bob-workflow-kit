@@ -35,7 +35,8 @@
     "processes": [],
     "files": [],
     "network": [],
-    "model_downloads": []
+    "model_downloads": [],
+    "mcp_initialization_instructions": []
   },
   "behaviors": [
     {"behavior": "fresh-session recall", "status": "not_run", "evidence": null},
