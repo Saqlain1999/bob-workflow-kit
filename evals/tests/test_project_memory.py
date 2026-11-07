@@ -28,6 +28,7 @@ class ProjectMemoryFixtureTests(unittest.TestCase):
         environment = factory(self.directory, {
             'SYSTEMROOT': 'C:\\Windows', 'WINDIR': 'C:\\Windows',
             'BOB_API_KEY': 'synthetic', 'VAULT_TOKEN': 'synthetic'})
+        assert isinstance(environment, dict)
         self.assertEqual(environment['SYSTEMROOT'], 'C:\\Windows')
         self.assertEqual(environment['WINDIR'], 'C:\\Windows')
         self.assertEqual(environment['HOME'], str(self.directory))
