@@ -24,6 +24,14 @@ python3 scripts/evaluate.py candidate --task parcel-resume --workspace runs/parc
 
 Keep result files outside the candidate workspace. The [task acceptance checklist](../evals/tasks/parcel-resume/ACCEPTANCE.md) separates public-test results from process observations. Return to the kit root with `cd ..` before using the root installer or quality commands.
 
+## Optional deeper exercises
+
+The [release-readiness exercise](../evals/tasks/reminder-remediated-release-handoff/README.md) extends the reminder sequence through a bounded documentation/handoff check. A passing helper is not permission to release.
+
+The [project-memory fixture](../evals/tasks/bob-project-memory/README.md) tests an intentionally faulty file-backed adapter and a written handoff. From `evals/`, its selector is `--task project-memory`. The corrected gate exercises separate writer/reader processes, actual save/replace failures and sequential stale-instance refusal. It does not prove Bob remembers tasks, qualify a real memory backend, guarantee power-loss safety or provide concurrent transactions.
+
+[Engram qualification notes](../evals/qualifications/README.md) are optional research and a disabled text preview only. No extra memory service, download, API key or install is required to use the kit or run its offline checks.
+
 ## Check the repository, not a live model
 
 From the kit root:

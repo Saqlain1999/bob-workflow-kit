@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "purpose": "explicit local reviewed feature fork; original source-map remains unchanged",
+  "purpose": "explicit current13-PR local candidate fork; original source-map and previous fork record retained",
   "prefix": "evals",
-  "reviewed_commit": "61b55be389cac60c718f1c0e28e0e0becee90678",
+  "reviewed_commit": "c893eb907207407de83e6b2a3cac8194f28f9bb2",
   "original_source_commit": "5e2075ab510d947675c3e2e824ff384de899dc1a",
   "files": [
     {
@@ -19,9 +19,9 @@
     },
     {
       "destination": "evals/CONTRIBUTING.md",
-      "git_blob": "c1f4b86e048b8381084b6d3c2bee5326dd1b0f23",
+      "git_blob": "ad6db3d30067989661831cbb7505689b76834ac2",
       "mode": "100644",
-      "sha256": "410f53604ef2bb3b9fa0743cf5ba213d35ccbeb0c2bc25283be4b0ff32dd5c83"
+      "sha256": "95741bd182e442189644d3cd4a37b2d869e18dc9fe2c9aee2c04d53864a2b1e0"
     },
     {
       "destination": "evals/LICENSE",
@@ -37,27 +37,93 @@
     },
     {
       "destination": "evals/README.md",
-      "git_blob": "8abe02191b110e99cfbaceda69dc0097b4806a99",
+      "git_blob": "6df40acc8773213c5147de3a6ecee09b799ef4b1",
       "mode": "100644",
-      "sha256": "1bf482b9ed71136d333dc2e3f7f3967bd48beabf645705d499617ebeffeacba0"
+      "sha256": "7544355ce5329545785838a414bc34f8b1d5bf972c33be6abfe2d58844999cb8"
     },
     {
       "destination": "evals/VALIDATION.md",
+      "git_blob": "9abd3500bc7499fc46102d88fc7166fb0f3c920b",
+      "mode": "100644",
+      "sha256": "c5d40193dd551a64efa9cf73c97e68d68bfb2665701967c53d280a613c3e956d"
+    },
+    {
+      "destination": "evals/docs/COMBINED-SOURCE-VALIDATION.md",
+      "git_blob": "3dd1c67de6d40dd0fe71c4127ad4e466ce573d38",
+      "mode": "100644",
+      "sha256": "16db95b3ad579d97ba44eff72814da72ff6496898513a67e714fb48761b24d76"
+    },
+    {
+      "destination": "evals/docs/HISTORICAL-VALIDATION-memory-source.txt",
+      "git_blob": "f4a80e6b631f6e02f107d46c3f992b174ae90c5c",
+      "mode": "100644",
+      "sha256": "68209ccff0f07e103559fa41480fff01076820cc44dd45fd3376ff8fb790ea61"
+    },
+    {
+      "destination": "evals/docs/HISTORICAL-VALIDATION-pre-refresh-fork.txt",
+      "git_blob": "f4cd0a131ea9a481561105def411a6e1982ccd8b",
+      "mode": "100644",
+      "sha256": "9b8217f243a93cfe34b543f2cde4e00d053ddb7d188c8bfbe2845a23be320881"
+    },
+    {
+      "destination": "evals/docs/HISTORICAL-VALIDATION-pre-refresh.txt",
       "git_blob": "f4cd0a131ea9a481561105def411a6e1982ccd8b",
       "mode": "100644",
       "sha256": "9b8217f243a93cfe34b543f2cde4e00d053ddb7d188c8bfbe2845a23be320881"
     },
     {
       "destination": "evals/docs/protocol.md",
-      "git_blob": "d611b062a6e2e5459e32c6aeaf5b86da3bd9e9a4",
+      "git_blob": "99c027ff1b670ae666f2e26e8e784876e423f471",
       "mode": "100644",
-      "sha256": "790f3c74000e35e385fcdc551de3003bc9092a329cca88dabc184447e4e2514e"
+      "sha256": "b1fbfceff53f0e0639da2f38a2957bd8b0d02882a8c20f352d57668877005d7b"
     },
     {
       "destination": "evals/fixtures/README.md",
-      "git_blob": "d87f7a91922479656157d7493ef7afeefdcd8375",
+      "git_blob": "83a64c25afca359f340048cd37099690d8c5dac6",
       "mode": "100644",
-      "sha256": "299d814dfbf62d3e2b8e3ba15ba390cd74413d30728bc6bc3ffd48d2a1650544"
+      "sha256": "812ef2f070911f128f812386e59f536490694d1acfb990e90a27b4d6040e1dce"
+    },
+    {
+      "destination": "evals/fixtures/bob-project-memory/MEMORY_HANDOFF.md",
+      "git_blob": "0d07d7269b4a480961771f83d1c9f618b330ba97",
+      "mode": "100644",
+      "sha256": "e51feeb5d7f868f2c9cfca5640556a8b406024a5fd1030e348436335e913bb17"
+    },
+    {
+      "destination": "evals/fixtures/bob-project-memory/README.md",
+      "git_blob": "b7d8a0dd4c44fb6dd3ddbd39447f5154af283554",
+      "mode": "100644",
+      "sha256": "9b0d81b6a0fa02659d937caaf23440cd648ea7967b03dc65dea38fe23e5be43d"
+    },
+    {
+      "destination": "evals/fixtures/bob-project-memory/contract.json",
+      "git_blob": "a89f32cf4d4d614bab7edaf094bf270591161ab3",
+      "mode": "100644",
+      "sha256": "7c97b57ae4c5f747d6082dc1c687b5bb135a5a52fe5111dd4650cf2bcadf8dcd"
+    },
+    {
+      "destination": "evals/fixtures/bob-project-memory/memory_adapter.py",
+      "git_blob": "a2c484727e3325e669939f761f358af7c4985091",
+      "mode": "100644",
+      "sha256": "cc5842d7159fd45971befea4e9689d97364d96491f6e97983d46e26407bcc0e2"
+    },
+    {
+      "destination": "evals/fixtures/bob-project-memory/projects/project-alpha/EVIDENCE.md",
+      "git_blob": "d54366269649cfa4e4f1014c508c0584f244deb2",
+      "mode": "100644",
+      "sha256": "a02aa4739813bd187a0193fc98d189fe525ad28f7530d3e5d18d91ff4d7b12af"
+    },
+    {
+      "destination": "evals/fixtures/bob-project-memory/projects/project-beta/EVIDENCE.md",
+      "git_blob": "3b8338ba8109ea1cf5fe4df889fa3553f21e905e",
+      "mode": "100644",
+      "sha256": "ee881ec85518e4acfa64638af7b8d2f6eedf23d80b112284d9aa536957a9663f"
+    },
+    {
+      "destination": "evals/fixtures/bob-project-memory/tests/test_memory_adapter.py",
+      "git_blob": "77df664dd4f9b38a58516dd4cd0b6f2e3c498a98",
+      "mode": "100644",
+      "sha256": "d5bede424514bbd12ff4f812eb885db025f6d50a48f5c29a1824682f5ae7b21b"
     },
     {
       "destination": "evals/fixtures/parcel-resume/README.md",
@@ -348,6 +414,90 @@
       "sha256": "db610a86794249c3a133dadad40827562f76e2cd3789c413b03b2f229172b42e"
     },
     {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/DELIVERY_PLAN.md",
+      "git_blob": "9f86314dd049567899240bdec9bb5bdb419929cd",
+      "mode": "100644",
+      "sha256": "1dcb0dde9652d20a88027818f82b5faa22c0acda5a49a255e85159909bf746e7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/IMPLEMENTATION_HANDOFF.md",
+      "git_blob": "0fb92ae519c3086465292dc21c68592543362054",
+      "mode": "100644",
+      "sha256": "b644f2db5bc1a69455704fcb225fe65a348c6ac175a1a9019faa2b1eb72df393"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/README.md",
+      "git_blob": "0aa1fed2d5e8b3c745ece67758add5e84aa19ff2",
+      "mode": "100644",
+      "sha256": "8543cd12695553b416560fc39cd319527ab8be5afb1b66b5f03e6e4341d80de0"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/RELEASE_HANDOFF.md",
+      "git_blob": "aa97925f5af54c69eb60afce6b51a99db8ab8984",
+      "mode": "100644",
+      "sha256": "3f6153b8fe9dee7e34216bcf51d6e0bb46337ef73d134b1220dbc9a0fab5d56c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/RELEASE_READINESS_HANDOFF.md",
+      "git_blob": "8890046778970d62201daa429b1c045e32d95e0d",
+      "mode": "100644",
+      "sha256": "fcd01eb3bae2d4d952478f98c13d0841e34b25b56c57576296c33e38ddbdf5d1"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/REMEDIATION_REVIEW.md",
+      "git_blob": "e1aa6482d9adf3761aaf0dbb5cda7f69c8eb6468",
+      "mode": "100644",
+      "sha256": "14e61f576813b59e1492583de10f801e61bbef4055bf50e2dad0811f8453ab14"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/REQUEST.md",
+      "git_blob": "1e9596f03cbbd99c95f1bd392f872557aede952b",
+      "mode": "100644",
+      "sha256": "a81b069ae471d8bec76927b0fbfae8d035986bdecf1c33689a08d314cdc5e5c4"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/REVIEW_HANDOFF.md",
+      "git_blob": "a02b2139c2a8e4e70aeb44b59601d018793cf239",
+      "mode": "100644",
+      "sha256": "04cb5136f97a54291e379d4858b95946aad5c461ef4cb69fe7d635cb073ea2af"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/TEAM_NOTES.md",
+      "git_blob": "efcaba4dd5fa54037e30e5c050f8ff6dee92054a",
+      "mode": "100644",
+      "sha256": "16417082ab6f0ca15879cce97cae3e7b17737597275891f3971a26c4ba292685"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/USER_GUIDE.md",
+      "git_blob": "c474e8021614aa7bac1bbf30522f29cf62bdc166",
+      "mode": "100644",
+      "sha256": "66ebf5f06a09170b0b6d95a910a9e637edf4df0ea62b74739cd139831af319ce"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/notifier/__init__.py",
+      "git_blob": "c191e115549aabb18c6d041af2e6a0075ef4ead3",
+      "mode": "100644",
+      "sha256": "4970bb088882bc3f124b2d6d31b0715f6482b1a2776af31a44fae0097a2f75c7"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/notifier/service.py",
+      "git_blob": "7b29faba2cb1dd2ccd195fc67971298572210ff6",
+      "mode": "100644",
+      "sha256": "49835144187897f3ad9b34d388b1816e3a55169ad1b8ee3339a0b066a0ca2a18"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/notifier/store.py",
+      "git_blob": "292d4a28b541df4948e0bcc6cfd3d9bbd0647713",
+      "mode": "100644",
+      "sha256": "240ba16239cca08cfee12d6062efb41f2bd458577d74ab62a514280a535fc73c"
+    },
+    {
+      "destination": "evals/fixtures/reminder-remediated-release-handoff/tests/test_remediated_release_handoff.py",
+      "git_blob": "50bc575cefba3309d8192f868923939e5921ace6",
+      "mode": "100644",
+      "sha256": "854db36ad946d25a3c17f4cc668c6fc3b5f21d6c6fc1b2fe87ac47468ab426c1"
+    },
+    {
       "destination": "evals/fixtures/reminder-remediated-review/DELIVERY_PLAN.md",
       "git_blob": "9f86314dd049567899240bdec9bb5bdb419929cd",
       "mode": "100644",
@@ -546,6 +696,24 @@
       "sha256": "d1c7b578654c724b4587a79c9dce835d150243306c4288b8eab344cd563ffa4f"
     },
     {
+      "destination": "evals/qualifications/README.md",
+      "git_blob": "bb1037b7aa86fa97c1d3949d3f39ddc881030183",
+      "mode": "100644",
+      "sha256": "4a943f9b69e2f5b71304b6516a14e1eeb7463ae6a601acddad2c2339b2f3e2e7"
+    },
+    {
+      "destination": "evals/qualifications/engram-v0.11.0/README.md",
+      "git_blob": "c008ba381a49c94552c0cc6913cbf0f628b1e227",
+      "mode": "100644",
+      "sha256": "0b052941e4adef24518739e336c9bb6755ba25f37ca45a0bf83343b5f204bfb7"
+    },
+    {
+      "destination": "evals/qualifications/engram-v0.11.0/profile.json",
+      "git_blob": "33159ce2f0f6b5a1a27997973321f65d5cac64e5",
+      "mode": "100644",
+      "sha256": "5eac47bb61a189759c23e594689fce75e24920a248078f76cee3b4caf4cd8e89"
+    },
+    {
       "destination": "evals/results/README.md",
       "git_blob": "eae092a8f569bc44b6a00bb9b1db2c6be91fe474",
       "mode": "100644",
@@ -559,9 +727,33 @@
     },
     {
       "destination": "evals/scripts/evaluate.py",
-      "git_blob": "f728ed6d69d9106fe291fac9559546088d8c0e6c",
+      "git_blob": "7721b276f08866d0c188c26f6dbd3e2781a8f3d6",
       "mode": "100644",
-      "sha256": "05d71e8687de6a82cdbda00bbb05f2a0c1b1ab4f0168bd6a59a52b4292837a85"
+      "sha256": "5aea082af95f670a14fe69e7faf923b7c68e51438b981a7f5943fcc8236fe813"
+    },
+    {
+      "destination": "evals/scripts/preview_engram.py",
+      "git_blob": "dd3ea15ead780f51607a535393cbd6259329bf62",
+      "mode": "100644",
+      "sha256": "5a1357438c5f5e8ecc0f089f8c2ff90a1314ef814858a97e973e60ebcbeb6bd5"
+    },
+    {
+      "destination": "evals/tasks/bob-project-memory/ACCEPTANCE.md",
+      "git_blob": "f27201a8139bf8b7281ab7e79429af7ace640e1c",
+      "mode": "100644",
+      "sha256": "10222e350dadc47ef3723ee183c18c2a7edf1727710136a5c426e242f135536b"
+    },
+    {
+      "destination": "evals/tasks/bob-project-memory/AGENT_PROMPT.md",
+      "git_blob": "f1b337f4edf9e4c3a753ca4bb9cdb07f3be41545",
+      "mode": "100644",
+      "sha256": "b63da8de03bf0822761075fc90485b89bd07fad3db4eb0c20033b5bfdcd3dad1"
+    },
+    {
+      "destination": "evals/tasks/bob-project-memory/README.md",
+      "git_blob": "e2c811025dcf7f1cdfa7b177f9cfc82509fc5b12",
+      "mode": "100644",
+      "sha256": "e5f007be7bf0baff1560c5d3e9c711819f126361c641f1e56e468bc95f191898"
     },
     {
       "destination": "evals/tasks/parcel-resume/ACCEPTANCE.md",
@@ -660,6 +852,24 @@
       "sha256": "c3aa51b4b8ebec12f1733fae9f7f04922799c3761524cb138076f4b573ffbe35"
     },
     {
+      "destination": "evals/tasks/reminder-remediated-release-handoff/ACCEPTANCE.md",
+      "git_blob": "244be7655df59c355ed0e1bcf57c429921c4ed0a",
+      "mode": "100644",
+      "sha256": "583fd8c637c97fc578471afa12918fdc9da3a8e541b7501d58d10d80beb33d0a"
+    },
+    {
+      "destination": "evals/tasks/reminder-remediated-release-handoff/AGENT_PROMPT.md",
+      "git_blob": "1c561dcffa31fbb25c48a3653cfab30362467db5",
+      "mode": "100644",
+      "sha256": "dffb786d92194920ea8eefe63840bdd9f3c021648900e37b3c92d4125989c8a3"
+    },
+    {
+      "destination": "evals/tasks/reminder-remediated-release-handoff/README.md",
+      "git_blob": "c42da1b18bcc9290b77e1bc2f531bd302193edbf",
+      "mode": "100644",
+      "sha256": "0e76a7ff76503bccec035f80f55884b8658f45d6d38e41aae7c1d7c495bc09ac"
+    },
+    {
       "destination": "evals/tasks/reminder-remediated-review/ACCEPTANCE.md",
       "git_blob": "74b116b1e0f4944a79caca9f4cadca0c33e913b4",
       "mode": "100644",
@@ -732,6 +942,12 @@
       "sha256": "9940f3db3629955b2f221e41f7fb758a8d0cb5187c945d27896c7afd1b3990bc"
     },
     {
+      "destination": "evals/tests/test_engram_qualification.py",
+      "git_blob": "ea310331dbe04119ce2fdc67a6fd0c8af50d5870",
+      "mode": "100644",
+      "sha256": "6d8cde30820c8819c7d54f670a4822310f1971bb5b584c1061ba38864f50310b"
+    },
+    {
       "destination": "evals/tests/test_evaluate.py",
       "git_blob": "b1b932edd6185be949b82a5a2926f0bb8ef556a0",
       "mode": "100644",
@@ -742,6 +958,12 @@
       "git_blob": "ee85cce5cd324812058e155a750439b4b34c76f6",
       "mode": "100644",
       "sha256": "56d64242599d2992ddbe71c43bf9a12c2f7fd5774e75a7c82c38e4099d1e99ab"
+    },
+    {
+      "destination": "evals/tests/test_project_memory.py",
+      "git_blob": "c4b10071085fba56479ce5a0e2dda38f7489a42e",
+      "mode": "100644",
+      "sha256": "94cac91a7d2249b5a5ddb27d5bce7166fd68ab6fbed967cd2ea32fef42b60a06"
     },
     {
       "destination": "evals/tests/test_project_planning_handoff.py",
@@ -768,6 +990,12 @@
       "sha256": "654869bcbc67378e30e16f0e6b81eabcfb0c0bd20ad2c5ab6d0fd800259e9379"
     },
     {
+      "destination": "evals/tests/test_reminder_remediated_release_handoff.py",
+      "git_blob": "d787ce0b2890aff69ab23b97ebbd169d2fc97b80",
+      "mode": "100644",
+      "sha256": "5e6444a2b973618ecb7b546f08daee251c22472335fcc4fdd54310b026ea7af1"
+    },
+    {
       "destination": "evals/tests/test_reminder_remediated_review.py",
       "git_blob": "6455597df7135fb8561a328167282a31873d0689",
       "mode": "100644",
@@ -785,5 +1013,8 @@
       "mode": "100644",
       "sha256": "223d7a24e498c895358cd8eee832484e13a32ac49eb715ad15124f2bb1c5123e"
     }
-  ]
+  ],
+  "previous_fork_commit": "61b55be389cac60c718f1c0e28e0e0becee90678",
+  "source_combination": "7a432e056295f314e45121839b1c5584225aded9",
+  "memory_correction": "c1b471a0658989e4341ad7fcf194d91e93b284fc"
 }
