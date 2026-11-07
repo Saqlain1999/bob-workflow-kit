@@ -9,6 +9,8 @@ records are preserved as raw text, with their original counts and attribution:
 The [accepted pre-port snapshot](docs/HISTORICAL-VALIDATION-accepted-7a432e0.txt)
 is also retained byte-for-byte. Current combined checks belong in the separate
 [combined-source record](docs/COMBINED-SOURCE-VALIDATION.md), not those historical tables.
+The [new #13/#14 port record](docs/NEW-SOURCE-13-14-VALIDATION.md) records
+155-test verification separately from the accepted 133-test snapshot.
 
 ## Reminder Remediated Release Handoff — 3 November 2026 (UTC)
 
