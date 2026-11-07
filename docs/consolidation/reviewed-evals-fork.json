@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "purpose": "explicit current13-PR local candidate fork; original source-map and previous fork record retained",
+  "purpose": "current fifteen-source-head local consolidation; original imports and earlier fork records retained",
   "prefix": "evals",
-  "reviewed_commit": "c893eb907207407de83e6b2a3cac8194f28f9bb2",
+  "reviewed_commit": "0be56e31e282bf5ffa77bd118838b749e445bb04",
   "original_source_commit": "5e2075ab510d947675c3e2e824ff384de899dc1a",
   "files": [
     {
@@ -19,9 +19,9 @@
     },
     {
       "destination": "evals/CONTRIBUTING.md",
-      "git_blob": "ad6db3d30067989661831cbb7505689b76834ac2",
+      "git_blob": "b04ad93a7fec7fa421ec6427b029adbc7c1261cf",
       "mode": "100644",
-      "sha256": "95741bd182e442189644d3cd4a37b2d869e18dc9fe2c9aee2c04d53864a2b1e0"
+      "sha256": "5ec0ba7bbaedd5eda6d6b6dcec7ea0d4c66683e0dbbe30c2198d8bc417121b12"
     },
     {
       "destination": "evals/LICENSE",
@@ -37,15 +37,15 @@
     },
     {
       "destination": "evals/README.md",
-      "git_blob": "6df40acc8773213c5147de3a6ecee09b799ef4b1",
+      "git_blob": "80c3028c9571d05a4321be0014944375260a6838",
       "mode": "100644",
-      "sha256": "7544355ce5329545785838a414bc34f8b1d5bf972c33be6abfe2d58844999cb8"
+      "sha256": "3d117b524cf9a5436d611720e65ee14d66a6313ff05c521c5243d13cfe596421"
     },
     {
       "destination": "evals/VALIDATION.md",
-      "git_blob": "9abd3500bc7499fc46102d88fc7166fb0f3c920b",
+      "git_blob": "2d7de69eb8bd9fc1a061d7121c3097dd174c5885",
       "mode": "100644",
-      "sha256": "c5d40193dd551a64efa9cf73c97e68d68bfb2665701967c53d280a613c3e956d"
+      "sha256": "37e57b63e621d1f97edbbe0b023800ef6c06fbe041839a0cc5911a4a96581635"
     },
     {
       "destination": "evals/docs/COMBINED-SOURCE-VALIDATION.md",
@@ -54,10 +54,28 @@
       "sha256": "16db95b3ad579d97ba44eff72814da72ff6496898513a67e714fb48761b24d76"
     },
     {
+      "destination": "evals/docs/HISTORICAL-VALIDATION-accepted-7a432e0.txt",
+      "git_blob": "f9fb2f6c13acb516bea5b4a2b0819b20a1189516",
+      "mode": "100644",
+      "sha256": "5629d358eb2559aa4e39905928a3eea2d632205225d2b4f503f78f8a3bb065ec"
+    },
+    {
       "destination": "evals/docs/HISTORICAL-VALIDATION-memory-source.txt",
       "git_blob": "f4a80e6b631f6e02f107d46c3f992b174ae90c5c",
       "mode": "100644",
       "sha256": "68209ccff0f07e103559fa41480fff01076820cc44dd45fd3376ff8fb790ea61"
+    },
+    {
+      "destination": "evals/docs/HISTORICAL-VALIDATION-pr13-6d487eb.txt",
+      "git_blob": "d51ae50d847b55e71136b2e45f2dc5395bbee37e",
+      "mode": "100644",
+      "sha256": "5bee6e9a284f7045fd6eb972e1145c1629320393a9e82ef5bc885a86ef8a06e5"
+    },
+    {
+      "destination": "evals/docs/HISTORICAL-VALIDATION-pr14-12cec90.txt",
+      "git_blob": "743bfb0da33befceecbfe5085d56924b9770baf6",
+      "mode": "100644",
+      "sha256": "f7ec3c40dfa879bd7df7d64e71a324f358798a5fe7b3b10b881bde990889c146"
     },
     {
       "destination": "evals/docs/HISTORICAL-VALIDATION-pre-refresh-fork.txt",
@@ -70,6 +88,12 @@
       "git_blob": "f4cd0a131ea9a481561105def411a6e1982ccd8b",
       "mode": "100644",
       "sha256": "9b8217f243a93cfe34b543f2cde4e00d053ddb7d188c8bfbe2845a23be320881"
+    },
+    {
+      "destination": "evals/docs/NEW-SOURCE-13-14-VALIDATION.md",
+      "git_blob": "04648c3706fc2a5f3d11c0d15885c72c61187c07",
+      "mode": "100644",
+      "sha256": "46bcb64cca7e42cfc22f96f3941f854ca972bff5d6c345e32965221514b07237"
     },
     {
       "destination": "evals/docs/protocol.md",
@@ -697,9 +721,21 @@
     },
     {
       "destination": "evals/qualifications/README.md",
-      "git_blob": "bb1037b7aa86fa97c1d3949d3f39ddc881030183",
+      "git_blob": "5198069654f2bed4282dd23e22d6b6b0994979c8",
       "mode": "100644",
-      "sha256": "4a943f9b69e2f5b71304b6516a14e1eeb7463ae6a601acddad2c2339b2f3e2e7"
+      "sha256": "59b0558ea0e1ab887c0d25762491a066821080a5c0c7018d0a4443173fe01b94"
+    },
+    {
+      "destination": "evals/qualifications/basic-memory-v1.0.0/README.md",
+      "git_blob": "d7a0cfe713f14d776ecac483cda0f78168b794e9",
+      "mode": "100644",
+      "sha256": "67acc7ca96a08f77d8ac96378b8a088540b93f97bec52a1ce2f7ba38e43044fd"
+    },
+    {
+      "destination": "evals/qualifications/basic-memory-v1.0.0/profile.json",
+      "git_blob": "5745ee6ca85ea3f9d88f22dd027fdb3f1e90ad80",
+      "mode": "100644",
+      "sha256": "a7abb62df97a69caba1a97375bca70207b3f0de473e6ba44ce07568dea17d9d2"
     },
     {
       "destination": "evals/qualifications/engram-v0.11.0/README.md",
@@ -714,10 +750,28 @@
       "sha256": "5eac47bb61a189759c23e594689fce75e24920a248078f76cee3b4caf4cd8e89"
     },
     {
-      "destination": "evals/results/README.md",
-      "git_blob": "eae092a8f569bc44b6a00bb9b1db2c6be91fe474",
+      "destination": "evals/qualifications/memory-runtime-trial-v1/README.md",
+      "git_blob": "0f89f353227de5eb358dd105068d8a264e69428d",
       "mode": "100644",
-      "sha256": "1180eb6ce25b3ce9b7ee19f157ada1234967f65680dc19cd556e8b5bfb1d84f5"
+      "sha256": "638098bd551783830f46bb2d1e2e1fe1c192cc114baba4d98f009050e25c2c52"
+    },
+    {
+      "destination": "evals/qualifications/memory-runtime-trial-v1/protocol.json",
+      "git_blob": "67f96ebb790814aa7df99b56ef7d30b9841eeae2",
+      "mode": "100644",
+      "sha256": "743c23110a3de6ac093d61309e6d3cd36f9f5c14e8dfb7e4ebf6c9a58164ebcc"
+    },
+    {
+      "destination": "evals/results/README.md",
+      "git_blob": "a83b5bc7b835ecf1cc284c88c2cc4b8d90cacd67",
+      "mode": "100644",
+      "sha256": "cdb2a7e3f3ea738e4426f8ecc3bda81a086f4162a3557e00a4c63647da46515e"
+    },
+    {
+      "destination": "evals/results/memory-runtime-trial-template.json",
+      "git_blob": "6bc16e4af65d7e73e5efae664e3b5ce67f8d6221",
+      "mode": "100644",
+      "sha256": "82a989378056e806b0c6ca2495ba7d80747ae4debcb6c610f5f06dc2989ef106"
     },
     {
       "destination": "evals/results/result-template.json",
@@ -732,10 +786,22 @@
       "sha256": "5aea082af95f670a14fe69e7faf923b7c68e51438b981a7f5943fcc8236fe813"
     },
     {
+      "destination": "evals/scripts/preview_basic_memory.py",
+      "git_blob": "9ef2b51ee473319859640b7c019dceff287c524d",
+      "mode": "100644",
+      "sha256": "980dc1789f828cd72518f7fc793fe61eb54146bb9f08c30567027972858b2e18"
+    },
+    {
       "destination": "evals/scripts/preview_engram.py",
       "git_blob": "dd3ea15ead780f51607a535393cbd6259329bf62",
       "mode": "100644",
       "sha256": "5a1357438c5f5e8ecc0f089f8c2ff90a1314ef814858a97e973e60ebcbeb6bd5"
+    },
+    {
+      "destination": "evals/scripts/validate_memory_trial.py",
+      "git_blob": "450c020d03f3149499b801ce60799b8fd47cda43",
+      "mode": "100644",
+      "sha256": "9b4bc16c7506c2b282570721488513667db853f7a8743450a64e7371052bfe2b"
     },
     {
       "destination": "evals/tasks/bob-project-memory/ACCEPTANCE.md",
@@ -942,6 +1008,12 @@
       "sha256": "9940f3db3629955b2f221e41f7fb758a8d0cb5187c945d27896c7afd1b3990bc"
     },
     {
+      "destination": "evals/tests/test_basic_memory_qualification.py",
+      "git_blob": "0bf0e1eab9b6724b04a83f3090f273556b20eff0",
+      "mode": "100644",
+      "sha256": "c32c096e532de0d1c79da75ac15582566c601b0469962c592dbb7d51997b266e"
+    },
+    {
       "destination": "evals/tests/test_engram_qualification.py",
       "git_blob": "ea310331dbe04119ce2fdc67a6fd0c8af50d5870",
       "mode": "100644",
@@ -949,9 +1021,15 @@
     },
     {
       "destination": "evals/tests/test_evaluate.py",
-      "git_blob": "b1b932edd6185be949b82a5a2926f0bb8ef556a0",
+      "git_blob": "50d1e8eaa0d2e5fcc962fa1f5b387eda655e63c2",
       "mode": "100644",
-      "sha256": "19d5688537408298b0d95c84513405eaa138c3af0a723cd9608e81a777b54260"
+      "sha256": "28fb928642c46a1d3886c158066b43a472bd5ae00774a94d62de9fa10fdfc00b"
+    },
+    {
+      "destination": "evals/tests/test_memory_runtime_protocol.py",
+      "git_blob": "fbf03bbf22618cb78f8dbfb548acfb88e0025b1c",
+      "mode": "100644",
+      "sha256": "dcbb791ea631595833711a85fb312eea60d651201823d98e98711a620f66f228"
     },
     {
       "destination": "evals/tests/test_parcel_resume.py",
@@ -1014,7 +1092,7 @@
       "sha256": "223d7a24e498c895358cd8eee832484e13a32ac49eb715ad15124f2bb1c5123e"
     }
   ],
-  "previous_fork_commit": "61b55be389cac60c718f1c0e28e0e0becee90678",
-  "source_combination": "7a432e056295f314e45121839b1c5584225aded9",
+  "previous_fork_commit": "c893eb907207407de83e6b2a3cac8194f28f9bb2",
+  "source_combination": "2c60ac25c17b8c9649ee473cc7441cd47c2c7e59",
   "memory_correction": "c1b471a0658989e4341ad7fcf194d91e93b284fc"
 }

@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # Reviewed import identities are code-level trust anchors, not manifest claims.
 # Updating an origin is an explicit reviewed source change, never a map refresh.
 KIT_BASE_ANCHOR = 'c09f0c9b22521d3b48db1a645ba54d93484be77f'
-REVIEWED_FORK_DIGEST = 'baa42d52e33c853696481c2566a5a6f1506533e3c50812d7c52d0acac7daf9af'
+REVIEWED_FORK_DIGEST = '1296bc2b51712b893588a8da0b082d923b3730df60dc032bbf304e44c6a8bdc7'
 SOURCE_ANCHORS = {
     'Saqlain1999/bob-workflow-evals':
         ('5e2075ab510d947675c3e2e824ff384de899dc1a', 'evals'),
