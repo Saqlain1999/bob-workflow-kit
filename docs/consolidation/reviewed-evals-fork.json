@@ -2,7 +2,7 @@
   "schema_version": 1,
   "purpose": "current fifteen-source-head local consolidation; original imports and earlier fork records retained",
   "prefix": "evals",
-  "reviewed_commit": "0be56e31e282bf5ffa77bd118838b749e445bb04",
+  "reviewed_commit": "1335a9da7b9d921dc28c7c15ad7ce3b19bf70df5",
   "original_source_commit": "5e2075ab510d947675c3e2e824ff384de899dc1a",
   "files": [
     {
@@ -145,9 +145,9 @@
     },
     {
       "destination": "evals/fixtures/bob-project-memory/tests/test_memory_adapter.py",
-      "git_blob": "77df664dd4f9b38a58516dd4cd0b6f2e3c498a98",
+      "git_blob": "6266acb25692e49b457b9165879277c468eff66d",
       "mode": "100644",
-      "sha256": "d5bede424514bbd12ff4f812eb885db025f6d50a48f5c29a1824682f5ae7b21b"
+      "sha256": "1dffdc6469949bbea3b4d66b0b3d52391dbd4efcf9d753db45500c266187fdd7"
     },
     {
       "destination": "evals/fixtures/parcel-resume/README.md",
@@ -1039,9 +1039,9 @@
     },
     {
       "destination": "evals/tests/test_project_memory.py",
-      "git_blob": "c4b10071085fba56479ce5a0e2dda38f7489a42e",
+      "git_blob": "52bed7f4f38e44cc83c6dce9db00dfaed1faf138",
       "mode": "100644",
-      "sha256": "94cac91a7d2249b5a5ddb27d5bce7166fd68ab6fbed967cd2ea32fef42b60a06"
+      "sha256": "5221eb370ee578ed0e38754315f08e72461ffa4557b3e290a8ef05f855a2cca9"
     },
     {
       "destination": "evals/tests/test_project_planning_handoff.py",
@@ -1092,7 +1092,8 @@
       "sha256": "223d7a24e498c895358cd8eee832484e13a32ac49eb715ad15124f2bb1c5123e"
     }
   ],
-  "previous_fork_commit": "c893eb907207407de83e6b2a3cac8194f28f9bb2",
+  "previous_fork_commit": "0be56e31e282bf5ffa77bd118838b749e445bb04",
   "source_combination": "2c60ac25c17b8c9649ee473cc7441cd47c2c7e59",
-  "memory_correction": "c1b471a0658989e4341ad7fcf194d91e93b284fc"
+  "memory_correction": "c1b471a0658989e4341ad7fcf194d91e93b284fc",
+  "portability_delta": "Windows CPython3.10 bootstrap variables only; broken adapter and behavioral contract unchanged"
 }
