@@ -1,5 +1,34 @@
 # Local software validation
 
+## Backend-neutral memory runtime evidence protocol — 7 November 2026 (UTC)
+
+The protocol binds a later authorized Engram or Basic Memory trial to its exact
+reviewed profile and digest, the ten `bob-project-memory-v1` behaviours,
+side-effect observations, cleanup, and a fail-closed claim decision. The
+included record remains unauthorized and `not_run`; the validator reads JSON
+only and starts no backend or Bob process.
+
+Observed on Linux with Python 3.12.14:
+
+| Check | Observed result |
+| --- | --- |
+| ResourceWarning-fatal combined suite | 74/74 passed |
+| Runtime-protocol focused suite | 12/12 passed |
+| Python 3.10 grammar | 20 files parsed |
+| JSON syntax | 7 files parsed |
+| Local Markdown links | 33 links across 28 files; no missing targets |
+| Template validation | Valid `not_run`; record bytes unchanged |
+
+The controls cover exact profile/contract binding, digest and authorization
+failures, forbidden global/automatic settings, missing/duplicate/reordered
+behaviours, incomplete evidence, cleanup and side-effect requirements, blocked
+decisions, live Bob version/trust evidence, production-readiness rejection, and
+record preservation. Hosted exact-head results belong in the pull request.
+
+This is protocol-validation evidence. It is not a third-party download,
+installation, runtime trial, live Bob observation, backend qualification,
+licence/privacy review, or production-readiness result.
+
 ## Basic Memory v1.0.0 source qualification gate — 6 November 2026 (UTC)
 
 The Basic Memory gate pins the exact v1.0.0 source commit and published wheel
