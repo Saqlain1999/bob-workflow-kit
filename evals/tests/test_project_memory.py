@@ -1,5 +1,6 @@
 """Integration and negative controls for the project-memory fixture."""
 
+import ast
 import json
 import os
 from pathlib import Path
@@ -14,6 +15,25 @@ SCRIPT = ROOT / "scripts" / "evaluate.py"
 
 
 class ProjectMemoryFixtureTests(unittest.TestCase):
+    def test_process_environment_preserves_windows_bootstrap_without_secrets(self):
+        path = ROOT / 'fixtures/bob-project-memory/tests/test_memory_adapter.py'
+        module = ast.parse(path.read_text(encoding='utf-8'))
+        functions = {node.name: node for node in module.body if isinstance(node, ast.FunctionDef)}
+        self.assertIn('process_environment', functions)
+        scope: dict[str, object] = {'os': os, 'tempfile': tempfile}
+        isolated = ast.Module(body=[functions['process_environment']], type_ignores=[])
+        exec(compile(isolated, str(path), 'exec'), scope)
+        factory = scope['process_environment']
+        assert callable(factory)
+        environment = factory(self.directory, {
+            'SYSTEMROOT': 'C:\\Windows', 'WINDIR': 'C:\\Windows',
+            'BOB_API_KEY': 'synthetic', 'VAULT_TOKEN': 'synthetic'})
+        self.assertEqual(environment['SYSTEMROOT'], 'C:\\Windows')
+        self.assertEqual(environment['WINDIR'], 'C:\\Windows')
+        self.assertEqual(environment['HOME'], str(self.directory))
+        self.assertNotIn('BOB_API_KEY', environment)
+        self.assertNotIn('VAULT_TOKEN', environment)
+
     def setUp(self) -> None:
         self.temporary = tempfile.TemporaryDirectory(prefix="project-memory-eval-")
         self.addCleanup(self.temporary.cleanup)

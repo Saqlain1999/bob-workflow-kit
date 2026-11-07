@@ -1,6 +1,7 @@
 """Exercise component gates on disposable suites, never recursively check all."""
 import importlib.util
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -33,7 +34,7 @@ class QualityGateTests(unittest.TestCase):
             check = next(c for c in check_all.checks(ROOT) if c['name'] == component)
             report = root / 'evidence.json'
             result = subprocess.run(check['command'] + ['--report', str(report)],
-                                    cwd=root, env=check_all.test_environment({}),
+                                    cwd=root, env=check_all.test_environment(os.environ),
                                     capture_output=True, text=True, timeout=20)
             evidence = json.loads(report.read_text(encoding='utf-8'))
             return result, evidence
@@ -108,7 +109,7 @@ class QualityGateTests(unittest.TestCase):
         self.assertEqual(env['TMPDIR'], 'scratch')
         result = subprocess.run([sys.executable, '-B', str(ROOT / 'tools/check_all.py'),
                                  '--list', '--require-history'], capture_output=True,
-                                text=True, env=check_all.test_environment({}), timeout=20)
+                                text=True, env=check_all.test_environment(os.environ), timeout=20)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(len(json.loads(result.stdout)), 5)
 
@@ -119,7 +120,7 @@ class QualityGateTests(unittest.TestCase):
             (root / 'tests/test_consolidation.py').write_text(PASSING, encoding='utf-8')
             check = check_all.checks(ROOT)[0]
             result = subprocess.run(check['command'], cwd=root,
-                                    env=check_all.test_environment({}),
+                                    env=check_all.test_environment(os.environ),
                                     capture_output=True, text=True, timeout=20)
             self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
 
