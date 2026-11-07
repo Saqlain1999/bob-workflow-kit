@@ -17,6 +17,13 @@ PASSING = 'import unittest\nclass Example(unittest.TestCase):\n    def test_ok(s
 
 
 class QualityGateTests(unittest.TestCase):
+    def test_failure_log_tail_is_bounded_and_keeps_the_final_diagnostic(self):
+        self.assertTrue(hasattr(check_all, 'failure_log_tail'))
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'failure.log'
+            path.write_bytes(b'prefix' * 10000 + b'END\n')
+            self.assertEqual(check_all.failure_log_tail(path, 4), 'END\n')
+
     def run_fixture(self, component, files):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -38,6 +38,14 @@ def checks(root, require_history=False):
     ]
 
 
+def failure_log_tail(path, max_bytes=16000):
+    """Expose bounded offline test diagnostics in hosted job logs."""
+    with path.open('rb') as handle:
+        handle.seek(0, os.SEEK_END)
+        handle.seek(max(0, handle.tell() - max_bytes))
+        return handle.read(max_bytes).decode('utf-8', errors='replace')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--list', action='store_true', help='show commands without running them')
@@ -85,6 +93,8 @@ def main():
             row['exit_code'] = code
         results.append(row)
         print(check['name'] + ': ' + ('PASS' if code == 0 else 'FAIL'), flush=True)
+        if code != 0:
+            print(failure_log_tail(log_dir / (check['name'] + '.log')), flush=True)
     report = {'checks': results, 'log_dir': str(log_dir),
               'all_successful': all(row['exit_code'] == 0 for row in results)}
     (log_dir / 'summary.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
