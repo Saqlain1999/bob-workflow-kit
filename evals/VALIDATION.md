@@ -305,11 +305,11 @@ Use the [evaluation protocol](docs/protocol.md) to collect an actual participant
 ## Historical observations and local integration
 
 The exact pre-refresh validation body is retained in
-[HISTORICAL-VALIDATION-pre-refresh.md](docs/HISTORICAL-VALIDATION-pre-refresh.md).
+[HISTORICAL-VALIDATION-pre-refresh.txt](docs/HISTORICAL-VALIDATION-pre-refresh.txt).
 The corrected memory source validation body is retained in
-[HISTORICAL-VALIDATION-memory-source.md](docs/HISTORICAL-VALIDATION-memory-source.md).
+[HISTORICAL-VALIDATION-memory-source.txt](docs/HISTORICAL-VALIDATION-memory-source.txt).
 Their historical counts are observations at their own source heads, not this
 combined tree. The exact separately attributed monorepo-fork body is retained in
-[HISTORICAL-VALIDATION-pre-refresh-fork.md](docs/HISTORICAL-VALIDATION-pre-refresh-fork.md).
+[HISTORICAL-VALIDATION-pre-refresh-fork.txt](docs/HISTORICAL-VALIDATION-pre-refresh-fork.txt).
 New combined-tree execution is recorded separately in
 [COMBINED-SOURCE-VALIDATION.md](docs/COMBINED-SOURCE-VALIDATION.md).

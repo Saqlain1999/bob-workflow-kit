@@ -65,15 +65,18 @@ Exact Git-object comparisons established:
 - All pinned reviewed source heads and corrected #11/#12 heads are ancestors.
 
 Historical validation bodies are preserved verbatim, not relabelled as fresh
-combined observations:
+combined observations. They are stored as raw `.txt` records because their
+relative Markdown links belong to their original source-root context, not this
+archive directory; this preserves the exact historical bytes without creating
+misleading live navigation links:
 
-- [Pre-refresh source](HISTORICAL-VALIDATION-pre-refresh.md): exact body from
+- [Pre-refresh source](HISTORICAL-VALIDATION-pre-refresh.txt): exact body from
   `c48c2f8:VALIDATION.md`, including historical 80/91/103 assertions.
-- [Pre-refresh monorepo fork](HISTORICAL-VALIDATION-pre-refresh-fork.md): exact body
+- [Pre-refresh monorepo fork](HISTORICAL-VALIDATION-pre-refresh-fork.txt): exact body
   from `61b55be389cac60c718f1c0e28e0e0becee90678:evals/VALIDATION.md`, including its
   separate local-port attribution. Its historical relative links retain their
   original root-file context.
-- [Corrected memory source](HISTORICAL-VALIDATION-memory-source.md): exact body
+- [Corrected memory source](HISTORICAL-VALIDATION-memory-source.txt): exact body
   from `c1b471a:VALIDATION.md`, including the separate correction appendix.
 
 The main validation file retains upstream #10's reconciled observations as
