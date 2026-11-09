@@ -4,6 +4,43 @@ Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Consolidation refresh — 9 November 2026 (UTC)
+
+Review found that the consolidation branch still embedded evaluator PR #14's
+schema-v1 head `12cec9029682e14b57f9ace38605951fb091b605` after the source PR
+had advanced to reviewed final head
+`083ed29533ca292fefa4784efac644f57de9735a`. The stale port omitted required
+run/host/client identity, complete evidence for blocked or incomplete live-Bob
+observations, and the source-backed rejection of non-interactive `bob run`.
+
+The final source revision remains pinned, its five active protocol/code/test
+files retain the exact source Git blob identities under `evals/`, and combined
+contributor/validation records retain their separate attribution. The
+reviewed-fork manifest binds the complete 181-file evaluator tree to reviewed
+port `e6c39afdc03d4a044788952eaa6b009eadbba393`. A root regression binds the PR
+map to final head `083ed295...`, requires protocol schema 2, verifies the five
+source blob identities, and checks the fourteen native source heads plus the
+reviewed port as ancestors in a full checkout.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **66/66 root tests** and **157/157 evaluator tests** passed with zero
+  failures, errors or skips; catalogue, provenance and local links passed.
+- Focused runtime-protocol suite: **13/13 passed**.
+- Exact-commit archive with no `.git` and a `PATH` containing Python but no
+  Git: all content/offline checks passed; root discovered **66** cases, executed
+  **42** bodies and reported **24 explicit Git-only skips**; all **157**
+  evaluator tests executed. This archive check does not establish independent
+  history proof.
+- Complete current diff and `git diff --check` passed.
+
+No Engram or Basic Memory artifact, Bob client, MCP server, model, credential,
+private project, hook, or paid service was downloaded or executed. These are
+offline source, provenance and regression results—not live Bob loading,
+workflow-following, backend qualification, licence/privacy approval, production
+readiness, release approval or repository-transition approval.
+
 ## Local one-product kit-port validation
 
 Reviewed kit candidates #5, #6 and #7 were merged locally in dependency order without squashing. The sections below headed Alpha.5, Alpha.6 and Alpha.7 retain their original candidate-specific evidence; their dates, environments and counts do not describe this consolidated checkout. Historical alpha.4 and earlier evidence remains unchanged, including the seven-file alpha.1 payload.

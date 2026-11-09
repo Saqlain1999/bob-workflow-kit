@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "purpose": "current fifteen-source-head local consolidation; original imports and earlier fork records retained",
+  "purpose": "current fifteen-source-head local consolidation with final runtime-protocol evidence controls; original imports and earlier fork records retained",
   "prefix": "evals",
-  "reviewed_commit": "1335a9da7b9d921dc28c7c15ad7ce3b19bf70df5",
+  "reviewed_commit": "e6c39afdc03d4a044788952eaa6b009eadbba393",
   "original_source_commit": "5e2075ab510d947675c3e2e824ff384de899dc1a",
   "files": [
     {
@@ -19,9 +19,9 @@
     },
     {
       "destination": "evals/CONTRIBUTING.md",
-      "git_blob": "b04ad93a7fec7fa421ec6427b029adbc7c1261cf",
+      "git_blob": "8044ebfbbe2352f1fd473d3362284db6b1ba624b",
       "mode": "100644",
-      "sha256": "5ec0ba7bbaedd5eda6d6b6dcec7ea0d4c66683e0dbbe30c2198d8bc417121b12"
+      "sha256": "faab118700d62fb4d8e39aa4493c42d1759e7c510c92f17a8a018e92794b0457"
     },
     {
       "destination": "evals/LICENSE",
@@ -43,9 +43,9 @@
     },
     {
       "destination": "evals/VALIDATION.md",
-      "git_blob": "2d7de69eb8bd9fc1a061d7121c3097dd174c5885",
+      "git_blob": "2fcffae63b129c50fc7cd7c9723b6ed2d13a6770",
       "mode": "100644",
-      "sha256": "37e57b63e621d1f97edbbe0b023800ef6c06fbe041839a0cc5911a4a96581635"
+      "sha256": "d621fa8c2c4ee5d20abb8134e2b5cc1fd0ec23db8edc11a052a0bdcae8aeb525"
     },
     {
       "destination": "evals/docs/COMBINED-SOURCE-VALIDATION.md",
@@ -91,9 +91,9 @@
     },
     {
       "destination": "evals/docs/NEW-SOURCE-13-14-VALIDATION.md",
-      "git_blob": "04648c3706fc2a5f3d11c0d15885c72c61187c07",
+      "git_blob": "aaad6212f2ab957bff8ac54d5b0651de6a9d8b29",
       "mode": "100644",
-      "sha256": "46bcb64cca7e42cfc22f96f3941f854ca972bff5d6c345e32965221514b07237"
+      "sha256": "6c0bf492e7d5b84c24a9ebb383995416427932187353ce8749a0af848a637372"
     },
     {
       "destination": "evals/docs/protocol.md",
@@ -751,15 +751,15 @@
     },
     {
       "destination": "evals/qualifications/memory-runtime-trial-v1/README.md",
-      "git_blob": "0f89f353227de5eb358dd105068d8a264e69428d",
+      "git_blob": "89607b6a2cbe8e2a36decbfdc252a65b39770c29",
       "mode": "100644",
-      "sha256": "638098bd551783830f46bb2d1e2e1fe1c192cc114baba4d98f009050e25c2c52"
+      "sha256": "aaafbba6a1a560d03184a19b8f2b0f660fa80d9460c4858df792511a534387da"
     },
     {
       "destination": "evals/qualifications/memory-runtime-trial-v1/protocol.json",
-      "git_blob": "67f96ebb790814aa7df99b56ef7d30b9841eeae2",
+      "git_blob": "1703a8b13a77b87c58b1bbcce2ae8204db3a9b5e",
       "mode": "100644",
-      "sha256": "743c23110a3de6ac093d61309e6d3cd36f9f5c14e8dfb7e4ebf6c9a58164ebcc"
+      "sha256": "6fa260404edb562718eeb4d8ef1cb0901f6806150bda8a734582f7c9df80af5b"
     },
     {
       "destination": "evals/results/README.md",
@@ -769,9 +769,9 @@
     },
     {
       "destination": "evals/results/memory-runtime-trial-template.json",
-      "git_blob": "6bc16e4af65d7e73e5efae664e3b5ce67f8d6221",
+      "git_blob": "29d653684b67fd59573540300f1265200b123731",
       "mode": "100644",
-      "sha256": "82a989378056e806b0c6ca2495ba7d80747ae4debcb6c610f5f06dc2989ef106"
+      "sha256": "36cd0e42b4fe064d888c26895cb4ba51e2c2f11a751697f89ec70cf83c7cc848"
     },
     {
       "destination": "evals/results/result-template.json",
@@ -799,9 +799,9 @@
     },
     {
       "destination": "evals/scripts/validate_memory_trial.py",
-      "git_blob": "450c020d03f3149499b801ce60799b8fd47cda43",
+      "git_blob": "1bc67c851c17b18f9ba084f64927b97f60e601bb",
       "mode": "100644",
-      "sha256": "9b4bc16c7506c2b282570721488513667db853f7a8743450a64e7371052bfe2b"
+      "sha256": "4f8f9d20d2a528c0d93628381c8ff663ee4c30b287d0304384e1b47ca3cedac7"
     },
     {
       "destination": "evals/tasks/bob-project-memory/ACCEPTANCE.md",
@@ -1027,9 +1027,9 @@
     },
     {
       "destination": "evals/tests/test_memory_runtime_protocol.py",
-      "git_blob": "fbf03bbf22618cb78f8dbfb548acfb88e0025b1c",
+      "git_blob": "66e60c5c1df79b820582fa7b54b29ca15b318d3c",
       "mode": "100644",
-      "sha256": "dcbb791ea631595833711a85fb312eea60d651201823d98e98711a620f66f228"
+      "sha256": "c6d569ec8e69a51bb5f1e473363474e9098a20e970caa60fa50c9d652e7a9c16"
     },
     {
       "destination": "evals/tests/test_parcel_resume.py",
@@ -1092,8 +1092,10 @@
       "sha256": "223d7a24e498c895358cd8eee832484e13a32ac49eb715ad15124f2bb1c5123e"
     }
   ],
-  "previous_fork_commit": "0be56e31e282bf5ffa77bd118838b749e445bb04",
+  "previous_fork_commit": "1335a9da7b9d921dc28c7c15ad7ce3b19bf70df5",
   "source_combination": "2c60ac25c17b8c9649ee473cc7441cd47c2c7e59",
   "memory_correction": "c1b471a0658989e4341ad7fcf194d91e93b284fc",
-  "portability_delta": "Windows CPython3.10 bootstrap variables only; broken adapter and behavioral contract unchanged"
+  "portability_delta": "Windows CPython3.10 bootstrap variables only; broken adapter and behavioral contract unchanged",
+  "runtime_protocol_source": "083ed29533ca292fefa4784efac644f57de9735a",
+  "runtime_protocol_delta": "schema v2 run/host/client identity, explicit interactive Bob version/trust/live evidence for every executed Bob result, and non-interactive Shell rejection"
 }

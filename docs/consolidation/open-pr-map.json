@@ -127,7 +127,7 @@
     {
       "baseRefName": "maintenance/basic-memory-qualification-2026-11-06",
       "headRefName": "maintenance/memory-runtime-protocol-2026-11-07",
-      "headRefOid": "12cec9029682e14b57f9ace38605951fb091b605",
+      "headRefOid": "083ed29533ca292fefa4784efac644f57de9735a",
       "number": 14,
       "title": "Add fail-closed memory runtime evidence protocol",
       "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/14",
