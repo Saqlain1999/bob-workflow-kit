@@ -42,6 +42,7 @@ class MemoryRuntimeProtocolTests(unittest.TestCase):
             "operating_system": "constructed-os",
             "architecture": "constructed-arch",
             "client": client,
+            "client_mode": "direct_mcp" if client == "direct_mcp" else "ide_interactive",
             "workspace_trust": "not_applicable_direct" if client == "direct_mcp" else "explicit_trust",
         })
         record["side_effects"] = {
@@ -114,6 +115,25 @@ class MemoryRuntimeProtocolTests(unittest.TestCase):
         self.assertEqual(result.returncode, 2)
         self.assertIn("explicit third-party execution authorization", result.stderr)
 
+    def test_executed_record_requires_host_and_matching_client_mode(self) -> None:
+        record = self.executed()
+        record["run_id"] = None
+        result = self.write_and_validate(record)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("non-empty run_id", result.stderr)
+        for key in ("operating_system", "architecture"):
+            with self.subTest(key=key):
+                record = self.executed()
+                record["environment"][key] = None
+                result = self.write_and_validate(record)
+                self.assertEqual(result.returncode, 2)
+                self.assertIn(f"environment.{key}", result.stderr)
+        record = self.executed()
+        record["environment"]["client_mode"] = "ide_interactive"
+        result = self.write_and_validate(record)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("direct_mcp client requires direct_mcp client_mode", result.stderr)
+
     def test_global_settings_or_automatic_approval_are_rejected(self) -> None:
         for safeguard in ("global_settings_changed", "automatic_tool_approval"):
             with self.subTest(safeguard=safeguard):
@@ -173,22 +193,37 @@ class MemoryRuntimeProtocolTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("decision=blocked", result.stdout)
 
-    def test_live_bob_claim_requires_version_and_explicit_trust(self) -> None:
-        record = self.executed(client="ibm_bob")
+    def test_any_executed_bob_record_requires_version_trust_and_live_observation(self) -> None:
+        record = self.executed(decision="blocked", client="ibm_bob")
+        record["behaviors"][8]["status"] = "blocked"
+        record["behaviors"][8]["evidence"] = "indexed deletion remained visible"
         record["claims"]["live_bob_observed"] = True
         record["environment"]["client_version"] = "constructed-version"
-        for key, value, message in (
-            ("client_version", None, "client version"),
-            ("workspace_trust", "not_assessed", "explicit workspace trust"),
+        for section, key, value, message in (
+            ("environment", "client_version", None, "client version"),
+            ("environment", "workspace_trust", "not_assessed", "explicit workspace trust"),
+            ("claims", "live_bob_observed", False, "live_bob_observed true"),
         ):
             with self.subTest(key=key):
                 candidate = copy.deepcopy(record)
-                candidate["environment"][key] = value
+                candidate[section][key] = value
                 result = self.write_and_validate(candidate)
                 self.assertEqual(result.returncode, 2)
                 self.assertIn(message, result.stderr)
         result = self.write_and_validate(record)
         self.assertEqual(result.returncode, 0, result.stderr)
+
+        incomplete = copy.deepcopy(record)
+        incomplete["decision"] = "incomplete"
+        incomplete["decision_rationale"] = "constructed incomplete Bob observation"
+        result = self.write_and_validate(incomplete)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+        noninteractive = copy.deepcopy(record)
+        noninteractive["environment"]["client_mode"] = "shell_non_interactive"
+        result = self.write_and_validate(noninteractive)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("pre-approves tools", result.stderr)
 
     def test_production_readiness_can_never_be_claimed(self) -> None:
         record = self.executed()

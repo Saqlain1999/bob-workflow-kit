@@ -79,6 +79,9 @@ def validate_record(record: dict[str, Any], root: Path = ROOT) -> str:
     client = environment.get("client")
     if client not in protocol["allowed_clients"]:
         raise RecordError("environment.client is not allowed")
+    client_mode = environment.get("client_mode")
+    if client_mode not in protocol["allowed_client_modes"]:
+        raise RecordError("environment.client_mode is not allowed")
     if environment.get("transport") != "stdio":
         raise RecordError("the first runtime protocol requires STDIO transport")
     if environment.get("project_scope") != "disposable_project_only":
@@ -158,8 +161,38 @@ def validate_record(record: dict[str, Any], root: Path = ROOT) -> str:
             raise RecordError("an executed decision requires explicit third-party execution authorization")
         if not source["asset_digest_verified"]:
             raise RecordError("an executed decision requires exact asset-digest verification")
+        if not nonempty_text(record.get("run_id")):
+            raise RecordError("an executed decision requires a non-empty run_id")
         if client == "not_run":
             raise RecordError("an executed decision requires an observed client")
+        for key in ("operating_system", "architecture"):
+            if not nonempty_text(environment.get(key)):
+                raise RecordError(f"an executed decision requires environment.{key}")
+
+    if client == "not_run":
+        if client_mode != "not_run":
+            raise RecordError("the not_run client requires not_run client_mode")
+    elif client == "direct_mcp":
+        if client_mode != "direct_mcp":
+            raise RecordError("the direct_mcp client requires direct_mcp client_mode")
+        if environment.get("workspace_trust") != "not_applicable_direct":
+            raise RecordError("direct MCP requires workspace trust to be marked not applicable")
+        if claims["live_bob_observed"]:
+            raise RecordError("direct MCP cannot claim a live IBM Bob observation")
+    else:
+        if client_mode not in {"ide_interactive", "shell_interactive", "shell_non_interactive"}:
+            raise RecordError("the ibm_bob client requires a named Bob client mode")
+        if client_mode == "shell_non_interactive":
+            raise RecordError(
+                "Bob Shell non-interactive mode pre-approves tools and is outside this manual-approval protocol"
+            )
+        if decision != "not_run":
+            if not nonempty_text(environment.get("client_version")):
+                raise RecordError("an executed IBM Bob observation requires a client version")
+            if environment.get("workspace_trust") != "explicit_trust":
+                raise RecordError("an executed IBM Bob observation requires explicit workspace trust")
+            if not claims["live_bob_observed"]:
+                raise RecordError("an executed IBM Bob observation must set live_bob_observed true")
 
     if decision == "qualified":
         if any(status != "pass" for status in statuses):
@@ -181,15 +214,8 @@ def validate_record(record: dict[str, Any], root: Path = ROOT) -> str:
     if decision == "incomplete" and all(status == "pass" for status in statuses):
         raise RecordError("incomplete must retain at least one non-pass behavior")
 
-    if claims["live_bob_observed"]:
-        if decision != "qualified" or client != "ibm_bob":
-            raise RecordError("live Bob evidence requires a qualified IBM Bob trial")
-        if not nonempty_text(environment.get("client_version")):
-            raise RecordError("live Bob evidence requires a client version")
-        if environment.get("workspace_trust") != "explicit_trust":
-            raise RecordError("live Bob evidence requires explicit workspace trust")
-    elif client == "ibm_bob" and decision == "qualified":
-        raise RecordError("a qualified IBM Bob trial must state that live Bob was observed")
+    if claims["live_bob_observed"] and (decision == "not_run" or client != "ibm_bob"):
+        raise RecordError("live Bob evidence requires an executed IBM Bob trial")
 
     return decision
 

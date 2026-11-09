@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "protocol_id": "bob-project-memory-runtime-trial-v1",
   "run_id": null,
   "backend_profile": "qualifications/engram-v0.11.0/profile.json",
@@ -17,6 +17,7 @@
     "operating_system": null,
     "architecture": null,
     "client": "not_run",
+    "client_mode": "not_run",
     "client_version": null,
     "workspace_trust": "not_assessed",
     "transport": "stdio",

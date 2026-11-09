@@ -108,11 +108,17 @@ state, and keep licence obligations distinct from technical compatibility.
 Runtime trial records must use the shared memory protocol, bind to one allowed
 profile and exact digest, retain constructed public data and manual approvals,
 and record process, file, network, model-download, MCP initialization-instruction
-and cleanup observations.
+and cleanup observations. Every executed record must name a stable run ID,
+operating system, architecture, and matching client mode. Direct MCP records
+must not claim live Bob. Every executed Bob record, including a blocked or
+incomplete trial, must name the interactive IDE/Shell mode and exact client
+version, record explicit workspace trust, and mark the live observation.
+Non-interactive `bob run` is outside this manual-approval protocol because IBM
+documents that all tools are pre-approved in that mode.
 Never turn a structurally valid `not_run`, `incomplete`, or `blocked` record into
 a qualification claim. A runtime record does not establish production
-readiness, and a live Bob claim additionally needs an observed client version
-and explicit workspace trust.
+readiness, and the live marker identifies evidence origin rather than upgrading
+a blocked or incomplete decision.
 
 Explain the problem, the proposed change, and the observed checks. Avoid
 unnecessary package dependencies, model SDKs, credentials, and network calls.

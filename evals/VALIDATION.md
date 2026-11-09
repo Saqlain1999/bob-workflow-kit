@@ -1,11 +1,29 @@
 # Local software validation
 
+## Final memory runtime protocol delta — 8 November 2026 (UTC)
+
+The active consolidated evaluator now ports the exact final PR #14 source head
+`083ed29533ca292fefa4784efac644f57de9735a`, not its earlier schema-v1 head.
+Schema v2 requires a run ID, operating system, architecture, and matching client
+mode for every executed record. Direct MCP records cannot claim live Bob. Every
+executed IBM Bob record—including blocked and incomplete results—must name the
+interactive IDE or Shell mode and exact version, record explicit workspace
+trust, and set the live-observation marker. Non-interactive `bob run` is
+rejected because IBM documents that its tools are pre-approved, which conflicts
+with this protocol's manual-approval boundary.
+
+The final source's focused protocol suite passed 13/13 and its combined
+ResourceWarning-fatal suite passed 75/75 on Linux/Python 3.12.14. Those are
+source-head observations. Fresh consolidated-tree counts are recorded in the
+root validation record after the port is tested. No backend, MCP server, Bob
+client, model, credential, or network service was downloaded or executed.
+
 ## New source snapshots (PR #13/#14)
 
 The new backend gates remain source/protocol-only. Exact incoming validation
 records are preserved as raw text, with their original counts and attribution:
 [PR #13 snapshot](docs/HISTORICAL-VALIDATION-pr13-6d487eb.txt) and
-[PR #14 snapshot](docs/HISTORICAL-VALIDATION-pr14-12cec90.txt).
+[PR #14 schema-v1 snapshot](docs/HISTORICAL-VALIDATION-pr14-12cec90.txt).
 The [accepted pre-port snapshot](docs/HISTORICAL-VALIDATION-accepted-7a432e0.txt)
 is also retained byte-for-byte. Current combined checks belong in the separate
 [combined-source record](docs/COMBINED-SOURCE-VALIDATION.md), not those historical tables.

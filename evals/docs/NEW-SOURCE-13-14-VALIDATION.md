@@ -8,6 +8,14 @@ bases. Complete base-to-head diffs were reviewed before porting; no concrete
 source blocker was found. No monorepo, accepted-source or correction worktree
 was edited.
 
+The consolidation later reconciled PR #14's final reviewed head
+`083ed29533ca292fefa4784efac644f57de9735a` without replacing this historical
+schema-v1 record. The final delta adds schema-v2 run/host/client identity,
+requires explicit version/trust/live evidence for every executed IBM Bob result,
+and rejects non-interactive `bob run` because it pre-approves tools. Its exact
+source-focused protocol suite passed 13/13; fresh consolidated-tree execution is
+recorded by the parent product rather than relabelled here.
+
 ## Executed checks
 
 On Linux with Python 3.13.5, the ResourceWarning-fatal full suite passed twice:
