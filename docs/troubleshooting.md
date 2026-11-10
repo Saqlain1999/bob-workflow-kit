@@ -17,6 +17,7 @@ Start with the exact command output and the active execution host. Preserve unre
 | Bob forgets earlier decisions | The task record may be absent, stale, or too large | Use a concise checkpoint and name its exact path in a fresh recovery request |
 | Bob repeats the same failing command | The cause may be environmental, denied, or misunderstood | Classify the failure and change the next action based on new evidence |
 | Bob says tests passed but evidence is absent | The command may not have completed or may not have run | Request the actual command, working directory, exit status, relevant output and scope |
+| Live-trial validation rejects the record | The result lacks run/host identity, explicit trust, interactive Bob observation, loading evidence, or task evidence for its claim level | Keep the actual status as `blocked` or `incomplete`; add only evidence that was observed. Do not relabel `bob run`, file existence, or helper output as an interactive live-Bob task |
 
 Current IBM references: [IDE skills](https://bob.ibm.com/docs/ide/features/skills), [Shell skills tutorial](https://bob.ibm.com/docs/shell/tutorials/use-skills), [rules precedence](https://bob.ibm.com/docs/ide/configuration/rules), and the [Shell changelog entry for protected Bob-home writes](https://bob.ibm.com/docs/shell/changelog#201).
 

@@ -4,6 +4,46 @@ Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Fail-closed live-trial evidence — 10 November 2026 (UTC)
+
+Review found that the shipped live-trial template could describe a result as a
+manual Bob trial without binding it to a run, host, exact kit commit, Bob
+version/mode, explicit workspace-trust decision or affirmative live-client
+observation. That made blocked or completed reports ambiguous and could let
+non-interactive `bob run` evidence cross an interactive manual-approval
+boundary.
+
+The template is now schema 2 and a read-only validator requires bounded claim
+levels. Executed results must identify the run and host, use an interactive IDE
+or Shell client, record the exact kit and Bob revisions, record explicit trust
+and native-loading evidence, and affirm that Bob was actually observed. A
+completed result must additionally carry healthy installation evidence, both
+rule and skill loading, exact task evidence, manual acceptance and preservation
+observations. Blocked and incomplete records remain valid evidence, but cannot
+claim a completed task. The validator checks record shape and consistency; it
+does not attest that the recorded observations are true.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused fail-closed live-trial suite: **7/7 passed**, including template
+  preservation, non-interactive rejection, identity/trust/live-observation
+  controls, overclaim rejection, bounded blocked results and CLI read-only
+  behavior.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **73/73 root tests** and **157/157 evaluator tests** passed with zero
+  failures, errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no
+  Git: all content/offline checks passed; root discovered and ran **73** cases
+  with **24 explicit Git-only skips**, and all **157** evaluator tests ran.
+  This archive result does not establish independent history proof.
+- Complete current diff and `git diff --check` passed.
+
+No live IBM Bob client, model, credential, private repository, hook, MCP server,
+paid service or unreviewed third-party content was used. These results establish
+offline validation and honest reporting controls only—not Bob discovery,
+activation, workflow-following, compatibility, task quality or release
+readiness.
+
 ## Consolidation refresh — 9 November 2026 (UTC)
 
 Review found that the consolidation branch still embedded evaluator PR #14's

@@ -22,7 +22,7 @@ Suggested edited video length is 2–3 minutes. Preserve the complete run eviden
 
 Use the task's ordinary participant prompt. Extra hints or human repairs are interventions and belong in the report. Keep API keys, private repository content, personal file paths and unrelated desktop windows out of the recording.
 
-Publish a recording only after reviewing the observed result. Accompany it with the [live trial record](live-trial-template.json), evaluator reports, a diff, and links to the exact source revisions. A failure is still a useful demonstration if accurately labelled.
+Publish a recording only after reviewing the observed result. Accompany it with a copy of the [live trial record](live-trial-template.json), the output of `python3 tools/validate_live_trial.py /path/to/result.json`, evaluator reports, a diff, and links to the exact source revisions. Validation checks that the record is complete and bounded; it does not prove its assertions. A failure is still a useful demonstration if accurately labelled.
 
 ## Launch sequence
 

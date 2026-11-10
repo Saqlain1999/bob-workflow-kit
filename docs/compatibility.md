@@ -44,6 +44,6 @@ Older clients may differ. The [Shell changelog](https://bob.ibm.com/docs/shell/c
 
 Record the kit version/commit, exact Bob version, interface, OS, execution host, target path (redacted where needed), installation integrity output, observed rule/skill loading, fixture results, and remaining limitations. Submit a compatibility report with no credentials or private project content.
 
-The [first-use walkthrough](try-alpha.md) leads through those observations. Use the short [issue form](https://github.com/Saqlain1999/bob-workflow-kit/issues/new?template=compatibility.yml), or copy the optional [live trial template](live-trial-template.json) when preserving detailed evidence. No live client combination has been accepted into this matrix yet.
+The [first-use walkthrough](try-alpha.md) leads through those observations. Use the short [issue form](https://github.com/Saqlain1999/bob-workflow-kit/issues/new?template=compatibility.yml), or copy the optional [live trial template](live-trial-template.json) when preserving detailed evidence. Validate a completed copy with `python3 tools/validate_live_trial.py /path/to/result.json`; validation is fail-closed evidence-shape checking, not an attestation. No live client combination has been accepted into this matrix yet.
 
 Promote a combination from “documented” to “tested” only with actual execution evidence. Promote “tested” to a broader support claim only after the project's maintainers accept an ongoing test/maintenance commitment.

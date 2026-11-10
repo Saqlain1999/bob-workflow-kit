@@ -80,7 +80,9 @@ None of these alone establishes reliable behavior on your large repository. Save
 
 Open [a Bob compatibility result](https://github.com/Saqlain1999/bob-workflow-kit/issues/new?template=compatibility.yml). Report the kit version, Bob version/interface, host, the three observed outcomes, and the first confusing or failing step. Short reports are welcome. Include only public fixture evidence and redact local identities or confidential paths.
 
-For a recorded demonstration or a detailed result, copy [live-trial-template.json](live-trial-template.json). It is a manual reporting aid, not an automated attestation. Leave unobserved values as `null`; record unsuccessful attempts instead of replacing them with a later pass.
+For a recorded demonstration or a detailed result, copy [live-trial-template.json](live-trial-template.json). Keep the supplied template as `not_run`; fill a separate result file and validate it with `python3 tools/validate_live_trial.py /path/to/result.json`. The validator is read-only and checks evidence shape, not whether the assertions are true.
+
+An executed result must identify the run, exact kit commit, Bob interface/version/mode, operating system, execution host, explicit workspace-trust decision and observed native-loading evidence. Use an interactive IDE or Shell session for this first trial. Do not substitute non-interactive `bob run`: IBM documents that it pre-approves tools, which conflicts with this walkthrough's approval boundary. Record blocked and incomplete attempts instead of replacing them with a later pass; they cannot claim task completion.
 
 ## Next: test recovery, then your own repository
 
