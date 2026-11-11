@@ -4,6 +4,47 @@ Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Recovery-evidence boundary — 11 November 2026 (UTC)
+
+Review found that schema 2 could mark a live task completed without identifying
+whether the task was a small repair or an interruption/recovery exercise. A
+generic passing task report could therefore be mistaken for evidence that the
+kit resumed work safely after interruption, even though the Parcel Resume
+acceptance contract requires distinct process observations.
+
+The live-trial record is now schema 3. A completed record must label the task as
+either `small_repair` or `interruption_recovery`. A small repair must record
+recovery as not applicable. An interruption/recovery claim must identify a
+constructed handoff or an observed client interruption and record that the
+participant read the handoff, reconciled current state, detected stale
+historical evidence, reran relevant checks, updated the checkpoint and
+preserved unrelated changes. It must also point to the separate recovery
+evidence. These requirements apply whenever recovery is labelled observed,
+including a blocked or incomplete overall trial. The validator checks record
+shape and consistency; it does not attest that the observations are true.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused recovery/live-trial suite: **11/11 passed**, including a successful
+  constructed-handoff record, every required recovery observation, blocked
+  overclaim rejection, small-repair separation, template preservation and
+  read-only CLI behavior.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **77/77 root tests** and **157/157 evaluator tests** passed with zero
+  failures, errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no
+  Git: all content/offline checks passed; root discovered and ran **77** cases
+  with **24 explicit Git-only skips**, and all **157** evaluator tests ran.
+  This archive result does not establish independent history proof.
+- Complete current diff and `git diff --check` passed.
+
+No live IBM Bob client, interruption, model, credential, private repository,
+hook, MCP server, paid service or unreviewed third-party content was used. The
+prepared Parcel Resume fixture represents a constructed handoff, not an
+observed Bob process interruption. These results establish offline reporting
+controls only—not discovery, workflow-following, recovery quality, compatibility
+or release readiness.
+
 ## Fail-closed live-trial evidence — 10 November 2026 (UTC)
 
 Review found that the shipped live-trial template could describe a result as a

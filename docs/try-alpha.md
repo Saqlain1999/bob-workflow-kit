@@ -82,7 +82,7 @@ Open [a Bob compatibility result](https://github.com/Saqlain1999/bob-workflow-ki
 
 For a recorded demonstration or a detailed result, copy [live-trial-template.json](live-trial-template.json). Keep the supplied template as `not_run`; fill a separate result file and validate it with `python3 tools/validate_live_trial.py /path/to/result.json`. The validator is read-only and checks evidence shape, not whether the assertions are true.
 
-An executed result must identify the run, exact kit commit, Bob interface/version/mode, operating system, execution host, explicit workspace-trust decision and observed native-loading evidence. Use an interactive IDE or Shell session for this first trial. Do not substitute non-interactive `bob run`: IBM documents that it pre-approves tools, which conflicts with this walkthrough's approval boundary. Record blocked and incomplete attempts instead of replacing them with a later pass; they cannot claim task completion.
+An executed result must identify the run, exact kit commit, Bob interface/version/mode, operating system, execution host, explicit workspace-trust decision and observed native-loading evidence. A completed result must label the task as a `small_repair` or `interruption_recovery`; recovery claims require the separate observed handoff, reconciliation, stale-evidence, recheck, checkpoint and preservation fields. Use an interactive IDE or Shell session for this first trial. Do not substitute non-interactive `bob run`: IBM documents that it pre-approves tools, which conflicts with this walkthrough's approval boundary. Record blocked and incomplete attempts instead of replacing them with a later pass; they cannot claim task completion.
 
 ## Next: test recovery, then your own repository
 

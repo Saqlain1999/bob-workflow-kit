@@ -24,6 +24,23 @@ python3 scripts/evaluate.py candidate --task parcel-resume --workspace runs/parc
 
 Keep result files outside the candidate workspace. The [task acceptance checklist](../evals/tasks/parcel-resume/ACCEPTANCE.md) separates public-test results from process observations. Return to the kit root with `cd ..` before using the root installer or quality commands.
 
+For the kit-level live result, copy
+[the live-trial template](live-trial-template.json), set `task.scenario` to
+`interruption_recovery`, and validate the completed copy from the kit root:
+
+```sh
+python3 tools/validate_live_trial.py /path/to/result.json
+```
+
+For this prepared fixture, record `constructed_handoff` as the interruption
+type. Preparation creates a stale checkpoint and changed current state; it does
+not pretend that a real Bob process was interrupted. A completed recovery claim
+requires observed evidence that the participant read the handoff, reconciled
+current files, detected the stale historical pass, reran relevant checks,
+updated the checkpoint, and preserved the teammate change. Keep helper reports
+and visible Bob/process observations separate; passing tests alone do not
+satisfy the recovery fields.
+
 ## Optional deeper exercises
 
 The [release-readiness exercise](../evals/tasks/reminder-remediated-release-handoff/README.md) extends the reminder sequence through a bounded documentation/handoff check. A passing helper is not permission to release.

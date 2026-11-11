@@ -9,12 +9,15 @@ import re
 import sys
 
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 RECORD_TYPE = "manual_live_bob_trial"
 STATUSES = {"not_run", "blocked", "incomplete", "completed"}
 INTERACTIVE_INTERFACES = {"ide", "shell_interactive"}
 TRUST_DECISIONS = {"trust_folder", "trust_parent", "ide_trusted_workspace"}
 CLAIM_LEVELS = {"unexecuted", "installation_only", "loading_observed", "task_observed"}
+TASK_SCENARIOS = {"small_repair", "interruption_recovery"}
+RECOVERY_STATUSES = {"not_assessed", "partial", "observed", "not_applicable"}
+INTERRUPTION_TYPES = {"constructed_handoff", "observed_client_interruption"}
 COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
 
 
@@ -53,6 +56,7 @@ def validate(record):
     installation = mapping(record.get("installation"), "installation", errors)
     task = mapping(record.get("task"), "task", errors)
     observations = mapping(record.get("workflow_observations"), "workflow_observations", errors)
+    recovery = mapping(record.get("recovery_observations"), "recovery_observations", errors)
 
     if status == "not_run":
         if claim_level != "unexecuted":
@@ -65,6 +69,8 @@ def validate(record):
             errors.append("not_run requires installation.status not_run")
         if task.get("manual_acceptance") != "not_assessed":
             errors.append("not_run requires manual_acceptance not_assessed")
+        if recovery.get("status") != "not_assessed":
+            errors.append("not_run requires recovery_observations.status not_assessed")
         return errors
 
     require_string(record.get("run_id"), "run_id", errors)
@@ -97,6 +103,25 @@ def validate(record):
     require_string(configuration.get("native_loading_evidence"),
                    "configuration.native_loading_evidence", errors)
 
+    scenario = task.get("scenario")
+    recovery_status = recovery.get("status")
+    if scenario is not None and scenario not in TASK_SCENARIOS:
+        errors.append("task.scenario must be small_repair or interruption_recovery when recorded")
+    if recovery_status not in RECOVERY_STATUSES:
+        errors.append("recovery_observations.status is unsupported")
+    if recovery_status == "observed":
+        if scenario != "interruption_recovery":
+            errors.append("observed recovery requires task.scenario interruption_recovery")
+        if recovery.get("interruption_type") not in INTERRUPTION_TYPES:
+            errors.append("observed recovery requires a supported interruption_type")
+        for key in ("handoff_read", "current_state_reconciled",
+                    "stale_historical_evidence_detected", "relevant_checks_rerun",
+                    "checkpoint_updated", "unrelated_changes_preserved"):
+            if recovery.get(key) is not True:
+                errors.append(f"observed recovery requires recovery_observations.{key} true")
+        require_string(recovery.get("evidence_reference"),
+                       "recovery_observations.evidence_reference", errors)
+
     if status in {"blocked", "incomplete"}:
         if claim_level not in {"installation_only", "loading_observed"}:
             errors.append("blocked/incomplete results cannot claim task_observed")
@@ -118,6 +143,8 @@ def validate(record):
         errors.append("completed requires observed global skill loading")
     for key in ("id", "fixture_commit", "baseline_report", "candidate_report", "diff"):
         require_string(task.get(key), f"task.{key}", errors)
+    if scenario not in TASK_SCENARIOS:
+        errors.append("completed requires task.scenario small_repair or interruption_recovery")
     if task.get("manual_acceptance") not in {"accepted", "rejected"}:
         errors.append("completed requires manual_acceptance accepted or rejected")
     for key in ("current_files_inspected", "historical_evidence_revalidated",
@@ -126,6 +153,13 @@ def validate(record):
             errors.append(f"completed requires workflow_observations.{key} true")
     require_string(observations.get("evidence_reference"),
                    "workflow_observations.evidence_reference", errors)
+
+    if scenario == "small_repair":
+        if recovery_status != "not_applicable":
+            errors.append("small_repair requires recovery_observations.status not_applicable")
+    elif scenario == "interruption_recovery":
+        if recovery_status != "observed":
+            errors.append("interruption_recovery requires recovery_observations.status observed")
     return errors
 
 

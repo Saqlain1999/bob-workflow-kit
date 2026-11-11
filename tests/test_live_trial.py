@@ -39,6 +39,7 @@ def completed_record():
     record["installation"].update({"status": "healthy", "doctor_evidence": "healthy"})
     record["task"].update({
         "id": "tiny-ledger",
+        "scenario": "small_repair",
         "fixture_commit": "public-fixture-revision",
         "baseline_report": "9 tests; 1 expected failure",
         "candidate_report": "9 tests passed",
@@ -50,6 +51,25 @@ def completed_record():
         "historical_evidence_revalidated": True,
         "teammate_changes_preserved": True,
         "evidence_reference": "public result bundle",
+    })
+    record["recovery_observations"].update({"status": "not_applicable"})
+    return record
+
+
+def recovery_record():
+    record = completed_record()
+    record["task"].update({"id": "parcel-resume-v1",
+                           "scenario": "interruption_recovery"})
+    record["recovery_observations"].update({
+        "status": "observed",
+        "interruption_type": "constructed_handoff",
+        "handoff_read": True,
+        "current_state_reconciled": True,
+        "stale_historical_evidence_detected": True,
+        "relevant_checks_rerun": True,
+        "checkpoint_updated": True,
+        "unrelated_changes_preserved": True,
+        "evidence_reference": "public action record and acceptance checklist",
     })
     return record
 
@@ -63,6 +83,9 @@ class LiveTrialValidationTests(unittest.TestCase):
 
     def test_complete_interactive_trial_is_accepted(self):
         self.assertEqual(validator.validate(completed_record()), [])
+
+    def test_complete_recovery_trial_is_accepted(self):
+        self.assertEqual(validator.validate(recovery_record()), [])
 
     def test_noninteractive_shell_is_rejected(self):
         record = completed_record()
@@ -99,6 +122,45 @@ class LiveTrialValidationTests(unittest.TestCase):
                 record = deepcopy(base)
                 mutate(record)
                 self.assertTrue(validator.validate(record))
+
+    def test_recovery_claim_requires_each_observation(self):
+        base = recovery_record()
+        mutations = [
+            ("status", lambda value: value["recovery_observations"].update(status="partial")),
+            ("type", lambda value: value["recovery_observations"].update(
+                interruption_type=None)),
+            ("handoff", lambda value: value["recovery_observations"].update(
+                handoff_read=False)),
+            ("current-state", lambda value: value["recovery_observations"].update(
+                current_state_reconciled=False)),
+            ("stale-evidence", lambda value: value["recovery_observations"].update(
+                stale_historical_evidence_detected=False)),
+            ("checks", lambda value: value["recovery_observations"].update(
+                relevant_checks_rerun=False)),
+            ("checkpoint", lambda value: value["recovery_observations"].update(
+                checkpoint_updated=False)),
+            ("preservation", lambda value: value["recovery_observations"].update(
+                unrelated_changes_preserved=False)),
+            ("evidence", lambda value: value["recovery_observations"].update(
+                evidence_reference=None)),
+        ]
+        for name, mutate in mutations:
+            with self.subTest(name=name):
+                record = deepcopy(base)
+                mutate(record)
+                self.assertTrue(validator.validate(record))
+
+    def test_small_repair_cannot_be_labelled_as_observed_recovery(self):
+        record = completed_record()
+        record["recovery_observations"].update({"status": "observed"})
+        self.assertTrue(validator.validate(record))
+
+    def test_blocked_result_cannot_overclaim_observed_recovery(self):
+        record = recovery_record()
+        record.update(status="blocked", claim_level="loading_observed")
+        record["recovery_observations"]["checkpoint_updated"] = False
+        self.assertTrue(any("checkpoint_updated" in error
+                            for error in validator.validate(record)))
 
     def test_blocked_result_stays_bounded(self):
         record = completed_record()

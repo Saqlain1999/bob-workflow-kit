@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "record_type": "manual_live_bob_trial",
   "status": "not_run",
   "claim_level": "unexecuted",
@@ -22,6 +22,7 @@
   "installation": {"status": "not_run", "doctor_evidence": null},
   "task": {
     "id": null,
+    "scenario": null,
     "fixture_commit": null,
     "baseline_report": null,
     "candidate_report": null,
@@ -32,6 +33,17 @@
     "current_files_inspected": null,
     "historical_evidence_revalidated": null,
     "teammate_changes_preserved": null,
+    "evidence_reference": null
+  },
+  "recovery_observations": {
+    "status": "not_assessed",
+    "interruption_type": null,
+    "handoff_read": null,
+    "current_state_reconciled": null,
+    "stale_historical_evidence_detected": null,
+    "relevant_checks_rerun": null,
+    "checkpoint_updated": null,
+    "unrelated_changes_preserved": null,
     "evidence_reference": null
   },
   "agent_elapsed_seconds": null,
