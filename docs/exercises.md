@@ -24,13 +24,18 @@ python3 scripts/evaluate.py candidate --task parcel-resume --workspace runs/parc
 
 Keep result files outside the candidate workspace. The [task acceptance checklist](../evals/tasks/parcel-resume/ACCEPTANCE.md) separates public-test results from process observations. Return to the kit root with `cd ..` before using the root installer or quality commands.
 
-For the kit-level live result, copy
-[the live-trial template](live-trial-template.json), set `task.scenario` to
-`interruption_recovery`, and validate the completed copy from the kit root:
+For the kit-level live result, return to the kit root and prepare a new record
+bound to the exact checkout. The command refuses to overwrite an existing path:
 
 ```sh
+python3 tools/prepare_live_trial.py --output /path/to/result.json --task-id parcel-resume-v1 --scenario interruption_recovery
 python3 tools/validate_live_trial.py /path/to/result.json
 ```
+
+When using a source archive without Git history, pass the reviewed archive's
+exact `--kit-commit` and `--archive-sha256` to the preparation command. Keep the
+shipped [template](live-trial-template.json) unchanged and never guess either
+identifier.
 
 For this prepared fixture, record `constructed_handoff` as the interruption
 type. Preparation creates a stale checkpoint and changed current state; it does

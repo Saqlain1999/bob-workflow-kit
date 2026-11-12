@@ -80,7 +80,13 @@ None of these alone establishes reliable behavior on your large repository. Save
 
 Open [a Bob compatibility result](https://github.com/Saqlain1999/bob-workflow-kit/issues/new?template=compatibility.yml). Report the kit version, Bob version/interface, host, the three observed outcomes, and the first confusing or failing step. Short reports are welcome. Include only public fixture evidence and redact local identities or confidential paths.
 
-For a recorded demonstration or a detailed result, copy [live-trial-template.json](live-trial-template.json). Keep the supplied template as `not_run`; fill a separate result file and validate it with `python3 tools/validate_live_trial.py /path/to/result.json`. The validator is read-only and checks evidence shape, not whether the assertions are true.
+For a recorded demonstration or detailed result, create a new record from the kit root. The command binds a clone to its exact current commit, starts at `not_run`, and refuses to overwrite an existing path:
+
+```sh
+python3 tools/prepare_live_trial.py --output /path/to/result.json --task-id tiny-ledger --scenario small_repair
+```
+
+For a reviewed source archive without Git history, also pass its exact `--kit-commit` and recorded `--archive-sha256`; do not guess either value. The shipped [live-trial template](live-trial-template.json) remains unchanged. Fill only the separate result file, then validate it with `python3 tools/validate_live_trial.py /path/to/result.json`. Preparation does not start Bob or claim any observation. The validator is read-only and checks evidence shape, not whether the assertions are true.
 
 An executed result must identify the run, exact kit commit, Bob interface/version/mode, operating system, execution host, explicit workspace-trust decision and observed native-loading evidence. A completed result must label the task as a `small_repair` or `interruption_recovery`; recovery claims require the separate observed handoff, reconciliation, stale-evidence, recheck, checkpoint and preservation fields. Use an interactive IDE or Shell session for this first trial. Do not substitute non-interactive `bob run`: IBM documents that it pre-approves tools, which conflicts with this walkthrough's approval boundary. Record blocked and incomplete attempts instead of replacing them with a later pass; they cannot claim task completion.
 

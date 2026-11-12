@@ -1,11 +1,15 @@
 """Fail-closed controls for the manual live-Bob trial record."""
 
 from copy import deepcopy
+from contextlib import redirect_stderr, redirect_stdout
+import io
 import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
+from tools import prepare_live_trial as preparer
 from tools import validate_live_trial as validator
 
 
@@ -176,6 +180,77 @@ class LiveTrialValidationTests(unittest.TestCase):
             path.write_text(json.dumps(record), encoding="utf-8")
             before = path.read_bytes()
             self.assertEqual(validator.main([str(path)]), 0)
+            self.assertEqual(path.read_bytes(), before)
+
+
+class LiveTrialPreparationTests(unittest.TestCase):
+    def test_prepared_record_binds_checkout_without_claiming_execution(self):
+        commit = "1" * 40
+        with mock.patch.object(preparer, "current_git_commit", return_value=commit):
+            record = preparer.build_record(task_id="parcel-resume-v1",
+                                           scenario="interruption_recovery")
+        self.assertEqual(record["status"], "not_run")
+        self.assertEqual(record["claim_level"], "unexecuted")
+        self.assertEqual(record["kit"]["commit"], commit)
+        self.assertEqual(record["kit"]["version"],
+                         preparer.VERSION.read_text(encoding="utf-8").strip())
+        self.assertEqual(record["task"]["id"], "parcel-resume-v1")
+        self.assertEqual(record["task"]["scenario"], "interruption_recovery")
+        self.assertIsNone(record["configuration"]["live_bob_observed"])
+        self.assertEqual(validator.validate(record), [])
+
+    def test_explicit_archive_identity_is_preserved(self):
+        record = preparer.build_record(task_id="tiny-ledger", scenario="small_repair",
+                                       kit_commit="2" * 40, archive_sha256="3" * 64)
+        self.assertEqual(record["kit"]["commit"], "2" * 40)
+        self.assertEqual(record["kit"]["archive_sha256"], "3" * 64)
+        self.assertEqual(record["recovery_observations"]["status"], "not_assessed")
+        self.assertEqual(validator.validate(record), [])
+
+    def test_archive_without_explicit_commit_fails_closed(self):
+        with mock.patch.object(preparer, "current_git_commit",
+                               side_effect=preparer.PreparationError("history unavailable")):
+            with self.assertRaises(preparer.PreparationError):
+                preparer.build_record(task_id="tiny-ledger", scenario="small_repair")
+
+    def test_invalid_identity_or_task_is_rejected(self):
+        cases = [
+            {"task_id": "", "scenario": "small_repair", "kit_commit": "1" * 40},
+            {"task_id": "task", "scenario": "unknown", "kit_commit": "1" * 40},
+            {"task_id": "task", "scenario": "small_repair", "kit_commit": "short"},
+            {"task_id": "task", "scenario": "small_repair", "kit_commit": "1" * 40,
+             "archive_sha256": "not-a-digest"},
+        ]
+        for values in cases:
+            with self.subTest(values=values), self.assertRaises(preparer.PreparationError):
+                preparer.build_record(**values)
+
+    def test_write_refuses_overwrite_and_preserves_template(self):
+        template_before = TEMPLATE.read_bytes()
+        record = preparer.build_record(task_id="tiny-ledger", scenario="small_repair",
+                                       kit_commit="4" * 40)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "trial.json"
+            preparer.write_new(path, record)
+            created = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(created, record)
+            with self.assertRaises(preparer.PreparationError):
+                preparer.write_new(path, record)
+        self.assertEqual(TEMPLATE.read_bytes(), template_before)
+
+    def test_cli_creates_valid_record_and_never_overwrites(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "trial.json"
+            arguments = ["--output", str(path), "--task-id", "tiny-ledger",
+                         "--scenario", "small_repair", "--kit-commit", "5" * 40]
+            output = io.StringIO()
+            errors = io.StringIO()
+            with redirect_stdout(output), redirect_stderr(errors):
+                self.assertEqual(preparer.main(arguments), 0)
+            self.assertEqual(validator.validate(json.loads(path.read_text(encoding="utf-8"))), [])
+            before = path.read_bytes()
+            with redirect_stdout(output), redirect_stderr(errors):
+                self.assertEqual(preparer.main(arguments), 1)
             self.assertEqual(path.read_bytes(), before)
 
 

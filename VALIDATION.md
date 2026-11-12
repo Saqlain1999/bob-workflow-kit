@@ -4,6 +4,44 @@ Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Non-overwriting live-trial preparation — 12 November 2026 (UTC)
+
+Review found that first-run guidance required users to copy a large JSON record
+and manually enter the exact kit version and revision. A mistyped revision or
+accidental replacement of an earlier result would make the next live trial
+ambiguous before Bob started.
+
+The new standard-library `prepare_live_trial.py` command creates a separate
+schema-3 record at `not_run`, fills the packaged version, binds a Git checkout
+to its current exact commit, records the selected task/scenario, and refuses to
+overwrite an existing path. A source archive without Git history fails closed
+unless the user supplies the reviewed commit; it may also record the archive's
+published SHA-256. Preparation leaves every execution, trust, loading, task and
+recovery observation unclaimed. It neither runs Bob nor validates a supplied
+archive digest against bytes.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused preparation and validation suite: **17/17 passed**, including clone
+  identity binding, explicit archive identity, missing-history refusal, invalid
+  identifiers, non-overwrite behavior, shipped-template preservation and an
+  actual prepare-then-validate CLI round trip.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **83/83 root tests** and **157/157 evaluator tests** passed with zero
+  failures, errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no
+  Git: all content/offline checks passed; root discovered and ran **83** cases
+  with **24 explicit Git-only skips**, and all **157** evaluator tests ran. A
+  separate archive prepare-then-validate round trip passed when supplied an
+  explicit commit and syntactically valid digest. This does not verify the
+  supplied digest or establish independent Git history.
+- Complete current change diff and `git diff --check` passed.
+
+No Bob client, model, credential, private repository, hook, MCP server, paid
+service or third-party runtime was used. These results establish safe record
+preparation and offline validation only—not live loading, workflow-following,
+correct recorded observations, recovery quality, compatibility or readiness.
+
 ## Recovery-evidence boundary — 11 November 2026 (UTC)
 
 Review found that schema 2 could mark a live task completed without identifying
