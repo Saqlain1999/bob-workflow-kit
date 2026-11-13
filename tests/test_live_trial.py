@@ -10,6 +10,7 @@ import unittest
 from unittest import mock
 
 from tools import prepare_live_trial as preparer
+from tools import record_live_trial as recorder
 from tools import validate_live_trial as validator
 
 
@@ -252,6 +253,131 @@ class LiveTrialPreparationTests(unittest.TestCase):
             with redirect_stdout(output), redirect_stderr(errors):
                 self.assertEqual(preparer.main(arguments), 1)
             self.assertEqual(path.read_bytes(), before)
+
+
+class LiveTrialRecordingTests(unittest.TestCase):
+    def prepared_record(self):
+        return preparer.build_record(task_id="parcel-resume-v1",
+                                     scenario="interruption_recovery",
+                                     kit_commit="6" * 40)
+
+    def result_arguments(self, **overrides):
+        values = {
+            "status": "blocked",
+            "claim_level": "installation_only",
+            "run_id": "parcel-blocked-001",
+            "observed_at_utc": "2026-11-13T08:00:00Z",
+            "bob_interface": "shell_interactive",
+            "bob_version": "recorded-version",
+            "bob_mode": "agent",
+            "os_name": "Linux",
+            "python_version": "3.12.14",
+            "execution_host_type": "local-disposable",
+            "workspace_trust_decision": "trust_folder",
+            "workspace_trust_evidence": "Trust dialog accepted for the fixture only.",
+            "native_loading_evidence": "No loading observed; picker remained empty.",
+            "installation_status": "healthy",
+            "doctor_evidence": "doctor reported healthy",
+            "fresh_conversation_confirmed": True,
+            "live_bob_observed": True,
+            "first_confusing_step": "The installed skill did not appear in the picker.",
+            "limitations_and_redactions": "Public fixture only; local paths removed.",
+        }
+        values.update(overrides)
+        return values
+
+    def test_blocked_result_is_created_from_prepared_record(self):
+        prepared = self.prepared_record()
+        before = deepcopy(prepared)
+        result = recorder.build_result(prepared, **self.result_arguments())
+        self.assertEqual(result["status"], "blocked")
+        self.assertEqual(result["claim_level"], "installation_only")
+        self.assertEqual(result["kit"], prepared["kit"])
+        self.assertEqual(result["task"]["id"], "parcel-resume-v1")
+        self.assertEqual(result["task"]["scenario"], "interruption_recovery")
+        self.assertEqual(result["task"]["manual_acceptance"], "not_assessed")
+        self.assertEqual(result["recovery_observations"]["status"], "not_assessed")
+        self.assertEqual(validator.validate(result), [])
+        self.assertEqual(prepared, before)
+
+    def test_loading_observed_requires_matching_loading_evidence(self):
+        prepared = self.prepared_record()
+        with self.assertRaises(recorder.RecordingError):
+            recorder.build_result(
+                prepared, **self.result_arguments(claim_level="loading_observed"))
+        result = recorder.build_result(
+            prepared, **self.result_arguments(
+                status="incomplete", claim_level="loading_observed", skill_loaded=True))
+        self.assertEqual(result["status"], "incomplete")
+        self.assertTrue(result["configuration"]["global_skill_observed_loaded"])
+        self.assertEqual(validator.validate(result), [])
+
+    def test_lower_claim_rejects_loading_flags(self):
+        with self.assertRaises(recorder.RecordingError):
+            recorder.build_result(
+                self.prepared_record(), **self.result_arguments(rule_loaded=True))
+
+    def test_recording_requires_explicit_observation_confirmations(self):
+        for key in ("fresh_conversation_confirmed", "live_bob_observed"):
+            with self.subTest(key=key), self.assertRaises(recorder.RecordingError):
+                recorder.build_result(
+                    self.prepared_record(), **self.result_arguments(**{key: False}))
+
+    def test_recording_rejects_nonprepared_input_and_false_healthy_status(self):
+        executed = self.prepared_record()
+        executed.update(status="blocked", claim_level="installation_only")
+        with self.assertRaises(recorder.RecordingError):
+            recorder.build_result(executed, **self.result_arguments())
+        with self.assertRaises(recorder.RecordingError):
+            recorder.build_result(
+                self.prepared_record(), **self.result_arguments(doctor_evidence=None))
+
+    def test_load_rejects_invalid_or_executed_record(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "record.json"
+            path.write_text("{}", encoding="utf-8")
+            with self.assertRaises(recorder.RecordingError):
+                recorder.load_prepared(path)
+            path.write_text(json.dumps(completed_record()), encoding="utf-8")
+            with self.assertRaises(recorder.RecordingError):
+                recorder.load_prepared(path)
+
+    def test_cli_writes_new_result_without_changing_or_replacing_evidence(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            prepared_path = Path(tmp) / "prepared.json"
+            output_path = Path(tmp) / "blocked.json"
+            prepared = self.prepared_record()
+            prepared_path.write_text(json.dumps(prepared), encoding="utf-8")
+            source_before = prepared_path.read_bytes()
+            arguments = [
+                "--input", str(prepared_path), "--output", str(output_path),
+                "--status", "blocked", "--claim-level", "installation_only",
+                "--run-id", "parcel-blocked-001",
+                "--observed-at-utc", "2026-11-13T08:00:00Z",
+                "--bob-interface", "shell_interactive",
+                "--bob-version", "recorded-version", "--bob-mode", "agent",
+                "--os", "Linux", "--python-version", "3.12.14",
+                "--execution-host-type", "local-disposable",
+                "--workspace-trust-decision", "trust_folder",
+                "--workspace-trust-evidence", "Fixture trust dialog accepted.",
+                "--native-loading-evidence", "Picker remained empty.",
+                "--installation-status", "healthy",
+                "--doctor-evidence", "doctor reported healthy",
+                "--fresh-conversation-confirmed", "--live-bob-observed",
+                "--first-confusing-step", "Skill absent from picker.",
+                "--limitations-and-redactions", "Public fixture; paths removed.",
+            ]
+            output = io.StringIO()
+            errors = io.StringIO()
+            with redirect_stdout(output), redirect_stderr(errors):
+                self.assertEqual(recorder.main(arguments), 0)
+            result = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(validator.validate(result), [])
+            self.assertEqual(prepared_path.read_bytes(), source_before)
+            result_before = output_path.read_bytes()
+            with redirect_stdout(output), redirect_stderr(errors):
+                self.assertEqual(recorder.main(arguments), 1)
+            self.assertEqual(output_path.read_bytes(), result_before)
 
 
 if __name__ == "__main__":

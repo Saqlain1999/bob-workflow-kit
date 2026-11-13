@@ -37,6 +37,12 @@ exact `--kit-commit` and `--archive-sha256` to the preparation command. Keep the
 shipped [template](live-trial-template.json) unchanged and never guess either
 identifier.
 
+If the interactive attempt blocks or stops before the task is complete, do not
+edit or replace the prepared record. Use the bounded blocked/incomplete recorder
+described in [Troubleshooting](troubleshooting.md#record-a-blocked-or-incomplete-trial)
+to create a separate result. It cannot claim task completion or observed
+recovery; keep the helper reports and human observations separate.
+
 For this prepared fixture, record `constructed_handoff` as the interruption
 type. Preparation creates a stale checkpoint and changed current state; it does
 not pretend that a real Bob process was interrupted. A completed recovery claim

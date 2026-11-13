@@ -4,6 +4,48 @@ Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Non-overwriting blocked/incomplete trial recording — 13 November 2026 (UTC)
+
+Review found that preparation was fail-closed, but an adopter whose interactive
+trial blocked or stopped early still had to hand-edit the large nested JSON
+record. A typo could change the bound kit/task identity, overwrite the prepared
+starting point, or accidentally cross from installation evidence into a loading
+or completed-task claim. Failed attempts are product evidence and should be easy
+to preserve without weakening their status.
+
+The new standard-library `record_live_trial.py` command accepts only a valid,
+unexecuted `not_run` record and writes a separate new result. It supports only
+`blocked` or `incomplete` with `installation_only` or `loading_observed`, requires
+explicit run/client/host/trust/fresh-conversation/live-Bob evidence, prevents
+loading flags under an installation-only claim, requires an observed rule or
+skill for a loading claim, requires doctor evidence before recording a healthy
+installation, preserves the kit/task identity and refuses an existing output.
+It cannot create a completed task or observed-recovery claim. The prepared input
+remains unchanged.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused preparation, recording and validation suite: **24/24 passed**, including
+  valid blocked/incomplete transitions, claim/loading consistency, explicit
+  observation confirmations, non-prepared input refusal, healthy-status evidence,
+  source preservation, direct CLI execution and output non-overwrite behavior.
+- A real `prepare_live_trial.py` → `record_live_trial.py` →
+  `validate_live_trial.py` command sequence created separate prepared and blocked
+  records and validated the blocked result without modifying the source.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **90/90 root tests** and **157/157 evaluator tests** passed with zero failures,
+  errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no Git:
+  all content/offline checks passed; root discovered all **90** cases with **24
+  explicit Git-only skips**, and all **157** evaluator tests ran.
+- Complete current change diff and `git diff --check` passed.
+
+No Bob client, model, credential, private repository, hook, MCP server, paid
+service or third-party runtime was used. Constructed test values establish the
+recorder's preservation and claim-boundary behavior only. They do not establish
+that an interactive trial occurred, that recorded observations are true, or that
+the kit loads or follows workflows in Bob.
+
 ## Non-overwriting live-trial preparation — 12 November 2026 (UTC)
 
 Review found that first-run guidance required users to copy a large JSON record
