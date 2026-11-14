@@ -4,6 +4,53 @@ Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Non-overwriting completed-trial recording — 14 November 2026 (UTC)
+
+Review found that safe preparation and blocked/incomplete recording still left a
+successful interactive participant to hand-edit the large schema-3 JSON record.
+That could change the bound kit/task identity, replace earlier evidence, omit a
+required observation, or accidentally label a small repair as recovery evidence.
+
+The new standard-library `complete_live_trial.py` command accepts only the
+original valid, unexecuted `not_run` record and writes a separate result. It
+requires explicit interactive client/host/trust observations, healthy doctor
+evidence, both rule and skill loading, exact task reports, current-state and
+preservation confirmations, a separate evidence reference, and an accepted or
+rejected human decision. A small repair automatically records recovery as not
+applicable and rejects recovery flags. An interruption/recovery task requires
+every handoff, reconciliation, stale-evidence, fresh-check, checkpoint and
+preservation observation plus a separate recovery evidence reference. The tool
+preserves prepared kit/task identity and refuses overwrite; it cannot promote a
+blocked/incomplete record or infer observations from helper output.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused preparation, blocked/incomplete recording, completed recording and
+  validation suite: **31/31 passed**, including small-repair and recovery
+  completion, every recovery observation, lower-claim separation, explicit
+  loading/workflow confirmations, invalid/executed input refusal, source
+  preservation and output non-overwrite behavior.
+- An actual `prepare_live_trial.py` → `complete_live_trial.py` →
+  `validate_live_trial.py` command sequence created separate prepared/completed
+  records and validated the completed result without modifying the source.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **97/97 root tests** and **157/157 evaluator tests** passed with zero failures,
+  errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no Git:
+  all content/offline checks passed; root discovered all **97** cases with **24
+  explicit Git-only skips**, and all **157** evaluator tests ran.
+- Python 3.10 grammar parsed the completed recorder and its focused tests.
+- Complete current change diff and `git diff --check` passed.
+
+Hosted exact-head results are recorded below after final execution on the
+published commit.
+
+No Bob client, model, credential, private repository, hook, MCP server, paid
+service or third-party runtime was used. Constructed inputs show that the command
+preserves identity and enforces evidence shape only. The command does not inspect
+evidence bundles or attest that supplied observations, acceptance decisions, or
+recovery claims are true.
+
 ## Non-overwriting blocked/incomplete trial recording — 13 November 2026 (UTC)
 
 Review found that preparation was fail-closed, but an adopter whose interactive

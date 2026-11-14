@@ -43,6 +43,12 @@ described in [Troubleshooting](troubleshooting.md#record-a-blocked-or-incomplete
 to create a separate result. It cannot claim task completion or observed
 recovery; keep the helper reports and human observations separate.
 
+If a human reviewer can assess a completed recovery attempt, use the separate
+[completed-trial recorder](troubleshooting.md#record-a-completed-trial) from the
+original prepared record. It requires every recovery observation below and a
+separate evidence reference. Do not promote a prior blocked/incomplete result or
+infer process observations from passing helper tests.
+
 For this prepared fixture, record `constructed_handoff` as the interruption
 type. Preparation creates a stale checkpoint and changed current state; it does
 not pretend that a real Bob process was interrupted. A completed recovery claim

@@ -9,6 +9,7 @@ import tempfile
 import unittest
 from unittest import mock
 
+from tools import complete_live_trial as completer
 from tools import prepare_live_trial as preparer
 from tools import record_live_trial as recorder
 from tools import validate_live_trial as validator
@@ -377,6 +378,155 @@ class LiveTrialRecordingTests(unittest.TestCase):
             result_before = output_path.read_bytes()
             with redirect_stdout(output), redirect_stderr(errors):
                 self.assertEqual(recorder.main(arguments), 1)
+            self.assertEqual(output_path.read_bytes(), result_before)
+
+
+class LiveTrialCompletionTests(unittest.TestCase):
+    def prepared_record(self, scenario="small_repair"):
+        task_id = "tiny-ledger" if scenario == "small_repair" else "parcel-resume-v1"
+        return preparer.build_record(task_id=task_id, scenario=scenario,
+                                     kit_commit="7" * 40)
+
+    def result_arguments(self, **overrides):
+        values = {
+            "run_id": "public-completed-001",
+            "observed_at_utc": "2026-11-14T08:00:00Z",
+            "bob_interface": "shell_interactive",
+            "bob_version": "recorded-version",
+            "bob_mode": "agent",
+            "os_name": "Linux",
+            "python_version": "3.12.14",
+            "execution_host_type": "local-disposable",
+            "workspace_trust_decision": "trust_folder",
+            "workspace_trust_evidence": "Fixture trust dialog accepted.",
+            "native_loading_evidence": "Rule and skill activation recorded.",
+            "doctor_evidence": "doctor reported healthy",
+            "fixture_commit": "public-fixture-revision",
+            "baseline_report": "9 tests; 1 expected failure",
+            "candidate_report": "9 tests passed",
+            "diff": "ledger.py only",
+            "manual_acceptance": "accepted",
+            "workflow_evidence_reference": "public result bundle",
+            "first_confusing_step": "None observed after guided preparation.",
+            "limitations_and_redactions": "Public fixture only; local paths removed.",
+            "fresh_conversation_confirmed": True,
+            "live_bob_observed": True,
+            "rule_loaded": True,
+            "skill_loaded": True,
+            "current_files_inspected": True,
+            "historical_evidence_revalidated": True,
+            "teammate_changes_preserved": True,
+        }
+        values.update(overrides)
+        return values
+
+    def test_small_repair_completion_preserves_prepared_identity(self):
+        prepared = self.prepared_record()
+        before = deepcopy(prepared)
+        result = completer.build_result(prepared, **self.result_arguments())
+        self.assertEqual(result["status"], "completed")
+        self.assertEqual(result["claim_level"], "task_observed")
+        self.assertEqual(result["kit"], prepared["kit"])
+        self.assertEqual(result["task"]["id"], "tiny-ledger")
+        self.assertEqual(result["recovery_observations"]["status"], "not_applicable")
+        self.assertEqual(validator.validate(result), [])
+        self.assertEqual(prepared, before)
+
+    def test_recovery_completion_requires_and_records_every_observation(self):
+        values = self.result_arguments(
+            interruption_type="constructed_handoff", handoff_read=True,
+            current_state_reconciled=True, stale_historical_evidence_detected=True,
+            relevant_checks_rerun=True, checkpoint_updated=True,
+            unrelated_changes_preserved=True,
+            recovery_evidence_reference="public action record and checklist")
+        result = completer.build_result(
+            self.prepared_record("interruption_recovery"), **values)
+        self.assertEqual(result["recovery_observations"]["status"], "observed")
+        self.assertEqual(result["task"]["id"], "parcel-resume-v1")
+        self.assertEqual(validator.validate(result), [])
+
+    def test_recovery_completion_rejects_each_missing_observation(self):
+        complete = self.result_arguments(
+            interruption_type="constructed_handoff", handoff_read=True,
+            current_state_reconciled=True, stale_historical_evidence_detected=True,
+            relevant_checks_rerun=True, checkpoint_updated=True,
+            unrelated_changes_preserved=True,
+            recovery_evidence_reference="public action record and checklist")
+        for key in ("handoff_read", "current_state_reconciled",
+                    "stale_historical_evidence_detected", "relevant_checks_rerun",
+                    "checkpoint_updated", "unrelated_changes_preserved"):
+            with self.subTest(key=key), self.assertRaises(completer.CompletionError):
+                completer.build_result(
+                    self.prepared_record("interruption_recovery"),
+                    **dict(complete, **{key: False}))
+        for key in ("interruption_type", "recovery_evidence_reference"):
+            with self.subTest(key=key), self.assertRaises(completer.CompletionError):
+                completer.build_result(
+                    self.prepared_record("interruption_recovery"),
+                    **dict(complete, **{key: None}))
+
+    def test_small_repair_rejects_recovery_claims(self):
+        with self.assertRaises(completer.CompletionError):
+            completer.build_result(
+                self.prepared_record(),
+                **self.result_arguments(handoff_read=True))
+
+    def test_completion_requires_explicit_loading_and_workflow_confirmations(self):
+        for key in ("fresh_conversation_confirmed", "live_bob_observed",
+                    "rule_loaded", "skill_loaded", "current_files_inspected",
+                    "historical_evidence_revalidated", "teammate_changes_preserved"):
+            with self.subTest(key=key), self.assertRaises(completer.CompletionError):
+                completer.build_result(
+                    self.prepared_record(), **self.result_arguments(**{key: False}))
+
+    def test_completion_rejects_executed_or_invalid_input(self):
+        with self.assertRaises(completer.CompletionError):
+            completer.build_result(completed_record(), **self.result_arguments())
+        invalid = self.prepared_record()
+        invalid["kit"]["commit"] = "short"
+        with self.assertRaises(completer.CompletionError):
+            completer.build_result(invalid, **self.result_arguments())
+
+    def test_cli_writes_separate_completed_result_and_refuses_overwrite(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            prepared_path = Path(tmp) / "prepared.json"
+            output_path = Path(tmp) / "completed.json"
+            prepared_path.write_text(json.dumps(self.prepared_record()), encoding="utf-8")
+            source_before = prepared_path.read_bytes()
+            arguments = [
+                "--input", str(prepared_path), "--output", str(output_path),
+                "--run-id", "public-completed-001",
+                "--observed-at-utc", "2026-11-14T08:00:00Z",
+                "--bob-interface", "shell_interactive",
+                "--bob-version", "recorded-version", "--bob-mode", "agent",
+                "--os", "Linux", "--python-version", "3.12.14",
+                "--execution-host-type", "local-disposable",
+                "--workspace-trust-decision", "trust_folder",
+                "--workspace-trust-evidence", "Fixture trust dialog accepted.",
+                "--native-loading-evidence", "Rule and skill activation recorded.",
+                "--doctor-evidence", "doctor reported healthy",
+                "--fresh-conversation-confirmed", "--live-bob-observed",
+                "--rule-loaded", "--skill-loaded",
+                "--fixture-commit", "public-fixture-revision",
+                "--baseline-report", "9 tests; 1 expected failure",
+                "--candidate-report", "9 tests passed", "--diff", "ledger.py only",
+                "--manual-acceptance", "accepted",
+                "--current-files-inspected", "--historical-evidence-revalidated",
+                "--teammate-changes-preserved",
+                "--workflow-evidence-reference", "public result bundle",
+                "--first-confusing-step", "None observed after guided preparation.",
+                "--limitations-and-redactions", "Public fixture; paths removed.",
+            ]
+            output = io.StringIO()
+            errors = io.StringIO()
+            with redirect_stdout(output), redirect_stderr(errors):
+                self.assertEqual(completer.main(arguments), 0)
+            result = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(validator.validate(result), [])
+            self.assertEqual(prepared_path.read_bytes(), source_before)
+            result_before = output_path.read_bytes()
+            with redirect_stdout(output), redirect_stderr(errors):
+                self.assertEqual(completer.main(arguments), 1)
             self.assertEqual(output_path.read_bytes(), result_before)
 
 
