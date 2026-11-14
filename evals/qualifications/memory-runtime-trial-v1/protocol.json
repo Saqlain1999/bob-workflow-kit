@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "protocol_id": "bob-project-memory-runtime-trial-v1",
+  "contract_path": "fixtures/bob-project-memory/contract.json",
+  "allowed_backend_profiles": [
+    "qualifications/engram-v0.11.0/profile.json",
+    "qualifications/basic-memory-v1.0.0/profile.json"
+  ],
+  "allowed_decisions": ["not_run", "incomplete", "blocked", "qualified"],
+  "allowed_behavior_statuses": ["not_run", "pass", "fail", "blocked"],
+  "allowed_clients": ["not_run", "direct_mcp", "ibm_bob"],
+  "allowed_client_modes": ["not_run", "direct_mcp", "ide_interactive", "shell_interactive", "shell_non_interactive"],
+  "required_safeguards": {
+    "constructed_public_data_only": true,
+    "credentials_used": false,
+    "paid_services_used": false,
+    "global_settings_changed": false,
+    "cloud_sync_enabled": false,
+    "transcript_capture_enabled": false,
+    "automatic_tool_approval": false
+  },
+  "qualification_rule": "Qualified requires explicit execution authorization, exact asset-digest verification, every backend-neutral behavior passing with non-empty evidence, observed process/file/network/model-download effects, recorded MCP initialization instructions, and successful cleanup. It never establishes production readiness.",
+  "live_bob_rule": "Every executed IBM Bob record, including blocked or incomplete trials, requires an interactive IDE or Shell mode, a recorded client version, explicit workspace trust, and live_bob_observed=true. The observation does not imply backend qualification. Shell non-interactive mode is excluded because its pre-approved tools conflict with this protocol's manual-approval safeguard.",
+  "evidence_boundary": "This protocol validates a record. It does not authorize, install, download, configure, start, stop, or remove a backend or Bob client."
+}

@@ -1,0 +1,3 @@
+# Preserve exact committed bytes, including imported provenance snapshots.
+# Do not let core.autocrlf silently alter checksummed source content.
+* -text

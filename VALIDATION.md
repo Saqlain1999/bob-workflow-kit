@@ -1,8 +1,311 @@
 # Validation record
 
-Current package: **0.1.0-alpha.4**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
+Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was recorded **9 October 2026 (UTC)**; hosted CI was added **10 October 2026 (UTC)**.
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
+
+## Non-overwriting completed-trial recording — 14 November 2026 (UTC)
+
+Review found that safe preparation and blocked/incomplete recording still left a
+successful interactive participant to hand-edit the large schema-3 JSON record.
+That could change the bound kit/task identity, replace earlier evidence, omit a
+required observation, or accidentally label a small repair as recovery evidence.
+
+The new standard-library `complete_live_trial.py` command accepts only the
+original valid, unexecuted `not_run` record and writes a separate result. It
+requires explicit interactive client/host/trust observations, healthy doctor
+evidence, both rule and skill loading, exact task reports, current-state and
+preservation confirmations, a separate evidence reference, and an accepted or
+rejected human decision. A small repair automatically records recovery as not
+applicable and rejects recovery flags. An interruption/recovery task requires
+every handoff, reconciliation, stale-evidence, fresh-check, checkpoint and
+preservation observation plus a separate recovery evidence reference. The tool
+preserves prepared kit/task identity and refuses overwrite; it cannot promote a
+blocked/incomplete record or infer observations from helper output.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused preparation, blocked/incomplete recording, completed recording and
+  validation suite: **31/31 passed**, including small-repair and recovery
+  completion, every recovery observation, lower-claim separation, explicit
+  loading/workflow confirmations, invalid/executed input refusal, source
+  preservation and output non-overwrite behavior.
+- An actual `prepare_live_trial.py` → `complete_live_trial.py` →
+  `validate_live_trial.py` command sequence created separate prepared/completed
+  records and validated the completed result without modifying the source.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **97/97 root tests** and **157/157 evaluator tests** passed with zero failures,
+  errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no Git:
+  all content/offline checks passed; root discovered all **97** cases with **24
+  explicit Git-only skips**, and all **157** evaluator tests ran.
+- Python 3.10 grammar parsed the completed recorder and its focused tests.
+- Complete current change diff and `git diff --check` passed.
+
+Hosted exact-head results are recorded below after final execution on the
+published commit.
+
+No Bob client, model, credential, private repository, hook, MCP server, paid
+service or third-party runtime was used. Constructed inputs show that the command
+preserves identity and enforces evidence shape only. The command does not inspect
+evidence bundles or attest that supplied observations, acceptance decisions, or
+recovery claims are true.
+
+## Non-overwriting blocked/incomplete trial recording — 13 November 2026 (UTC)
+
+Review found that preparation was fail-closed, but an adopter whose interactive
+trial blocked or stopped early still had to hand-edit the large nested JSON
+record. A typo could change the bound kit/task identity, overwrite the prepared
+starting point, or accidentally cross from installation evidence into a loading
+or completed-task claim. Failed attempts are product evidence and should be easy
+to preserve without weakening their status.
+
+The new standard-library `record_live_trial.py` command accepts only a valid,
+unexecuted `not_run` record and writes a separate new result. It supports only
+`blocked` or `incomplete` with `installation_only` or `loading_observed`, requires
+explicit run/client/host/trust/fresh-conversation/live-Bob evidence, prevents
+loading flags under an installation-only claim, requires an observed rule or
+skill for a loading claim, requires doctor evidence before recording a healthy
+installation, preserves the kit/task identity and refuses an existing output.
+It cannot create a completed task or observed-recovery claim. The prepared input
+remains unchanged.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused preparation, recording and validation suite: **24/24 passed**, including
+  valid blocked/incomplete transitions, claim/loading consistency, explicit
+  observation confirmations, non-prepared input refusal, healthy-status evidence,
+  source preservation, direct CLI execution and output non-overwrite behavior.
+- A real `prepare_live_trial.py` → `record_live_trial.py` →
+  `validate_live_trial.py` command sequence created separate prepared and blocked
+  records and validated the blocked result without modifying the source.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **90/90 root tests** and **157/157 evaluator tests** passed with zero failures,
+  errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no Git:
+  all content/offline checks passed; root discovered all **90** cases with **24
+  explicit Git-only skips**, and all **157** evaluator tests ran.
+- Complete current change diff and `git diff --check` passed.
+
+No Bob client, model, credential, private repository, hook, MCP server, paid
+service or third-party runtime was used. Constructed test values establish the
+recorder's preservation and claim-boundary behavior only. They do not establish
+that an interactive trial occurred, that recorded observations are true, or that
+the kit loads or follows workflows in Bob.
+
+## Non-overwriting live-trial preparation — 12 November 2026 (UTC)
+
+Review found that first-run guidance required users to copy a large JSON record
+and manually enter the exact kit version and revision. A mistyped revision or
+accidental replacement of an earlier result would make the next live trial
+ambiguous before Bob started.
+
+The new standard-library `prepare_live_trial.py` command creates a separate
+schema-3 record at `not_run`, fills the packaged version, binds a Git checkout
+to its current exact commit, records the selected task/scenario, and refuses to
+overwrite an existing path. A source archive without Git history fails closed
+unless the user supplies the reviewed commit; it may also record the archive's
+published SHA-256. Preparation leaves every execution, trust, loading, task and
+recovery observation unclaimed. It neither runs Bob nor validates a supplied
+archive digest against bytes.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused preparation and validation suite: **17/17 passed**, including clone
+  identity binding, explicit archive identity, missing-history refusal, invalid
+  identifiers, non-overwrite behavior, shipped-template preservation and an
+  actual prepare-then-validate CLI round trip.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **83/83 root tests** and **157/157 evaluator tests** passed with zero
+  failures, errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no
+  Git: all content/offline checks passed; root discovered and ran **83** cases
+  with **24 explicit Git-only skips**, and all **157** evaluator tests ran. A
+  separate archive prepare-then-validate round trip passed when supplied an
+  explicit commit and syntactically valid digest. This does not verify the
+  supplied digest or establish independent Git history.
+- Complete current change diff and `git diff --check` passed.
+
+No Bob client, model, credential, private repository, hook, MCP server, paid
+service or third-party runtime was used. These results establish safe record
+preparation and offline validation only—not live loading, workflow-following,
+correct recorded observations, recovery quality, compatibility or readiness.
+
+## Recovery-evidence boundary — 11 November 2026 (UTC)
+
+Review found that schema 2 could mark a live task completed without identifying
+whether the task was a small repair or an interruption/recovery exercise. A
+generic passing task report could therefore be mistaken for evidence that the
+kit resumed work safely after interruption, even though the Parcel Resume
+acceptance contract requires distinct process observations.
+
+The live-trial record is now schema 3. A completed record must label the task as
+either `small_repair` or `interruption_recovery`. A small repair must record
+recovery as not applicable. An interruption/recovery claim must identify a
+constructed handoff or an observed client interruption and record that the
+participant read the handoff, reconciled current state, detected stale
+historical evidence, reran relevant checks, updated the checkpoint and
+preserved unrelated changes. It must also point to the separate recovery
+evidence. These requirements apply whenever recovery is labelled observed,
+including a blocked or incomplete overall trial. The validator checks record
+shape and consistency; it does not attest that the observations are true.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused recovery/live-trial suite: **11/11 passed**, including a successful
+  constructed-handoff record, every required recovery observation, blocked
+  overclaim rejection, small-repair separation, template preservation and
+  read-only CLI behavior.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **77/77 root tests** and **157/157 evaluator tests** passed with zero
+  failures, errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no
+  Git: all content/offline checks passed; root discovered and ran **77** cases
+  with **24 explicit Git-only skips**, and all **157** evaluator tests ran.
+  This archive result does not establish independent history proof.
+- Complete current diff and `git diff --check` passed.
+
+No live IBM Bob client, interruption, model, credential, private repository,
+hook, MCP server, paid service or unreviewed third-party content was used. The
+prepared Parcel Resume fixture represents a constructed handoff, not an
+observed Bob process interruption. These results establish offline reporting
+controls only—not discovery, workflow-following, recovery quality, compatibility
+or release readiness.
+
+## Fail-closed live-trial evidence — 10 November 2026 (UTC)
+
+Review found that the shipped live-trial template could describe a result as a
+manual Bob trial without binding it to a run, host, exact kit commit, Bob
+version/mode, explicit workspace-trust decision or affirmative live-client
+observation. That made blocked or completed reports ambiguous and could let
+non-interactive `bob run` evidence cross an interactive manual-approval
+boundary.
+
+The template is now schema 2 and a read-only validator requires bounded claim
+levels. Executed results must identify the run and host, use an interactive IDE
+or Shell client, record the exact kit and Bob revisions, record explicit trust
+and native-loading evidence, and affirm that Bob was actually observed. A
+completed result must additionally carry healthy installation evidence, both
+rule and skill loading, exact task evidence, manual acceptance and preservation
+observations. Blocked and incomplete records remain valid evidence, but cannot
+claim a completed task. The validator checks record shape and consistency; it
+does not attest that the recorded observations are true.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- Focused fail-closed live-trial suite: **7/7 passed**, including template
+  preservation, non-interactive rejection, identity/trust/live-observation
+  controls, overclaim rejection, bounded blocked results and CLI read-only
+  behavior.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **73/73 root tests** and **157/157 evaluator tests** passed with zero
+  failures, errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no
+  Git: all content/offline checks passed; root discovered and ran **73** cases
+  with **24 explicit Git-only skips**, and all **157** evaluator tests ran.
+  This archive result does not establish independent history proof.
+- Complete current diff and `git diff --check` passed.
+
+No live IBM Bob client, model, credential, private repository, hook, MCP server,
+paid service or unreviewed third-party content was used. These results establish
+offline validation and honest reporting controls only—not Bob discovery,
+activation, workflow-following, compatibility, task quality or release
+readiness.
+
+## Consolidation refresh — 9 November 2026 (UTC)
+
+Review found that the consolidation branch still embedded evaluator PR #14's
+schema-v1 head `12cec9029682e14b57f9ace38605951fb091b605` after the source PR
+had advanced to reviewed final head
+`083ed29533ca292fefa4784efac644f57de9735a`. The stale port omitted required
+run/host/client identity, complete evidence for blocked or incomplete live-Bob
+observations, and the source-backed rejection of non-interactive `bob run`.
+
+The final source revision remains pinned, its five active protocol/code/test
+files retain the exact source Git blob identities under `evals/`, and combined
+contributor/validation records retain their separate attribution. The
+reviewed-fork manifest binds the complete 181-file evaluator tree to reviewed
+port `e6c39afdc03d4a044788952eaa6b009eadbba393`. A root regression binds the PR
+map to final head `083ed295...`, requires protocol schema 2, verifies the five
+source blob identities, and checks the fourteen native source heads plus the
+reviewed port as ancestors in a full checkout.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **66/66 root tests** and **157/157 evaluator tests** passed with zero
+  failures, errors or skips; catalogue, provenance and local links passed.
+- Focused runtime-protocol suite: **13/13 passed**.
+- Exact-commit archive with no `.git` and a `PATH` containing Python but no
+  Git: all content/offline checks passed; root discovered **66** cases, executed
+  **42** bodies and reported **24 explicit Git-only skips**; all **157**
+  evaluator tests executed. This archive check does not establish independent
+  history proof.
+- Complete current diff and `git diff --check` passed.
+
+No Engram or Basic Memory artifact, Bob client, MCP server, model, credential,
+private project, hook, or paid service was downloaded or executed. These are
+offline source, provenance and regression results—not live Bob loading,
+workflow-following, backend qualification, licence/privacy approval, production
+readiness, release approval or repository-transition approval.
+
+## Local one-product kit-port validation
+
+Reviewed kit candidates #5, #6 and #7 were merged locally in dependency order without squashing. The sections below headed Alpha.5, Alpha.6 and Alpha.7 retain their original candidate-specific evidence; their dates, environments and counts do not describe this consolidated checkout. Historical alpha.4 and earlier evidence remains unchanged, including the seven-file alpha.1 payload.
+
+Fresh local checks on the kit-port payload based on merge `100c4f3` (Linux, Python 3.13.5):
+
+- ResourceWarning-fatal root suite: **57 tests passed**; installer-only suite: **26 tests passed**.
+- `python3 tools/check_all.py --require-history`: root **57 tests**, included evaluator **37 tests**, catalogue, provenance and local Markdown links all passed.
+- Actual packaged preview/install/doctor/uninstall: **22 managed files**, **six skills**, explicit disposable Bob home; doctor healthy, all managed files removed, unrelated sentinel preserved.
+- Tiny Ledger: **9 tests, 8 passes, 1 intentional failure**, exit 1; shipped fixture unchanged.
+
+These results are offline only. Logs and exact final-head metadata are in the separate local `kit-port-result.json` handoff and `kit-port-evidence/` directory, not a hosted CI or live Bob result. No active Bob configuration, model, credentials or network was used. Combined-tree independent review, other feature ports, hosted CI, client loading and explicit publication/merge/release approval remain separate gates.
+
+## Alpha.7 candidate validation
+
+Alpha.7 adds `document-and-prepare-release`, an on-demand release-evidence reference, a release-handoff template, and fixed-scope installer support for six packaged skills. The skill reconciles exact-state implementation and independent-review evidence, updates only agreed documentation, and requires `release blocked` while a confirmed blocking finding or essential evidence gap remains. It cannot tag, publish, deploy, approve a release, prove production readiness, or turn offline packaging checks into live Bob or product-behavior evidence.
+
+Local checks executed on **24 October 2026 (UTC), Linux, Python 3.12.14**:
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` from kit root | **26 tests passed**, exit 0, including six-skill fixed-pack validation and the existing lifecycle/recovery suite |
+| `python3 -B -m unittest discover -s tests -v` from `examples/tiny-ledger` | **9 tests, 8 passes, 1 deliberate failure**, exit 1; original regression preserved |
+| Python files parsed with Python 3.10 grammar; JSON parsed; relative Markdown targets checked | **5 Python files**, **2 JSON files**, and **60 local Markdown links** checked across **45 Markdown files** with no syntax/JSON errors or missing local targets |
+| Preview/install/doctor/uninstall against an explicit temporary Bob home | **22 managed text files** accepted; install reported `installed`, doctor reported `healthy`, and uninstall removed the manifest and managed files; no live Bob configuration used |
+
+The hosted matrix for the final candidate commit must pass before the pull request is ready. The paired reminder release-handoff evaluation lives in the companion evaluation repository and remains separate evidence. No live Bob client loaded or activated this skill, and no model participant established that its release decisions are generally reliable.
+
+## Alpha.6 candidate validation
+
+Alpha.6 adds `review-and-secure-change`, an on-demand findings/severity reference, a review-handoff template, and fixed-scope installer support for five packaged skills. The skill requires current-state reconciliation, a read-only first pass, independently reproduced evidence, applicable trust-boundary review, precise findings, and a bounded next-gate decision. Static and installer validation do not prove review quality, security, absence of defects, compliance, production readiness, reviewer independence, or live Bob activation.
+
+Local checks executed on **23 October 2026 (UTC), Linux, Python 3.12.14**:
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` from kit root | **26 tests passed**, exit 0, including fixed-pack validation and the existing lifecycle/recovery suite |
+| `python3 -B -m unittest discover -s tests -v` from `examples/tiny-ledger` | **9 tests, 8 passes, 1 deliberate failure**, exit 1; original regression preserved |
+| Python files parsed with Python 3.10 grammar; JSON parsed; relative Markdown targets checked | **5 Python files**, **2 JSON files**, and **60 local Markdown links** checked across **42 Markdown files** with no syntax/JSON errors or missing local targets |
+| Preview/install/doctor/uninstall against an explicit temporary Bob home | **19 managed text files** accepted; install reported `installed`, doctor reported `healthy`, and uninstall removed all managed files; no live Bob configuration used |
+
+The hosted matrix for the final candidate commit must pass before release. The paired reminder review/security evaluation lives in the companion evaluation repository and remains separate evidence. No live Bob client loaded or activated the skill, and no model participant established that these instructions find defects reliably.
+
+## Alpha.5 candidate validation
+
+Alpha.5 adds `implement-and-debug-change`, an on-demand debugging-evidence reference, an implementation-handoff template, and fixed-scope installer support for four packaged skills. The skill requires a current input contract, a reproducible baseline, a criterion-linked minimal change, current-state checks, preservation evidence, and a resumable handoff. Static and installer validation do not prove implementation quality, independent review, production readiness, or live Bob activation.
+
+Local checks executed on **22 October 2026 (UTC), Linux, Python 3.12.14**:
+
+| Check | Observed result |
+| --- | --- |
+| `python3 -B -W error::ResourceWarning -m unittest discover -s tests -v` from kit root | **26 tests passed**, exit 0, including missing/unlisted skill rejection, directory-name validation, and the existing lifecycle/recovery suite |
+| `python3 -B -m unittest discover -s tests -v` from `examples/tiny-ledger` | **9 tests, 8 passes, 1 deliberate failure**, exit 1; original regression preserved |
+| Python files parsed with Python 3.10 grammar; JSON parsed; relative Markdown targets checked | **5 Python files**, **2 JSON files**, and **60 local Markdown links** checked across 39 Markdown files; no syntax/JSON errors or missing local targets |
+| Preview/install/doctor/uninstall against an explicit temporary Bob home | **16 managed text files** accepted; install reported `installed`, doctor reported `healthy`, and uninstall removed all managed files; no live Bob configuration used |
+
+The hosted matrix for the final candidate commit must pass before release. The local checks establish installer behavior and static content properties only. No live Bob client loaded or activated the new skill, and no model trial established that the instructions produce correct implementations in practice.
 
 ## Alpha.4 integration validation — 26 October 2026 (UTC)
 

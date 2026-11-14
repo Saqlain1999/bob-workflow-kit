@@ -1,0 +1,172 @@
+{
+  "status": "fifteen exact source heads integrated locally; no external source PR disposition implied",
+  "previous_accepted_snapshot": "1fd601f356e7492bb334a0800529bad8bb241c42",
+  "memory_correction": "c1b471a0658989e4341ad7fcf194d91e93b284fc",
+  "pull_requests": [
+    {
+      "baseRefName": "main",
+      "headRefName": "maintenance/technical-writing-fidelity-eval-2026-10-20",
+      "headRefOid": "5aca7046d4bd21da6fb2bec13606f3c6fb6ef8f9",
+      "number": 3,
+      "title": "Add a technical writing fidelity evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/3",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/technical-writing-fidelity-eval-2026-10-20",
+      "headRefName": "maintenance/requirements-architecture-eval-2026-10-21",
+      "headRefOid": "9a6ea5922826884db9b49c60b3e48960aabdfb39",
+      "number": 4,
+      "title": "Add project-planning handoff evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/4",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/requirements-architecture-eval-2026-10-21",
+      "headRefName": "maintenance/reminder-implementation-eval-2026-10-22",
+      "headRefOid": "ad4d34005c6c4e31de3d700417a3df663b985ad7",
+      "number": 5,
+      "title": "Add interrupted reminder implementation evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/5",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/reminder-implementation-eval-2026-10-22",
+      "headRefName": "maintenance/reminder-review-security-eval-2026-10-23",
+      "headRefOid": "56d7c097bad2d2dcca009ff55ae0989d2a5323d8",
+      "number": 6,
+      "title": "Add reminder independent review and security evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/6",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/reminder-review-security-eval-2026-10-23",
+      "headRefName": "maintenance/reminder-release-handoff-eval-2026-10-24",
+      "headRefOid": "f4ffdd3602d2f799bbf0104c4b2ed49f335da37a",
+      "number": 7,
+      "title": "Add blocked reminder release-handoff evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/7",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/reminder-release-handoff-eval-2026-10-24",
+      "headRefName": "maintenance/reminder-review-remediation-eval-2026-10-25",
+      "headRefOid": "0a87997ebac04623e5b506b7d82897f6ebd8be0e",
+      "number": 8,
+      "title": "Add reviewed reminder remediation evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/8",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/reminder-review-remediation-eval-2026-10-25",
+      "headRefName": "maintenance/reminder-remediated-review-eval-2026-10-26",
+      "headRefOid": "63dc842097e1c875755b2b51bda9e0b1d1f01402",
+      "number": 9,
+      "title": "Add independent re-review of remediated reminder state",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/9",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/reminder-remediated-review-eval-2026-10-26",
+      "headRefName": "maintenance/reminder-remediated-release-handoff-eval-2026-11-03",
+      "headRefOid": "120ddbe44b00dfd2e55927aa604613f638ea4c13",
+      "number": 10,
+      "title": "Add remediated reminder release-readiness evaluation",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/10",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "maintenance/bob-project-memory-eval-2026-11-04",
+      "headRefOid": "ee370e6c2691a7555bd7d80e1562e7ae3c3a76cf",
+      "number": 11,
+      "title": "Add backend-neutral project memory acceptance fixture",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/11",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/bob-project-memory-eval-2026-11-04",
+      "headRefName": "maintenance/engram-memory-qualification-2026-11-05",
+      "headRefOid": "4dff443f9ee51d0d9862aa29ff605f7d802d6ad6",
+      "number": 12,
+      "title": "Add pinned Engram memory qualification gate",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/12",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/engram-memory-qualification-2026-11-05",
+      "headRefName": "maintenance/basic-memory-qualification-2026-11-06",
+      "headRefOid": "6d487eb118f79f313815a884e5b3af19d9bcd859",
+      "number": 13,
+      "title": "Qualify Basic Memory v1 source against project-memory contract",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/13",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "maintenance/basic-memory-qualification-2026-11-06",
+      "headRefName": "maintenance/memory-runtime-protocol-2026-11-07",
+      "headRefOid": "083ed29533ca292fefa4784efac644f57de9735a",
+      "number": 14,
+      "title": "Add fail-closed memory runtime evidence protocol",
+      "url": "https://github.com/Saqlain1999/bob-workflow-evals/pull/14",
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": "evals/"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "maintenance/implementation-debugging-skill-2026-10-22",
+      "headRefOid": "ce65afef8c7d8b85b47d5f6f4e78b09b97265e16",
+      "number": 5,
+      "title": "Add bounded implementation and debugging workflow",
+      "url": "https://github.com/Saqlain1999/bob-workflow-kit/pull/5",
+      "repository": "Saqlain1999/bob-workflow-kit",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": ""
+    },
+    {
+      "baseRefName": "maintenance/implementation-debugging-skill-2026-10-22",
+      "headRefName": "maintenance/independent-review-security-skill-2026-10-23",
+      "headRefOid": "bb2faab34d97f26f622c23a2c6ccc425fed459cc",
+      "number": 6,
+      "title": "Add bounded independent review and security workflow",
+      "url": "https://github.com/Saqlain1999/bob-workflow-kit/pull/6",
+      "repository": "Saqlain1999/bob-workflow-kit",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": ""
+    },
+    {
+      "baseRefName": "maintenance/independent-review-security-skill-2026-10-23",
+      "headRefName": "maintenance/document-release-handoff-skill-2026-10-24",
+      "headRefOid": "12f2b06acaf77934f6e9c0e2c8b504db9941beb7",
+      "number": 7,
+      "title": "Add evidence-backed documentation and release handoff",
+      "url": "https://github.com/Saqlain1999/bob-workflow-kit/pull/7",
+      "repository": "Saqlain1999/bob-workflow-kit",
+      "status": "Reviewed and ported locally; external PR not merged or closed",
+      "destination_prefix": ""
+    }
+  ]
+}

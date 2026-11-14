@@ -17,8 +17,107 @@ Start with the exact command output and the active execution host. Preserve unre
 | Bob forgets earlier decisions | The task record may be absent, stale, or too large | Use a concise checkpoint and name its exact path in a fresh recovery request |
 | Bob repeats the same failing command | The cause may be environmental, denied, or misunderstood | Classify the failure and change the next action based on new evidence |
 | Bob says tests passed but evidence is absent | The command may not have completed or may not have run | Request the actual command, working directory, exit status, relevant output and scope |
+| Live-trial validation rejects the record | The result lacks run/host identity, explicit trust, interactive Bob observation, loading evidence, or task evidence for its claim level | Keep the actual status as `blocked` or `incomplete`; add only evidence that was observed. Do not relabel `bob run`, file existence, or helper output as an interactive live-Bob task |
+| Trial preparation cannot resolve the kit commit | The checkout has no Git history, or Git is unavailable | For a reviewed source archive, rerun preparation with the exact release/PR commit and recorded archive SHA-256. Do not substitute the newest main commit or an unverified digest |
+| Trial preparation says the output already exists | The command refuses to replace prior or partial evidence | Choose a new run-specific path. Preserve and inspect the existing file; delete it only when you have deliberately decided it contains no evidence worth retaining |
+| Trial recording says the input is not `not_run` | The recorder accepts only the immutable prepared starting record | Keep every prior result. Start from the original prepared record and choose a new output path for each blocked or incomplete attempt |
+| Completed-trial recording rejects a prior result | Completion also starts only from the immutable prepared record | Preserve the blocked/incomplete result as evidence. Start the completed record from the original prepared file and give it a new output path; never upgrade or replace a failed attempt |
+| A recovery trial passes tests but validation rejects `completed` | Mechanical correctness does not show that the participant used the handoff, reconciled current state, detected stale evidence, reran current checks, updated the checkpoint, or preserved unrelated work | Complete the human acceptance review from visible evidence, or keep recovery status `partial` and the overall trial `incomplete`; never infer process observations from a green candidate report |
 
 Current IBM references: [IDE skills](https://bob.ibm.com/docs/ide/features/skills), [Shell skills tutorial](https://bob.ibm.com/docs/shell/tutorials/use-skills), [rules precedence](https://bob.ibm.com/docs/ide/configuration/rules), and the [Shell changelog entry for protected Bob-home writes](https://bob.ibm.com/docs/shell/changelog#201).
+
+## Record a blocked or incomplete trial
+
+Keep the prepared `not_run` record as the immutable starting point. After an
+actual interactive IDE or Shell attempt, create a new result rather than editing
+or replacing either file. This example records a healthy offline installation
+whose skill did not appear in an interactive Shell picker:
+
+```sh
+python3 tools/record_live_trial.py \
+  --input /path/to/prepared.json \
+  --output /path/to/blocked-001.json \
+  --status blocked \
+  --claim-level installation_only \
+  --run-id parcel-blocked-001 \
+  --observed-at-utc 2026-11-13T08:00:00Z \
+  --bob-interface shell_interactive \
+  --bob-version RECORDED_VERSION \
+  --bob-mode agent \
+  --os RECORDED_OS \
+  --python-version RECORDED_PYTHON \
+  --execution-host-type local-disposable \
+  --workspace-trust-decision trust_folder \
+  --workspace-trust-evidence "Fixture trust dialog accepted" \
+  --native-loading-evidence "Skill absent from the interactive picker" \
+  --installation-status healthy \
+  --doctor-evidence "doctor reported healthy" \
+  --fresh-conversation-confirmed \
+  --live-bob-observed \
+  --first-confusing-step "Installed skill did not appear" \
+  --limitations-and-redactions "Public fixture; local paths removed"
+python3 tools/validate_live_trial.py /path/to/blocked-001.json
+```
+
+Replace every `RECORDED_...` value with the value actually observed. Use
+`loading_observed` only with `--rule-loaded` or `--skill-loaded`; do not use an
+installation-only claim after recording native loading. The recorder accepts
+only `blocked` or `incomplete`, requires explicit fresh-conversation and live-Bob
+confirmation, preserves the kit/task identity from the prepared record, and
+refuses an existing output path. It does not run Bob, attest observations,
+complete the task, or turn helper output into live-client evidence.
+
+## Record a completed trial
+
+Start from the same immutable prepared `not_run` record, not from a blocked or
+incomplete result. Complete the human acceptance review first. This small-repair
+example writes a separate completed record:
+
+```sh
+python3 tools/complete_live_trial.py \
+  --input /path/to/prepared.json \
+  --output /path/to/completed-001.json \
+  --run-id ledger-completed-001 \
+  --observed-at-utc 2026-11-14T08:00:00Z \
+  --bob-interface shell_interactive \
+  --bob-version RECORDED_VERSION \
+  --bob-mode agent \
+  --os RECORDED_OS \
+  --python-version RECORDED_PYTHON \
+  --execution-host-type local-disposable \
+  --workspace-trust-decision trust_folder \
+  --workspace-trust-evidence "Fixture trust dialog accepted" \
+  --native-loading-evidence "Rule and skill activation recorded" \
+  --doctor-evidence "doctor reported healthy" \
+  --fresh-conversation-confirmed \
+  --live-bob-observed \
+  --rule-loaded \
+  --skill-loaded \
+  --fixture-commit RECORDED_FIXTURE_COMMIT \
+  --baseline-report "9 tests; 1 expected failure" \
+  --candidate-report "9 tests passed" \
+  --diff "ledger.py only" \
+  --manual-acceptance accepted \
+  --current-files-inspected \
+  --historical-evidence-revalidated \
+  --teammate-changes-preserved \
+  --workflow-evidence-reference "/path/to/public-evidence-bundle" \
+  --first-confusing-step "None observed after guided preparation" \
+  --limitations-and-redactions "Public fixture; local paths removed"
+python3 tools/validate_live_trial.py /path/to/completed-001.json
+```
+
+For a prepared `interruption_recovery` task, the command additionally requires
+`--interruption-type`, `--handoff-read`, `--current-state-reconciled`,
+`--stale-historical-evidence-detected`, `--relevant-checks-rerun`,
+`--checkpoint-updated`, `--unrelated-changes-preserved`, and
+`--recovery-evidence-reference`. A `small_repair` rejects those recovery flags.
+
+The command requires both native rule and skill loading, healthy doctor evidence,
+task reports, preservation observations, and an explicit accepted or rejected
+human decision. It preserves the prepared kit/task identity, refuses overwrite,
+and cannot turn a prior failure into a pass. It records supplied observations; it
+does not run Bob, inspect the evidence bundle, or attest that any assertion is true.
 
 ## If your setup came from the earlier prompt-only approach
 

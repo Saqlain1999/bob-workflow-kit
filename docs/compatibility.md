@@ -1,13 +1,13 @@
 # Compatibility and evidence
 
-Mechanism documentation reviewed **21 October 2026 (UTC)**; evidence matrix updated **21 October 2026 (UTC)**. Package: **0.1.0-alpha.4**. Alpha.4 adds a third managed skill; its live discovery and behavior remain untested.
+Mechanism documentation reviewed **24 October 2026 (UTC)**; evidence matrix updated **24 October 2026 (UTC)**. Package: **0.1.0-alpha.7**. Alpha.7 adds a sixth managed skill; its live discovery and behavior remain untested.
 
 ## Mechanisms used by this package
 
 | Mechanism | Documentation evidence | Package status |
 | --- | --- | --- |
 | Global rules under `~/.bob/rules/` | [IDE](https://bob.ibm.com/docs/ide/configuration/rules) and [Shell](https://bob.ibm.com/docs/shell/configuration/bobshell-custom-rules) | Implemented by the installer; live loading must be tested per client |
-| Global skills under `~/.bob/skills/` | [IDE skills](https://bob.ibm.com/docs/ide/features/skills) and [Shell skills](https://bob.ibm.com/docs/shell/features/skills) | Three focused skills are implemented with supporting files; live discovery remains untested |
+| Global skills under `~/.bob/skills/` | [IDE skills](https://bob.ibm.com/docs/ide/features/skills) and [Shell skills](https://bob.ibm.com/docs/shell/features/skills) | Six focused skills are implemented with supporting files; live discovery remains untested |
 | Simple `name` and `description` front matter | Same skill references | Present; description fallback differences between clients are avoided |
 | Shell skill selection | [Shell skills tutorial](https://bob.ibm.com/docs/shell/tutorials/use-skills) describes `$skill-name`, the `$` picker, and `/skills` | Documented; not an offline installer assertion |
 | Workspace overrides | Rule/skill docs above describe workspace precedence | Users must inspect same-name project copies when diagnosing loading |
@@ -30,7 +30,7 @@ Current Shell documentation describes the same rules system as the IDE. That let
 
 Python 3.10 is the minimum for the kit walkthrough. The historical hosted run tested commit `3226221bc7b085666fd64b8f2e7dc2e1b6acb80f`; it is not a claim about an arbitrary later commit. The [release notes](https://github.com/Saqlain1999/bob-workflow-kit/releases) identify the exact source and hosted checks for each tagged release. A workflow file alone is not a passing CI result.
 
-No live Bob installation was available for this preparation. The small independent-agent exercise described in the validation record checks the original large-codebase workflow on a fixture, not Bob's loader, runtime, communication skill, or planning skill.
+No live Bob installation was available for this preparation. The small independent-agent exercise described in the validation record checks the original large-codebase workflow on a fixture, not Bob's loader, runtime, communication, planning, implementation/debugging, independent-review, or documentation/release-handoff skills.
 
 ## Check the actual host
 
@@ -44,6 +44,6 @@ Older clients may differ. The [Shell changelog](https://bob.ibm.com/docs/shell/c
 
 Record the kit version/commit, exact Bob version, interface, OS, execution host, target path (redacted where needed), installation integrity output, observed rule/skill loading, fixture results, and remaining limitations. Submit a compatibility report with no credentials or private project content.
 
-The [first-use walkthrough](try-alpha.md) leads through those observations. Use the short [issue form](https://github.com/Saqlain1999/bob-workflow-kit/issues/new?template=compatibility.yml), or copy the optional [live trial template](live-trial-template.json) when preserving detailed evidence. No live client combination has been accepted into this matrix yet.
+The [first-use walkthrough](try-alpha.md) leads through those observations. Use the short [issue form](https://github.com/Saqlain1999/bob-workflow-kit/issues/new?template=compatibility.yml), or prepare a separate detailed record with `python3 tools/prepare_live_trial.py ...`. The preparation command binds a clone to its exact commit, starts at `not_run`, refuses overwrite, and does not execute Bob. A blocked or incomplete interactive attempt can be copied into a separate bounded result with `python3 tools/record_live_trial.py ...`; that command also refuses overwrite and cannot create a completed-task claim. After human acceptance, `python3 tools/complete_live_trial.py ...` can create a separate completed result from the original prepared record; it requires healthy installation, both native loading observations, task/workflow evidence and scenario-specific recovery evidence, preserves identity, and refuses overwrite. Neither recorder runs Bob or attests supplied observations. Validate the result with `python3 tools/validate_live_trial.py /path/to/result.json`; validation is fail-closed evidence-shape checking, not an attestation. No live client combination has been accepted into this matrix yet.
 
 Promote a combination from “documented” to “tested” only with actual execution evidence. Promote “tested” to a broader support claim only after the project's maintainers accept an ongoing test/maintenance commitment.

@@ -1,47 +1,35 @@
 # Project scope and roadmap
 
-The first section describes the implemented alpha. Later milestones describe future development. Four complementary repositories are published under the Saqlain1999 account; their implementation status is explicit below.
+Bob Workflow Kit is the intended single user-facing product: one checkout, one installation, one first-use guide and one issue tracker. This branch prepares that layout locally; it is not a new published release. See the [consolidation record](consolidation/README.md) for original source commits and outstanding PRs.
 
-## First public project: `bob-workflow-kit`
+## Implemented alpha and included material
 
-The alpha includes the guide, a small documented rules/skills payload, offline setup tooling, copyable prompts, task templates, a deliberately failing fixture, and validation/reporting materials. The [first-use walkthrough](try-alpha.md) is the public entry point. The companion evaluator adds a constructed stale-evidence recovery exercise; its live Bob behavior remains to be recorded. Next useful evidence is actual client loading and task behavior on each target interface.
+The alpha includes the guide, a small documented rules/skills payload, offline setup tooling, copyable prompts, task templates, a deliberately failing fixture, and validation/reporting materials. The [first-use walkthrough](try-alpha.md) is the entrypoint. The [included recovery exercise](exercises.md) uses constructed stale evidence; live Bob behavior must be recorded separately.
 
-Keep user installation simple: one download, one preview, one install, one fresh-session check, then project onboarding. Keep deeper material available without loading it all into every conversation.
+- Product and installation: the root kit and `payload/`.
+- Evaluation quality and optional exercises: `evals/`, not another product to install.
+- Optional reference catalogue: [resources](resources/README.md), not another download.
+- Controller proposals: [deferred design notes](design/README.md), not an executable runtime or a committed build.
 
-## Milestones
+Keep user installation simple: preview, install, fresh-session loading check, one verified exercise, then project onboarding. Do not require users to understand the internal directory split or import every skill into every conversation. Use the canonical kit tracker for the proposed unified journey; preserve existing URLs and history during transition.
 
-| Milestone | User outcome | Evidence required |
-| --- | --- | --- |
-| Alpha foundation | Install, inspect, and remove the kit; learn the workflow | Offline tests, readable docs, explicit unsupported states |
-| Live compatibility | Use the payload in specific Bob versions | Recorded IDE and Shell loading and small-task results, including override handling |
-| Repository recovery | Resume a realistic interrupted change | Public fixture, saved checkpoint, current-file reconciliation, relevant checks |
-| Stack recipes | Apply the method to common project shapes | Tested Python/JS/Java or other examples with real commands and no guessed dependencies |
-| Optional native plugin package | Install a documented bundle in a supported client | Verified format, precedence, update/removal behaviour, and exact client versions |
-| Optional workflow controller | Launch tasks through fixed stages and bounded retries | Independent state-machine/process tests, real Bob integration tests, accurate cost/status limits |
+## Evidence-led priorities
 
-## Repository responsibilities
+1. Finish independent review of the combined tree and reconcile the locally ported kit #5–#7 with the remaining stack without losing accepted work or historical attribution. Publication and main merge require separate approval.
+2. Record actual client loading and a bounded useful task on each named Bob interface/version. Offline green tests do not prove loading or workflow quality.
+3. Test realistic interruption recovery: reconcile current source and policy, preserve unrelated edits, execute relevant checks and produce a usable handoff.
+4. Improve only what observed failures justify. Add a stack recipe or specialist skill when a repeatable need and acceptance test exist.
 
-| Repository | Responsibility | Initial state |
-| --- | --- | --- |
-| [bob-workflow-kit](https://github.com/Saqlain1999/bob-workflow-kit) | User guide, core rules/skills, installer, templates | Implemented alpha; user starting point |
-| [bob-workflow-evals](https://github.com/Saqlain1999/bob-workflow-evals) | Reproducible tasks and evaluation materials | Tiny Ledger repair plus Parcel Resume policy/freshness exercise; live Bob and large-repository trials remain future work |
-| [bob-workflow-runner](https://github.com/Saqlain1999/bob-workflow-runner) | Controller architecture, task contract, process and verification requirements | Design preview; no executable controller |
-| [awesome-bob-workflows](https://github.com/Saqlain1999/awesome-bob-workflows) | Curated links with provenance, status, and compatibility notes | Original catalogue and contribution guidance |
+The combined offline command is `python3 tools/check_all.py`. CI is configured to run it with full source history; hosted results for this new branch do not exist until it is explicitly published. Existing imported validation records retain their original source/version scope.
 
-They are independent community projects, not IBM products or registered package names. Core kit installation does not require installing the companions. Keep user setup and installer issues here; route fixture, controller-design, and catalogue changes to the relevant companion.
+## Avoid a second runtime by default
 
-## Controller design direction
+Native Bob and existing runtimes may already supply the needed execution/recovery behavior. Only consider implementing a controller after a specific observed gap and the [build-versus-adopt review](design/runner/ROADMAP.md). Adopting an existing tool, contributing a focused change or doing nothing are valid outcomes. The preserved runner documents are requirements exploration, not another installation step.
 
-First complete the companion runner's [build-versus-adopt review](https://github.com/Saqlain1999/bob-workflow-runner/blob/main/ROADMAP.md). Native Bob, Bob Control and Headless Bob already provide substantial execution/recovery functionality. Adopting an existing tool, contributing a focused change, or adding a narrow adapter are valid outcomes. The remaining requirements below do not imply a new controller is necessary.
-
-Keep instructions and enforcement distinct. A controller should validate a task/profile, invoke a bounded worker, run required checks itself, and transition among prepare, implement, verify, accept, repair, and stop. It must not accept a model's completion statement as a substitute for actual check results.
-
-Required design questions include changing verification inputs, worker edits to check definitions, cancellation and child cleanup, concurrent edits, unavailable prerequisites, and missing usage data after interrupted calls. Native turn/cost limits and tool restrictions need version-specific tests. Normal IDE conversations remain outside the controller unless explicitly launched through it.
-
-Do not turn lifecycle hooks into a recursive “keep fixing until perfect” engine. Avoid adding an MCP server, vector database, or web dashboard until a specific use case requires one.
+Instructions are not execution enforcement. If a controller is ever justified, it must validate task/profile inputs, bound workers and retries, run checks independently and handle cancellation, concurrent edits and unavailable prerequisites. Do not build a recursive keep-fixing engine or add a database, dashboard, scheduler or MCP server without an evidenced need.
 
 ## Evaluate benefit rather than advertise it
 
-For each candidate improvement, compare the same starting project/task under a stated environment. Track task correctness and scope, regressions, successful recovery, elapsed time, commands, context/usage data when available, and manual interventions. Repeat trials; one demonstration is not a performance estimate.
+Compare the same starting task under a stated environment. Track correctness, scope, regressions, recovery, elapsed time, relevant commands, available usage data and human interventions. Repeat trials and include unsuccessful or abandoned attempts. One demonstration is not a performance estimate or proof of large-repository reliability.
 
-Useful early community issues are concrete: duplicate skill discovery on a specific version, loss of task state after a handoff, a missed relevant check, or an installer collision that is hard to understand. Each can produce a reproducible fix and a better documented workflow.
+Prioritize confusing onboarding, installation collisions, duplicate skill discovery, stale verification and lost handoffs over the number of skills or repositories. The kit remains an independent community project, not an IBM product or Marketplace listing.

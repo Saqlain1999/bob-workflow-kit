@@ -6,7 +6,7 @@ This is a community alpha. Offline installation checks are recorded in [VALIDATI
 
 ## 1. Get a fixed copy
 
-Download the source ZIP from [Releases](https://github.com/Saqlain1999/bob-workflow-kit/releases) and extract it. Prefer a named alpha release when reporting a result. Its notes identify the exact commit and archive checksum. A clone also works; record `git rev-parse HEAD`.
+This walkthrough currently targets an **unpublished consolidation preview**. Existing alpha downloads do not promise the integrated layout. Use the reviewed preview checkout or its exact source archive during preparation, and record its commit and checksum. After an approved release, download its source ZIP from [Releases](https://github.com/Saqlain1999/bob-workflow-kit/releases); the release notes must identify that exact integrated commit and checksum. A clone also works; record `git rev-parse HEAD`.
 
 Prerequisites are an existing Bob IDE or Shell installation and **Python 3.10 or later** on the host where you will run the installer. The commands below use `python3`; on Windows with the Python launcher use `py -3` instead. Check your interpreter with `python3 --version` or `py -3 --version`.
 
@@ -20,7 +20,7 @@ To operate the installer yourself, run from the kit root:
 
 ```sh
 python3 tools/bob_workflow.py preview
-python3 -m unittest discover -s tests -v
+python3 tools/check_all.py
 python3 tools/bob_workflow.py install
 python3 tools/bob_workflow.py doctor
 ```
@@ -31,7 +31,7 @@ If Bob Shell is carrying out these commands, expect it to require explicit appro
 
 The default is the current user's `.bob` directory. If Bob uses a different configuration directory, append the same `--bob-home /absolute/path/to/.bob` to preview, install, and doctor. For an installation-only rehearsal use an explicit temporary directory; Bob will not discover that temporary target automatically.
 
-An edited managed file or an unowned collision needs review. Do not delete it simply to get a green result. [Installer troubleshooting](troubleshooting.md) explains supported recovery. To update alpha.1, alpha.2, or alpha.3, inspect and uninstall it using the old checkout and target before installing alpha.4; preserve any local edits first.
+An edited managed file or an unowned collision needs review. Do not delete it simply to get a green result. [Installer troubleshooting](troubleshooting.md) explains supported recovery. To update alpha.1 through alpha.6, inspect and uninstall it using the old checkout and target before installing alpha.7; preserve any local edits first.
 
 ## 3. Check loading in a fresh conversation
 
@@ -63,7 +63,7 @@ In the exercise directory, run the same test command independently after Bob fin
 python3 -m unittest discover -s tests -v
 ```
 
-Expected after a correct repair: **nine tests pass, exit code 0**. Review the changed source and confirm the original public tests are still intact. If tests were edited, compare them with the original copy and treat the result as needing review. The companion evaluator can run the original tests independently, but is optional for this first walkthrough.
+Expected after a correct repair: **nine tests pass, exit code 0**. Review the changed source and confirm the original public tests are still intact. If tests were edited, compare them with the original copy and treat the result as needing review. The included evaluator under `evals/` can run the original tests independently; see the [exercise guide](exercises.md). It is optional for this first walkthrough and needs no separate checkout.
 
 Check these outcomes separately:
 
@@ -80,11 +80,23 @@ None of these alone establishes reliable behavior on your large repository. Save
 
 Open [a Bob compatibility result](https://github.com/Saqlain1999/bob-workflow-kit/issues/new?template=compatibility.yml). Report the kit version, Bob version/interface, host, the three observed outcomes, and the first confusing or failing step. Short reports are welcome. Include only public fixture evidence and redact local identities or confidential paths.
 
-For a recorded demonstration or a detailed result, copy [live-trial-template.json](live-trial-template.json). It is a manual reporting aid, not an automated attestation. Leave unobserved values as `null`; record unsuccessful attempts instead of replacing them with a later pass.
+For a recorded demonstration or detailed result, create a new record from the kit root. The command binds a clone to its exact current commit, starts at `not_run`, and refuses to overwrite an existing path:
+
+```sh
+python3 tools/prepare_live_trial.py --output /path/to/result.json --task-id tiny-ledger --scenario small_repair
+```
+
+For a reviewed source archive without Git history, also pass its exact `--kit-commit` and recorded `--archive-sha256`; do not guess either value. The shipped [live-trial template](live-trial-template.json) remains unchanged. Preparation does not start Bob or claim any observation.
+
+If the interactive attempt is blocked or incomplete, preserve the prepared record and create a separate result with `tools/record_live_trial.py`. Its required arguments record the exact run, client, host, trust decision, installation/loading boundary and first confusing step. It refuses to overwrite either record and cannot create a completed-task claim. See [Troubleshooting](troubleshooting.md#record-a-blocked-or-incomplete-trial) for a complete example.
+
+If the task reaches a reviewable result, complete the human acceptance checklist first, then create a separate result with `tools/complete_live_trial.py`. That command requires exact installation, loading, task, workflow and—when applicable—recovery observations; preserves the prepared kit/task identity; and refuses overwrite. It cannot infer those observations from helper output and does not attest that supplied evidence is true. See [Troubleshooting](troubleshooting.md#record-a-completed-trial) for the bounded command and recovery-specific requirements. Validate either result with `python3 tools/validate_live_trial.py /path/to/result.json`; the validator is read-only and checks evidence shape, not truth.
+
+An executed result must identify the run, exact kit commit, Bob interface/version/mode, operating system, execution host, explicit workspace-trust decision and observed native-loading evidence. A completed result must label the task as a `small_repair` or `interruption_recovery`; recovery claims require the separate observed handoff, reconciliation, stale-evidence, recheck, checkpoint and preservation fields. Use an interactive IDE or Shell session for this first trial. Do not substitute non-interactive `bob run`: IBM documents that it pre-approves tools, which conflicts with this walkthrough's approval boundary. Record blocked and incomplete attempts instead of replacing them with a later pass; they cannot claim task completion.
 
 ## Next: test recovery, then your own repository
 
-The companion [Parcel Resume task](https://github.com/Saqlain1999/bob-workflow-evals/tree/main/tasks/parcel-resume) adds a specific recovery challenge. Its helper really runs a historical passing check, constructs a labelled handoff, then changes a relevant policy and an unrelated teammate note. A fresh Bob session must work from current files. The candidate check tests the current policy and preservation of protected files; a person still needs to observe the recovery behavior.
+The included [Parcel Resume task](exercises.md) adds a specific recovery challenge. Its helper really runs a historical passing check, constructs a labelled handoff, then changes a relevant policy and an unrelated teammate note. A fresh Bob session must work from current files. The candidate check tests the current policy and preservation of protected files; a person still needs to observe the recovery behavior.
 
 When the small exercises are understood, use [onboard.txt](../prompts/onboard.txt) on your own repository. Start with one bounded change, reuse its existing specifications and task records, and verify with that project's actual commands. Read [alternatives and coexistence](alternatives.md) before adding another workflow framework.
 

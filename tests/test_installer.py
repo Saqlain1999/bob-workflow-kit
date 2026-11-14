@@ -50,6 +50,15 @@ class InstallerTests(unittest.TestCase):
             kit.PROJECT_PLANNING_SKILL: b"---\nname: plan-project-change\ndescription: Inspect a project and plan a bounded change.\n---\nGather evidence before planning edits.\n",
             "skills/plan-project-change/references/evidence-and-decisions.md": b"# Evidence\nSeparate observations from assumptions.\n",
             "skills/plan-project-change/templates/delivery-plan.md": b"# Delivery plan\nAcceptance criteria:\n",
+            kit.IMPLEMENTATION_SKILL: b"---\nname: implement-and-debug-change\ndescription: Implement a bounded change with regression evidence.\n---\nReproduce before editing and preserve unrelated work.\n",
+            "skills/implement-and-debug-change/references/debugging-evidence.md": b"# Debugging evidence\nTest one hypothesis at a time.\n",
+            "skills/implement-and-debug-change/templates/implementation-handoff.md": b"# Implementation handoff\nObserved checks:\n",
+            kit.REVIEW_SKILL: b"---\nname: review-and-secure-change\ndescription: Independently review a bounded change for defects and risks.\n---\nRevalidate the current state without editing the product.\n",
+            "skills/review-and-secure-change/references/findings-and-severity.md": b"# Findings\nTie severity to observed impact.\n",
+            "skills/review-and-secure-change/templates/review-handoff.md": b"# Review handoff\nCurrent findings:\n",
+            kit.RELEASE_SKILL: b"---\nname: document-and-prepare-release\ndescription: Prepare an evidence-backed release handoff.\n---\nBlock release while review findings remain.\n",
+            "skills/document-and-prepare-release/references/release-evidence.md": b"# Release evidence\nTie claims to the exact candidate state.\n",
+            "skills/document-and-prepare-release/templates/release-handoff.md": b"# Release handoff\nDecision:\n",
         }
         for relative, data in self.files.items():
             path = self.payload / relative
@@ -123,6 +132,9 @@ class InstallerTests(unittest.TestCase):
         self.assertFalse((self.root / "skills/work-large-codebase").exists())
         self.assertFalse((self.root / "skills/write-clear-technical-content").exists())
         self.assertFalse((self.root / "skills/plan-project-change").exists())
+        self.assertFalse((self.root / "skills/implement-and-debug-change").exists())
+        self.assertFalse((self.root / "skills/review-and-secure-change").exists())
+        self.assertFalse((self.root / "skills/document-and-prepare-release").exists())
         self.assertTrue((self.root / "rules").is_dir())
         self.assertTrue((self.root / "workflow-kit").is_dir())
 
@@ -199,6 +211,24 @@ class InstallerTests(unittest.TestCase):
         skill.write_bytes(self.files[kit.TECHNICAL_COMMUNICATION_SKILL])
         planning = self.payload / kit.PROJECT_PLANNING_SKILL
         planning.write_bytes(b"---\nname: write-clear-technical-content\ndescription: Wrong name.\n---\nBody\n")
+        self.assert_error("invalid_skill", kit.install, self.root, self.payload)
+        self.assertFalse(self.root.exists())
+
+        planning.write_bytes(self.files[kit.PROJECT_PLANNING_SKILL])
+        implementation = self.payload / kit.IMPLEMENTATION_SKILL
+        implementation.write_bytes(b"---\nname: plan-project-change\ndescription: Wrong name.\n---\nBody\n")
+        self.assert_error("invalid_skill", kit.install, self.root, self.payload)
+        self.assertFalse(self.root.exists())
+
+        implementation.write_bytes(self.files[kit.IMPLEMENTATION_SKILL])
+        review = self.payload / kit.REVIEW_SKILL
+        review.write_bytes(b"---\nname: implement-and-debug-change\ndescription: Wrong name.\n---\nBody\n")
+        self.assert_error("invalid_skill", kit.install, self.root, self.payload)
+        self.assertFalse(self.root.exists())
+
+        review.write_bytes(self.files[kit.REVIEW_SKILL])
+        release = self.payload / kit.RELEASE_SKILL
+        release.write_bytes(b"---\nname: review-and-secure-change\ndescription: Wrong name.\n---\nBody\n")
         self.assert_error("invalid_skill", kit.install, self.root, self.payload)
         self.assertFalse(self.root.exists())
 
