@@ -4,6 +4,42 @@ Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Exact executed-record identity validation — 15 November 2026 (UTC)
+
+Review reproduced an evidence-integrity defect in schema 3: an executed record
+with `observed_at_utc` set to `not-a-timeZ` and `task.fixture_commit` set to
+`not-a-commit` passed the read-only validator. A string suffix and non-empty
+source label are insufficient to bind a public result to a real time and exact
+fixture revision.
+
+The validator now parses a strict RFC 3339 UTC timestamp, rejects impossible
+dates and offset/local timestamps, requires a full lowercase 40-character Git
+commit for completed fixture evidence, and checks a recorded archive digest as
+a lowercase 64-character SHA-256. The completion command performs the exact
+fixture-commit check before creating an output. It still does not attest that
+the recorded timestamp, commit, digest or observations are truthful; human
+review must compare them with the retained public evidence.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- The focused live-trial suite passed **33/33**, including impossible-date,
+  non-time, offset-timestamp, non-commit fixture and malformed-digest controls.
+- A constructed `prepare_live_trial.py` → `complete_live_trial.py` →
+  `validate_live_trial.py` sequence passed with a full fixture commit. A copy
+  changed to `not-a-timeZ` and `not-a-commit` was rejected with both named
+  errors. No Bob client ran.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **99/99 root tests** and **157/157 evaluator tests** passed with zero failures,
+  errors or skips; catalogue, provenance and local links passed.
+- Exact-content archive with no `.git` and a `PATH` containing Python but no Git:
+  all content/offline checks passed; root discovered all **99** cases with **24
+  explicit Git-only skips**, and all **157** evaluator tests ran.
+- Complete current change diff, Python 3.10 grammar and `git diff --check` passed.
+
+Hosted exact-head results are recorded in the PR description after final
+execution on the published commit. Adding that run URL to this file afterward
+would itself create a different, untested head.
+
 ## Non-overwriting completed-trial recording — 14 November 2026 (UTC)
 
 Review found that safe preparation and blocked/incomplete recording still left a

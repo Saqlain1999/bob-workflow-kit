@@ -75,6 +75,11 @@ def build_result(
             raise CompletionError(f"{option} is required.")
     if manual_acceptance not in MANUAL_ACCEPTANCE:
         raise CompletionError("--manual-acceptance must be accepted or rejected.")
+    if (not isinstance(fixture_commit, str)
+            or not validate_live_trial.COMMIT_RE.fullmatch(fixture_commit)):
+        raise CompletionError(
+            "--fixture-commit must be a full lowercase 40-character Git commit."
+        )
 
     scenario = prepared.get("task", {}).get("scenario")
     recovery_flags = {
@@ -140,7 +145,7 @@ def build_result(
         "doctor_evidence": _required(doctor_evidence, "--doctor-evidence"),
     })
     record["task"].update({
-        "fixture_commit": _required(fixture_commit, "--fixture-commit"),
+        "fixture_commit": fixture_commit,
         "baseline_report": _required(baseline_report, "--baseline-report"),
         "candidate_report": _required(candidate_report, "--candidate-report"),
         "diff": _required(diff, "--diff"),

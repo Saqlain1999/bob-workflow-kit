@@ -46,7 +46,7 @@ def completed_record():
     record["task"].update({
         "id": "tiny-ledger",
         "scenario": "small_repair",
-        "fixture_commit": "public-fixture-revision",
+        "fixture_commit": "8" * 40,
         "baseline_report": "9 tests; 1 expected failure",
         "candidate_report": "9 tests passed",
         "diff": "ledger.py only",
@@ -105,6 +105,25 @@ class LiveTrialValidationTests(unittest.TestCase):
             ("host", lambda value: value["environment"].update(os=None)),
             ("trust", lambda value: value["configuration"].update(workspace_trust_decision=None)),
             ("observation", lambda value: value["configuration"].update(live_bob_observed=False)),
+        ]
+        for name, mutate in mutations:
+            with self.subTest(name=name):
+                record = deepcopy(base)
+                mutate(record)
+                self.assertTrue(validator.validate(record))
+
+    def test_malformed_time_source_revision_or_archive_digest_is_rejected(self):
+        base = completed_record()
+        mutations = [
+            ("non-time", lambda value: value.update(observed_at_utc="not-a-timeZ")),
+            ("invalid-date", lambda value: value.update(
+                observed_at_utc="2026-02-30T08:00:00Z")),
+            ("offset", lambda value: value.update(
+                observed_at_utc="2026-11-15T08:00:00+00:00")),
+            ("fixture", lambda value: value["task"].update(
+                fixture_commit="public-fixture-revision")),
+            ("archive", lambda value: value["kit"].update(
+                archive_sha256="not-a-digest")),
         ]
         for name, mutate in mutations:
             with self.subTest(name=name):
@@ -401,7 +420,7 @@ class LiveTrialCompletionTests(unittest.TestCase):
             "workspace_trust_evidence": "Fixture trust dialog accepted.",
             "native_loading_evidence": "Rule and skill activation recorded.",
             "doctor_evidence": "doctor reported healthy",
-            "fixture_commit": "public-fixture-revision",
+            "fixture_commit": "9" * 40,
             "baseline_report": "9 tests; 1 expected failure",
             "candidate_report": "9 tests passed",
             "diff": "ledger.py only",
@@ -487,6 +506,16 @@ class LiveTrialCompletionTests(unittest.TestCase):
         with self.assertRaises(completer.CompletionError):
             completer.build_result(invalid, **self.result_arguments())
 
+    def test_completion_rejects_malformed_time_or_fixture_commit(self):
+        with self.assertRaises(completer.CompletionError):
+            completer.build_result(
+                self.prepared_record(),
+                **self.result_arguments(observed_at_utc="not-a-timeZ"))
+        with self.assertRaises(completer.CompletionError):
+            completer.build_result(
+                self.prepared_record(),
+                **self.result_arguments(fixture_commit="public-fixture-revision"))
+
     def test_cli_writes_separate_completed_result_and_refuses_overwrite(self):
         with tempfile.TemporaryDirectory() as tmp:
             prepared_path = Path(tmp) / "prepared.json"
@@ -507,7 +536,7 @@ class LiveTrialCompletionTests(unittest.TestCase):
                 "--doctor-evidence", "doctor reported healthy",
                 "--fresh-conversation-confirmed", "--live-bob-observed",
                 "--rule-loaded", "--skill-loaded",
-                "--fixture-commit", "public-fixture-revision",
+                "--fixture-commit", "9" * 40,
                 "--baseline-report", "9 tests; 1 expected failure",
                 "--candidate-report", "9 tests passed", "--diff", "ledger.py only",
                 "--manual-acceptance", "accepted",

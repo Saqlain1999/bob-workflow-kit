@@ -67,6 +67,10 @@ confirmation, preserves the kit/task identity from the prepared record, and
 refuses an existing output path. It does not run Bob, attest observations,
 complete the task, or turn helper output into live-client evidence.
 
+Use an actual UTC observation time in `YYYY-MM-DDTHH:MM:SSZ` form (fractional
+seconds are allowed), not a label that merely ends in `Z`. The validator parses
+the date and time and rejects impossible dates or offset/local timestamps.
+
 ## Record a completed trial
 
 Start from the same immutable prepared `not_run` record, not from a blocked or
@@ -117,7 +121,10 @@ The command requires both native rule and skill loading, healthy doctor evidence
 task reports, preservation observations, and an explicit accepted or rejected
 human decision. It preserves the prepared kit/task identity, refuses overwrite,
 and cannot turn a prior failure into a pass. It records supplied observations; it
-does not run Bob, inspect the evidence bundle, or attest that any assertion is true.
+does not run Bob, inspect the evidence bundle, or attest that any assertion is
+true. `--fixture-commit` must be the exact full lowercase 40-character Git commit
+for the disposable fixture that was actually used; a branch name, tag, prose
+label, newest-main guess, or abbreviated commit is rejected.
 
 ## If your setup came from the earlier prompt-only approach
 

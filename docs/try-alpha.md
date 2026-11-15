@@ -92,7 +92,19 @@ If the interactive attempt is blocked or incomplete, preserve the prepared recor
 
 If the task reaches a reviewable result, complete the human acceptance checklist first, then create a separate result with `tools/complete_live_trial.py`. That command requires exact installation, loading, task, workflow and—when applicable—recovery observations; preserves the prepared kit/task identity; and refuses overwrite. It cannot infer those observations from helper output and does not attest that supplied evidence is true. See [Troubleshooting](troubleshooting.md#record-a-completed-trial) for the bounded command and recovery-specific requirements. Validate either result with `python3 tools/validate_live_trial.py /path/to/result.json`; the validator is read-only and checks evidence shape, not truth.
 
-An executed result must identify the run, exact kit commit, Bob interface/version/mode, operating system, execution host, explicit workspace-trust decision and observed native-loading evidence. A completed result must label the task as a `small_repair` or `interruption_recovery`; recovery claims require the separate observed handoff, reconciliation, stale-evidence, recheck, checkpoint and preservation fields. Use an interactive IDE or Shell session for this first trial. Do not substitute non-interactive `bob run`: IBM documents that it pre-approves tools, which conflicts with this walkthrough's approval boundary. Record blocked and incomplete attempts instead of replacing them with a later pass; they cannot claim task completion.
+An executed result must identify the run, exact kit commit, a parseable RFC 3339
+UTC observation time, Bob interface/version/mode, operating system, execution
+host, explicit workspace-trust decision and observed native-loading evidence. A
+completed result must bind the disposable fixture to its exact full lowercase
+40-character Git commit and label the task as a `small_repair` or
+`interruption_recovery`; branch names, tags, prose labels, abbreviated commits,
+and newest-main guesses are rejected. Recovery claims require the separate
+observed handoff, reconciliation, stale-evidence, recheck, checkpoint and
+preservation fields. Use an interactive IDE or Shell session for this first
+trial. Do not substitute non-interactive `bob run`: IBM documents that it
+pre-approves tools, which conflicts with this walkthrough's approval boundary.
+Record blocked and incomplete attempts instead of replacing them with a later
+pass; they cannot claim task completion.
 
 ## Next: test recovery, then your own repository
 

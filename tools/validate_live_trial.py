@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 import json
 from pathlib import Path
 import re
@@ -19,6 +20,10 @@ TASK_SCENARIOS = {"small_repair", "interruption_recovery"}
 RECOVERY_STATUSES = {"not_assessed", "partial", "observed", "not_applicable"}
 INTERRUPTION_TYPES = {"constructed_handoff", "observed_client_interruption"}
 COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
+DIGEST_RE = re.compile(r"^[0-9a-f]{64}$")
+UTC_TIMESTAMP_RE = re.compile(
+    r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?Z$"
+)
 
 
 def mapping(value, name, errors):
@@ -31,6 +36,16 @@ def mapping(value, name, errors):
 def require_string(value, name, errors):
     if not isinstance(value, str) or not value.strip():
         errors.append(f"{name} must be a non-empty string")
+
+
+def is_utc_timestamp(value):
+    if not isinstance(value, str) or not UTC_TIMESTAMP_RE.fullmatch(value):
+        return False
+    try:
+        datetime.fromisoformat(value[:-1] + "+00:00")
+    except ValueError:
+        return False
+    return True
 
 
 def validate(record):
@@ -58,6 +73,12 @@ def validate(record):
     observations = mapping(record.get("workflow_observations"), "workflow_observations", errors)
     recovery = mapping(record.get("recovery_observations"), "recovery_observations", errors)
 
+    archive_sha256 = kit.get("archive_sha256")
+    if archive_sha256 is not None and (
+            not isinstance(archive_sha256, str)
+            or not DIGEST_RE.fullmatch(archive_sha256)):
+        errors.append("kit.archive_sha256 must be a lowercase 64-character SHA-256 when recorded")
+
     if status == "not_run":
         if claim_level != "unexecuted":
             errors.append("not_run requires claim_level unexecuted")
@@ -76,8 +97,11 @@ def validate(record):
     require_string(record.get("run_id"), "run_id", errors)
     observed_at = record.get("observed_at_utc")
     require_string(observed_at, "observed_at_utc", errors)
-    if isinstance(observed_at, str) and not observed_at.endswith("Z"):
-        errors.append("observed_at_utc must be an explicit UTC timestamp ending in Z")
+    if isinstance(observed_at, str) and not is_utc_timestamp(observed_at):
+        errors.append(
+            "observed_at_utc must be a real RFC 3339 UTC timestamp "
+            "in YYYY-MM-DDTHH:MM:SS[.ffffff]Z form"
+        )
 
     require_string(kit.get("version"), "kit.version", errors)
     commit = kit.get("commit")
@@ -141,8 +165,11 @@ def validate(record):
         errors.append("completed requires observed global rule loading")
     if configuration.get("global_skill_observed_loaded") is not True:
         errors.append("completed requires observed global skill loading")
-    for key in ("id", "fixture_commit", "baseline_report", "candidate_report", "diff"):
+    for key in ("id", "baseline_report", "candidate_report", "diff"):
         require_string(task.get(key), f"task.{key}", errors)
+    fixture_commit = task.get("fixture_commit")
+    if not isinstance(fixture_commit, str) or not COMMIT_RE.fullmatch(fixture_commit):
+        errors.append("task.fixture_commit must be a full lowercase 40-character Git commit")
     if scenario not in TASK_SCENARIOS:
         errors.append("completed requires task.scenario small_repair or interruption_recovery")
     if task.get("manual_acceptance") not in {"accepted", "rejected"}:
