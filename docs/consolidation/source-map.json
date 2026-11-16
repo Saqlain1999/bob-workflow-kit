@@ -1,0 +1,449 @@
+{
+  "schema_version": 1,
+  "status": "local consolidation preview, not published",
+  "canonical_repository": "Saqlain1999/bob-workflow-kit",
+  "kit_base": "c09f0c9b22521d3b48db1a645ba54d93484be77f",
+  "sources": [
+    {
+      "repository": "Saqlain1999/bob-workflow-evals",
+      "source_commit": "5e2075ab510d947675c3e2e824ff384de899dc1a",
+      "prefix": "evals",
+      "files": [
+        {
+          "source_path": ".github/workflows/ci.yml",
+          "destination": "evals/.github/workflows/ci.yml",
+          "sha256": "bb37e7ed5d2962a3b555ffc3a399cac5dc1d34cdca0619b40697840dfdc1fdb2",
+          "git_blob": "f2e03ebd955232f91d1ca2b69c05c5876536a48c",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": ".gitignore",
+          "destination": "evals/.gitignore",
+          "sha256": "edb542f96e6b2520a924bb06292d35b84e7d80e20ce5f17eacec7eaf04814de8",
+          "git_blob": "7d37fbe88f8ff2b583864c8f3ed63545fff98820",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "CONTRIBUTING.md",
+          "destination": "evals/CONTRIBUTING.md",
+          "sha256": "851ef8f04e5ee7d3864eb5923077ec1118411cab984fd0f29300964bbef0b227",
+          "git_blob": "6dae7f0dbeaa1617e31b0a670a76a2314ffab24a",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "LICENSE",
+          "destination": "evals/LICENSE",
+          "sha256": "b1029c9d5d1d1be71ea4e8de6447dedfea13a0786c471947a97480ab849d4678",
+          "git_blob": "54470e5d63cac340403f1e2361f4c958ecf95e12",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "README.md",
+          "destination": "evals/README.md",
+          "sha256": "7b75a9746554d6b8810e4a2c7c70554d25b1a02709b6c2cbea04dd28924eaf05",
+          "git_blob": "bf5688fa3fcc94818cec534060984779f4d31989",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "VALIDATION.md",
+          "destination": "evals/VALIDATION.md",
+          "sha256": "535821a384170a9b4bc579f12d4e8b7078c468baae2d0080605c91067aa2e712",
+          "git_blob": "85ee3b8566431291647c5fc49aa03566ac4b88ac",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "docs/protocol.md",
+          "destination": "evals/docs/protocol.md",
+          "sha256": "1034afa47861bed3f82f85708f32572288ac7f981ca7f72cb367914818dd0a96",
+          "git_blob": "a37fb71e75502be38b1c658b40a791d45bc85372",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/README.md",
+          "destination": "evals/fixtures/README.md",
+          "sha256": "318b43a2728652e0843a3ad74ae3ca8f364884b25feacd7ca746af22ed1eb6dd",
+          "git_blob": "76613fced1bbd32bd143415cf95ace298fe66ee8",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/parcel-resume/README.md",
+          "destination": "evals/fixtures/parcel-resume/README.md",
+          "sha256": "fa0083091d93d2fb008e01719cef188f005874059625c762f067bea14a8f0a37",
+          "git_blob": "ffd14b779db300a535bf729a3b8ba113fb364691",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/parcel-resume/TEAM_NOTES.md",
+          "destination": "evals/fixtures/parcel-resume/TEAM_NOTES.md",
+          "sha256": "ea7f6f617c7e257cfa12d8837560ea91912e12d13d05fa839d4e5db806ae6a80",
+          "git_blob": "1a4a1056f9c38263cc6a9f2b4ec5e8c8c2cbb360",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/parcel-resume/parcel/__init__.py",
+          "destination": "evals/fixtures/parcel-resume/parcel/__init__.py",
+          "sha256": "8557666bf252bdc1ef9c5cb2aeeb7666106393b28776098964712ac6224942b6",
+          "git_blob": "350deaab505b448dd8a9ad075fd9db0c155dc308",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/parcel-resume/parcel/export.py",
+          "destination": "evals/fixtures/parcel-resume/parcel/export.py",
+          "sha256": "3189408aeab34190f8aba9ea9e4fdc1cd1f02d3f64436659d88a676a114ddcfb",
+          "git_blob": "65ee24a7d73eab94ebaf996f224caf201a738dfa",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/parcel-resume/parcel/policy.py",
+          "destination": "evals/fixtures/parcel-resume/parcel/policy.py",
+          "sha256": "db2f5bc0e15b119055e42081e6f1d8d4c53b753f07979e5862101ceb1c9f9f88",
+          "git_blob": "ba63a25b7ee4075dfac54658e3c4286c6b486867",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/parcel-resume/parcel/pricing.py",
+          "destination": "evals/fixtures/parcel-resume/parcel/pricing.py",
+          "sha256": "4ee2251ab6bea502ac041686d43792a8abd811f01d2f2d9d6b35e7cac5f64581",
+          "git_blob": "0714e16448dadf613fa9c7fbde140290d3d0ad38",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/parcel-resume/policy.json",
+          "destination": "evals/fixtures/parcel-resume/policy.json",
+          "sha256": "90f08a55c99a52ef1727a71781e27c342a06f40f33250259f5b986dc350b3123",
+          "git_blob": "9c003154e0779c85dbdcb828a6780f0e146a6126",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/parcel-resume/tests/test_export.py",
+          "destination": "evals/fixtures/parcel-resume/tests/test_export.py",
+          "sha256": "9c9354e918df30247aba3ee388b0bdcd4a5ea136344e746b886554955cee0cd8",
+          "git_blob": "de17d1dce14e821d17b5c50ca32331d6dd1b646a",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/parcel-resume/tests/test_pricing.py",
+          "destination": "evals/fixtures/parcel-resume/tests/test_pricing.py",
+          "sha256": "395af6f92b0a860c98a1a13e31ef52a7180aa88c66f7afe4763f298457e608be",
+          "git_blob": "bef7e3168a6da0be361cd9108933f5d5dae14351",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/tiny-ledger/PROMPT.md",
+          "destination": "evals/fixtures/tiny-ledger/PROMPT.md",
+          "sha256": "e116f0f5627e4dec5dab842f930b4fc3fef36a4391017507da60d3d19ddc6904",
+          "git_blob": "de371a77fcefe3746c5b8a4ec8e3833497074be4",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/tiny-ledger/README.md",
+          "destination": "evals/fixtures/tiny-ledger/README.md",
+          "sha256": "6955fad96069e6644d2472b19ca8ba88273ebf7a720aa9808ba31101a84086b2",
+          "git_blob": "78aa523089a100b8b2247a5563330d46c00a2d47",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/tiny-ledger/ledger.py",
+          "destination": "evals/fixtures/tiny-ledger/ledger.py",
+          "sha256": "6cfd6265ee55c8c4969d3bb2664a97f8408b0f6b79ec40362785e88e84fd7aa1",
+          "git_blob": "230ab25d0de5c1b0dd5b8a3a3ee170c07f9680ce",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "fixtures/tiny-ledger/tests/test_ledger.py",
+          "destination": "evals/fixtures/tiny-ledger/tests/test_ledger.py",
+          "sha256": "d1c7b578654c724b4587a79c9dce835d150243306c4288b8eab344cd563ffa4f",
+          "git_blob": "a0f38dbbac6ce48fedaa576b9b16daa6760f6407",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "results/README.md",
+          "destination": "evals/results/README.md",
+          "sha256": "1180eb6ce25b3ce9b7ee19f157ada1234967f65680dc19cd556e8b5bfb1d84f5",
+          "git_blob": "eae092a8f569bc44b6a00bb9b1db2c6be91fe474",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "results/result-template.json",
+          "destination": "evals/results/result-template.json",
+          "sha256": "568157332731d6fa95c9744a1dcc9fbdd64fa29f0576874db42ee2c7abd0a69a",
+          "git_blob": "4926983d08ec4fb1f625bef6b815b3a5bd80edea",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "scripts/evaluate.py",
+          "destination": "evals/scripts/evaluate.py",
+          "sha256": "037ebe2b88df6988ae3d4112e3d363d0f8a01f93eda217d3a4a843de65394664",
+          "git_blob": "00e3cb51a04de9ae8b20dd050befa3420eda5c4c",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tasks/parcel-resume/ACCEPTANCE.md",
+          "destination": "evals/tasks/parcel-resume/ACCEPTANCE.md",
+          "sha256": "468453e699713aef7ddf9851dfb93099e80ac5ff8970c8a7187efe9f863733ee",
+          "git_blob": "428997d54c298a8537506cfaa3458e478636b4f2",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tasks/parcel-resume/AGENT_PROMPT.md",
+          "destination": "evals/tasks/parcel-resume/AGENT_PROMPT.md",
+          "sha256": "b80d8f799bfd64381b5f49d70dd3cac202b2e207578a86b7a8d973260d9b7af9",
+          "git_blob": "d19bf9eba050b3c60e9a79aef2936d098174a624",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tasks/parcel-resume/CHECKPOINT_TEMPLATE.md",
+          "destination": "evals/tasks/parcel-resume/CHECKPOINT_TEMPLATE.md",
+          "sha256": "f371520d5acac2f19af9b3d5406f67c6823b241ce5c2b0acb23e2eac90676570",
+          "git_blob": "e9a6afcce12aaba1b9687c60c2e61189c6fde9c4",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tasks/parcel-resume/README.md",
+          "destination": "evals/tasks/parcel-resume/README.md",
+          "sha256": "938c6a8ab8fb0417ec72b8f6fddfc4cfff2d5ad264a1fec6068960f422743fba",
+          "git_blob": "8858ea043f03c9cdcf5e4d93e1fb9a72db2fbbda",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tasks/tiny-ledger-atomicity/ACCEPTANCE.md",
+          "destination": "evals/tasks/tiny-ledger-atomicity/ACCEPTANCE.md",
+          "sha256": "d9e533a6ec97b4aef527aa9cfca1c5e5416efd39b6e743a36673f893df6e6b85",
+          "git_blob": "ea18b5e63839298848c94a83a0885dd9c971dffb",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tasks/tiny-ledger-atomicity/AGENT_PROMPT.md",
+          "destination": "evals/tasks/tiny-ledger-atomicity/AGENT_PROMPT.md",
+          "sha256": "4e99bec3767c00a41665922957273964ba8ffb004e7175a4730a7fc10a8d5658",
+          "git_blob": "dab3ff45bb446facf35d14188ad5199073e60969",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tasks/tiny-ledger-atomicity/README.md",
+          "destination": "evals/tasks/tiny-ledger-atomicity/README.md",
+          "sha256": "9940f3db3629955b2f221e41f7fb758a8d0cb5187c945d27896c7afd1b3990bc",
+          "git_blob": "8defff512ee5326a6f4b30365a5e51ec8718cb8b",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tests/test_evaluate.py",
+          "destination": "evals/tests/test_evaluate.py",
+          "sha256": "19d5688537408298b0d95c84513405eaa138c3af0a723cd9608e81a777b54260",
+          "git_blob": "b1b932edd6185be949b82a5a2926f0bb8ef556a0",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tests/test_parcel_resume.py",
+          "destination": "evals/tests/test_parcel_resume.py",
+          "sha256": "56d64242599d2992ddbe71c43bf9a12c2f7fd5774e75a7c82c38e4099d1e99ab",
+          "git_blob": "ee85cce5cd324812058e155a750439b4b34c76f6",
+          "source_mode": "100644"
+        }
+      ]
+    },
+    {
+      "repository": "Saqlain1999/awesome-bob-workflows",
+      "source_commit": "e64911f216f700106dae66f4193ec2f400d7e2bd",
+      "prefix": "docs/resources/catalogue",
+      "files": [
+        {
+          "source_path": ".github/ISSUE_TEMPLATE/add-project.md",
+          "destination": "docs/resources/catalogue/.github/ISSUE_TEMPLATE/add-project.md",
+          "sha256": "2569ff9f5455b1433326d2de5e8b30ba1a3aabea91bb96fa1354fa9d60a93c55",
+          "git_blob": "ac853ec7e68dd4cf377ab0c531dfb6c5fc6c882c",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": ".github/ISSUE_TEMPLATE/correct-entry.md",
+          "destination": "docs/resources/catalogue/.github/ISSUE_TEMPLATE/correct-entry.md",
+          "sha256": "7a74e3b19b6367314756f0522be9e9ed9ad8b6f31e73c6066fa4c20fa512e026",
+          "git_blob": "5b8f8a090fc3f6eca9e649abdad9c15ebc8942ef",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": ".github/pull_request_template.md",
+          "destination": "docs/resources/catalogue/.github/pull_request_template.md",
+          "sha256": "90d96b91362a591c6f4b73a0803fd4e698a88703a92315777b9632ec2b020805",
+          "git_blob": "1c541e77e4e7924f71334a8d094b70d3a673dc42",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": ".github/workflows/validate.yml",
+          "destination": "docs/resources/catalogue/.github/workflows/validate.yml",
+          "sha256": "0fdd570267e51e49df4d0801962da075341f1faa0b5ca4cd8cd478d8197351b4",
+          "git_blob": "2aeeff84b14544f83862fa782829e24618061b9f",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": ".gitignore",
+          "destination": "docs/resources/catalogue/.gitignore",
+          "sha256": "22bc478fc0eb97818e8c2efd9a6c8f9dce55490bdd8074a3f2b6b8653c5c12d5",
+          "git_blob": "98dbeb43997e0d3f65ee193a2f0f895debc6a1f6",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "CODE_OF_CONDUCT.md",
+          "destination": "docs/resources/catalogue/CODE_OF_CONDUCT.md",
+          "sha256": "727f4c91494b4c187a71e2c82ea8ec7413eeeac7f436ea594a3c2add609971eb",
+          "git_blob": "36232e1cbdef94dc51c734dadf764921232ec777",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "CONTRIBUTING.md",
+          "destination": "docs/resources/catalogue/CONTRIBUTING.md",
+          "sha256": "3ce45949b9f0ef4685f53c752fd88e617438d96c6523d9d61e7de26f7827ff55",
+          "git_blob": "f0e28b9714d35494fb6336727178b52545636c44",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "LICENSE",
+          "destination": "docs/resources/catalogue/LICENSE",
+          "sha256": "f4fcc3301e88e16618ccbec832c229a78c1916f48f2be1931a6f0bfea4c88d74",
+          "git_blob": "20e9f28c6c8e3a9f3f6404e1409c4e16476fd612",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "README.md",
+          "destination": "docs/resources/catalogue/README.md",
+          "sha256": "7e1875e6b54a719247210184c076224679ae008d6b766957f7fdd3aadefcd200",
+          "git_blob": "91c12375751adb7c745196e5c3a01f296b505422",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "SECURITY.md",
+          "destination": "docs/resources/catalogue/SECURITY.md",
+          "sha256": "13d47420c542bea3502751eb187a3275c8a7f62067411b1d3f72af2704f33290",
+          "git_blob": "e23d97ac26b2162c1787833d881c9e3f273ee0cc",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "VALIDATION.md",
+          "destination": "docs/resources/catalogue/VALIDATION.md",
+          "sha256": "33926d9f5ebe6d7532446ba48ef499b674320132480b551319aa6298264506ae",
+          "git_blob": "17c36e6cca116f5bf986cd6851ad7d3e7c4896f1",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "catalog/projects.json",
+          "destination": "docs/resources/catalogue/catalog/projects.json",
+          "sha256": "bb9dd25437ba359e8dade0a191ca4a94e90c0f4c319768bc87e062c85e208c86",
+          "git_blob": "383c6421399b693942e2267f2fccab130b609426",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "docs/comparison-review.md",
+          "destination": "docs/resources/catalogue/docs/comparison-review.md",
+          "sha256": "94714bd241d9b85d51808de4a1413324e568a59c26298b61701b0aff8da84559",
+          "git_blob": "31a407c16b2532ec253157c546f55099e4ec2ba8",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "docs/curation.md",
+          "destination": "docs/resources/catalogue/docs/curation.md",
+          "sha256": "7d8a2e7dcf00a23e4e9cccd6b68572ce38b2422aecde28f1b8d1dae420763981",
+          "git_blob": "a8f470faec863c966762c2782a9ba9d00ba77c2b",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "docs/metadata.md",
+          "destination": "docs/resources/catalogue/docs/metadata.md",
+          "sha256": "b60bcf8d91182e30d9407c4a40135899f0c7a1e77c45ca6208fa8a274a4a845b",
+          "git_blob": "569d3f18fdbc74b608fde391315418affcd84088",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "templates/project-entry.json",
+          "destination": "docs/resources/catalogue/templates/project-entry.json",
+          "sha256": "66aa1542da2ae12092879efdfee3fa1cbbbf7804c8628eb634f1ad3e731e6045",
+          "git_blob": "04b9d2c479ba2860ec0afe96b261a508b8b99be7",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "tools/validate_catalog.py",
+          "destination": "docs/resources/catalogue/tools/validate_catalog.py",
+          "sha256": "d08f57d03a48df825458624c050fa6f0b2773a155b061e8f0a5c4c95b064fe93",
+          "git_blob": "a7b22548cf65f7703f80bf55000543f413bd4fa0",
+          "source_mode": "100644"
+        }
+      ]
+    },
+    {
+      "repository": "Saqlain1999/bob-workflow-runner",
+      "source_commit": "e03c17c436c8891415c533fad3b132f08c783184",
+      "prefix": "docs/design/runner",
+      "files": [
+        {
+          "source_path": "CONTRIBUTING.md",
+          "destination": "docs/design/runner/CONTRIBUTING.md",
+          "sha256": "6d6358b4f856df91f44c9bb6eec73bfb5e52b80ec772983f88bc6ce1d1982dee",
+          "git_blob": "52ac5d4120680106679c0425672266a54cab3c2b",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "LICENSE",
+          "destination": "docs/design/runner/LICENSE",
+          "sha256": "42480f3d009114aa2ad76656d0564b656a5b9326ae48f796eceefde313647011",
+          "git_blob": "8a3c26e88ab245056f0c85771fafacfdf91701a9",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "README.md",
+          "destination": "docs/design/runner/README.md",
+          "sha256": "caf90db096ab55a616295d33a1f0eaee1308b26483bcbe8790f2e1a1f5a88add",
+          "git_blob": "e00f36223eced34ba85f58819d0054eb211ca606",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "ROADMAP.md",
+          "destination": "docs/design/runner/ROADMAP.md",
+          "sha256": "80d02592f02c0e8402c7ba9df49425d1bca7596d6e9a2776917e89a3fe5f01dc",
+          "git_blob": "d06f16d96872a9eb667adbe96ce616c001cb5095",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "docs/architecture.md",
+          "destination": "docs/design/runner/docs/architecture.md",
+          "sha256": "93a4ab4eb8f6a33cefbf9106b7c09fe180ddaa23b63d1fda2adc9a9d0a16f1b4",
+          "git_blob": "d70401f225780e283ede02936edcf786c9de6cef",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "docs/evaluation-plan.md",
+          "destination": "docs/design/runner/docs/evaluation-plan.md",
+          "sha256": "a9094c1584d46cd5a724cb17be651fd4e6a912b39f8a92b27f9f7db8b7e94b10",
+          "git_blob": "a584bcd26dc0da12a8cf27a9fad5c5544abf3444",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "docs/sources.md",
+          "destination": "docs/design/runner/docs/sources.md",
+          "sha256": "f6a5e3dfc22e3da9e6cfff3498fa0c34717cf861d82acc9c9dbe63e8358abbbb",
+          "git_blob": "d6c826a3c1b81d5307c45e069891a837c9af3e34",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "docs/state-transitions.md",
+          "destination": "docs/design/runner/docs/state-transitions.md",
+          "sha256": "999842d496efb3ec10cd67e825dbc1466e742f37f3dba05467f8c5691a595a0f",
+          "git_blob": "85ec5989689139c9222502b8dd0c0904817757b4",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "docs/task-contract.md",
+          "destination": "docs/design/runner/docs/task-contract.md",
+          "sha256": "768624d79b1895b32c3a634a932bb3fc9d67eae731e43d016aaeb1ecf34ad911",
+          "git_blob": "c152c50fa49b07fb0d25e9100b60a6a5c6fb6880",
+          "source_mode": "100644"
+        },
+        {
+          "source_path": "examples/task.example.json",
+          "destination": "docs/design/runner/examples/task.example.json",
+          "sha256": "e81b57c98bfdc379e7832395ebf8f0b2c21cd4a695705fc417f6ba0b37102f2a",
+          "git_blob": "d26e7e6878751febb87bf30dcd2cd979748a7d8a",
+          "source_mode": "100644"
+        }
+      ]
+    }
+  ]
+}

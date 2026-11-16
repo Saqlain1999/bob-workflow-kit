@@ -1,0 +1,3 @@
+# Orbit cache migration notes
+
+For operators moving the cache to v2.4.1: you MUST make the backup first with `orbitctl backup --output /var/lib/orbit/backups/current.tar` and keep `/var/lib/orbit/backups/current.tar`; after that succeeds, run `orbitctl migrate --target v2.4.1 --max-memory 2.5 GiB`, and then use `orbitctl verify --target v2.4.1`. A migration that returns E_CONN_RESET MAY be retried once, but only if you wait 30 s first. A migration that returns E_AUTH_DENIED MUST NOT be retried. You MUST NOT run `orbitctl cleanup --target v2.4.1` until verification succeeds. The on-call engineer owns rollback approval.

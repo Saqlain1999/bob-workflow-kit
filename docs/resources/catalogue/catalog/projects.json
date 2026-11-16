@@ -1,0 +1,467 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-17",
+  "review_timezone": "Europe/Dublin",
+  "entries": [
+    {
+      "id": "github-spec-kit",
+      "name": "GitHub Spec Kit",
+      "category": "specifications",
+      "repository": "https://github.com/github/spec-kit",
+      "summary": "Structured feature and bug workflows, project artifacts, and an IBM Bob skills adapter with managed installation.",
+      "publisher_type": "organization",
+      "license": "MIT",
+      "license_evidence": "https://github.com/github/spec-kit/blob/9dca9bf42a031765ee5e5f2371137f2f26967e11/LICENSE",
+      "availability": "public-source",
+      "installation": "documented",
+      "bob_relation": "explicit-integration",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-17",
+      "runtime_evidence": [],
+      "notes": [
+        "Reviewed v1.2.1 release commit: 9dca9bf42a031765ee5e5f2371137f2f26967e11. No execution was performed by this catalogue.",
+        "Spec Kit's Bob integration defaults to project .bob/skills/speckit-<command>/SKILL.md with hyphenated invocation; its legacy Bob 1.x command layout is deprecated.",
+        "Includes a separate assess/fix/test bug workflow with per-bug reports and partial/not-run verification states.",
+        "Integration management already tracks hashes, rolls back failed installation, and preserves modified files on uninstall.",
+        "Latest observed release was v1.2.1, published on 2026-10-16. Its Bob adapter remains skills-first and retains the documented legacy-layout migration path.",
+        "The v1.2.1 release adds opt-in per-stream-limited workflow output capture with timeout/interruption fields and process-tree cleanup, plus catalogue trust and source-precedence guidance. Captured text is stored unredacted and treated as untrusted. These are upstream source observations, not installation or Bob runtime evidence."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/github/spec-kit",
+          "supports": "Public project source and project identity."
+        },
+        {
+          "url": "https://github.com/github/spec-kit/blob/9dca9bf42a031765ee5e5f2371137f2f26967e11/LICENSE",
+          "supports": "License of the reviewed source; see notes for scope."
+        },
+        {
+          "url": "https://github.github.io/spec-kit/reference/integrations.html",
+          "supports": "Bob integration, layouts, migration, installation rollback and hash-tracked uninstall."
+        },
+        {
+          "url": "https://github.com/github/spec-kit/blob/9dca9bf42a031765ee5e5f2371137f2f26967e11/src/specify_cli/integrations/bob/__init__.py",
+          "supports": "Actual Bob skill scaffolding and Shell dispatch implementation; dispatch adds trust/license flags."
+        },
+        {
+          "url": "https://github.com/github/spec-kit/blob/9dca9bf42a031765ee5e5f2371137f2f26967e11/tests/integrations/test_integration_bob.py",
+          "supports": "Bob adapter test source, not a test run by this catalogue."
+        },
+        {
+          "url": "https://github.com/github/spec-kit/blob/9dca9bf42a031765ee5e5f2371137f2f26967e11/extensions/bug/README.md",
+          "supports": "Bug stages, task-scoped reports and verification qualifications."
+        },
+        {
+          "url": "https://github.com/github/spec-kit/releases/tag/v1.2.1",
+          "supports": "Observed versioned release and publication date."
+        }
+      ]
+    },
+    {
+      "id": "verified-codebase-context",
+      "name": "Verified Codebase Context",
+      "category": "specifications",
+      "repository": "https://github.com/philo-x/spec-kit-preset-codebase-memory-context",
+      "summary": "A Spec Kit preset generating evidence-qualified repository context and adding it to plan, tasks, analyze and implement workflows.",
+      "publisher_type": "community",
+      "license": "MIT",
+      "license_evidence": "https://github.com/philo-x/spec-kit-preset-codebase-memory-context/blob/52b67e61b0ecdac0aec7c17acb0852e0355f31c1/LICENSE",
+      "availability": "public-source",
+      "installation": "documented",
+      "bob_relation": "explicit-integration",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-10",
+      "runtime_evidence": [],
+      "notes": [
+        "Reviewed v1.1.0 source at 52b67e61b0ecdac0aec7c17acb0852e0355f31c1. No execution was performed by this catalogue.",
+        "Bob relationship is through the host Spec Kit integration. The documented test matrix names Codex, Claude, Copilot and Gemini, not Bob; Bob compatibility is unverified.",
+        "Writes .specify/memory/codebase.md using direct reads/search, coverage checks and preserved manual overrides. Graph enhancement is optional.",
+        "Four full core-command replacements target Spec Kit 1.1.2; later versions or other replacement presets require compatibility review.",
+        "The generator records commands without executing them. A write-time content comparison does not guarantee protection from concurrent edits.",
+        "Upstream field reports are linked in the README; they were not independently reproduced or promoted to catalogue runtime records."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/philo-x/spec-kit-preset-codebase-memory-context",
+          "supports": "Public project source and identity."
+        },
+        {
+          "url": "https://github.com/philo-x/spec-kit-preset-codebase-memory-context/blob/52b67e61b0ecdac0aec7c17acb0852e0355f31c1/LICENSE",
+          "supports": "License of the reviewed project source."
+        },
+        {
+          "url": "https://github.com/philo-x/spec-kit-preset-codebase-memory-context/blob/52b67e61b0ecdac0aec7c17acb0852e0355f31c1/README.md",
+          "supports": "Context contract, installation, exact baseline, replacement strategy, test matrix and validation limits."
+        },
+        {
+          "url": "https://github.github.io/spec-kit/reference/integrations.html",
+          "supports": "The host Spec Kit integration explicitly supports Bob; this does not prove the preset works in Bob."
+        },
+        {
+          "url": "https://github.com/github/spec-kit/pull/4898",
+          "supports": "Inclusion of preset version 1.1.0 in the Spec Kit community catalogue."
+        }
+      ]
+    },
+    {
+      "id": "ibm-intro-bob-workshop",
+      "name": "IBM Bob Workshops",
+      "category": "learning",
+      "repository": "https://github.com/IBM/intro-bob-workshop",
+      "summary": "Workshop source and exercises covering Bob usage, rules, skills, MCP, and team workflows.",
+      "publisher_type": "organization",
+      "license": "Apache-2.0",
+      "license_evidence": "https://github.com/IBM/intro-bob-workshop/blob/352cdb45d8ad2a53b27aaa31a9248edf3bc8f2fe/LICENSE",
+      "availability": "public-source",
+      "installation": "documented",
+      "bob_relation": "bob-example",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-10",
+      "runtime_evidence": [],
+      "notes": [
+        "Reviewed source revision: 352cdb45d8ad2a53b27aaa31a9248edf3bc8f2fe. No execution was performed by this catalogue.",
+        "Includes an agent-with-bob-shell skill with Python Plan/Act/Evaluate loop and state examples.",
+        "Different labs have different audiences; the power-user workshop targets IBM employees.",
+        "Check flags and mode descriptions against current Bob documentation; a workspace argument does not establish an OS sandbox."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/IBM/intro-bob-workshop",
+          "supports": "Public project source and project identity."
+        },
+        {
+          "url": "https://github.com/IBM/intro-bob-workshop/blob/352cdb45d8ad2a53b27aaa31a9248edf3bc8f2fe/LICENSE",
+          "supports": "License of the reviewed source; see notes for scope."
+        },
+        {
+          "url": "https://github.com/IBM/intro-bob-workshop/blob/352cdb45d8ad2a53b27aaa31a9248edf3bc8f2fe/docs/lab-7/README.md",
+          "supports": "Power-user exercises and intended audience."
+        },
+        {
+          "url": "https://github.com/IBM/intro-bob-workshop/blob/352cdb45d8ad2a53b27aaa31a9248edf3bc8f2fe/.bob/skills/agent-with-bob-shell/SKILL.md",
+          "supports": "Python subprocess loop skill and linked implementation references."
+        }
+      ]
+    },
+    {
+      "id": "ibm-bob-demo",
+      "name": "IBM Bob Demos",
+      "category": "learning",
+      "repository": "https://github.com/IBM/bob-demo",
+      "summary": "Task examples for skills, documentation indexing, architecture, modernization, and DevOps.",
+      "publisher_type": "organization",
+      "license": "Apache-2.0",
+      "license_evidence": "https://github.com/IBM/bob-demo/blob/bc8a8f874cd34abd6cff97bcbf863070710e7566/LICENSE",
+      "availability": "public-source",
+      "installation": "documented",
+      "bob_relation": "bob-example",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-10",
+      "runtime_evidence": [],
+      "notes": [
+        "Reviewed source revision: bc8a8f874cd34abd6cff97bcbf863070710e7566. No execution was performed by this catalogue.",
+        "The reviewed README still names earlier modes such as Code, Advanced, and Orchestrator.",
+        "The repository distinguishes its open-source examples from a supported IBM product.",
+        "The Beads demo supplies project-rule and MCP examples for persistent issue tracking; its version assumptions were not executed."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/IBM/bob-demo",
+          "supports": "Public project source and project identity."
+        },
+        {
+          "url": "https://github.com/IBM/bob-demo/blob/bc8a8f874cd34abd6cff97bcbf863070710e7566/LICENSE",
+          "supports": "License of the reviewed source; see notes for scope."
+        },
+        {
+          "url": "https://github.com/IBM/bob-demo/blob/bc8a8f874cd34abd6cff97bcbf863070710e7566/README.md",
+          "supports": "Example scope, mode terminology and support disclosure."
+        },
+        {
+          "url": "https://github.com/IBM/bob-demo/blob/bc8a8f874cd34abd6cff97bcbf863070710e7566/beads/README.md",
+          "supports": "Beads issue-tracking integration example with a rule and MCP setup."
+        },
+        {
+          "url": "https://github.com/IBM/bob-demo/blob/bc8a8f874cd34abd6cff97bcbf863070710e7566/getting-started-skills/README.md",
+          "supports": "Practical skill example."
+        }
+      ]
+    },
+    {
+      "id": "bob-plus-building-blocks",
+      "name": "Bob+ Technology Building Blocks",
+      "category": "skills",
+      "repository": "https://github.com/ibm-self-serve-assets/building-blocks",
+      "summary": "IBM Build Engineering domain assets, including a Granite TTM forecasting skill, and a Bob+ extension for Building Blocks and Specs, with asset-specific license scopes.",
+      "publisher_type": "organization",
+      "license": "Apache-2.0 AND MIT",
+      "license_evidence": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/LICENSE",
+      "availability": "public-source",
+      "installation": "documented",
+      "bob_relation": "bob-extension",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-16",
+      "runtime_evidence": [],
+      "notes": [
+        "Reviewed source revision: 5c610971dc72f9e9035821b3cb2c3edea868f8b4. No execution was performed by this catalogue.",
+        "Focused review of revision 36e24f5bbab28fac99c2a0a20deeaf2f423dd35b found the Granite TTM forecasting skill merged on 14 October 2026; broader extension and Headless Bob claims remain tied to the earlier reviewed revision.",
+        "Focused follow-up at f422bb7b98614fdc1fff08a8fb800c86eee5c66f found an active generated catalogue entry and downloadable ZIP for ttm-forecasting. The archive was not downloaded, extracted, or installed.",
+        "The TTM skill documents watsonx.ai, local Hugging Face, and mock paths. The catalogue did not install it, download model weights, call a service, or reproduce its production and performance claims; the upstream skill marks its mock path as non-production.",
+        "License scope: the repository root is Apache-2.0; ibm-bob/skills/LICENSE.txt specifies MIT for that subtree. Inspect individual asset/dependency notices.",
+        "The public tree contains skills.zip and bob-plus-assets-1.1.0.vsix. The VSIX binary was not downloaded or executed.",
+        "The 1.1.0 changelog removes the Modes panel and describes Building Blocks, Specs, and automatic MCP configuration.",
+        "The older website guide still describes modes; use versioned source to resolve documentation drift."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks",
+          "supports": "Public project source and project identity."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/LICENSE",
+          "supports": "License of the reviewed source; see notes for scope."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/ibm-bob/skills/LICENSE.txt",
+          "supports": "MIT license notice for the skills subtree."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/ibm-bob/extension/README.md",
+          "supports": "VSIX 1.1.0 setup and workspace installation instructions."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/ibm-bob/extension/CHANGELOG.md",
+          "supports": "Version 1.1.0 panel changes and automatic MCP configuration."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/36e24f5bbab28fac99c2a0a20deeaf2f423dd35b/ibm-bob/skills/ttm-forecasting/SKILL.md",
+          "supports": "Granite TTM skill structure, routing paths, prerequisites and stated limitations; not catalogue runtime evidence."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/36e24f5bbab28fac99c2a0a20deeaf2f423dd35b/ibm-bob/extension/config/skills.yaml",
+          "supports": "Bob+ skills configuration includes the ttm-forecasting folder without an MCP dependency."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/f422bb7b98614fdc1fff08a8fb800c86eee5c66f/explore-BBs/bb-catalog/skills/ttm-forecasting.md",
+          "supports": "Generated active catalogue entry, canonical source directory, sub-skill names and generated archive URL; not archive inspection or installation evidence."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/tree/5c610971dc72f9e9035821b3cb2c3edea868f8b4/ibm-bob/extension",
+          "supports": "Versioned VSIX file presence, not binary inspection or successful installation."
+        },
+        {
+          "url": "https://ibm-self-serve-assets.github.io/building-blocks-docs/ibm-bob/extension/install/",
+          "supports": "Older guide whose mode descriptions differ from the 1.1.0 changelog."
+        }
+      ]
+    },
+    {
+      "id": "bob-control",
+      "name": "Bob Control",
+      "category": "orchestration",
+      "repository": "https://github.com/PounceAI/bob-control",
+      "summary": "An MCP server, CLI and worker for a shared SQLite task board with dependencies, agent dispatch, checkpoints and recovery.",
+      "publisher_type": "organization",
+      "license": "Apache-2.0",
+      "license_evidence": "https://github.com/PounceAI/bob-control/blob/315cbf54076842f06462ea8846aae837594c67cd/LICENSE",
+      "availability": "public-source",
+      "installation": "documented",
+      "bob_relation": "explicit-integration",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-10",
+      "runtime_evidence": [],
+      "notes": [
+        "Reviewed source revision: 315cbf54076842f06462ea8846aae837594c67cd. No worker, adapter or model call was executed by this catalogue.",
+        "Documents Bob Shell 2.x through bob acp, a Bob IDE companion, legacy 1.x behavior and shared-board use with Claude Code.",
+        "The README requires Node 22.5+ and matching board paths across participating processes.",
+        "Unattended approval and acceptance-judging behavior require configuration review; inclusion does not recommend enabling automatic approval.",
+        "The reviewed optional LLM judge returns pass:true with error:true when unavailable. A configured verification command runs first and can still fail the task. Do not equate a judge label with independently passed checks."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/PounceAI/bob-control",
+          "supports": "Public project source and identity."
+        },
+        {
+          "url": "https://github.com/PounceAI/bob-control/blob/315cbf54076842f06462ea8846aae837594c67cd/LICENSE",
+          "supports": "License of the reviewed project source."
+        },
+        {
+          "url": "https://github.com/PounceAI/bob-control/blob/315cbf54076842f06462ea8846aae837594c67cd/README.md",
+          "supports": "Runtime components, adapters, shared-board setup, dependencies and unattended policies."
+        },
+        {
+          "url": "https://github.com/PounceAI/bob-control/blob/315cbf54076842f06462ea8846aae837594c67cd/src/checkpoint.ts",
+          "supports": "Checkpoint and recovery implementation."
+        },
+        {
+          "url": "https://github.com/PounceAI/bob-control/blob/315cbf54076842f06462ea8846aae837594c67cd/src/judge.ts",
+          "supports": "Optional judging, command-verification ordering and recorded fail-open result on judge error."
+        },
+        {
+          "url": "https://github.com/PounceAI/bob-control/blob/315cbf54076842f06462ea8846aae837594c67cd/CHANGELOG.md",
+          "supports": "Version-specific compatibility notes."
+        }
+      ]
+    },
+    {
+      "id": "headless-bob",
+      "name": "Headless Bob",
+      "category": "orchestration",
+      "repository": "https://github.com/ibm-self-serve-assets/building-blocks/tree/main/ai/engineering/headless-bob/assets/headlessbob",
+      "summary": "The headlessbob service in IBM Building Blocks exposes Bob through REST, ACP and MCP with sessions, run storage and cancellation.",
+      "publisher_type": "organization",
+      "license": "Apache-2.0",
+      "license_evidence": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/LICENSE",
+      "availability": "public-source",
+      "installation": "documented",
+      "bob_relation": "explicit-integration",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-10",
+      "runtime_evidence": [],
+      "notes": [
+        "Reviewed source revision: 5c610971dc72f9e9035821b3cb2c3edea868f8b4; package 0.4.0. This catalogue did not execute or deploy it.",
+        "A distinct runnable application within Building Blocks. The repository field points to its source subdirectory.",
+        "The reviewed README documents Node.js 22.22+ and Bob Shell 2.0.4, SQLite persistence, concurrency/output/time limits, and Python clients.",
+        "The trust model is for trusted operators; token ownership checks do not provide an OS sandbox between untrusted callers.",
+        "Maintainer verification notes describe fixture and live Bob checks plus deployment stages. They were not reproduced here or promoted to structured runtime evidence.",
+        "The repository root license applies to project source; inspect dependency and bundled specification notices before redistribution."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/tree/main/ai/engineering/headless-bob/assets/headlessbob",
+          "supports": "Public project source and identity."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/LICENSE",
+          "supports": "License of the reviewed project source."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/ai/engineering/headless-bob/assets/headlessbob/README.md",
+          "supports": "Service APIs, setup, limits and trust model."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/ai/engineering/headless-bob/assets/headlessbob/package.json",
+          "supports": "Version 0.4.0, Node requirement, dependencies and test/build/smoke scripts."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/ai/engineering/headless-bob/assets/headlessbob/src/runs.ts",
+          "supports": "Run manager implementation including queuing, lifecycle and cancellation."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/ai/engineering/headless-bob/assets/headlessbob/VERIFICATION.md",
+          "supports": "Attributable maintainer execution reports, not catalogue execution."
+        },
+        {
+          "url": "https://github.com/ibm-self-serve-assets/building-blocks/blob/5c610971dc72f9e9035821b3cb2c3edea868f8b4/ai/engineering/headless-bob/assets/headlessbob/spec/PROVENANCE.md",
+          "supports": "Bundled API specification provenance and separate licensing scope."
+        }
+      ]
+    },
+    {
+      "id": "bob-skill-installer",
+      "name": "bob-skill-installer",
+      "category": "distribution",
+      "repository": "https://github.com/funhere/bob-skill-installer",
+      "summary": "A community Python tool for fetching, converting, validating, and installing third-party skills into Bob.",
+      "publisher_type": "community",
+      "license": "Apache-2.0",
+      "license_evidence": "https://github.com/funhere/bob-skill-installer/blob/78a29b77cdfd6ed9feb46e2644e0e7b881093e0b/LICENSE",
+      "availability": "public-source",
+      "installation": "documented",
+      "bob_relation": "bob-extension",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-10",
+      "runtime_evidence": [],
+      "notes": [
+        "Reviewed source revision: 78a29b77cdfd6ed9feb46e2644e0e7b881093e0b. No execution was performed by this catalogue.",
+        "The reviewed package is 0.1.0 and requires Python 3.12+ plus third-party dependencies; source unit/integration tests are present.",
+        "Project/global targets and dry-run are implemented. Source secret files are included unless explicitly excluded.",
+        "README says --upgrade retains a .bak; the reviewed installer deletes it after success and the test expects that deletion. Do not rely on retained backups.",
+        "Static pattern scanning is not a security guarantee. No scanner, converter, installer or upstream test suite was executed here."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/funhere/bob-skill-installer",
+          "supports": "Public project source and project identity."
+        },
+        {
+          "url": "https://github.com/funhere/bob-skill-installer/blob/78a29b77cdfd6ed9feb46e2644e0e7b881093e0b/LICENSE",
+          "supports": "License of the reviewed source; see notes for scope."
+        },
+        {
+          "url": "https://github.com/funhere/bob-skill-installer/blob/78a29b77cdfd6ed9feb46e2644e0e7b881093e0b/README.md",
+          "supports": "Documented features, secret-file default and backup claim."
+        },
+        {
+          "url": "https://github.com/funhere/bob-skill-installer/blob/78a29b77cdfd6ed9feb46e2644e0e7b881093e0b/pyproject.toml",
+          "supports": "Package version, Python requirement, dependencies and declared license."
+        },
+        {
+          "url": "https://github.com/funhere/bob-skill-installer/blob/78a29b77cdfd6ed9feb46e2644e0e7b881093e0b/src/bob_skill_installer/cli/main.py",
+          "supports": "Implemented CLI defaults and installation options."
+        },
+        {
+          "url": "https://github.com/funhere/bob-skill-installer/blob/78a29b77cdfd6ed9feb46e2644e0e7b881093e0b/src/bob_skill_installer/installer/installer.py",
+          "supports": "Staged writes and successful-upgrade backup removal."
+        },
+        {
+          "url": "https://github.com/funhere/bob-skill-installer/blob/78a29b77cdfd6ed9feb46e2644e0e7b881093e0b/tests/unit/test_installer.py",
+          "supports": "Test source explicitly expecting backup cleanup, not a run by this catalogue."
+        }
+      ]
+    },
+    {
+      "id": "onboardops",
+      "name": "OnboardOps",
+      "category": "onboarding",
+      "repository": "https://github.com/rohan879/OnboardOps",
+      "summary": "A community onboarding workflow combining Bob instructions, skills, an MCP server, and a repository-learning dashboard.",
+      "publisher_type": "community",
+      "license": "MIT",
+      "license_evidence": "https://github.com/rohan879/OnboardOps",
+      "availability": "public-source",
+      "installation": "not-assessed",
+      "bob_relation": "bob-extension",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-10",
+      "runtime_evidence": [],
+      "notes": [
+        "The README identifies the project as a Bob hackathon submission.",
+        "Treat its custom-mode representation as project-specific until checked against the installed Bob version."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/rohan879/OnboardOps",
+          "supports": "Public source, onboarding components, hackathon origin, and MIT license."
+        }
+      ]
+    },
+    {
+      "id": "debug-swarm",
+      "name": "Debug Swarm",
+      "category": "debugging",
+      "repository": "https://github.com/Gabriel-ASM/IBM-Bob-Hackathon",
+      "summary": "A community debugging workflow with focused investigators, run artifacts, a dashboard, and a planted-bug benchmark.",
+      "publisher_type": "community",
+      "license": "MIT",
+      "license_evidence": "https://github.com/Gabriel-ASM/IBM-Bob-Hackathon",
+      "availability": "public-source",
+      "installation": "documented",
+      "bob_relation": "bob-extension",
+      "review_status": "documentation-reviewed",
+      "reviewed_on": "2026-10-10",
+      "runtime_evidence": [],
+      "notes": [
+        "The repository documents a seven-phase debugging skill and replayable reference runs.",
+        "Upstream test counts and benchmark outcomes have not been independently reproduced by this catalogue."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/Gabriel-ASM/IBM-Bob-Hackathon",
+          "supports": "Public source, workflow components, quick-start instructions, and MIT license."
+        }
+      ]
+    }
+  ]
+}

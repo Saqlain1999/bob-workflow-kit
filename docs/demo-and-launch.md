@@ -6,7 +6,7 @@ The public starting point is [Try the alpha](try-alpha.md). Link people there fi
 
 ## Record one real demonstration
 
-Use the public Parcel Resume task from [bob-workflow-evals](https://github.com/Saqlain1999/bob-workflow-evals/tree/main/tasks/parcel-resume). Run on a machine with Bob installed; record the exact kit/evaluator revisions, Bob surface/version and relevant configuration. Follow that task's README and acceptance checklist.
+The [included exercise guide](exercises.md) covers the Parcel Resume task. Run on a machine with Bob installed; record the exact kit/evaluator revisions, Bob surface/version and relevant configuration. Follow that task's README and acceptance checklist.
 
 The helper constructs an interruption scenario. Its historical check is an actual local test run; its checkpoint is **not** a transcript of a prior Bob session. State that at the start of a recording. To claim a real interrupted-agent trial later, separately capture the original Bob session, interruption, intervening edits and resumed session.
 
@@ -22,7 +22,7 @@ Suggested edited video length is 2–3 minutes. Preserve the complete run eviden
 
 Use the task's ordinary participant prompt. Extra hints or human repairs are interventions and belong in the report. Keep API keys, private repository content, personal file paths and unrelated desktop windows out of the recording.
 
-Publish a recording only after reviewing the observed result. Accompany it with the [live trial record](live-trial-template.json), evaluator reports, a diff, and links to the exact source revisions. A failure is still a useful demonstration if accurately labelled.
+Publish a recording only after reviewing the observed result. Accompany it with a copy of the [live trial record](live-trial-template.json), the output of `python3 tools/validate_live_trial.py /path/to/result.json`, evaluator reports, a diff, and links to the exact source revisions. Validation checks that the record is complete and bounded; it does not prove its assertions. A failure is still a useful demonstration if accurately labelled.
 
 ## Launch sequence
 

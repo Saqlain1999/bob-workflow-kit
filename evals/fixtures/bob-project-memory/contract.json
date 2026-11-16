@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "task_id": "bob-project-memory-v1",
+  "scopes": ["project-alpha", "project-beta", "shared-lessons"],
+  "required_behaviors": [
+    "fresh-session recall",
+    "project separation",
+    "explicit sanitized promotion",
+    "supersession with history",
+    "source freshness",
+    "revision conflict refusal",
+    "interrupted-write recovery",
+    "hostile content remains untrusted data",
+    "direct and indexed deletion",
+    "honest backend-outage degradation"
+  ],
+  "evidence_policy": "Repository evidence is the fallback source of truth; unavailable memory must never be reported as a successful recall.",
+  "privacy_policy": "The fixture contains constructed public data only. Do not add credentials, transcripts, private paths, or private project content."
+}

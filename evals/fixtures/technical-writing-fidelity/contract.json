@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "exact_token_counts": {
+    "v2.4.1": 4,
+    "/var/lib/orbit/backups/current.tar": 2,
+    "2.5 GiB": 1,
+    "30 s": 1,
+    "E_CONN_RESET": 1,
+    "E_AUTH_DENIED": 1,
+    "The on-call engineer owns rollback approval.": 1
+  },
+  "commands_in_order": [
+    "orbitctl backup --output /var/lib/orbit/backups/current.tar",
+    "orbitctl migrate --target v2.4.1 --max-memory 2.5 GiB",
+    "orbitctl verify --target v2.4.1",
+    "orbitctl cleanup --target v2.4.1"
+  ],
+  "requirement_keywords": {
+    "backup_before_migration": "MUST",
+    "connection_retry": "MAY",
+    "authentication_retry": "MUST NOT",
+    "cleanup_before_verification": "MUST NOT"
+  }
+}

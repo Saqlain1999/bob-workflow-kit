@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "backend": "Engram Alpha",
+  "qualification_id": "engram-alpha-v0.11.0-source-gate",
+  "decision": "adapt_after_runtime_qualification",
+  "evidence_level": "source_reviewed_preview_only",
+  "source": {
+    "repository": "https://github.com/techtheist/engram",
+    "external_verification": "NOT RUN",
+    "tag": "v0.11.0",
+    "commit": "ed4fe24d97f16f1c362d0c4d6b74bfe4d2caf0c3",
+    "commit_date_utc": "2026-10-31T23:33:58Z",
+    "release_published_utc": "2026-11-01T00:05:43Z",
+    "license": "MIT",
+    "asset": {
+      "name": "engram-alpha-v0.11.0-x86_64-unknown-linux-gnu.tar.gz",
+      "size_bytes": 23934415,
+      "sha256": "287708d36f27d72dca86d45ea40d269fd57525e8ab8a987c5cf00837998bf8d5"
+    },
+    "reviewed_paths": [
+      "crates/engram-cli/src/main.rs",
+      "crates/engram-mcp/src/lib.rs",
+      "README.md",
+      "LICENSE"
+    ]
+  },
+  "bob_trial_contract": {
+    "configuration_scope": "project_only",
+    "configuration_path": ".bob/mcp.json",
+    "transport": "stdio",
+    "server_name": "engram-alpha",
+    "command_must_be_absolute": true,
+    "arguments": ["mcp", "--db", "<project>/.engram/graph.db"],
+    "working_directory": "<project>",
+    "disabled_by_default": true,
+    "always_allow": [],
+    "first_tool_call": {
+      "tool": "brief",
+      "arguments": {}
+    },
+    "prerequisites": [
+      "disposable project with constructed public data",
+      "asset digest independently verified before execution",
+      "project folder explicitly trusted when Bob folder trust is enabled",
+      "project MCP entry reviewed and enabled manually",
+      "individual tool approvals retained"
+    ],
+    "prohibited_first_trial": [
+      "global Bob settings mutation",
+      "passive transcript or history capture",
+      "automatic hooks",
+      "non-loopback HTTP service exposure",
+      "cloud sync",
+      "private project content",
+      "credentials or paid model calls"
+    ]
+  },
+  "runtime_side_effects_to_observe": [
+    "mcp may start a detached machine-local core",
+    "project-local graph database and mcp.log creation",
+    "loopback port and daemon metadata",
+    "project registration and machine-level state",
+    "model or asset download behavior",
+    "status, stop, and complete removal behavior"
+  ],
+  "contract_mapping": [
+    {
+      "behavior": "fresh-session recall",
+      "candidate_mechanism": "internal preview: brief with {} on the DB-pinned project, plus search; actual upstream API unverified",
+      "status": "runtime_evidence_required"
+    },
+    {
+      "behavior": "project separation",
+      "candidate_mechanism": "one project-local database plus explicit project binding",
+      "status": "runtime_evidence_required"
+    },
+    {
+      "behavior": "explicit sanitized promotion",
+      "candidate_mechanism": "adapter-owned summary into an explicit shared scope",
+      "status": "adapter_required"
+    },
+    {
+      "behavior": "supersession with history",
+      "candidate_mechanism": "replaces links and archive/tombstone semantics",
+      "status": "runtime_evidence_required"
+    },
+    {
+      "behavior": "source freshness",
+      "candidate_mechanism": "adapter-owned source hash and current/stale decision",
+      "status": "adapter_required"
+    },
+    {
+      "behavior": "revision conflict refusal",
+      "candidate_mechanism": "no accepted expected-revision write contract found",
+      "status": "blocked"
+    },
+    {
+      "behavior": "interrupted-write recovery",
+      "candidate_mechanism": "project-local database recovery",
+      "status": "runtime_evidence_required"
+    },
+    {
+      "behavior": "hostile content remains untrusted data",
+      "candidate_mechanism": "adapter and Bob instructions must keep retrieved bodies inert",
+      "status": "runtime_evidence_required"
+    },
+    {
+      "behavior": "direct and indexed deletion",
+      "candidate_mechanism": "agent tools expose tombstone/archive; hard delete is user-only",
+      "status": "blocked"
+    },
+    {
+      "behavior": "honest backend-outage degradation",
+      "candidate_mechanism": "adapter must return unavailable and point to repository evidence",
+      "status": "adapter_required"
+    }
+  ],
+  "stop_conditions": [
+    "source pin or asset digest differs",
+    "server requires a global Bob configuration change",
+    "another project's database or evidence becomes visible",
+    "stored instruction-like content changes control flow",
+    "backend failure is reported as successful recall",
+    "direct and indexed deletion cannot be demonstrated",
+    "the trial would require private data, credentials, or a paid model call"
+  ],
+  "unverified": [
+    "Engram binary execution",
+    "MCP initialization and protocol compatibility",
+    "live Bob discovery, activation, approval, and tool use",
+    "all bob-project-memory-v1 runtime behaviors",
+    "durable multi-process concurrency and interruption recovery",
+    "backup erasure, privacy compliance, and production readiness"
+  ]
+}
