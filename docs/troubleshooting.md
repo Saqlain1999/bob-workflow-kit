@@ -22,6 +22,7 @@ Start with the exact command output and the active execution host. Preserve unre
 | Trial preparation says the output already exists | The command refuses to replace prior or partial evidence | Choose a new run-specific path. Preserve and inspect the existing file; delete it only when you have deliberately decided it contains no evidence worth retaining |
 | Trial recording says the input is not `not_run` | The recorder accepts only the immutable prepared starting record | Keep every prior result. Start from the original prepared record and choose a new output path for each blocked or incomplete attempt |
 | Completed-trial recording rejects a prior result | Completion also starts only from the immutable prepared record | Preserve the blocked/incomplete result as evidence. Start the completed record from the original prepared file and give it a new output path; never upgrade or replace a failed attempt |
+| Live-trial validation reports a duplicate JSON key | The record contains two values for the same field, so different readers or reviewers could interpret it differently | Keep the ambiguous file for diagnosis, but do not submit or transition it. Start again from the original prepared record and use a new output path; never delete one duplicate merely to choose the more favorable claim |
 | A recovery trial passes tests but validation rejects `completed` | Mechanical correctness does not show that the participant used the handoff, reconciled current state, detected stale evidence, reran current checks, updated the checkpoint, or preserved unrelated work | Complete the human acceptance review from visible evidence, or keep recovery status `partial` and the overall trial `incomplete`; never infer process observations from a green candidate report |
 
 Current IBM references: [IDE skills](https://bob.ibm.com/docs/ide/features/skills), [Shell skills tutorial](https://bob.ibm.com/docs/shell/tutorials/use-skills), [rules precedence](https://bob.ibm.com/docs/ide/configuration/rules), and the [Shell changelog entry for protected Bob-home writes](https://bob.ibm.com/docs/shell/changelog#201).
@@ -69,7 +70,10 @@ complete the task, or turn helper output into live-client evidence.
 
 Use an actual UTC observation time in `YYYY-MM-DDTHH:MM:SSZ` form (fractional
 seconds are allowed), not a label that merely ends in `Z`. The validator parses
-the date and time and rejects impossible dates or offset/local timestamps.
+the date and time and rejects impossible dates or offset/local timestamps. The
+recorders and validator also reject duplicate JSON keys at any depth; a file
+with conflicting repeated fields is ambiguous evidence, even if a generic JSON
+parser would keep the last value.
 
 ## Record a completed trial
 

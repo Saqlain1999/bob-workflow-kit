@@ -203,6 +203,30 @@ class LiveTrialValidationTests(unittest.TestCase):
             self.assertEqual(validator.main([str(path)]), 0)
             self.assertEqual(path.read_bytes(), before)
 
+    def test_cli_rejects_duplicate_keys_at_any_depth_without_editing(self):
+        original = TEMPLATE.read_text(encoding="utf-8")
+        duplicates = {
+            "top-level": original.replace(
+                '"status": "not_run"',
+                '"status": "completed",\n  "status": "not_run"', 1),
+            "nested": original.replace(
+                '"version": null',
+                '"version": "ambiguous",\n    "version": null', 1),
+        }
+        for label, content in duplicates.items():
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as tmp:
+                path = Path(tmp) / "record.json"
+                path.write_text(content, encoding="utf-8")
+                before = path.read_bytes()
+                output = io.StringIO()
+                with redirect_stdout(output):
+                    self.assertEqual(validator.main([str(path)]), 1)
+                report = json.loads(output.getvalue())
+                self.assertFalse(report["valid"])
+                self.assertTrue(any("duplicate JSON key" in error
+                                    for error in report["errors"]))
+                self.assertEqual(path.read_bytes(), before)
+
 
 class LiveTrialPreparationTests(unittest.TestCase):
     def test_prepared_record_binds_checkout_without_claiming_execution(self):
@@ -245,6 +269,19 @@ class LiveTrialPreparationTests(unittest.TestCase):
         for values in cases:
             with self.subTest(values=values), self.assertRaises(preparer.PreparationError):
                 preparer.build_record(**values)
+
+    def test_duplicate_key_in_shipped_template_fails_closed(self):
+        original = TEMPLATE.read_text(encoding="utf-8")
+        duplicate = original.replace(
+            '"status": "not_run"',
+            '"status": "completed",\n  "status": "not_run"', 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "template.json"
+            path.write_text(duplicate, encoding="utf-8")
+            with mock.patch.object(preparer, "TEMPLATE", path):
+                with self.assertRaises(preparer.PreparationError):
+                    preparer.build_record(task_id="tiny-ledger", scenario="small_repair",
+                                          kit_commit="1" * 40)
 
     def test_write_refuses_overwrite_and_preserves_template(self):
         template_before = TEMPLATE.read_bytes()
@@ -361,6 +398,19 @@ class LiveTrialRecordingTests(unittest.TestCase):
             path.write_text(json.dumps(completed_record()), encoding="utf-8")
             with self.assertRaises(recorder.RecordingError):
                 recorder.load_prepared(path)
+
+    def test_load_rejects_ambiguous_prepared_record(self):
+        prepared = json.dumps(self.prepared_record(), indent=2)
+        duplicate = prepared.replace(
+            '"scenario": "interruption_recovery"',
+            '"scenario": "small_repair",\n    "scenario": "interruption_recovery"', 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "prepared.json"
+            path.write_text(duplicate, encoding="utf-8")
+            before = path.read_bytes()
+            with self.assertRaises(recorder.RecordingError):
+                recorder.load_prepared(path)
+            self.assertEqual(path.read_bytes(), before)
 
     def test_cli_writes_new_result_without_changing_or_replacing_evidence(self):
         with tempfile.TemporaryDirectory() as tmp:

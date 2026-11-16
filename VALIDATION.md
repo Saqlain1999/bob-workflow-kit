@@ -4,6 +4,40 @@ Current package: **0.1.0-alpha.7**. Historical alpha.1 local preparation was rec
 
 This record distinguishes the implemented package, local software tests, an independent written-skill trial, and work that has not been executed. Nothing in this record establishes that the kit has been loaded by a live IBM Bob client.
 
+## Unambiguous live-trial JSON parsing — 16 November 2026 (UTC)
+
+Review reproduced an evidence-integrity defect in schema 3: a record containing
+both `"status": "completed"` and `"status": "not_run"` parsed to the latter
+value and passed validation. Standard JSON permits parsers to handle duplicate
+object names differently; silently accepting a last value makes the retained
+record ambiguous to tools and human reviewers.
+
+The shared strict loader now rejects a duplicate key at any object depth.
+Preparation applies it to the shipped template, blocked/incomplete and completed
+transitions apply it to the immutable prepared input, and the read-only
+validator applies it to submitted results. Rejection preserves the source and
+does not create a transition output. This is evidence-shape validation only; it
+does not attest that unique values or observations are truthful.
+
+Fresh local checks on Linux 6.18.57 x86_64 with Python 3.12.14:
+
+- The focused preparation, recording, completion and validation suite passed
+  **36/36**. Top-level `status` and nested `kit.version` duplicates were rejected;
+  the validator left each file byte-for-byte unchanged, transition loading
+  refused the ambiguous prepared record, and preparation rejected an ambiguous
+  shipped template.
+- `python3 -B -W error::ResourceWarning tools/check_all.py --require-history`:
+  **102/102 root tests** and **157/157 evaluator tests** passed with zero
+  failures, errors or skips; catalogue, provenance and local links passed.
+- An exact-content archive with no `.git` and a `PATH` containing Python but no
+  Git passed all content/offline checks; root discovered all **102** cases with
+  **24 explicit Git-only skips**, and all **157** evaluator tests ran.
+- Python 3.10 grammar parsed the four changed Python files; the complete
+  eight-file diff and `git diff --check` passed.
+
+Hosted exact-head results are recorded in the PR description after publication;
+adding that run URL here afterward would create a different, untested head.
+
 ## Exact executed-record identity validation — 15 November 2026 (UTC)
 
 Review reproduced an evidence-integrity defect in schema 3: an executed record

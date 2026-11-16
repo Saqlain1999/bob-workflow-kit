@@ -34,8 +34,9 @@ def _required(value: str | None, option: str) -> str:
 
 def load_prepared(path: Path) -> dict:
     try:
-        record = json.loads(Path(path).read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        record = validate_live_trial.load_strict_json(path)
+    except (OSError, UnicodeError, json.JSONDecodeError,
+            validate_live_trial.DuplicateKeyError) as error:
         raise RecordingError("Cannot read the prepared live-trial record.") from error
     errors = validate_live_trial.validate(record)
     if errors:

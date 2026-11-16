@@ -58,9 +58,10 @@ def build_record(*, task_id: str, scenario: str, kit_commit: str | None = None,
         raise PreparationError("--archive-sha256 must be a lowercase 64-character SHA-256.")
 
     try:
-        record = json.loads(TEMPLATE.read_text(encoding="utf-8"))
+        record = validate_live_trial.load_strict_json(TEMPLATE)
         version = VERSION.read_text(encoding="utf-8").strip()
-    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+    except (OSError, UnicodeError, json.JSONDecodeError,
+            validate_live_trial.DuplicateKeyError) as error:
         raise PreparationError("Cannot read the shipped trial template or VERSION.") from error
     if not version:
         raise PreparationError("VERSION must not be empty.")

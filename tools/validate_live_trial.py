@@ -26,6 +26,29 @@ UTC_TIMESTAMP_RE = re.compile(
 )
 
 
+class DuplicateKeyError(ValueError):
+    """Raised when a JSON object contains an ambiguous repeated key."""
+
+
+def _reject_duplicate_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateKeyError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
+def loads_strict_json(text):
+    """Parse JSON while rejecting duplicate keys at every object depth."""
+    return json.loads(text, object_pairs_hook=_reject_duplicate_keys)
+
+
+def load_strict_json(path):
+    """Read one UTF-8 JSON document without accepting duplicate keys."""
+    return loads_strict_json(Path(path).read_text(encoding="utf-8"))
+
+
 def mapping(value, name, errors):
     if not isinstance(value, dict):
         errors.append(f"{name} must be an object")
@@ -197,8 +220,8 @@ def main(argv=None):
         return 2
     path = Path(args[0])
     try:
-        record = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        record = load_strict_json(path)
+    except (OSError, UnicodeError, json.JSONDecodeError, DuplicateKeyError) as error:
         print(json.dumps({"valid": False, "errors": [str(error)]}, indent=2))
         return 1
     errors = validate(record)
